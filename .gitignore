@@ -1,0 +1,30 @@
+# Cache/options used by clangd
+.clangd
+.cache
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+# Visual Studio and VS Code
+.vs
+.vscode
+
+# Build directories
+build
+cmake-build*
+
+# Doxygen documentation
+Dox
+
+# Conan imports for imgui
+bindings
+
+# CMake build configuration
+CMakeSettings.json
+compile_commands.json
+
+# Emscripten output
+public/*.data
+public/*.js
+public/*.wasm

@@ -615,16 +615,6 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
   ImGui_ImplSDL2_InitForOpenGL(m_window, m_GLContext);
   ImGui_ImplOpenGL3_Init(m_GLSLVersion.c_str());
 
-  initializeGL();
-
-  if (io.DisplaySize.x >= 0 && io.DisplaySize.y >= 0) {
-    int width{static_cast<int>(io.DisplaySize.x)};
-    int height{static_cast<int>(io.DisplaySize.y)};
-    m_viewportWidth = width;
-    m_viewportHeight = height;
-    resizeGL(width, height);
-  }
-
   // Load fonts
   io.Fonts->Clear();
 
@@ -634,6 +624,16 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
       io.Fonts->AddFontFromMemoryTTF(ttf.data(), ttf.size(), 16.0f,
                                      &fontConfig) == nullptr) {
     throw abcg::Exception{abcg::Exception::Runtime("Failed to load font file")};
+  }
+
+  initializeGL();
+
+  if (io.DisplaySize.x >= 0 && io.DisplaySize.y >= 0) {
+    int width{static_cast<int>(io.DisplaySize.x)};
+    int height{static_cast<int>(io.DisplaySize.y)};
+    m_viewportWidth = width;
+    m_viewportHeight = height;
+    resizeGL(width, height);
   }
 }
 

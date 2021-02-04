@@ -52,13 +52,13 @@ else()
       ${PROJECT_NAME}
       PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
       PUBLIC ${SDL2_IMAGE_DIRS}
-      PUBLIC ${SDL2_INCLUDE_DIRS}
+	  PUBLIC ${SDL2_INCLUDE_DIR}
       PUBLIC "../bindings")
     target_link_libraries(
       ${PROJECT_NAME}
       PUBLIC external
       PUBLIC ${OPTIONS_TARGET}
-      PUBLIC ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} GL dl)
+	  PUBLIC ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} GL dl)
 
     # Enable warnings only for selected files
     set_source_files_properties(${ABCG_FILES} PROPERTIES COMPILE_OPTIONS
@@ -80,11 +80,11 @@ else()
       ${PROJECT_NAME}
       PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
       PUBLIC ${SDL2_IMAGE_DIRS}
-      PUBLIC ${SDL2_INCLUDE_DIRS})
+	  PUBLIC ${SDL2_INCLUDE_DIR})
     target_link_libraries(
       ${PROJECT_NAME}
       PUBLIC external
-      PUBLIC ${SDL2_LIBRARIES}
+	  PUBLIC ${SDL2_LIBRARY}
       PUBLIC ${SDL2_IMAGE_LIBRARIES})
   endif()
 

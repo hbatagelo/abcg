@@ -253,18 +253,24 @@ void abcg::OpenGLWindow::paintUI() {
       int windowHeight{};
       SDL_GetWindowSize(m_window, &windowWidth, &windowHeight);
 
+      auto widgetSize{ImVec2(150.0f, 30.0f)};
+      auto windowBorder{ImVec2(16.0f, 16.0f)};
+
+      ImGui::SetNextWindowSize(
+          ImVec2(widgetSize.x + windowBorder.x, widgetSize.y + windowBorder.y));
+      ImGui::SetNextWindowPos(ImVec2(5, static_cast<float>(windowHeight) -
+                                            (widgetSize.y + windowBorder.y) -
+                                            5));
+
       ImGui::Begin("Fullscreen", nullptr,
                    ImGuiWindowFlags_NoDecoration |
                        ImGuiWindowFlags_NoBringToFrontOnFocus |
                        ImGuiWindowFlags_NoFocusOnAppearing);
 
-      if (ImGui::Button("Toggle fullscreen", ImVec2(150.0f, 30.0f))) {
+      if (ImGui::Button("Toggle fullscreen", widgetSize)) {
         toggleFullscreen();
       }
 
-      ImVec2 widgetSize{ImGui::GetWindowSize()};
-      ImGui::SetWindowPos(
-          ImVec2(5, static_cast<float>(windowHeight) - widgetSize.y - 5));
       ImGui::End();
     }
   }
@@ -504,7 +510,8 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
 #if defined(__EMSCRIPTEN__)
   if (m_openGLSettings.preserveWebGLDrawingBuffer) {
     emscripten_run_script(
-        "canvas.getContext('webgl2', {preserveDrawingBuffer : true});");
+        "canvas.getContext('webgl2', {preserveDrawingBuffer : true});\n"
+        "canvas.style.backgroundColor = '#000000';");
   }
 #endif
 
@@ -650,6 +657,8 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
     m_viewportWidth = width;
     m_viewportHeight = height;
     resizeGL(width, height);
+  } else {
+    resizeGL(m_windowSettings.width, m_windowSettings.height);
   }
 }
 

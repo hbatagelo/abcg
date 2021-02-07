@@ -72,6 +72,9 @@ void OpenGLWindow::paintGL() {
   // Clear the color buffer and Z-buffer
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  // Adjust viewport
+  glViewport(0, 0, m_viewportWidth, m_viewportHeight);
+
   // Start using the shader program
   glUseProgram(m_program);
   // Start using the VAO
@@ -80,7 +83,9 @@ void OpenGLWindow::paintGL() {
   // Render a nice colored triangle
   glDrawArrays(GL_TRIANGLES, 0, 3);
 
+  // End using the VAO
   glBindVertexArray(0);
+  // End using the shader program
   glUseProgram(0);
 }
 
@@ -161,7 +166,8 @@ void OpenGLWindow::paintUI() {
 }
 
 void OpenGLWindow::resizeGL(int width, int height) {
-  glViewport(0, 0, width, height);
+  m_viewportWidth = width;
+  m_viewportHeight = height;
 }
 
 void OpenGLWindow::terminateGL() {

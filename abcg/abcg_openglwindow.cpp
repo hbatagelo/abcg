@@ -192,7 +192,16 @@ void abcg::OpenGLWindow::setOpenGLSettings(
 }
 
 void abcg::OpenGLWindow::setWindowSettings(
-    const WindowSettings &windowSettings) noexcept {
+    const WindowSettings &windowSettings) {
+  if (windowSettings.title != m_windowSettings.title) {
+    SDL_SetWindowTitle(m_window, windowSettings.title.c_str());
+  }
+
+  if (windowSettings.width != m_windowSettings.width ||
+      windowSettings.height != m_windowSettings.height) {
+    SDL_SetWindowSize(m_window, windowSettings.width, windowSettings.height);
+  }
+
   m_windowSettings = windowSettings;
 }
 

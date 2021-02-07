@@ -42,6 +42,7 @@ struct abcg::OpenGLSettings {
   int stencilSize{8};
   int samples{0};
   bool vsync{false};
+  bool preserveWebGLDrawingBuffer{false};
 };
 
 struct abcg::WindowSettings {

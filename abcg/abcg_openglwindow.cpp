@@ -501,6 +501,13 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
 
   m_assetsPath = std::string(basePath) + "/assets/";
 
+#if defined(__EMSCRIPTEN__)
+  if (m_openGLSettings.preserveWebGLDrawingBuffer) {
+    emscripten_run_script(
+        "canvas.getContext('webgl2', {preserveDrawingBuffer : true});");
+  }
+#endif
+
   // Shortcuts
   auto &majorVersion{m_openGLSettings.majorVersion};
   auto &minorVersion{m_openGLSettings.minorVersion};

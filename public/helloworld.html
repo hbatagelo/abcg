@@ -231,7 +231,10 @@
           progressElement.max = null;
           progressElement.hidden = true;
           canvas.style.display = "block";
-          if (!text) spinnerElement.hidden = true;
+          if (!text) {
+            spinnerElement.hidden = true;
+            canvas.style.backgroundColor = "#000000";
+          }
         }
         statusElement.innerHTML = text;
       },

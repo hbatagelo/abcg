@@ -60,13 +60,14 @@ bool checkMove(char *player, char board[]) {
 void OpenGLWindow::paintUI() {
   // Parent class will show fullscreen button and FPS meter
   abcg::OpenGLWindow::paintUI();
-  ImGui::ShowDemoWindow();
   // Our own ImGui widgets go below
   {
-    ImGui::SetNextWindowSize(ImVec2(660, 520));
-    ImGui::SetNextWindowPos(ImVec2(30, 5), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(560, 500));
+    ImGui::SetNextWindowPos(ImVec2(80, 5), ImGuiCond_FirstUseEver);
     // Window begin
     ImGui::Begin("Tic-Tac-Toe");
+
+    ImGui::ShowDemoWindow();
 
     // UX stuff
     static bool h_borders = true;
@@ -75,18 +76,16 @@ void OpenGLWindow::paintUI() {
     const int lines_count = 3;
     ImGui::SetNextItemWidth(ImGui::GetFontSize() * 8);
 
-    ImGui::Columns(columns_count, NULL, v_borders);
-
     /* board controller
 
-      [0,1,2,3,4,5,6,7,8] =
-      [
-        0,1,2
-        3,4,5
-        6,7,8
-      ]
+  [0,1,2,3,4,5,6,7,8] =
+  [
+    0,1,2
+    3,4,5
+    6,7,8
+  ]
 
-    */
+*/
     static char board[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
     static char btns[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     static int clicked = 0;
@@ -97,41 +96,35 @@ void OpenGLWindow::paintUI() {
 
     static char *pTurn = &xis;
 
+    ImGui::AlignTextToFramePadding();
     if (endGame) {
-      ImGui::Text("\nEnd game\n");
+      ImGui::Text("End game");
       if (*pTurn == 'O')
-        ImGui::Text("\nX wins!\n");
+        ImGui::Text("X wins!");
       else
-        ImGui::Text("\nO wins!\n");
+        ImGui::Text("O wins!");
     } else
-      ImGui::Text("\nIt's %c turn\n", *pTurn);
+      ImGui::Text("It's %c turn", *pTurn);
+
+    ImGui::Columns(columns_count, NULL, v_borders);
 
     for (int i = 0; i < columns_count * lines_count; i++) {
       if (h_borders && ImGui::GetColumnIndex() == 0) ImGui::Separator();
 
-      ImGui::Button(std::string(1, board[i]).c_str(), ImVec2(100, 50));
-      // pBtnLabel++;
+      ImGui::Button(std::string(1, board[i]).c_str(), ImVec2(165, 75));
       if (ImGui::IsItemClicked() && endGame != true) {
         clicked++;
-        // fmt::print("clicado {} estado anterior = {}\n", btnClicked,
-        // btns[i]);
-        fmt::print("turno atual = {}\n", *pTurn);
         if (btns[i] == 0) {
           if (*pTurn == 'X') {
-            // pBtnLabel[i] = &xis;
             board[i] = 'X';
-
             endGame = checkMove(pTurn, board);
             pTurn = &bolinha;
 
           } else {
-            // pBtnLabel[i] = &bolinha;
             board[i] = 'O';
             endGame = checkMove(pTurn, board);
             pTurn = &xis;
           }
-
-          fmt::print("pŕoximo {}\n", *pTurn);
         }
 
         btns[i] = 1;
@@ -143,8 +136,7 @@ void OpenGLWindow::paintUI() {
 
     ImGui::Columns(1);
     ImGui::NewLine();
-    if (ImGui::Button("Reset", ImVec2(400, 50))) {
-      fmt::print("Button pressed.\n");
+    if (ImGui::Button("Reset", ImVec2(540, 50))) {
       endGame = resetBoard(board, btns);
       pTurn = &xis;
     }

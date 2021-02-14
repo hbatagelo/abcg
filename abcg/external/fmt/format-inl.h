@@ -2779,6 +2779,12 @@ FMT_FUNC void vprint(std::FILE* f, string_view format_str, format_args args) {
   }
 #endif
   detail::fwrite_fully(buffer.data(), 1, buffer.size(), f);
+
+// Workaround for https://github.com/msys2/MSYS2-packages/issues/1490
+// to be used with redirection of output to cat: "foo.exe | cat"
+#if defined(_WIN32) && defined(__GNUC__)
+  fflush(stdout);
+#endif
 }
 
 #ifdef _WIN32

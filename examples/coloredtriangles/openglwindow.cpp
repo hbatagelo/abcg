@@ -100,6 +100,7 @@ void OpenGLWindow::paintUI() {
 
     if (flatColor) {
       ImGui::ColorEdit3("", &m_flatColor.x, colorEditFlags);
+      std::printf("%f", m_flatColor.x);
     } else {
       ImGui::PushItemWidth(240);
       ImGui::ColorEdit3("v0", &m_vertexColors[0].x, colorEditFlags);
@@ -146,10 +147,15 @@ void OpenGLWindow::setupModel() {
 
   // Create vertex colors
   std::vector<glm::vec4> colors(0);
-  colors.push_back(m_vertexColors[0]);
-  colors.push_back(m_vertexColors[1]);
-  colors.push_back(m_vertexColors[2]);
-
+  if (flatColor) {
+    colors.push_back(m_flatColor);
+    colors.push_back(m_flatColor);
+    colors.push_back(m_flatColor);
+  } else {
+    colors.push_back(m_vertexColors[0]);
+    colors.push_back(m_vertexColors[1]);
+    colors.push_back(m_vertexColors[2]);
+  }
   // Generate VBO of positions
   glGenBuffers(1, &m_vboPositions);
   glBindBuffer(GL_ARRAY_BUFFER, m_vboPositions);

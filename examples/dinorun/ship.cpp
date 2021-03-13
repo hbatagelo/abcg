@@ -157,6 +157,18 @@ void Ship::update(const GameData &gameData, float deltaTime) {
     m_velocity += forward * deltaTime;
   }
 
+  if (gameData.m_input[static_cast<size_t>(Input::Left)] &&
+      gameData.m_state == State::Playing) {
+    glm::vec2 forward = glm::rotate(glm::vec2{-1.0f, 0.0f}, m_rotation);
+    m_velocity += forward * deltaTime;
+  }
+
+  if (gameData.m_input[static_cast<size_t>(Input::Right)] &&
+      gameData.m_state == State::Playing) {
+    glm::vec2 forward = glm::rotate(glm::vec2{1.0f, 0.0f}, m_rotation);
+    m_velocity += forward * deltaTime;
+  }
+
   if (gameData.m_input[static_cast<size_t>(Input::Down)] &&
       gameData.m_state == State::Playing) {
     glm::vec2 forward = glm::rotate(glm::vec2{0.0f, -1.0f}, m_rotation);

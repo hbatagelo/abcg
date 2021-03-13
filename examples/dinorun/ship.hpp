@@ -6,8 +6,7 @@
 #include "abcg.hpp"
 #include "gamedata.hpp"
 
-// class Asteroids;
-class Bullets;
+class Asteroids;
 class OpenGLWindow;
 class StarLayers;
 
@@ -22,8 +21,7 @@ class Ship {
 
  private:
   glm::vec4 getRandomVertexColor();
-  // friend Asteroids;
-  friend Bullets;
+  friend Asteroids;
   friend OpenGLWindow;
   friend StarLayers;
 

@@ -7,7 +7,6 @@
 
 #include "abcg.hpp"
 #include "asteroids.hpp"
-#include "bullets.hpp"
 #include "ship.hpp"
 #include "starlayers.hpp"
 
@@ -31,8 +30,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   GameData m_gameData;
 
-  // Asteroids m_asteroids;
-  Bullets m_bullets;
+  Asteroids m_asteroids;
   Ship m_ship;
   StarLayers m_starLayers;
 

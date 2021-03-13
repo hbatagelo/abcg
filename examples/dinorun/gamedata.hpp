@@ -4,10 +4,10 @@
 #include <bitset>
 
 enum class Input { Right, Left, Down, Up, Fire };
-enum class State { Playing, GameOver, Win };
+enum class State { Playing, GameOver, Win, NotRunning };
 
 struct GameData {
-  State m_state{State::Playing};
+  State m_state{State::NotRunning};
   std::bitset<5> m_input;  // [fire, up, down, left, right]
 };
 

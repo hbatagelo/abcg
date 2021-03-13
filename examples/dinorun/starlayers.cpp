@@ -70,14 +70,13 @@ void StarLayers::paintGL() {
     glBindVertexArray(layer.m_vao);
     glUniform1f(m_pointSizeLoc, layer.m_pointSize);
 
-    for (auto i : {-2, 0, 2}) {
-      for (auto j : {-2, 0, 2}) {
-        glUniform2f(m_translationLoc, layer.m_translation.x + j,
-                    layer.m_translation.y + i);
+    // for (auto i : {-2, 0, 2}) {
+    for (auto j : {-2, 0, 2}) {
+      glUniform2f(m_translationLoc, layer.m_translation.x + j, 0);
 
-        glDrawArrays(GL_POINTS, 0, layer.m_quantity);
-      }
+      glDrawArrays(GL_POINTS, 0, layer.m_quantity);
     }
+    // }
 
     glBindVertexArray(0);
   }

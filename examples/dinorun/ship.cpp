@@ -152,7 +152,7 @@ void Ship::update(const GameData &gameData, float deltaTime) {
   }*/
 
   if (gameData.m_input[static_cast<size_t>(Input::Fire)] &&
-      gameData.m_state != State::Playing) {
+      gameData.m_state == State::Playing) {
     m_velocity.x = 1.0f;
     m_velocity.y = 0.0f;
   }

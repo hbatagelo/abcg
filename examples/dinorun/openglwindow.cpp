@@ -7,8 +7,10 @@
 void OpenGLWindow::handleEvent(SDL_Event &event) {
   // Keyboard events
   if (event.type == SDL_KEYDOWN) {
-    if (event.key.keysym.sym == SDLK_SPACE)
+    if (event.key.keysym.sym == SDLK_SPACE) {
       m_gameData.m_input.set(static_cast<size_t>(Input::Fire));
+      m_gameData.m_state = State::Playing;
+    }
     if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
       m_gameData.m_input.set(static_cast<size_t>(Input::Up));
     if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)

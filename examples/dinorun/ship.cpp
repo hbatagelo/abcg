@@ -9,6 +9,56 @@ glm::vec4 Ship::getRandomVertexColor() {
                    color_rd(m_randomEngine), 1.0f};
 }
 
+/*namespace glm {
+template <typename T, qualifier Q>
+GLM_FUNC_QUALIFIER vec<2, T, Q> jump(vec<2, T, Q> const &v, T const &angle) {
+  vec<2, T, Q> Result;
+  T const Cos(cos(angle));
+  T const Sin(sin(angle));
+
+  Result.x = (sin(2 * angle)) / 9.81;
+
+  Result.y = -0.5 * 9.81 + v.x * sin(angle) * v.x;
+
+  // Result.x = v.x * Cos - v.y * Sin;
+  Result.y = v.x * Sin + v.y * Cos;
+  return Result;
+}
+}  // namespace glm
+
+int wurf(double v0, double alpha, int *pHausX, int *pHausY, int *pXw) {
+  double x, y;
+  double xw;
+  double tx;
+  double pi = 3.14159;
+
+  alpha = alpha * (2 * pi / 360);
+
+  xw = ((v0 * v0) * sin(2 * alpha)) / 9.81;
+
+  *pXw = xw;
+
+  for (x = 0; x <= xw; x++) {
+    tx = x / (v0 * cos(alpha));
+    y = -0.5 * 9.81 * (tx * tx) + v0 * sin(alpha) * tx;
+    if (collision(x, (int)y, *pHausX, *pHausY) == 0) {
+      if ((int)y > 0) {
+        if (y < 25) {
+          if (x <= 80)  // Abfrage falls größer als Bildschirm
+          {
+            gotoxy((int)x, 25 - (int)y);
+            printf("*");
+          }
+        }
+      }
+    } else {
+      return (-1);
+    }
+  }
+  return (0);
+}*/
+
+// http://www.cplusplus.com/forum/beginner/37845/
 void Ship::initializeGL(GLuint program) {
   terminateGL();
 
@@ -48,7 +98,7 @@ void Ship::initializeGL(GLuint program) {
 
   // Normalize
   for (auto &position : positions) {
-    position /= glm::vec2{15.5f, 15.5f};
+    position /= glm::vec2{44.0f, 20.5f};
   }
 
   std::array indices{0, 1, 2, 0,  2,  3,  4,  5,  6,
@@ -153,8 +203,24 @@ void Ship::update(const GameData &gameData, float deltaTime) {
 
   if (gameData.m_input[static_cast<size_t>(Input::Fire)] &&
       gameData.m_state == State::Playing) {
+    // TODO: movimentar o dinossauro apenas no eixo y
+    // translation?
     m_velocity.x = 1.0f;
     m_velocity.y = 0.0f;
+
+    double alpha = 45 * (2 * 3.14159 / 360);
+
+    for (float x = 0; x < 1; x = x + 0.01) {
+      m_velocity.y =
+          -0.5 * 9.81 * (x * x) + m_velocity.x * sin(alpha) * m_velocity.x;
+    }
+
+    for (float x = 1; x > 0; x = x - 0.01) {
+      m_velocity.y =
+          -0.5 * 9.81 * (x * x) + m_velocity.x * sin(alpha) * m_velocity.x;
+    }
+
+    std::printf("espaço\n");
   }
 
   // if (gameData.m_input[static_cast<size_t>(Input::Left)] &&

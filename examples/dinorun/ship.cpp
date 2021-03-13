@@ -22,18 +22,25 @@ void Ship::initializeGL(GLuint program) {
   m_translation = glm::vec2(0);
   m_velocity = glm::vec2(0);
 
-  std::array<glm::vec2, 7> positions{// Ship body
-                                     glm::vec2{-15.0f, +30.0f},
-                                     glm::vec2{+20.0f, +30.0f},
-                                     glm::vec2{+20.0f, +12.5f},
+  std::array<glm::vec2, 16> positions{
+      // Ship body
+      glm::vec2{-15.0f, +30.0f}, glm::vec2{+20.0f, +30.0f},
+      glm::vec2{+20.0f, +12.5f},
 
-                                     glm::vec2{-15.0f, +12.5f},
+      glm::vec2{-15.0f, +12.5f},
 
-                                     glm::vec2{-7.0f, +12.5f},
+      glm::vec2{-7.0f, +12.5f},
 
-                                     glm::vec2{-7.0f, -12.5f},
+      glm::vec2{-7.0f, -12.5f},
 
-                                     glm::vec2{-44.0f, -12.5f}
+      glm::vec2{-44.0f, -12.5f}, glm::vec2{-7.0f, +5.5f},
+      glm::vec2{-7.0f, +1.5f},   glm::vec2{0.0f, +1.5f},
+
+      glm::vec2{-15.0f, -12.5f}, glm::vec2{-15.0f, -20.0f},
+      glm::vec2{-6.0f, -20.0f},
+
+      glm::vec2{-30.0f, -12.5f}, glm::vec2{-30.0f, -20.0f},
+      glm::vec2{-21.0f, -20.0f},
 
   };
 
@@ -44,7 +51,8 @@ void Ship::initializeGL(GLuint program) {
     position /= glm::vec2{15.5f, 15.5f};
   }
 
-  std::array indices{0, 1, 2, 0, 2, 3, 4, 5, 6};
+  std::array indices{0, 1, 2, 0,  2,  3,  4,  5,  6,
+                     7, 9, 8, 10, 11, 12, 13, 14, 15};
 
   // Generate VBO
   glGenBuffers(1, &m_vbo);
@@ -128,17 +136,30 @@ void Ship::terminateGL() {
 }
 
 void Ship::update(const GameData &gameData, float deltaTime) {
-  // Rotate
-  if (gameData.m_input[static_cast<size_t>(Input::Left)])
-    m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
-  if (gameData.m_input[static_cast<size_t>(Input::Right)])
-    m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
+  /*Rotate
+ if (gameData.m_input[static_cast<size_t>(Input::Left)])
+   m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
+ if (gameData.m_input[static_cast<size_t>(Input::Right)])
+   m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime); */
 
-  // Apply thrust
+  /*Apply thrust
   if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
       gameData.m_state == State::Playing) {
     // Thrust in the forward vector
     glm::vec2 forward = glm::rotate(glm::vec2{0.0f, 1.0f}, m_rotation);
+    forward = glm::rotate(glm::vec2{0.0f, -1.0f}, m_rotation);
+    m_velocity += forward * deltaTime;
+  }*/
+
+  if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
+      gameData.m_state == State::Playing) {
+    glm::vec2 forward = glm::rotate(glm::vec2{0.0f, 1.0f}, m_rotation);
+    m_velocity += forward * deltaTime;
+  }
+
+  if (gameData.m_input[static_cast<size_t>(Input::Down)] &&
+      gameData.m_state == State::Playing) {
+    glm::vec2 forward = glm::rotate(glm::vec2{0.0f, -1.0f}, m_rotation);
     m_velocity += forward * deltaTime;
   }
 }

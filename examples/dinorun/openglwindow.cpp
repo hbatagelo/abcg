@@ -146,7 +146,7 @@ void OpenGLWindow::paintUI() {
     } else if (m_gameData.m_state == State::Win) {
       ImGui::Text("*You Win!*");
     } else if (m_gameData.m_state == State::NotRunning) {
-      ImGui::Text("*Press space to begin*");
+      ImGui::Text("Pressspace");
     }
 
     ImGui::PopFont();

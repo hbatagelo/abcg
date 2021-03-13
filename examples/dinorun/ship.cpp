@@ -209,18 +209,28 @@ void Ship::update(const GameData &gameData, float deltaTime) {
     m_velocity.y = 0.0f;
 
     double alpha = 45 * (2 * 3.14159 / 360);
+    if (deltaTime > 0) {
+      for (float x = 0; x < 1000; x = x + 10) {
+        m_translation.y =
+            deltaTime * (0.5 * 9.81 * (x * x) +
+                         m_translation.x * sin(alpha) * m_translation.x);
+        if (m_translation.x < -1.0f) m_translation.x += 2.0f;
+        if (m_translation.x > +1.0f) m_translation.x -= 2.0f;
+        if (m_translation.y < -1.0f) m_translation.y += 2.0f;
+        if (m_translation.y > +1.0f) m_translation.y -= 2.0f;
+      }
 
-    for (float x = 0; x < 1; x = x + 0.01) {
-      m_velocity.y =
-          -0.5 * 9.81 * (x * x) + m_velocity.x * sin(alpha) * m_velocity.x;
+      for (float x = 100; x > 0; x = x - 10) {
+        m_translation.y =
+            deltaTime * (0.5 * 9.81 * (x * x) +
+                         m_translation.x * sin(alpha) * m_translation.x);
+        std::printf("espaço %f\n", m_translation.y);
+        if (m_translation.x < -1.0f) m_translation.x += 2.0f;
+        if (m_translation.x > +1.0f) m_translation.x -= 2.0f;
+        if (m_translation.y < -1.0f) m_translation.y += 2.0f;
+        if (m_translation.y > +1.0f) m_translation.y -= 2.0f;
+      }
     }
-
-    for (float x = 1; x > 0; x = x - 0.01) {
-      m_velocity.y =
-          -0.5 * 9.81 * (x * x) + m_velocity.x * sin(alpha) * m_velocity.x;
-    }
-
-    std::printf("espaço\n");
   }
 
   // if (gameData.m_input[static_cast<size_t>(Input::Left)] &&

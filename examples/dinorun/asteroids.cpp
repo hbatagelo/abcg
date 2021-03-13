@@ -38,7 +38,7 @@ void Asteroids::paintGL() {
 
     glUniform4fv(m_colorLoc, 1, &asteroid.m_color.r);
     glUniform1f(m_scaleLoc, asteroid.m_scale);
-    // glUniform1f(m_rotationLoc, asteroid.m_rotation);
+    glUniform1f(m_rotationLoc, asteroid.m_rotation);
 
     // for (auto i : {-2, 0, 2}) {
     for (auto j : {-2, 0, 2}) {

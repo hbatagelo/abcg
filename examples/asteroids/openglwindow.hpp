@@ -10,6 +10,7 @@
 #include "bullets.hpp"
 #include "ship.hpp"
 #include "starlayers.hpp"
+#include "ammobar.hpp"
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
@@ -21,6 +22,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   void terminateGL() override;
 
  private:
+  GLuint m_ammoBarProgram{};
   GLuint m_starsProgram{};
   GLuint m_objectsProgram{};
 
@@ -33,6 +35,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   Bullets m_bullets;
   Ship m_ship;
   StarLayers m_starLayers;
+  AmmoBar m_ammoBar;
 
   abcg::ElapsedTimer m_restartWaitTimer;
 

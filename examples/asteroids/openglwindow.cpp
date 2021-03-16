@@ -71,6 +71,10 @@ void OpenGLWindow::initializeGL() {
   // Create program to render the stars
   m_starsProgram = createProgramFromFile(getAssetsPath() + "stars.vert",
                                        getAssetsPath() + "stars.frag");
+  // Create program to render the stars
+  m_ammoBarProgram = createProgramFromFile(getAssetsPath() + "ammobar.vert",
+                                           getAssetsPath() + "ammobar.frag");
+
   glClearColor(0, 0, 0, 1);
 
 #if !defined(__EMSCRIPTEN__)
@@ -90,6 +94,7 @@ void OpenGLWindow::restart() {
   m_ship.initializeGL(m_objectsProgram);
   m_asteroids.initializeGL(m_objectsProgram, 3);
   m_bullets.initializeGL(m_objectsProgram);
+  m_ammoBar.initializeGL(m_ammoBarProgram);
 }
 
 void OpenGLWindow::update(){
@@ -106,6 +111,7 @@ void OpenGLWindow::update(){
         m_starLayers.update(m_ship, deltaTime);
         m_asteroids.update(m_ship, deltaTime);
         m_bullets.update(m_ship, m_gameData, deltaTime);
+        m_ammoBar.update(m_gameData);
 
         if (m_gameData.m_state == State::Playing) { 
           checkCollisions();
@@ -123,6 +129,7 @@ void OpenGLWindow::paintGL() {
   m_asteroids.paintGL();
   m_bullets.paintGL();
   m_ship.paintGL(m_gameData);
+  m_ammoBar.paintGL(m_gameData);
 }
 
 void OpenGLWindow::paintUI() {
@@ -160,12 +167,14 @@ void OpenGLWindow::resizeGL(int width, int height) {
 
 void OpenGLWindow::terminateGL() {
   glDeleteProgram(m_starsProgram);
-  glDeleteProgram(m_objectsProgram);
+  glDeleteProgram(m_ammoBarProgram);
+  glDeleteProgram(m_ammoBarProgram);
 
   m_asteroids.terminateGL();
   m_bullets.terminateGL();
   m_ship.terminateGL();
   m_starLayers.terminateGL();
+  m_ammoBar.terminateGL();
 }
 
 

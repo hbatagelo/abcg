@@ -15,56 +15,6 @@ glm::vec4 Ship::getRandomVertexColor() {
                    color_rd(m_randomEngine), 1.0f};
 }
 
-/*namespace glm {
-template <typename T, qualifier Q>
-GLM_FUNC_QUALIFIER vec<2, T, Q> jump(vec<2, T, Q> const &v, T const &angle) {
-  vec<2, T, Q> Result;
-  T const Cos(cos(angle));
-  T const Sin(sin(angle));
-
-  Result.x = (sin(2 * angle)) / 9.81;
-
-  Result.y = -0.5 * 9.81 + v.x * sin(angle) * v.x;
-
-  // Result.x = v.x * Cos - v.y * Sin;
-  Result.y = v.x * Sin + v.y * Cos;
-  return Result;
-}
-}  // namespace glm
-
-int wurf(double v0, double alpha, int *pHausX, int *pHausY, int *pXw) {
-  double x, y;
-  double xw;
-  double tx;
-  double pi = 3.14159;
-
-  alpha = alpha * (2 * pi / 360);
-
-  xw = ((v0 * v0) * sin(2 * alpha)) / 9.81;
-
-  *pXw = xw;
-
-  for (x = 0; x <= xw; x++) {
-    tx = x / (v0 * cos(alpha));
-    y = -0.5 * 9.81 * (tx * tx) + v0 * sin(alpha) * tx;
-    if (collision(x, (int)y, *pHausX, *pHausY) == 0) {
-      if ((int)y > 0) {
-        if (y < 25) {
-          if (x <= 80)  // Abfrage falls größer als Bildschirm
-          {
-            gotoxy((int)x, 25 - (int)y);
-            printf("*");
-          }
-        }
-      }
-    } else {
-      return (-1);
-    }
-  }
-  return (0);
-}*/
-
-// http://www.cplusplus.com/forum/beginner/37845/
 void Ship::initializeGL(GLuint program) {
   terminateGL();
 

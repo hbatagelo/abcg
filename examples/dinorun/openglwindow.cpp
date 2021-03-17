@@ -109,10 +109,10 @@ void OpenGLWindow::update() {
   m_starLayers.update(m_ship, deltaTime);
   m_asteroids.update(m_ship, deltaTime);
   // m_bullets.update(m_ship, m_gameData, deltaTime);
-  // if (m_gameData.m_state == State::Playing) {
-  // checkCollisions();
-  // checkWinCondition();
-  // }
+  if (m_gameData.m_state == State::Playing) {
+    checkCollisions();
+    checkWinCondition();
+  }
 }
 
 void OpenGLWindow::paintGL() {
@@ -172,15 +172,15 @@ void OpenGLWindow::terminateGL() {
 
 void OpenGLWindow::checkCollisions() {
   // Check collision between ship and asteroids
-  // for (auto &asteroid : m_asteroids.m_asteroids) {
-  // auto asteroidTranslation{asteroid.m_translation};
-  // auto distance{glm::distance(m_ship.m_translation, asteroidTranslation)};
+  for (auto &asteroid : m_asteroids.m_asteroids) {
+    auto asteroidTranslation{asteroid.m_translation};
+    auto distance{glm::distance(m_ship.m_translation, asteroidTranslation)};
 
-  // if (distance < m_ship.m_scale * 0.9f + asteroid.m_scale * 0.85f) {
-  // m_gameData.m_state = State::GameOver;
-  // m_restartWaitTimer.restart();
-  // }
-  // }
+    if (distance < m_ship.m_scale * 0.9f + asteroid.m_scale * 0.9f) {
+      m_gameData.m_state = State::GameOver;
+      m_restartWaitTimer.restart();
+    }
+  }
 
   // Check collision between bullets and asteroids
   // for (auto &bullet : m_bullets.m_bullets) {
@@ -222,8 +222,8 @@ void OpenGLWindow::checkCollisions() {
 }
 
 void OpenGLWindow::checkWinCondition() {
-  // if (m_asteroids.m_asteroids.empty()) {
-  // m_gameData.m_state = State::Win;
-  // m_restartWaitTimer.restart();
-  // }
+  if (m_asteroids.m_asteroids.empty()) {
+    m_gameData.m_state = State::Win;
+    m_restartWaitTimer.restart();
+  }
 }

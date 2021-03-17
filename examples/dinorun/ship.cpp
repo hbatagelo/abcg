@@ -3,6 +3,12 @@
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 glm::vec4 Ship::getRandomVertexColor() {
   std::uniform_real_distribution<float> color_rd(0.0f, 1.0f);
   return glm::vec4{color_rd(m_randomEngine), color_rd(m_randomEngine),
@@ -201,36 +207,24 @@ void Ship::update(const GameData &gameData, float deltaTime) {
     m_velocity += forward * deltaTime;
   }*/
 
-  if (gameData.m_input[static_cast<size_t>(Input::Fire)] &&
+  if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
       gameData.m_state == State::Playing) {
     // TODO: movimentar o dinossauro apenas no eixo y
     // translation?
     m_velocity.x = 1.0f;
     m_velocity.y = 0.0f;
 
-    double alpha = 45 * (2 * 3.14159 / 360);
-    if (deltaTime > 0) {
-      for (float x = 0; x < 1000; x = x + 10) {
-        m_translation.y =
-            deltaTime * (0.5 * 9.81 * (x * x) +
-                         m_translation.x * sin(alpha) * m_translation.x);
-        if (m_translation.x < -1.0f) m_translation.x += 2.0f;
-        if (m_translation.x > +1.0f) m_translation.x -= 2.0f;
-        if (m_translation.y < -1.0f) m_translation.y += 2.0f;
-        if (m_translation.y > +1.0f) m_translation.y -= 2.0f;
-      }
+    m_translation.y += deltaTime * m_velocity.x;
+  }
 
-      for (float x = 100; x > 0; x = x - 10) {
-        m_translation.y =
-            deltaTime * (0.5 * 9.81 * (x * x) +
-                         m_translation.x * sin(alpha) * m_translation.x);
-        std::printf("espaço %f\n", m_translation.y);
-        if (m_translation.x < -1.0f) m_translation.x += 2.0f;
-        if (m_translation.x > +1.0f) m_translation.x -= 2.0f;
-        if (m_translation.y < -1.0f) m_translation.y += 2.0f;
-        if (m_translation.y > +1.0f) m_translation.y -= 2.0f;
-      }
-    }
+  if (gameData.m_input[static_cast<size_t>(Input::Down)] &&
+      gameData.m_state == State::Playing) {
+    // TODO: movimentar o dinossauro apenas no eixo y
+    // translation?
+    m_velocity.x = 1.0f;
+    m_velocity.y = 0.0f;
+
+    m_translation.y -= deltaTime * m_velocity.x;
   }
 
   // if (gameData.m_input[static_cast<size_t>(Input::Left)] &&

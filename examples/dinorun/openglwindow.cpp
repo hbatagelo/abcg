@@ -1,5 +1,6 @@
 #include "openglwindow.hpp"
 
+#include <fmt/core.h>
 #include <imgui.h>
 
 #include "abcg.hpp"
@@ -176,7 +177,11 @@ void OpenGLWindow::checkCollisions() {
     auto asteroidTranslation{asteroid.m_translation};
     auto distance{glm::distance(m_ship.m_translation, asteroidTranslation)};
 
-    if (distance < m_ship.m_scale * 0.9f + asteroid.m_scale * 0.9f) {
+    fmt::print("\ndistance = {}\n", distance);
+    fmt::print("sum = {}\n", m_ship.m_scale * 0.75f + asteroid.m_scale * 0.85f);
+
+    if (distance < m_ship.m_scale * 0.75f + asteroid.m_scale * 0.85f) {
+      fmt::print("menor true\n");
       m_gameData.m_state = State::GameOver;
       m_restartWaitTimer.restart();
     }

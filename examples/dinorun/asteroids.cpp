@@ -40,13 +40,14 @@ void Asteroids::paintGL() {
     glUniform1f(m_scaleLoc, asteroid.m_scale);
     glUniform1f(m_rotationLoc, asteroid.m_rotation);
 
-    // for (auto i : {-2, 0, 2}) {
-    for (auto j : {-2, 0, 2}) {
-      glUniform2f(m_translationLoc, asteroid.m_translation.x + j, 0);
+    for (auto i : {-2, 0, 2}) {
+      for (auto j : {-2, 0, 2}) {
+        glUniform2f(m_translationLoc, asteroid.m_translation.x + j,
+                    asteroid.m_translation.y + i);
 
-      glDrawArrays(GL_TRIANGLE_FAN, 0, asteroid.m_polygonSides + 2);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, asteroid.m_polygonSides + 2);
+      }
     }
-    // }
 
     glBindVertexArray(0);
   }
@@ -61,7 +62,7 @@ void Asteroids::terminateGL() {
   }
 }
 
-void Asteroids::update(const Ship &ship, float deltaTime) {
+void Asteroids::update(const Dino &ship, float deltaTime) {
   for (auto &asteroid : m_asteroids) {
     asteroid.m_translation -= ship.m_velocity * deltaTime;
     asteroid.m_rotation = glm::wrapAngle(

@@ -70,13 +70,11 @@ void StarLayers::paintGL() {
     glBindVertexArray(layer.m_vao);
     glUniform1f(m_pointSizeLoc, layer.m_pointSize);
 
-    // for (auto i : {-2, 0, 2}) {
     for (auto j : {-2, 0, 2}) {
       glUniform2f(m_translationLoc, layer.m_translation.x + j, 0);
 
       glDrawArrays(GL_POINTS, 0, layer.m_quantity);
     }
-    // }
 
     glBindVertexArray(0);
   }
@@ -93,10 +91,10 @@ void StarLayers::terminateGL() {
   }
 }
 
-void StarLayers::update(const Ship &ship, float deltaTime) {
+void StarLayers::update(const Dino &dino, float deltaTime) {
   for (auto &&[index, layer] : iter::enumerate(m_starLayers)) {
     auto layerSpeedScale{1.0f / (index + 2.0f)};
-    layer.m_translation -= ship.m_velocity * deltaTime * layerSpeedScale;
+    layer.m_translation -= dino.m_velocity * deltaTime * layerSpeedScale;
 
     // Wrap-around
     if (layer.m_translation.x < -1.0f) layer.m_translation.x += 2.0f;

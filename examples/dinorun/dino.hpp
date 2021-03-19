@@ -1,5 +1,5 @@
-#ifndef SHIP_HPP_
-#define SHIP_HPP_
+#ifndef DINO_HPP_
+#define DINO_HPP_
 
 #include <random>
 
@@ -10,7 +10,7 @@ class Asteroids;
 class OpenGLWindow;
 class StarLayers;
 
-class Ship {
+class Dino {
  public:
   void initializeGL(GLuint program);
   void paintGL(const GameData &gameData);

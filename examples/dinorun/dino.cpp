@@ -1,4 +1,4 @@
-#include "ship.hpp"
+#include "dino.hpp"
 
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
@@ -9,13 +9,13 @@
 #include <unistd.h>
 #endif
 
-glm::vec4 Ship::getRandomVertexColor() {
+glm::vec4 Dino::getRandomVertexColor() {
   std::uniform_real_distribution<float> color_rd(0.0f, 1.0f);
   return glm::vec4{color_rd(m_randomEngine), color_rd(m_randomEngine),
                    color_rd(m_randomEngine), 1.0f};
 }
 
-void Ship::initializeGL(GLuint program) {
+void Dino::initializeGL(GLuint program) {
   terminateGL();
 
   m_program = program;
@@ -29,7 +29,7 @@ void Ship::initializeGL(GLuint program) {
   m_velocity = glm::vec2(0);
 
   std::array<glm::vec2, 16> positions{
-      // Ship body
+      // Dino body
       glm::vec2{-15.0f, +30.0f}, glm::vec2{+20.0f, +30.0f},
       glm::vec2{+20.0f, +12.5f},
 
@@ -98,7 +98,7 @@ void Ship::initializeGL(GLuint program) {
   m_randomEngine.seed(seed);
 }
 
-void Ship::paintGL(const GameData &gameData) {
+void Dino::paintGL(const GameData &gameData) {
   if (gameData.m_state != State::Playing) return;
 
   glUseProgram(m_program);
@@ -135,63 +135,37 @@ void Ship::paintGL(const GameData &gameData) {
   glUseProgram(0);
 }
 
-void Ship::terminateGL() {
+void Dino::terminateGL() {
   glDeleteBuffers(1, &m_vbo);
   glDeleteBuffers(1, &m_ebo);
   glDeleteVertexArrays(1, &m_vao);
 }
 
-void Ship::update(const GameData &gameData, float deltaTime) {
-  /*Rotate
- if (gameData.m_input[static_cast<size_t>(Input::Left)])
-   m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
- if (gameData.m_input[static_cast<size_t>(Input::Right)])
-   m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime); */
-
-  /*Apply thrust
-  if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
-      gameData.m_state == State::Playing) {
-    // Thrust in the forward vector
-    glm::vec2 forward = glm::rotate(glm::vec2{0.0f, 1.0f}, m_rotation);
-    forward = glm::rotate(glm::vec2{0.0f, -1.0f}, m_rotation);
-    m_velocity += forward * deltaTime;
-  }*/
-
-  if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
-      gameData.m_state == State::Playing) {
-    // TODO: movimentar o dinossauro apenas no eixo y
-    // translation?
+void Dino::update(const GameData &gameData, float deltaTime) {
+  if (gameData.m_input[static_cast<size_t>(Input::Fire)]) {
     m_velocity.x = 1.0f;
     m_velocity.y = 0.0f;
+    m_translation = glm::vec2(0, 0);
+  }
 
+  if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
+      gameData.m_state == State::Playing) {
     m_translation.y += deltaTime * m_velocity.x;
   }
 
   if (gameData.m_input[static_cast<size_t>(Input::Down)] &&
       gameData.m_state == State::Playing) {
-    // TODO: movimentar o dinossauro apenas no eixo y
-    // translation?
-    m_velocity.x = 1.0f;
-    m_velocity.y = 0.0f;
-
     m_translation.y -= deltaTime * m_velocity.x;
   }
 
-  // if (gameData.m_input[static_cast<size_t>(Input::Left)] &&
-  // gameData.m_state == State::Playing) {
-  // glm::vec2 forward = glm::rotate(glm::vec2{-1.0f, 0.0f}, m_rotation);
-  // m_velocity += forward * deltaTime;
-  // }
+  if (gameData.m_input[static_cast<size_t>(Input::Left)] &&
+      gameData.m_state == State::Playing) {
+    m_translation.x -= deltaTime * m_velocity.x;
+  }
 
-  // if (gameData.m_input[static_cast<size_t>(Input::Right)] &&
-  // gameData.m_state == State::Playing) {
-  // glm::vec2 forward = glm::rotate(glm::vec2{1.0f, 0.0f}, m_rotation);
-  // m_velocity += forward * deltaTime;
-  // }
+  if (gameData.m_input[static_cast<size_t>(Input::Right)] &&
+      gameData.m_state == State::Playing) {
+    m_translation.x += deltaTime * m_velocity.x;
+  }
 
-  // if (gameData.m_input[static_cast<size_t>(Input::Down)] &&
-  // gameData.m_state == State::Playing) {
-  // glm::vec2 forward = glm::rotate(glm::vec2{0.0f, -1.0f}, m_rotation);
-  // m_velocity += forward * deltaTime;
-  // }
 }

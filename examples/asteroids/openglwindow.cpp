@@ -88,7 +88,7 @@ void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
   m_starLayers.initializeGL(m_starsProgram, 25);
   m_ship.initializeGL(m_objectsProgram);
-  // m_asteroids.initializeGL(m_objectsProgram, 3);
+  m_asteroids.initializeGL(m_objectsProgram, 3);
   m_bullets.initializeGL(m_objectsProgram);
 }
 
@@ -104,7 +104,7 @@ void OpenGLWindow::update() {
 
   m_ship.update(m_gameData, deltaTime);
   m_starLayers.update(m_ship, deltaTime);
-  // m_asteroids.update(m_ship, deltaTime);
+  m_asteroids.update(m_ship, deltaTime);
   m_bullets.update(m_ship, m_gameData, deltaTime);
   if (m_gameData.m_state == State::Playing) {
     checkCollisions();

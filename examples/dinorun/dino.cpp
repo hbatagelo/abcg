@@ -121,14 +121,14 @@ void Dino::paintGL(const GameData &gameData) {
       // 50% transparent
       glUniform4f(m_colorLoc, 1, 1, 1, 0.5f);
 
-      glDrawElements(GL_TRIANGLES, 14 * 3, GL_UNSIGNED_INT, nullptr);
+      glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, nullptr);
 
       glDisable(GL_BLEND);
     }
   }
 
   glUniform4fv(m_colorLoc, 1, &m_color.r);
-  glDrawElements(GL_TRIANGLES, 12 * 3, GL_UNSIGNED_INT, nullptr);
+  glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, nullptr);
 
   glBindVertexArray(0);
 

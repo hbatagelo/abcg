@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
                                .height = 600,
                                .showFPS = false,
                                .showFullscreenButton = false,
-                               .title = "Asteroids"});
+                               .title = "Corrida Maluca"});
     app.run(window);
   } catch (abcg::Exception &exception) {
     fmt::print(stderr, "{}\n", exception.what());

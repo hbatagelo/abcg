@@ -6,7 +6,7 @@
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
-#include "ship.hpp"
+#include "Castle.hpp"
 
 class OpenGLWindow;
 
@@ -16,7 +16,7 @@ class StarLayers {
   void paintGL();
   void terminateGL();
 
-  void update(const Ship &ship, float deltaTime);
+  void update(const Castle &Castle, float deltaTime);
 
  private:
   friend OpenGLWindow;

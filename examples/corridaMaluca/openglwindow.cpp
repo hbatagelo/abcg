@@ -51,7 +51,7 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
     glm::vec2 direction{glm::vec2{mousePosition.x - m_viewportWidth / 2,
                                   mousePosition.y - m_viewportHeight / 2}};
     direction.y = -direction.y;
-    m_ship.setRotation(std::atan2(direction.y, direction.x) - M_PI_2);
+    m_Castle.setRotation(std::atan2(direction.y, direction.x) - M_PI_2);
   }
 }
 
@@ -88,8 +88,8 @@ void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
 
   m_starLayers.initializeGL(m_starsProgram, 25);
-  m_ship.initializeGL(m_objectsProgram);
-  m_asteroids.initializeGL(m_objectsProgram, 3);
+  m_Castle.initializeGL(m_objectsProgram);
+  m_CrazyCastle.initializeGL(m_objectsProgram, 3);
   m_bullets.initializeGL(m_objectsProgram);
 }
 
@@ -103,10 +103,10 @@ void OpenGLWindow::update() {
     return;
   }
 
-  m_ship.update(m_gameData, deltaTime);
-  m_starLayers.update(m_ship, deltaTime);
-  m_asteroids.update(m_ship, deltaTime);
-  m_bullets.update(m_ship, m_gameData, deltaTime);
+  m_Castle.update(m_gameData, deltaTime);
+  m_starLayers.update(m_Castle, deltaTime);
+  m_CrazyCastle.update(m_Castle, deltaTime);
+  m_bullets.update(m_Castle, m_gameData, deltaTime);
 
   if (m_gameData.m_state == State::Playing) {
     checkCollisions();
@@ -121,9 +121,9 @@ void OpenGLWindow::paintGL() {
   glViewport(0, 0, m_viewportWidth, m_viewportHeight);
 
   m_starLayers.paintGL();
-  m_asteroids.paintGL();
+  m_CrazyCastle.paintGL();
   m_bullets.paintGL();
-  m_ship.paintGL(m_gameData);
+  m_Castle.paintGL(m_gameData);
 }
 
 void OpenGLWindow::paintUI() {
@@ -142,9 +142,9 @@ void OpenGLWindow::paintUI() {
     ImGui::PushFont(m_font);
 
     if (m_gameData.m_state == State::GameOver) {
-      ImGui::Text("Game Over!");
+      ImGui::Text("Perdeu, Fi");
     } else if (m_gameData.m_state == State::Win) {
-      ImGui::Text("*You Win!*");
+      ImGui::Text("*BOA, JOW!*");
     }
 
     ImGui::PopFont();
@@ -163,29 +163,29 @@ void OpenGLWindow::terminateGL() {
   glDeleteProgram(m_starsProgram);
   glDeleteProgram(m_objectsProgram);
 
-  m_asteroids.terminateGL();
+  m_CrazyCastle.terminateGL();
   m_bullets.terminateGL();
-  m_ship.terminateGL();
+  m_Castle.terminateGL();
   m_starLayers.terminateGL();
 }
 
 void OpenGLWindow::checkCollisions() {
-  // Check collision between ship and asteroids
-  for (auto &asteroid : m_asteroids.m_asteroids) {
+  // Check collision between Castle and CrazyCastle
+  for (auto &asteroid : m_CrazyCastle.m_CrazyCastle) {
     auto asteroidTranslation{asteroid.m_translation};
-    auto distance{glm::distance(m_ship.m_translation, asteroidTranslation)};
+    auto distance{glm::distance(m_Castle.m_translation, asteroidTranslation)};
 
-    if (distance < m_ship.m_scale * 0.9f + asteroid.m_scale * 0.85f) {
+    if (distance < m_Castle.m_scale * 0.9f + asteroid.m_scale * 0.85f) {
       m_gameData.m_state = State::GameOver;
       m_restartWaitTimer.restart();
     }
   }
 
-  // Check collision between bullets and asteroids
+  // Check collision between bullets and CrazyCastle
   for (auto &bullet : m_bullets.m_bullets) {
     if (bullet.m_dead) continue;
 
-    for (auto &asteroid : m_asteroids.m_asteroids) {
+    for (auto &asteroid : m_CrazyCastle.m_CrazyCastle) {
       for (auto i : {-2, 0, 2}) {
         for (auto j : {-2, 0, 2}) {
           auto asteroidTranslation{asteroid.m_translation + glm::vec2(i, j)};
@@ -200,27 +200,27 @@ void OpenGLWindow::checkCollisions() {
       }
     }
 
-    // Break asteroids marked as hit
-    for (auto &asteroid : m_asteroids.m_asteroids) {
+    // Break CrazyCastle marked as hit
+    for (auto &asteroid : m_CrazyCastle.m_CrazyCastle) {
       if (asteroid.m_hit && asteroid.m_scale > 0.10f) {
         std::uniform_real_distribution<float> m_randomDist{-1.0f, 1.0f};
-        std::generate_n(std::back_inserter(m_asteroids.m_asteroids), 3, [&]() {
+        std::generate_n(std::back_inserter(m_CrazyCastle.m_CrazyCastle), 3, [&]() {
           glm::vec2 offset{m_randomDist(m_randomEngine),
                            m_randomDist(m_randomEngine)};
-          return m_asteroids.createAsteroid(
+          return m_CrazyCastle.createAsteroid(
               asteroid.m_translation + offset * asteroid.m_scale * 0.5f,
               asteroid.m_scale * 0.5f);
         });
       }
     }
 
-    m_asteroids.m_asteroids.remove_if(
-        [](const Asteroids::Asteroid &a) { return a.m_hit; });
+    m_CrazyCastle.m_CrazyCastle.remove_if(
+        [](const CrazyCastle::Asteroid &a) { return a.m_hit; });
   }
 }
 
 void OpenGLWindow::checkWinCondition() {
-  if (m_asteroids.m_asteroids.empty()) {
+  if (m_CrazyCastle.m_CrazyCastle.empty()) {
     m_gameData.m_state = State::Win;
     m_restartWaitTimer.restart();
   }

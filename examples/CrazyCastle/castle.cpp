@@ -1,9 +1,9 @@
-#include "ship.hpp"
+#include "Castle.hpp"
 
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
-void Ship::initializeGL(GLuint program) {
+void Castle::initializeGL(GLuint program) {
   terminateGL();
 
   m_program = program;
@@ -18,21 +18,15 @@ void Ship::initializeGL(GLuint program) {
 
   // clang-format off
   std::array<glm::vec2, 24> positions{
-      // Ship body
-      glm::vec2{-02.5f, +12.5f}, glm::vec2{-15.5f, +02.5f},
+      // Castle body
+      glm::vec2{-20.5f, +12.5f}, glm::vec2{-15.5f, +02.5f},
       glm::vec2{-15.5f, -12.5f}, glm::vec2{-09.5f, -07.5f},
-      glm::vec2{-03.5f, -12.5f}, glm::vec2{+03.5f, -12.5f},
+      glm::vec2{-0.5f, -12.5f}, glm::vec2{+0.5f, -12.5f},
       glm::vec2{+09.5f, -07.5f}, glm::vec2{+15.5f, -12.5f},
-      glm::vec2{+15.5f, +02.5f}, glm::vec2{+02.5f, +12.5f},
+      glm::vec2{+15.5f, +02.5f}, glm::vec2{+20.5f, +12.5f},
 
-      // Cannon left
-      glm::vec2{-12.5f, +10.5f}, glm::vec2{-12.5f, +04.0f},
-      glm::vec2{-09.5f, +04.0f}, glm::vec2{-09.5f, +10.5f},
+  
 
-      // Cannon right
-      glm::vec2{+09.5f, +10.5f}, glm::vec2{+09.5f, +04.0f},
-      glm::vec2{+12.5f, +04.0f}, glm::vec2{+12.5f, +10.5f},
-      
       // Thruster trail (left)
       glm::vec2{-12.0f, -07.5f}, 
       glm::vec2{-09.5f, -18.0f}, 
@@ -101,7 +95,7 @@ void Ship::initializeGL(GLuint program) {
   glBindVertexArray(0);
 }
 
-void Ship::paintGL(const GameData &gameData) {
+void Castle::paintGL(const GameData &gameData) {
   if (gameData.m_state != State::Playing) return;
 
   glUseProgram(m_program);
@@ -122,7 +116,7 @@ void Ship::paintGL(const GameData &gameData) {
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
       // 50% transparent
-      glUniform4f(m_colorLoc, 1, 1, 1, 0.5f);
+      glUniform4f(m_colorLoc, 0, 1, 0, 0.5f);
 
       glDrawElements(GL_TRIANGLES, 14 * 3, GL_UNSIGNED_INT, nullptr);
 
@@ -138,18 +132,18 @@ void Ship::paintGL(const GameData &gameData) {
   glUseProgram(0);
 }
 
-void Ship::terminateGL() {
+void Castle::terminateGL() {
   glDeleteBuffers(1, &m_vbo);
   glDeleteBuffers(1, &m_ebo);
   glDeleteVertexArrays(1, &m_vao);
 }
 
-void Ship::update(const GameData &gameData, float deltaTime) {
+void Castle::update(const GameData &gameData, float deltaTime) {
   // Rotate
   if (gameData.m_input[static_cast<size_t>(Input::Left)])
-    m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
+    m_rotation = glm::wrapAngle(m_rotation + 14.0f * deltaTime);
   if (gameData.m_input[static_cast<size_t>(Input::Right)])
-    m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
+    m_rotation = glm::wrapAngle(m_rotation - 14.0f * deltaTime);
 
   // Apply thrust
   if (gameData.m_input[static_cast<size_t>(Input::Up)] &&

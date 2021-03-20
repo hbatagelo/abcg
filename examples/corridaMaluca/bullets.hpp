@@ -5,7 +5,7 @@
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
-#include "ship.hpp"
+#include "Castle.hpp"
 
 class OpenGLWindow;
 
@@ -15,7 +15,7 @@ class Bullets {
   void paintGL();
   void terminateGL();
 
-  void update(Ship &ship, const GameData &gameData, float deltaTime);
+  void update(Castle &Castle, const GameData &gameData, float deltaTime);
 
  private:
   friend OpenGLWindow;

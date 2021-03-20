@@ -1,15 +1,15 @@
-#ifndef SHIP_HPP_
-#define SHIP_HPP_
+#ifndef Castle_HPP_
+#define Castle_HPP_
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
 
-class Asteroids;
+class CrazyCastle;
 class Bullets;
 class OpenGLWindow;
 class StarLayers;
 
-class Ship {
+class Castle {
  public:
   void initializeGL(GLuint program);
   void paintGL(const GameData &gameData);
@@ -19,7 +19,7 @@ class Ship {
   void setRotation(float rotation) { m_rotation = rotation; }
 
  private:
-  friend Asteroids;
+  friend CrazyCastle;
   friend Bullets;
   friend OpenGLWindow;
   friend StarLayers;

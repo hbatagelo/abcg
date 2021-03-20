@@ -6,9 +6,9 @@
 #include <random>
 
 #include "abcg.hpp"
-#include "asteroids.hpp"
+#include "CrazyCastle.hpp"
 #include "bullets.hpp"
-#include "ship.hpp"
+#include "Castle.hpp"
 #include "starlayers.hpp"
 
 class OpenGLWindow : public abcg::OpenGLWindow {
@@ -29,9 +29,9 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   GameData m_gameData;
 
-  Asteroids m_asteroids;
+  CrazyCastle m_CrazyCastle;
   Bullets m_bullets;
-  Ship m_ship;
+  Castle m_Castle;
   StarLayers m_starLayers;
 
   abcg::ElapsedTimer m_restartWaitTimer;

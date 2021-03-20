@@ -1,9 +1,9 @@
-#include "asteroids.hpp"
+#include "CrazyCastle.hpp"
 
 #include <cppitertools/itertools.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
 
-void Asteroids::initializeGL(GLuint program, int quantity) {
+void CrazyCastle::initializeGL(GLuint program, int quantity) {
   terminateGL();
 
   // Start pseudo-random number generator
@@ -16,14 +16,14 @@ void Asteroids::initializeGL(GLuint program, int quantity) {
   m_scaleLoc = glGetUniformLocation(m_program, "scale");
   m_translationLoc = glGetUniformLocation(m_program, "translation");
 
-  // Create asteroids
-  m_asteroids.clear();
-  m_asteroids.resize(quantity);
+  // Create CrazyCastle
+  m_CrazyCastle.clear();
+  m_CrazyCastle.resize(quantity);
 
-  for (auto &asteroid : m_asteroids) {
+  for (auto &asteroid : m_CrazyCastle) {
     asteroid = createAsteroid();
 
-    // Make sure the asteroid won't collide with the ship
+    // Make sure the asteroid won't collide with the Castle
     do {
       asteroid.m_translation = {m_randomDist(m_randomEngine),
                                 m_randomDist(m_randomEngine)};
@@ -31,10 +31,10 @@ void Asteroids::initializeGL(GLuint program, int quantity) {
   }
 }
 
-void Asteroids::paintGL() {
+void CrazyCastle::paintGL() {
   glUseProgram(m_program);
 
-  for (auto &asteroid : m_asteroids) {
+  for (auto &asteroid : m_CrazyCastle) {
     glBindVertexArray(asteroid.m_vao);
 
     glUniform4fv(m_colorLoc, 1, &asteroid.m_color.r);
@@ -56,16 +56,16 @@ void Asteroids::paintGL() {
   glUseProgram(0);
 }
 
-void Asteroids::terminateGL() {
-  for (auto asteroid : m_asteroids) {
+void CrazyCastle::terminateGL() {
+  for (auto asteroid : m_CrazyCastle) {
     glDeleteBuffers(1, &asteroid.m_vbo);
     glDeleteVertexArrays(1, &asteroid.m_vao);
   }
 }
 
-void Asteroids::update(const Ship &ship, float deltaTime) {
-  for (auto &asteroid : m_asteroids) {
-    asteroid.m_translation -= ship.m_velocity * deltaTime;
+void CrazyCastle::update(const Castle &Castle, float deltaTime) {
+  for (auto &asteroid : m_CrazyCastle) {
+    asteroid.m_translation -= Castle.m_velocity * deltaTime;
     asteroid.m_rotation = glm::wrapAngle(
         asteroid.m_rotation + asteroid.m_angularVelocity * deltaTime);
     asteroid.m_translation += asteroid.m_velocity * deltaTime;
@@ -78,7 +78,7 @@ void Asteroids::update(const Ship &ship, float deltaTime) {
   }
 }
 
-Asteroids::Asteroid Asteroids::createAsteroid(glm::vec2 translation,
+CrazyCastle::Asteroid CrazyCastle::createAsteroid(glm::vec2 translation,
                                               float scale) {
   Asteroid asteroid;
 

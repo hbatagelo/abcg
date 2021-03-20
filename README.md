@@ -1,11 +1,6 @@
-# ABCg
+# Criado por
 
-Development framework accompanying the course [MCTA008-17 Computer Graphics](http://professor.ufabc.edu.br/~harlen.batagelo/cg/) at [UFABC](https://www.ufabc.edu.br/).
+Matheus da Costa Baio R.A.: 21080113 e Filipe Vaz Lourenço RA:11104015
 
-## Author
+A aplicação CrazyCastle consiste em um castelo 2D que gira entorno do próprio eixo em um fundo de cor vermelha
 
-Harlen Batagelo
-
-## License
-
-MIT

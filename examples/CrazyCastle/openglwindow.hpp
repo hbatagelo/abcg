@@ -6,7 +6,7 @@
 #include <random>
 
 #include "abcg.hpp"
-#include "Castle.hpp"
+#include "castle.hpp"
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
@@ -25,7 +25,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   GameData m_gameData;
 
-  Castle m_Castle;
+  castle m_castle;
 
   abcg::ElapsedTimer m_restartWaitTimer;
 

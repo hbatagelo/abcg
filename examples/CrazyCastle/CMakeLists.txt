@@ -1,6 +1,6 @@
-project(CrazyCastle)
+project(Crazycastle)
 
 add_executable(${PROJECT_NAME} main.cpp openglwindow.cpp
-                               Castle.cpp )
+                               castle.cpp )
 
 enable_abcg(${PROJECT_NAME})

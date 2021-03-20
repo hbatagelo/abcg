@@ -51,7 +51,7 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
     glm::vec2 direction{glm::vec2{mousePosition.x - m_viewportWidth / 2,
                                   mousePosition.y - m_viewportHeight / 2}};
     direction.y = -direction.y;
-    m_Castle.setRotation(std::atan2(direction.y, direction.x) - M_PI_2);
+    m_castle.setRotation(std::atan2(direction.y, direction.x) - M_PI_2);
   }
 }
 
@@ -84,7 +84,7 @@ void OpenGLWindow::initializeGL() {
 void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
 
-  m_Castle.initializeGL(m_objectsProgram);
+  m_castle.initializeGL(m_objectsProgram);
 }
 
 void OpenGLWindow::update() {
@@ -97,7 +97,7 @@ void OpenGLWindow::update() {
     return;
   }
 
-  m_Castle.update(m_gameData, deltaTime);
+  m_castle.update(m_gameData, deltaTime);
 }
 
 void OpenGLWindow::paintGL() {
@@ -106,7 +106,7 @@ void OpenGLWindow::paintGL() {
   glClear(GL_COLOR_BUFFER_BIT);
   glViewport(0, 0, m_viewportWidth, m_viewportHeight);
 
-  m_Castle.paintGL(m_gameData);
+  m_castle.paintGL(m_gameData);
 }
 
 void OpenGLWindow::paintUI() {
@@ -145,6 +145,6 @@ void OpenGLWindow::resizeGL(int width, int height) {
 void OpenGLWindow::terminateGL() {
   glDeleteProgram(m_objectsProgram);
 
-  m_Castle.terminateGL();
+  m_castle.terminateGL();
 }
 

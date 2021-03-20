@@ -35,7 +35,7 @@ namespace gsl
 {
 
 //
-// GSL.owner: ownerCastle pointers
+// GSL.owner: ownercastle pointers
 //
 using std::unique_ptr;
 using std::shared_ptr;

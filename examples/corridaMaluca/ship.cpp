@@ -1,9 +1,9 @@
-#include "Castle.hpp"
+#include "castle.hpp"
 
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
-void Castle::initializeGL(GLuint program) {
+void castle::initializeGL(GLuint program) {
   terminateGL();
 
   m_program = program;
@@ -109,7 +109,7 @@ void Castle::initializeGL(GLuint program) {
   glBindVertexArray(0);
 }
 
-void Castle::paintGL(const GameData &gameData) {
+void castle::paintGL(const GameData &gameData) {
   if (gameData.m_state != State::Playing) return;
 
   glUseProgram(m_program);
@@ -146,13 +146,13 @@ void Castle::paintGL(const GameData &gameData) {
   glUseProgram(0);
 }
 
-void Castle::terminateGL() {
+void castle::terminateGL() {
   glDeleteBuffers(1, &m_vbo);
   glDeleteBuffers(1, &m_ebo);
   glDeleteVertexArrays(1, &m_vao);
 }
 
-void Castle::update(const GameData &gameData, float deltaTime) {
+void castle::update(const GameData &gameData, float deltaTime) {
   // Rotate
   if (gameData.m_input[static_cast<size_t>(Input::Left)])
     m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);

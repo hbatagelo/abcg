@@ -1,22 +1,22 @@
-#ifndef CrazyCastle_HPP_
-#define CrazyCastle_HPP_
+#ifndef crazycastle_HPP_
+#define crazycastle_HPP_
 
 #include <list>
 #include <random>
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
-#include "Castle.hpp"
+#include "castle.hpp"
 
 class OpenGLWindow;
 
-class CrazyCastle {
+class crazycastle {
  public:
   void initializeGL(GLuint program, int quantity);
   void paintGL();
   void terminateGL();
 
-  void update(const Castle &Castle, float deltaTime);
+  void update(const castle &castle, float deltaTime);
 
  private:
   friend OpenGLWindow;
@@ -41,12 +41,12 @@ class CrazyCastle {
     glm::vec2 m_velocity{glm::vec2(0)};
   };
 
-  std::list<Asteroid> m_CrazyCastle;
+  std::list<Asteroid> m_crazycastle;
 
   std::default_random_engine m_randomEngine;
   std::uniform_real_distribution<float> m_randomDist{-1.0f, 1.0f};
 
-  CrazyCastle::Asteroid createAsteroid(glm::vec2 translation = glm::vec2(0),
+  crazycastle::Asteroid createAsteroid(glm::vec2 translation = glm::vec2(0),
                                      float scale = 0.25f);
 };
 

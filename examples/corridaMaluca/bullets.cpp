@@ -75,35 +75,35 @@ void Bullets::terminateGL() {
   glDeleteVertexArrays(1, &m_vao);
 }
 
-void Bullets::update(Castle &Castle, const GameData &gameData, float deltaTime) {
+void Bullets::update(castle &castle, const GameData &gameData, float deltaTime) {
   // Create a pair of bullets
   if (gameData.m_input[static_cast<size_t>(Input::Fire)] &&
       gameData.m_state == State::Playing) {
     // At least 250 ms must have passed since the last bullets
-    if (Castle.m_bulletCoolDownTimer.elapsed() > 250.0 / 1000.0) {
-      Castle.m_bulletCoolDownTimer.restart();
+    if (castle.m_bulletCoolDownTimer.elapsed() > 250.0 / 1000.0) {
+      castle.m_bulletCoolDownTimer.restart();
 
-      // Bullets are shot in the direction of the Castle's forward vector
-      glm::vec2 forward{glm::rotate(glm::vec2{0.0f, 1.0f}, Castle.m_rotation)};
-      glm::vec2 right{glm::rotate(glm::vec2{1.0f, 0.0f}, Castle.m_rotation)};
-      auto cannonOffset{(11.0f / 15.5f) * Castle.m_scale};
+      // Bullets are shot in the direction of the castle's forward vector
+      glm::vec2 forward{glm::rotate(glm::vec2{0.0f, 1.0f}, castle.m_rotation)};
+      glm::vec2 right{glm::rotate(glm::vec2{1.0f, 0.0f}, castle.m_rotation)};
+      auto cannonOffset{(11.0f / 15.5f) * castle.m_scale};
       auto bulletSpeed{2.0f};
 
       Bullet bullet{.m_dead = false,
-                    .m_translation = Castle.m_translation + right * cannonOffset,
-                    .m_velocity = Castle.m_velocity + forward * bulletSpeed};
+                    .m_translation = castle.m_translation + right * cannonOffset,
+                    .m_velocity = castle.m_velocity + forward * bulletSpeed};
       m_bullets.push_back(bullet);
 
-      bullet.m_translation = Castle.m_translation - right * cannonOffset;
+      bullet.m_translation = castle.m_translation - right * cannonOffset;
       m_bullets.push_back(bullet);
 
-      // Moves Castle in the opposite direction
-      Castle.m_velocity -= forward * 0.1f;
+      // Moves castle in the opposite direction
+      castle.m_velocity -= forward * 0.1f;
     }
   }
 
   for (auto &bullet : m_bullets) {
-    bullet.m_translation -= Castle.m_velocity * deltaTime;
+    bullet.m_translation -= castle.m_velocity * deltaTime;
     bullet.m_translation += bullet.m_velocity * deltaTime;
 
     // Kill bullet if it goes off screen

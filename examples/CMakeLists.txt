@@ -1,5 +1,5 @@
 #add_subdirectory(helloworld)
 #add_subdirectory(firstapp)
 #add_subdirectory(sierpinski)
-add_subdirectory(CrazyCastle)
+add_subdirectory(crazycastle)
 #add_subdirectory(corridaMaluca)

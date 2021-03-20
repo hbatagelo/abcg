@@ -1,5 +1,5 @@
-#ifndef Castle_HPP_
-#define Castle_HPP_
+#ifndef castle_HPP_
+#define castle_HPP_
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
@@ -7,7 +7,7 @@
 class OpenGLWindow;
 
 
-class Castle {
+class castle {
  public:
   void initializeGL(GLuint program);
   void paintGL(const GameData &gameData);

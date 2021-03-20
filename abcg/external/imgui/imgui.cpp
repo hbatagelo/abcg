@@ -3453,7 +3453,7 @@ void ImGui::UpdateHoveredWindowAndCaptureFlags()
     if (g.IO.ConfigFlags & ImGuiConfigFlags_NoMouse)
         g.HoveredWindow = g.HoveredRootWindow = NULL;
 
-    // We track click ownerCastle. When clicked outside of a window the click is owned by the application and won't report hovering nor request capture even while dragging over our windows afterward.
+    // We track click ownercastle. When clicked outside of a window the click is owned by the application and won't report hovering nor request capture even while dragging over our windows afterward.
     int mouse_earliest_button_down = -1;
     bool mouse_any_down = false;
     for (int i = 0; i < IM_ARRAYSIZE(g.IO.MouseDown); i++)

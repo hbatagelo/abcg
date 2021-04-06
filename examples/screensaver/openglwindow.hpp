@@ -14,7 +14,6 @@ struct Vertex {
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
-  void handleEvent(SDL_Event& ev) override;
   void initializeGL() override;
   void paintGL() override;
   void paintUI() override;

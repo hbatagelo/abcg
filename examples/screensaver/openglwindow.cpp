@@ -29,38 +29,38 @@ void OpenGLWindow::initializeGL() {
   // Create program
   m_program = createProgramFromFile(getAssetsPath() + "screensaver.vert",
                                     getAssetsPath() + "screensaver.frag");
+  GLint positionAttribute{glGetAttribLocation(m_program, "inPosition")};
 
   // Load model
-  loadModelFromFile(getAssetsPath() + "sphere.obj");
+  // man
+  loadModelFromFile(getAssetsPath() + "FinalBaseMesh.obj", &m_man_vertices,
+                    &m_man_indices);
+  // gun
+  loadModelFromFile(getAssetsPath() + "Handgun_obj.obj", &m_gun_vertices,
+                    &m_gun_indices);
 
   // Generate VBO
-  glGenBuffers(1, &m_VBO);
-  glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices[0]) * m_vertices.size(),
-               m_vertices.data(), GL_STATIC_DRAW);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  generateVBO(&m_man_VBO, m_man_vertices);
+  generateVBO(&m_gun_VBO, m_gun_vertices);
 
   // Generate EBO
-  glGenBuffers(1, &m_EBO);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_indices[0]) * m_indices.size(),
-               m_indices.data(), GL_STATIC_DRAW);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+  generateEBO(&m_man_EBO, m_man_indices);
+  generateEBO(&m_gun_EBO, m_gun_indices);
 
   // Create VAO
-  glGenVertexArrays(1, &m_VAO);
+  glGenVertexArrays(1, &m_man_VAO);
 
   // Bind vertex attributes to current VAO
-  glBindVertexArray(m_VAO);
+  bindVertexToVAO(&m_man_VAO, &m_man_VBO, &m_man_EBO, &positionAttribute);
 
-  glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-  GLint positionAttribute{glGetAttribLocation(m_program, "inPosition")};
-  glEnableVertexAttribArray(positionAttribute);
-  glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE,
-                        sizeof(Vertex), nullptr);
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  // End of binding to current VAO
+  glBindVertexArray(0);
 
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+  // Create VAO
+  glGenVertexArrays(1, &m_gun_VAO);
+
+  // Bind vertex attributes to current VAO
+  bindVertexToVAO(&m_gun_VAO, &m_gun_VBO, &m_gun_EBO, &positionAttribute);
 
   // End of binding to current VAO
   glBindVertexArray(0);
@@ -68,7 +68,38 @@ void OpenGLWindow::initializeGL() {
   resizeGL(getWindowSettings().width, getWindowSettings().height);
 }
 
-void OpenGLWindow::loadModelFromFile(std::string_view path) {
+void OpenGLWindow::bindVertexToVAO(GLuint* m_VAO, GLuint* m_VBO, GLuint* m_EBO,
+                                   GLint* positionAttribute) {
+  glBindVertexArray(*m_VAO);
+
+  glBindBuffer(GL_ARRAY_BUFFER, *m_VBO);
+  glEnableVertexAttribArray(*positionAttribute);
+  glVertexAttribPointer(*positionAttribute, 3, GL_FLOAT, GL_FALSE,
+                        sizeof(Vertex), nullptr);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *m_EBO);
+}
+
+void OpenGLWindow::generateVBO(GLuint* m_VBO, std::vector<Vertex> m_vertices) {
+  glGenBuffers(1, &(*m_VBO));
+  glBindBuffer(GL_ARRAY_BUFFER, *m_VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(m_vertices[0]) * m_vertices.size(),
+               m_vertices.data(), GL_STATIC_DRAW);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void OpenGLWindow::generateEBO(GLuint* m_EBO, std::vector<GLuint> m_indices) {
+  glGenBuffers(1, &(*m_EBO));
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *m_EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(m_indices[0]) * m_indices.size(),
+               m_indices.data(), GL_STATIC_DRAW);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void OpenGLWindow::loadModelFromFile(std::string_view path,
+                                     std::vector<Vertex>* vertices,
+                                     std::vector<GLuint>* indices) {
   tinyobj::ObjReaderConfig readerConfig;
   readerConfig.mtl_search_path =
       getAssetsPath() + "mtl/";  // Path to material files
@@ -91,8 +122,8 @@ void OpenGLWindow::loadModelFromFile(std::string_view path) {
   const auto& attrib{reader.GetAttrib()};
   const auto& shapes{reader.GetShapes()};
 
-  m_vertices.clear();
-  m_indices.clear();
+  (*vertices).clear();
+  (*indices).clear();
 
   // A key:value map with key=Vertex and value=index
   std::unordered_map<Vertex, GLuint> hash{};
@@ -123,12 +154,12 @@ void OpenGLWindow::loadModelFromFile(std::string_view path) {
         // If uniqueVertices doesn't contain this vertex
         if (hash.count(vertex) == 0) {
           // Add this index (size of m_vertices)
-          hash[vertex] = m_vertices.size();
+          hash[vertex] = (*vertices).size();
           // Add this vertex
-          m_vertices.push_back(vertex);
+          (*vertices).push_back(vertex);
         }
 
-        m_indices.push_back(hash[vertex]);
+        (*indices).push_back(hash[vertex]);
       }
       indexOffset += numFaceVertices;
     }
@@ -144,7 +175,6 @@ void OpenGLWindow::paintGL() {
   glViewport(0, 0, m_viewportWidth, m_viewportHeight);
 
   glUseProgram(m_program);
-  glBindVertexArray(m_VAO);
 
   // Get location of uniform variables (could be precomputed)
   GLint viewMatrixLoc{glGetUniformLocation(m_program, "viewMatrix")};
@@ -157,48 +187,61 @@ void OpenGLWindow::paintGL() {
   glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, &m_camera.m_viewMatrix[0][0]);
   glUniformMatrix4fv(projMatrixLoc, 1, GL_FALSE, &m_camera.m_projMatrix[0][0]);
 
-  // Draw white bunny
-  glm::mat4 model{1.0f};
-  model = glm::translate(model, glm::vec3(-1.0f, 0.5f, 1.0f));
-  model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0, 1, 0));
-  model = glm::scale(model, glm::vec3(0.2f));
+  // gun.obj scale to stay with camera in same position
+  glm::vec3 gun_scale{0.15f};
+  // man.obj scale to stay with camera in same position
+  glm::vec3 man_scale{0.07f};
+  // man.obj middle position
+  glm::vec3 man_pos{0.0f, 0.0f, 0.0f};
 
-  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, 1.0f, 1.0f, 1.0f, 1.0f);
-  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+  // start man vertex array use
+  glBindVertexArray(m_man_VAO);
+  // Draw left item
+  createElement(glm::mat4{0.1f},
+                glm::vec3{man_pos.x - 0.75f, man_pos.y, man_pos.z + 0.5f},
+                glm::radians(+45.0f), man_scale,
+                glm::vec4(0.57f, 0.124f, 0.75f, 1.25f), &modelMatrixLoc,
+                &colorLoc, &m_man_indices);
 
-  // Draw yellow bunny
-  model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3(0.0f, 0.5f, 0.0f));
-  model = glm::scale(model, glm::vec3(0.2f));
+  // Draw middle item
+  createElement(glm::mat4{0.1f}, man_pos, glm::radians(0.0f), man_scale,
+                glm::vec4(1.0f, 0.8f, 0.0f, 1.0f), &modelMatrixLoc, &colorLoc,
+                &m_man_indices);
 
-  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, 1.0f, 0.8f, 0.0f, 1.0f);
-  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+  // Draw right item
+  createElement(glm::mat4{0.1f},
+                glm::vec3(man_pos.x + 0.75f, man_pos.y, man_pos.z + 0.5f),
+                glm::radians(-45.0f), man_scale,
+                glm::vec4(0.57f, 0.124f, 0.75f, 1.25f), &modelMatrixLoc,
+                &colorLoc, &m_man_indices);
+  // end man vertex array use
+  glBindVertexArray(0);
 
-  // Draw blue bunny
-  model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3(1.0f, 0.5f, 1.0f));
-  model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0, 1, 0));
-  model = glm::scale(model, glm::vec3(0.2f));
+  // start gun vertex array use
+  glBindVertexArray(m_gun_VAO);
+  // Draw gun item
+  createElement(
+      glm::mat4{1.0f},
+      glm::vec3{man_pos.x - 0.4f, man_pos.y + 0.75f, man_pos.z + 0.01f},
+      glm::radians(180.0f), gun_scale, glm::vec4(1.0f), &modelMatrixLoc,
+      &colorLoc, &m_gun_indices);
 
-  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, 0.0f, 0.8f, 1.0f, 1.0f);
-  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
-
-  // Draw red bunny
-  model = glm::mat4(1.0);
-
-  model = glm::translate(model, glm::vec3(2.0f, 0.0f, 2.0f));
-
-  model = glm::scale(model, glm::vec3(0.1f));
-
-  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, 1.0f, 0.25f, 0.25f, 1.0f);
-  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
-
+  // end gun vertex array use
   glBindVertexArray(0);
   glUseProgram(0);
+}
+
+void OpenGLWindow::createElement(glm::mat4 model, glm::vec3 pos, float rotate,
+                                 glm::vec3 scale, glm::vec4 color,
+                                 GLint* modelMatrixLoc, GLint* colorLoc,
+                                 std::vector<GLuint>* indices) {
+  model = glm::translate(model, pos);
+  model = glm::rotate(model, rotate, glm::vec3(0, 1, 0));
+  model = glm::scale(model, scale);
+
+  glUniformMatrix4fv((*modelMatrixLoc), 1, GL_FALSE, &model[0][0]);
+  glUniform4f((*colorLoc), color.x, color.y, color.z, color.w);
+  glDrawElements(GL_TRIANGLES, (*indices).size(), GL_UNSIGNED_INT, nullptr);
 }
 
 void OpenGLWindow::paintUI() {
@@ -215,13 +258,15 @@ void OpenGLWindow::resizeGL(int width, int height) {
 
 void OpenGLWindow::terminateGL() {
   glDeleteProgram(m_program);
-  glDeleteBuffers(1, &m_EBO);
-  glDeleteBuffers(1, &m_VBO);
-  glDeleteVertexArrays(1, &m_VAO);
+  glDeleteBuffers(1, &m_gun_EBO);
+  glDeleteBuffers(1, &m_gun_VBO);
+  glDeleteVertexArrays(1, &m_gun_VAO);
+  glDeleteBuffers(1, &m_man_EBO);
+  glDeleteBuffers(1, &m_man_VBO);
+  glDeleteVertexArrays(1, &m_man_VAO);
 }
 
 void OpenGLWindow::update() {
-  // float deltaTime{static_cast<float>(getDeltaTime())};
   float deltaTime{static_cast<float>(getDeltaTime())};
 
   if (timeElapsed >= cameraMovement) {
@@ -237,13 +282,11 @@ void OpenGLWindow::update() {
       break;
 
     case 1:
-
       m_camera.pan(glm::radians(30.0f) * deltaTime);
       break;
 
     case 2:
       m_camera.pan(glm::radians(-60.0f) * deltaTime);
-
       break;
 
     case 3:
@@ -252,7 +295,6 @@ void OpenGLWindow::update() {
 
     case 4:
       m_camera.dolly(glm::radians(-30.0f) * deltaTime);
-
       break;
 
     default:

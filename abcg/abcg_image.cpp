@@ -127,9 +127,6 @@ GLuint abcg::opengl::loadCubemap(std::array<std::string_view, 6> paths,
           SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGB24, 0)};
       SDL_FreeSurface(surface);
 
-      // Flip horizontally
-      flipY(formattedSurface);
-
       // Create texture
       glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + static_cast<GLenum>(index),
                    0, GL_RGB, formattedSurface->w, formattedSurface->h, 0,

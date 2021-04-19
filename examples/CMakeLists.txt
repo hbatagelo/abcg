@@ -6,5 +6,6 @@
 #add_subdirectory(asteroids)
 #add_subdirectory(dinorun)
 #add_subdirectory(loadmodel)
-add_subdirectory(lookat)
-add_subdirectory(screensaver)
+# add_subdirectory(lookat)
+# add_subdirectory(screensaver)
+add_subdirectory(deathstar)

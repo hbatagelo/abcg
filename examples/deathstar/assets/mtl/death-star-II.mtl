@@ -1,0 +1,108 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 02.01.2016 07:03:00
+
+newmtl 03___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ks textures/deathstar_4.jpg
+	map_Ke textures/deathstar_4.jpg
+	map_bump textures/deathstar_4.jpg
+	bump textures/deathstar_4.jpg
+
+newmtl 01___Default
+	Ns 35.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.6570 0.6570 0.6570
+	Ke 0.0000 0.0000 0.0000
+	map_Ka textures/deathstar_4.jpg
+	map_Kd textures/deathstar_4.jpg
+	map_bump -bm 0.6000 Map__3_Swirl.tga
+
+newmtl 05___Default
+	Ns 31.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.7686 0.7686 0.7686
+	Kd 0.7686 0.7686 0.7686
+	Ks 0.5580 0.5580 0.5580
+	Ke 0.0000 0.0000 0.0000
+	map_Ka textures/deathstar_4.jpg
+	map_Kd textures/deathstar_4.jpg
+	map_Ke textures/deathstar_4.jpg
+
+newmtl 04___Default
+	Ns 38.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.6627 0.6627 0.6627
+	Kd 0.6627 0.6627 0.6627
+	Ks 0.3150 0.3150 0.3150
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 08___Default
+	Ns 2.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9882 0.9882 0.6078
+	Kd 0.9882 0.9882 0.6078
+	Ks 0.8010 0.8010 0.8010
+	Ke 0.9020 1.0000 0.3529
+
+newmtl 10___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.3294 1.0000
+	Kd 0.0000 0.3294 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0471 0.0000 1.0000
+
+newmtl 10___Defaultqq
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1176 1.0000 0.0000
+	Kd 0.1176 1.0000 0.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 1.0000 0.5176
+
+newmtl 09___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 0.0000 0.0000
+	Kd 1.0000 0.0000 0.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 1.0000 0.0000 0.0000

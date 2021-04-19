@@ -71,8 +71,8 @@ void OpenGLWindow::initializeGL() {
 
   // Load model
   // man
-  loadModelFromFile(getAssetsPath() + "source/bunny.obj", &m_man_vertices,
-                    &m_man_indices);
+  loadModelFromFile(getAssetsPath() + "source/death-star-II.obj",
+                    &m_man_vertices, &m_man_indices);
   // gun
   // loadModelFromFile(getAssetsPath() + "Handgun_obj.obj", &m_gun_vertices,
   // &m_gun_indices);
@@ -231,9 +231,11 @@ void OpenGLWindow::paintGL() {
   // gun.obj scale to stay with camera in same position
   glm::vec3 gun_scale{1.0f};
   // man.obj scale to stay with camera in same position
-  glm::vec3 man_scale{1.0f};
+  // glm::vec3 man_scale{0.0001f}; // 3d-model.obj
+  glm::vec3 man_scale{0.001f}; // death-star-II.obj
   // man.obj middle position
-  glm::vec3 man_pos{0.0f, 0.0f, 0.0f};
+  glm::vec3 man_pos{0.0f, 0.5f, 0.0f};
+  glm::vec4 grey{0.5f, 0.5f, 0.5f, 1.0f};
 
   // start man vertex array use
   glBindVertexArray(m_man_VAO);
@@ -245,9 +247,8 @@ void OpenGLWindow::paintGL() {
   // &colorLoc, &m_man_indices);
 
   // Draw middle item
-  createElement(glm::mat4{0.1f}, man_pos, glm::radians(0.0f), man_scale,
-                glm::vec4(0.5f, 0.5f, 0.5f, 1.0f), &modelMatrixLoc, &colorLoc,
-                &m_man_indices);
+  createElement(glm::mat4{0.1f}, man_pos, glm::radians(0.0f), man_scale, grey,
+                &modelMatrixLoc, &colorLoc, &m_man_indices);
 
   // Draw right item
   // createElement(glm::mat4{0.1f},

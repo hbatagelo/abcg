@@ -32,6 +32,13 @@ void OpenGLWindow::handleEvent(SDL_Event& ev) {
       m_panSpeed = 1.0f;
     if (ev.key.keysym.sym == SDLK_q) m_truckSpeed = -1.0f;
     if (ev.key.keysym.sym == SDLK_e) m_truckSpeed = 1.0f;
+    if (ev.key.keysym.sym == SDLK_z) m_eixo = 1.0f;
+    if (ev.key.keysym.sym == SDLK_x) m_eixo = -1.0f;
+    if (ev.key.keysym.sym == SDLK_SPACE) {
+      m_camera.m_eye = glm::vec3(0.0f, 0.5f, 2.5f);
+      m_camera.m_at = glm::vec3(0.0f, 0.5f, 0.0f);
+      m_camera.m_up = glm::vec3(0.0f, 1.0f, 0.0f);
+    }
   }
   if (ev.type == SDL_KEYUP) {
     if ((ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w) &&
@@ -48,6 +55,8 @@ void OpenGLWindow::handleEvent(SDL_Event& ev) {
       m_panSpeed = 0.0f;
     if (ev.key.keysym.sym == SDLK_q && m_truckSpeed < 0) m_truckSpeed = 0.0f;
     if (ev.key.keysym.sym == SDLK_e && m_truckSpeed > 0) m_truckSpeed = 0.0f;
+    if (ev.key.keysym.sym == SDLK_z && m_eixo > 0) m_eixo = 0.0f;
+    if (ev.key.keysym.sym == SDLK_x && m_eixo < 0) m_eixo = 0.0f;
   }
 }
 
@@ -247,9 +256,15 @@ void OpenGLWindow::terminateGL() {
 
 void OpenGLWindow::update() {
   float deltaTime{static_cast<float>(getDeltaTime())};
+  fmt::print("2- {} {} {} {} {} {}\n", m_camera.m_eye.x, m_camera.m_eye.y,
+             m_camera.m_eye.z, m_camera.m_up.x, m_camera.m_up.y,
+             m_camera.m_up.z);
 
   // Update LookAt camera
   m_camera.dolly(m_dollySpeed * deltaTime);
   m_camera.truck(m_truckSpeed * deltaTime);
-  m_camera.pan(m_panSpeed * deltaTime);
+  m_camera.panTo(m_panSpeed * deltaTime, m_eixo * deltaTime);
+  fmt::print("2- {} {} {} {} {} {}\n", m_camera.m_eye.x, m_camera.m_eye.y,
+             m_camera.m_eye.z, m_camera.m_up.x, m_camera.m_up.y,
+             m_camera.m_up.z);
 }

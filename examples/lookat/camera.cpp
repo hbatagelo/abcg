@@ -48,3 +48,17 @@ void Camera::pan(float speed) {
 
   computeViewMatrix();
 }
+
+void Camera::panTo(float speed, float up) {
+  glm::mat4 transform{glm::mat4(up)};
+  
+  // Rotate  camera around its local y axis
+  transform = glm::translate(transform, m_eye);
+  transform = glm::rotate(transform, -speed, m_up);
+  transform = glm::rotate(transform, -up, m_up);
+  transform = glm::translate(transform, -m_eye);
+
+  m_at = transform * glm::vec4(m_at, 1.0f);
+
+  computeViewMatrix();
+}

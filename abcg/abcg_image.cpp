@@ -66,9 +66,6 @@ GLuint abcg::opengl::loadTexture(std::string_view path, bool generateMipmaps) {
     }
     SDL_FreeSurface(surface);
 
-    // Flip horizontally
-    flipY(formattedSurface);
-
     // Generate the texture
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);

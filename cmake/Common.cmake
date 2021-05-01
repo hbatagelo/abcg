@@ -51,7 +51,6 @@ endif()
 # IPO
 option(ENABLE_IPO "Enable Interprocedural Optimization" ON)
 if(ENABLE_IPO)
-
   if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.9)
     cmake_policy(SET CMP0069 NEW)
     set(CMAKE_POLICY_DEFAULT_CMP0069 NEW)
@@ -63,9 +62,8 @@ if(ENABLE_IPO)
   if(result)
     set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
   else()
-    message(SEND_ERROR "IPO is not supported: ${output}")
+    message("IPO is not supported")
   endif()
-
 endif()
 
 # Conan

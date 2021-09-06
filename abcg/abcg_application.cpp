@@ -10,7 +10,7 @@
 
 #include <fmt/core.h>
 
-#include <gsl/gsl>
+#include <span>
 
 #include "SDL_image.h"
 #include "abcg_exception.hpp"
@@ -19,7 +19,7 @@
 
 #if defined(__EMSCRIPTEN__)
 void abcg::mainLoopCallback(void *userData) {
-  abcg::Application &app = *(static_cast<abcg::Application *>(userData));
+  abcg::Application &app{*(static_cast<abcg::Application *>(userData))};
   bool done{};
   app.mainLoopIterator(done);
 }
@@ -28,10 +28,10 @@ void abcg::mainLoopCallback(void *userData) {
 /**
  * @brief Constructs an abcg::Application object.
  *
- * Constructs an abcg::Application object and initializes the SDL library and
- * SDL subsystems.
+ * Constructs an abcg::Application object and initializes SDL library and
+ * subsystems.
  *
- * @throw abcg::Exception if SDL failed to initialize the subsystems.
+ * @throw abcg::Exception if SDL failed to initialize its subsystems.
  */
 abcg::Application::Application([[maybe_unused]] int argc, char **argv) {
   Uint32 subsystemMask{SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO |
@@ -52,7 +52,7 @@ abcg::Application::Application([[maybe_unused]] int argc, char **argv) {
 #endif
 
   // Get executable relative path
-  std::string argv_str(*gsl::span{&argv, 1}[0]);
+  std::string argv_str(*std::span{&argv, 1}[0]);
 #if defined(WIN32)
   if (auto n{argv_str.find_last_of('\\')}; n == std::string::npos) {
     // Called from the same directory of the executable
@@ -68,7 +68,7 @@ abcg::Application::Application([[maybe_unused]] int argc, char **argv) {
 /**
  * @brief Destroys the abcg::Application object.
  *
- * Destroys the abcg::Application object and cleans up the SDL initialized
+ * Destroys the abcg::Application object and cleans up SDL initialized
  * subsystems.
  */
 abcg::Application::~Application() {
@@ -79,21 +79,19 @@ abcg::Application::~Application() {
 }
 
 /**
- * @brief Runs the application for a set of windows.
+ * @brief Runs the application for a single window.
  *
- * @param window Vector of pointers to windows.
+ * @param window Unique pointer to window.
  *
- * @throw abcg::Exception if the vector contains a null pointer.
+ * @throw abcg::Exception if window is a null pointer.
  */
-void abcg::Application::run(
-    std::vector<std::unique_ptr<OpenGLWindow>> &windows) {
-  for (auto &it : windows) {
-    if (it == nullptr) {
-      throw abcg::Exception{abcg::Exception::Runtime("Invalid pointer")};
-    }
-    m_windows.push_back(std::move(it));
+void abcg::Application::run(std::unique_ptr<OpenGLWindow> window) {
+  if (window != nullptr) {
+    m_window = std::move(window);
+    run();
+  } else {
+    throw abcg::Exception{abcg::Exception::Runtime("Null pointer")};
   }
-  run();
 }
 
 void abcg::Application::mainLoopIterator([[maybe_unused]] bool &done) {
@@ -102,19 +100,13 @@ void abcg::Application::mainLoopIterator([[maybe_unused]] bool &done) {
 #if !defined(__EMSCRIPTEN__)
     if (event.type == SDL_QUIT) done = true;
 #endif
-    for (const auto &window : m_windows) {
-      window->handleEvent(event, done);
-    }
+    m_window->handleEvent(event, done);
   }
-  for (const auto &window : m_windows) {
-    window->paint();
-  }
+  m_window->paint();
 }
 
 void abcg::Application::run() {
-  for (const auto &w : m_windows) {
-    w->initialize(m_basePath);
-  }
+  m_window->initialize(m_basePath);
 
 #if defined(__EMSCRIPTEN__)
   emscripten_set_main_loop_arg(mainLoopCallback, this, 0, true);

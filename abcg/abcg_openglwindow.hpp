@@ -13,7 +13,7 @@
 #include <string>
 
 #include "abcg_elapsedtimer.hpp"
-#include "abcg_external.hpp"
+#include "abcg_openglfunctions.hpp"
 
 namespace abcg {
 enum class OpenGLProfile;
@@ -34,7 +34,7 @@ EM_BOOL fullscreenchangeCallback(int eventType,
  */
 enum class abcg::OpenGLProfile { Core, Compatibility, ES };
 
-struct abcg::OpenGLSettings {
+struct alignas(32) abcg::OpenGLSettings {
   OpenGLProfile profile{OpenGLProfile::Core};
   int majorVersion{4};
   int minorVersion{1};
@@ -45,7 +45,7 @@ struct abcg::OpenGLSettings {
   bool preserveWebGLDrawingBuffer{false};
 };
 
-struct abcg::WindowSettings {
+struct alignas(64) abcg::WindowSettings {
   int width{800};
   int height{600};
   bool showFPS{true};

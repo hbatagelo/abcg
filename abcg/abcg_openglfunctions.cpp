@@ -8,7 +8,6 @@
 #include "abcg_openglfunctions.hpp"
 
 #include "abcg_exception.hpp"
-#include "abcg_external.hpp"
 
 #if !defined(NDEBUG) && !defined(__EMSCRIPTEN__) && !defined(__APPLE__)
 /**
@@ -22,6 +21,7 @@
 void abcg::checkGLError(
     const std::experimental::source_location &sourceLocation,
     std::string_view prefix) {
+  // Throw on first error
   if (auto status{glGetError()}; status != GL_NO_ERROR) {
     throw abcg::Exception{
         abcg::Exception::OpenGL(prefix, status, sourceLocation)};

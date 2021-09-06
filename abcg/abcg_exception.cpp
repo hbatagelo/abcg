@@ -19,16 +19,27 @@ std::string abcg::Exception::Runtime(
     const std::experimental::source_location& sourceLocation) {
   return std::string{codeRed} + what.data() + codeReset + " in " +
          sourceLocation.file_name() + ":" + sourceLocation.function_name() +
-         ":" + std::to_string(sourceLocation.line());
+         ":" + std::to_string(sourceLocation.line()) + "\n";
 }
 
 std::string abcg::Exception::OpenGL(
     std::string_view prefix, unsigned int error,
     const std::experimental::source_location& sourceLocation) {
-  return std::string{codeRed} + "OpenGL error " + prefix.data() + codeReset +
-         " (" + getGLErrorString(error).data() + ") in " +
-         sourceLocation.file_name() + ":" + sourceLocation.function_name() +
-         ":" + std::to_string(sourceLocation.line());
+  std::string errorMessage{std::string{codeRed} + "OpenGL error " +
+                           prefix.data() + codeReset};
+  if (SDL_GL_GetCurrentContext() == nullptr) {
+    errorMessage += " (invalid OpenGL context)";
+  } else {
+    do {
+      errorMessage += " (";
+      errorMessage += getGLErrorString(error).data();
+      errorMessage += ")";
+      // Clear remaining error flags
+    } while (glGetError() != GL_NO_ERROR);
+  }
+  return errorMessage + " in " + sourceLocation.file_name() + ":" +
+         sourceLocation.function_name() + ":" +
+         std::to_string(sourceLocation.line()) + "\n";
 }
 
 std::string abcg::Exception::SDL(
@@ -37,7 +48,7 @@ std::string abcg::Exception::SDL(
   return std::string{codeRed} + what.data() + codeReset + " (" +
          SDL_GetError() + ") in " + sourceLocation.file_name() + ":" +
          sourceLocation.function_name() + ":" +
-         std::to_string(sourceLocation.line());
+         std::to_string(sourceLocation.line()) + "\n";
 }
 
 std::string abcg::Exception::SDLImage(
@@ -46,27 +57,38 @@ std::string abcg::Exception::SDLImage(
   return std::string{codeRed} + what.data() + codeReset + " (" +
          IMG_GetError() + ") in " + sourceLocation.file_name() + ":" +
          sourceLocation.function_name() + ":" +
-         std::to_string(sourceLocation.line());
+         std::to_string(sourceLocation.line()) + "\n";
 }
 #else
 std::string abcg::Exception::Runtime(std::string_view what) {
-  return std::string{codeRed} + what.data() + codeReset;
+  return std::string{codeRed} + what.data() + codeReset + "\n";
 }
 
 std::string abcg::Exception::OpenGL(std::string_view prefix,
                                     unsigned int error) {
-  return std::string{codeRed} + "OpenGL error " + prefix.data() + codeReset +
-         " (" + getGLErrorString(error).data() + ")";
+  std::string errorMessage{std::string{codeRed} + "OpenGL error " +
+                           prefix.data() + codeReset};
+  if (SDL_GL_GetCurrentContext() == nullptr) {
+    errorMessage += " (invalid OpenGL context)";
+  } else {
+    do {
+      errorMessage += " (";
+      errorMessage += getGLErrorString(error).data();
+      errorMessage += ")";
+      // Clear remaining error flags
+    } while (glGetError() != GL_NO_ERROR);
+  }
+  return errorMessage;
 }
 
 std::string abcg::Exception::SDL(std::string_view what) {
   return std::string{codeRed} + what.data() + codeReset + " (" +
-         SDL_GetError() + ")";
+         SDL_GetError() + ")\n";
 }
 
 std::string abcg::Exception::SDLImage(std::string_view what) {
   return std::string{codeRed} + what.data() + codeReset + " (" +
-         IMG_GetError() + ")";
+         IMG_GetError() + ")\n";
 }
 #endif
 

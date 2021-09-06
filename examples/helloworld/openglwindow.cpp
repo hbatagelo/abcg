@@ -42,8 +42,8 @@ void OpenGLWindow::initializeGL() {
   glBindBuffer(GL_ARRAY_BUFFER, 0);
 
   // Get location of attributes in the program
-  GLint positionAttribute = glGetAttribLocation(m_program, "inPosition");
-  GLint colorAttribute = glGetAttribLocation(m_program, "inColor");
+  GLint positionAttribute{glGetAttribLocation(m_program, "inPosition")};
+  GLint colorAttribute{glGetAttribLocation(m_program, "inColor")};
 
   // Create VAO
   glGenVertexArrays(1, &m_vao);

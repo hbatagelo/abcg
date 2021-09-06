@@ -11,8 +11,8 @@
 #define ABCG_HPP_
 
 #include "abcg_application.hpp"
-#include "abcg_elapsedtimer.hpp"
 #include "abcg_image.hpp"
+#include "abcg_openglwindow.hpp"
 #include "abcg_string.hpp"
 #include "abcg_trackball.hpp"
 

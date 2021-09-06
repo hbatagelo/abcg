@@ -17,9 +17,9 @@ int main(int argc, char **argv) {
         {.width = 600, .height = 600, .title = "Hello, World!"});
 
     // Run application
-    app.run(window);
-  } catch (abcg::Exception &exception) {
-    fmt::print(stderr, "{}\n", exception.what());
+    app.run(std::move(window));
+  } catch (const abcg::Exception &exception) {
+    fmt::print(stderr, "{}", exception.what());
     return -1;
   }
   return 0;

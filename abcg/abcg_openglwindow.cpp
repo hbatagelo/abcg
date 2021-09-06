@@ -22,7 +22,6 @@
 #include "SDL_video.h"
 #include "abcg_application.hpp"
 #include "abcg_embeddedfonts.hpp"
-#include "abcg_openglfunctions.hpp"
 #include "abcg_string.hpp"
 
 void printShaderInfoLog(GLuint shader, std::string_view prefix) {
@@ -110,7 +109,7 @@ void setupImGuiStyle(bool darkTheme, float alpha) {
   style.Colors[ImGuiCol_PlotHistogram]        = ColorAlpha(gray1, 1.00f);
   style.Colors[ImGuiCol_PlotHistogramHovered] = ColorAlpha(gray0, 1.00f);
   style.Colors[ImGuiCol_TextSelectedBg]       = ColorAlpha(gray6, 0.35f);
-  style.Colors[ImGuiCol_ModalWindowDarkening] = ColorAlpha(gray0, 0.35f);
+  style.Colors[ImGuiCol_ModalWindowDimBg]     = ColorAlpha(gray0, 0.35f);
   style.Colors[ImGuiCol_NavHighlight]         = ColorAlpha(gray1, 1.00f);
   style.Colors[ImGuiCol_Tab]                  = ColorAlpha(gray1, 0.30f);
   style.Colors[ImGuiCol_TabHovered]           = ColorAlpha(gray2, 0.95f);
@@ -433,12 +432,14 @@ void abcg::OpenGLWindow::toggleFullscreen() {
 void abcg::OpenGLWindow::handleEvent(SDL_Event &event, bool &done) {
   ImGui_ImplSDL2_ProcessEvent(&event);
 
-  if (event.window.windowID == m_windowID) {
-    if (event.type == SDL_WINDOWEVENT) {
-      if (event.window.event == SDL_WINDOWEVENT_CLOSE) {
+  if (event.window.windowID != m_windowID) return;
+
+  if (event.type == SDL_WINDOWEVENT) {
+    switch (event.window.event) {
+      case SDL_WINDOWEVENT_CLOSE:
         done = true;
-      }
-      if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+        break;
+      case SDL_WINDOWEVENT_SIZE_CHANGED: {
         auto &newWidth{event.window.data1};
         auto &newHeight{event.window.data2};
         if (newWidth >= 0 && newHeight >= 0 &&
@@ -447,8 +448,8 @@ void abcg::OpenGLWindow::handleEvent(SDL_Event &event, bool &done) {
           m_viewportHeight = newHeight;
           resizeGL(newWidth, newHeight);
         }
-      }
-      if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+      } break;
+      case SDL_WINDOWEVENT_RESIZED: {
         bool fullscreen{
             (SDL_GetWindowFlags(m_window) & SDL_WINDOW_FULLSCREEN) != 0u};
         if (!fullscreen) {
@@ -464,41 +465,41 @@ void abcg::OpenGLWindow::handleEvent(SDL_Event &event, bool &done) {
         m_viewportWidth = event.window.data1;
         m_viewportHeight = event.window.data2;
         resizeGL(event.window.data1, event.window.data2);
-      }
+      } break;
     }
-    if (event.type == SDL_KEYUP) {
-      if (event.key.keysym.sym == SDLK_F11) {
-#if defined(__EMSCRIPTEN__)
-        bool isFullscreenAvailable =
-            static_cast<bool>(
-                EM_ASM_INT({ return document.fullscreenEnabled; })) &&
-            static_cast<bool>(EM_ASM_INT({ return !isMobile(); }));
-        if (isFullscreenAvailable)
-#endif
-          toggleFullscreen();
-      }
-    }
-
-    // Won't pass mouse events to the application if ImGUI has captured the
-    // mouse
-    bool useCustomEventHandler{true};
-    if (ImGui::GetIO().WantCaptureMouse &&
-        (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN ||
-         event.type == SDL_MOUSEBUTTONUP || event.type == SDL_MOUSEWHEEL)) {
-      useCustomEventHandler = false;
-    }
-
-    // Won't pass keyboard events to the application if ImGUI has captured the
-    // keyboard
-    if (ImGui::GetIO().WantCaptureKeyboard &&
-        (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP ||
-         event.type == SDL_TEXTEDITING || event.type == SDL_TEXTINPUT ||
-         event.type == SDL_KEYMAPCHANGED)) {
-      useCustomEventHandler = false;
-    }
-
-    if (useCustomEventHandler) handleEvent(event);
   }
+  if (event.type == SDL_KEYUP) {
+    if (event.key.keysym.sym == SDLK_F11) {
+#if defined(__EMSCRIPTEN__)
+      bool isFullscreenAvailable =
+          static_cast<bool>(
+              EM_ASM_INT({ return document.fullscreenEnabled; })) &&
+          static_cast<bool>(EM_ASM_INT({ return !isMobile(); }));
+      if (isFullscreenAvailable)
+#endif
+        toggleFullscreen();
+    }
+  }
+
+  // Won't pass mouse events to the application if ImGUI has captured the
+  // mouse
+  bool useCustomEventHandler{true};
+  if (ImGui::GetIO().WantCaptureMouse &&
+      (event.type == SDL_MOUSEMOTION || event.type == SDL_MOUSEBUTTONDOWN ||
+       event.type == SDL_MOUSEBUTTONUP || event.type == SDL_MOUSEWHEEL)) {
+    useCustomEventHandler = false;
+  }
+
+  // Won't pass keyboard events to the application if ImGUI has captured the
+  // keyboard
+  if (ImGui::GetIO().WantCaptureKeyboard &&
+      (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP ||
+       event.type == SDL_TEXTEDITING || event.type == SDL_TEXTINPUT ||
+       event.type == SDL_KEYMAPCHANGED)) {
+    useCustomEventHandler = false;
+  }
+
+  if (useCustomEventHandler) handleEvent(event);
 }
 
 void abcg::OpenGLWindow::initialize(std::string_view basePath) {
@@ -571,20 +572,33 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
   if (m_openGLSettings.samples > 0) {
     // Enable multisample
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-    // can be 2, 4, 8 or 16
+    // Can be 2, 4, 8 or 16
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, m_openGLSettings.samples);
   } else {
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
   }
 
   // Create window with graphics context
-  m_window = SDL_CreateWindow(m_windowSettings.title.c_str(),
-                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                              m_windowSettings.width, m_windowSettings.height,
-                              SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+  while (true) {
+    m_window = SDL_CreateWindow(m_windowSettings.title.c_str(),
+                                SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                m_windowSettings.width, m_windowSettings.height,
+                                SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    if (m_window == nullptr && m_openGLSettings.samples > 0) {
+      // Try again, but this time with multisampling disabled
+      m_openGLSettings.samples = 0;
+      SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
+      SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+      fmt::print("Warning: multisampling requested but not supported!\n");
+    } else {
+      break;
+    }
+  };
+
   if (m_window == nullptr) {
     throw abcg::Exception{abcg::Exception::SDL("SDL_CreateWindow failed")};
   }
+
   m_windowID = SDL_GetWindowID(m_window);
 
 #if defined(__EMSCRIPTEN__)
@@ -621,9 +635,9 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
   ImGuiIO &io{ImGui::GetIO()};
-  // Enable Keyboard Controls
+  // Enable keyboard vontrols
   io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-  // Enable Gamepad Controls
+  // Enable hamepadv ontrols
   io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
   // For an Emscripten build we are disabling file-system access, so let's not
@@ -634,7 +648,7 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
   // Setup our own Dear ImGui style
   setupImGuiStyle(true, 1.0f);
 
-  // Setup Platform/Renderer bindings
+  // Setup platform/renderer bindings
   ImGui_ImplSDL2_InitForOpenGL(m_window, m_GLContext);
   ImGui_ImplOpenGL3_Init(m_GLSLVersion.c_str());
 
@@ -676,7 +690,7 @@ void abcg::OpenGLWindow::paint() {
 #endif
 
   ImGui_ImplOpenGL3_NewFrame();
-  ImGui_ImplSDL2_NewFrame(m_window);
+  ImGui_ImplSDL2_NewFrame();
   ImGui::NewFrame();
   paintUI();
   ImGui::Render();

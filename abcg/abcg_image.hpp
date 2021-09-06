@@ -16,7 +16,8 @@ namespace abcg::opengl {
 [[nodiscard]] GLuint loadTexture(std::string_view path,
                                  bool generateMipmaps = true);
 [[nodiscard]] GLuint loadCubemap(std::array<std::string_view, 6> paths,
-                                 bool generateMipmaps = true);
+                                 bool generateMipmaps = true,
+                                 bool rightHandedSystem = true);
 }  // namespace abcg::opengl
 
 #endif

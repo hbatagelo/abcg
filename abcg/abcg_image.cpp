@@ -12,29 +12,53 @@
 #include <cppitertools/itertools.hpp>
 #include <fstream>
 #include <gsl/gsl>
+#include <span>
 #include <vector>
 
 #include "SDL_image.h"
 #include "abcg_exception.hpp"
 #include "abcg_external.hpp"
 
-void flipY(gsl::not_null<SDL_Surface*> surface) {
+void flipHorizontally(gsl::not_null<SDL_Surface*> surface) {
   auto width{static_cast<size_t>(surface->w * surface->format->BytesPerPixel)};
   auto height{static_cast<size_t>(surface->h)};
-  gsl::span pixels{static_cast<std::byte*>(surface->pixels), width * height};
+  std::span pixels{static_cast<std::byte*>(surface->pixels), width * height};
 
   // Row of pixels for the swap
-  std::vector<std::byte> row(width, std::byte{});
+  std::vector<std::byte> pixelRow(width, std::byte{});
+
+  // For each row
+  for (auto rowIndex : iter::range(height)) {
+    auto rowStart{width * rowIndex};
+    auto rowEnd{rowStart + width - 1};
+    // For each RGB triplet of this row
+    // C++23: for (auto tripletStart : iter::range(0uz, width, 3uz)) {
+    for (auto tripletStart : iter::range<std::size_t>(0, width, 3)) {
+      pixelRow.at(tripletStart + 0) = pixels[rowEnd - tripletStart - 2];
+      pixelRow.at(tripletStart + 1) = pixels[rowEnd - tripletStart - 1];
+      pixelRow.at(tripletStart + 2) = pixels[rowEnd - tripletStart - 0];
+    }
+    memcpy(pixels.subspan(rowStart).data(), pixelRow.data(), width);
+  }
+}
+
+void flipVertically(gsl::not_null<SDL_Surface*> surface) {
+  auto width{static_cast<size_t>(surface->w * surface->format->BytesPerPixel)};
+  auto height{static_cast<size_t>(surface->h)};
+  std::span pixels{static_cast<std::byte*>(surface->pixels), width * height};
+
+  // Row of pixels for the swap
+  std::vector<std::byte> pixelRow(width, std::byte{});
 
   // If height is odd, don't need to swap middle row
-  size_t height_div_2{height / 2};
-  for (size_t index = 0; index < height_div_2; index++) {
-    auto offsetFromTop{width * index};
-    auto offsetFromBottom{width * (height - index - 1)};
-    memcpy(row.data(), pixels.subspan(offsetFromTop).data(), width);
-    memcpy(pixels.subspan(offsetFromTop).data(),
-           pixels.subspan(offsetFromBottom).data(), width);
-    memcpy(pixels.subspan(offsetFromBottom).data(), row.data(), width);
+  size_t halfHeight{height / 2};
+  for (auto rowIndex : iter::range(halfHeight)) {
+    auto rowStartFromTop{width * rowIndex};
+    auto rowStartFromBottom{width * (height - rowIndex - 1)};
+    memcpy(pixelRow.data(), pixels.subspan(rowStartFromTop).data(), width);
+    memcpy(pixels.subspan(rowStartFromTop).data(),
+           pixels.subspan(rowStartFromBottom).data(), width);
+    memcpy(pixels.subspan(rowStartFromBottom).data(), pixelRow.data(), width);
   }
 }
 
@@ -66,8 +90,8 @@ GLuint abcg::opengl::loadTexture(std::string_view path, bool generateMipmaps) {
     }
     SDL_FreeSurface(surface);
 
-    // Flip horizontally
-    flipY(formattedSurface);
+    // Flip upside down
+    flipVertically(formattedSurface);
 
     // Generate the texture
     glGenTextures(1, &textureID);
@@ -105,7 +129,7 @@ GLuint abcg::opengl::loadTexture(std::string_view path, bool generateMipmaps) {
 }
 
 GLuint abcg::opengl::loadCubemap(std::array<std::string_view, 6> paths,
-                                 bool generateMipmaps) {
+                                 bool generateMipmaps, bool rightHandedSystem) {
   GLuint textureID{};
   glGenTextures(1, &textureID);
   glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
@@ -127,10 +151,28 @@ GLuint abcg::opengl::loadCubemap(std::array<std::string_view, 6> paths,
           SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGB24, 0)};
       SDL_FreeSurface(surface);
 
+      auto target{GL_TEXTURE_CUBE_MAP_POSITIVE_X + static_cast<GLenum>(index)};
+
+      // LHS to RHS
+      if (rightHandedSystem) {
+        if (target == GL_TEXTURE_CUBE_MAP_POSITIVE_Y ||
+            target == GL_TEXTURE_CUBE_MAP_NEGATIVE_Y) {
+          // Flip upside down
+          flipVertically(formattedSurface);
+        } else {
+          flipHorizontally(formattedSurface);
+        }
+
+        // Swap -z with +z
+        if (target == GL_TEXTURE_CUBE_MAP_POSITIVE_Z)
+          target = GL_TEXTURE_CUBE_MAP_NEGATIVE_Z;
+        else if (target == GL_TEXTURE_CUBE_MAP_NEGATIVE_Z)
+          target = GL_TEXTURE_CUBE_MAP_POSITIVE_Z;
+      }
+
       // Create texture
-      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + static_cast<GLenum>(index),
-                   0, GL_RGB, formattedSurface->w, formattedSurface->h, 0,
-                   GL_RGB, GL_UNSIGNED_BYTE, formattedSurface->pixels);
+      glTexImage2D(target, 0, GL_RGB, formattedSurface->w, formattedSurface->h,
+                   0, GL_RGB, GL_UNSIGNED_BYTE, formattedSurface->pixels);
 
       SDL_FreeSurface(formattedSurface);
     } else {

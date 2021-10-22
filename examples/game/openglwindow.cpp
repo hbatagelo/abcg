@@ -44,15 +44,15 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
     if (event.button.button == SDL_BUTTON_RIGHT)
       m_gameData.m_input.reset(static_cast<size_t>(Input::Up));
   }
-  if (event.type == SDL_MOUSEMOTION) {
-    glm::ivec2 mousePosition;
-    SDL_GetMouseState(&mousePosition.x, &mousePosition.y);
+  // if (event.type == SDL_MOUSEMOTION) {
+  //   glm::ivec2 mousePosition;
+  //   SDL_GetMouseState(&mousePosition.x, &mousePosition.y);
 
-    glm::vec2 direction{glm::vec2{mousePosition.x - m_viewportWidth / 2,
-                                  mousePosition.y - m_viewportHeight / 2}};
-    direction.y = -direction.y;
-    m_triangle.setRotation(std::atan2(direction.y, direction.x) - M_PI_2);
-  }
+  //   glm::vec2 direction{glm::vec2{mousePosition.x - m_viewportWidth / 2,
+  //                                 mousePosition.y - m_viewportHeight / 2}};
+  //   direction.y = -direction.y;
+  //   m_triangle.setRotation(std::atan2(direction.y, direction.x) - M_PI_2);
+  // }
 }
 
 void OpenGLWindow::initializeGL() {

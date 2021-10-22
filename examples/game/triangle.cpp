@@ -8,11 +8,11 @@ void Triangle::initializeGL(GLuint program) {
 
   m_program = program;
   m_colorLoc = abcg::glGetUniformLocation(m_program, "color");
-  m_rotationLoc = abcg::glGetUniformLocation(m_program, "rotation");
+  // m_rotationLoc = abcg::glGetUniformLocation(m_program, "rotation");
   m_scaleLoc = abcg::glGetUniformLocation(m_program, "scale");
   m_translationLoc = abcg::glGetUniformLocation(m_program, "translation");
 
-  m_rotation = 0.0f;
+  // m_rotation = 0.0f;
   m_translation = glm::vec2(0, -0.5);
   m_velocity = glm::vec2(0);
 
@@ -76,7 +76,7 @@ void Triangle::paintGL(const GameData &gameData) {
   abcg::glBindVertexArray(m_vao);
 
   abcg::glUniform1f(m_scaleLoc, m_scale);
-  abcg::glUniform1f(m_rotationLoc, m_rotation);
+  // abcg::glUniform1f(m_rotationLoc, m_rotation);
   abcg::glUniform2fv(m_translationLoc, 1, &m_translation.x);
 
   // Restart thruster blink timer every 100 ms
@@ -113,16 +113,16 @@ void Triangle::terminateGL() {
 
 void Triangle::update(const GameData &gameData, float deltaTime) {
   // Rotate
-  if (gameData.m_input[static_cast<size_t>(Input::Left)])
-    m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
-  if (gameData.m_input[static_cast<size_t>(Input::Right)])
-    m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
+  // if (gameData.m_input[static_cast<size_t>(Input::Left)])
+  //   m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
+  // if (gameData.m_input[static_cast<size_t>(Input::Right)])
+  //   m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
 
   // Apply thrust
   if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
       gameData.m_state == State::Playing) {
     // Thrust in the forward vector
-    glm::vec2 forward = glm::rotate(glm::vec2{0.0f, 1.0f}, m_rotation);
-    m_velocity += forward * deltaTime;
+    // glm::vec2 forward = glm::rotate(glm::vec2{0.0f, 1.0f}, m_rotation);
+    m_velocity += deltaTime;
   }
 }

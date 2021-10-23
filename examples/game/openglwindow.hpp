@@ -7,6 +7,7 @@
 
 #include "abcg.hpp"
 #include "triangle.hpp"
+#include "squares.hpp"
 
 
 class OpenGLWindow : public abcg::OpenGLWindow {
@@ -27,6 +28,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   GameData m_gameData;
 
   Triangle m_triangle;
+  Squares m_squares;
 
   abcg::ElapsedTimer m_restartWaitTimer;
 

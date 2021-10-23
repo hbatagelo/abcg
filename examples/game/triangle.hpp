@@ -4,7 +4,9 @@
 #include "abcg.hpp"
 #include "gamedata.hpp"
 
+class Squares;
 class OpenGLWindow;
+
 
 class Triangle {
  public:
@@ -15,6 +17,7 @@ class Triangle {
 
  private:
   friend OpenGLWindow;
+  friend Squares;
 
   GLuint m_program{};
   GLint m_translationLoc{};

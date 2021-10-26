@@ -28,7 +28,7 @@ class Triangle {
   GLuint m_vbo{};
   GLuint m_ebo{};
 
-  glm::vec4 m_color{1};
+  glm::vec4 m_color{1.0f, 0.0f, 0.0f, 1.0f};
   float m_scale{0.5f};
   glm::vec2 m_translation{glm::vec2(0)};
   glm::vec2 m_velocity{glm::vec2(0)};

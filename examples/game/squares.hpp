@@ -45,7 +45,7 @@ class Squares {
   std::uniform_real_distribution<float> m_randomDist{-1.0f, 1.0f};
 
   Squares::Square createSquare(glm::vec2 translation = glm::vec2(0),
-                                     float scale = 0.25f);
+                                     float scale = 0.15f);
 };
 
 #endif

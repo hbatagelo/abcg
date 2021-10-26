@@ -43,7 +43,7 @@ void Squares::paintGL() {
         glUniform2f(m_translationLoc, square.m_translation.x + j,
                     square.m_translation.y + i);
 
-        glDrawArrays(GL_TRIANGLE_FAN, 0, square.m_polygonSides + 2);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, square.m_polygonSides);
       }
     }
 
@@ -78,16 +78,10 @@ Squares::Square Squares::createSquare(glm::vec2 translation,
   Square square;
 
   auto &re{m_randomEngine};
-
-  // Randomly choose the number of sides
-  std::uniform_int_distribution<int> randomSides(6, 20);
-  square.m_polygonSides = randomSides(re);
+  square.m_polygonSides = 10;
 
   // Choose a random color (actually, a grayscale)
-  std::uniform_real_distribution<float> randomIntensity(0.5f, 1.0f);
-  square.m_color = glm::vec4(1) * randomIntensity(re);
-
-  square.m_color.a = 1.0f;
+  square.m_color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
   square.m_scale = scale;
   square.m_translation = translation;
 
@@ -96,16 +90,14 @@ Squares::Square Squares::createSquare(glm::vec2 translation,
 
   // Choose a random direction
   glm::vec2 direction{m_randomDist(re), m_randomDist(re)};
-  square.m_velocity = glm::normalize(direction) / 7.0f;
+  square.m_velocity = glm::normalize(direction) / 5.0f;
 
   // Create geometry
   std::vector<glm::vec2> positions(0);
   positions.emplace_back(0, 0);
   auto step{M_PI * 2 / square.m_polygonSides};
-  std::uniform_real_distribution<float> randomRadius(0.8f, 1.0f);
   for (auto angle : iter::range(0.0, M_PI * 2, step)) {
-    auto radius{randomRadius(re)};
-    positions.emplace_back(radius * std::cos(angle), radius * std::sin(angle));
+    positions.emplace_back(std::cos(angle), std::sin(angle));
   }
   positions.push_back(positions.at(1));
 

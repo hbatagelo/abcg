@@ -14,11 +14,29 @@ void Triangle::initializeGL(GLuint program) {
   m_translation = glm::vec2(0, -0.5);
   m_velocity = glm::vec2(0);
 
-  // clang-format off
-  std::array<glm::vec2, 3> positions{
+  std::array<glm::vec2, 17> positions{
+      // Head
+      glm::vec2{-2.0f, -4.0f},
+      glm::vec2{-2.0f, -6.0f},
+      glm::vec2{2.0f, -4.0f},
+      glm::vec2{2.0f, -6.0f}, 
+      
+      // Body
       glm::vec2{-4.0f, -12.0f}, 
       glm::vec2{4.0f, -12.0f},
-      glm::vec2{0.0f, -6.0f}
+      glm::vec2{-4.0f, -6.0f},
+      glm::vec2{4.0f, -6.0f},
+
+      // Foot
+      glm::vec2{-4.0f, -13.0f}, 
+      glm::vec2{-3.0f, -12.0f},
+      glm::vec2{-2.0f, -13.0f},
+      glm::vec2{-1.0f, -12.0f},
+      glm::vec2{0.0f, -13.0f},
+      glm::vec2{1.0f, -12.0f},
+      glm::vec2{2.0f, -13.0f},
+      glm::vec2{3.0f, -12.0f},
+      glm::vec2{4.0f, -13.0f},
   };
 
   // Normalize
@@ -26,7 +44,17 @@ void Triangle::initializeGL(GLuint program) {
     position /= glm::vec2{15.5f, 15.5f};
   }
 
-  const std::array indices{0, 1, 2};
+  const std::array indices{0, 6, 1,
+                           0, 1, 2,
+                           2, 1, 3,
+                           2, 3, 7, 
+                           4, 5, 6,
+                           5, 6, 7,
+                           4, 8, 9,
+                           9, 10, 11,
+                           11, 12, 13,
+                           13, 14, 15,
+                           15, 16, 5};
 
   // Generate VBO
   abcg::glGenBuffers(1, &m_vbo);

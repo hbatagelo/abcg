@@ -1,14 +1,14 @@
-#ifndef TRIANGLE_HPP_
-#define TRIANGLE_HPP_
+#ifndef GHOST_HPP_
+#define GHOST_HPP_
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
 
-class Squares;
+class Pacmans;
 class OpenGLWindow;
 
 
-class Triangle {
+class Ghost {
  public:
   void initializeGL(GLuint program);
   void paintGL(const GameData &gameData);
@@ -17,7 +17,7 @@ class Triangle {
 
  private:
   friend OpenGLWindow;
-  friend Squares;
+  friend Pacmans;
 
   GLuint m_program{};
   GLint m_translationLoc{};
@@ -33,7 +33,7 @@ class Triangle {
   glm::vec2 m_translation{glm::vec2(0)};
   glm::vec2 m_velocity{glm::vec2(0)};
 
-  abcg::ElapsedTimer m_triangleTimer;
+  abcg::ElapsedTimer m_ghostTimer;
   abcg::ElapsedTimer m_bulletCoolDownTimer;
 };
 #endif

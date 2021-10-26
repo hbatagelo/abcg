@@ -6,17 +6,17 @@
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
-#include "triangle.hpp"
+#include "ghost.hpp"
 
 class OpenGLWindow;
 
-class Squares {
+class Pacmans {
  public:
   void initializeGL(GLuint program, int quantity);
   void paintGL();
   void terminateGL();
 
-  void update(const Triangle &triangle, float deltaTime);
+  void update(const Ghost &ghost, float deltaTime);
 
  private:
   friend OpenGLWindow;
@@ -26,7 +26,7 @@ class Squares {
   GLint m_translationLoc{};
   GLint m_scaleLoc{};
 
-  struct Square {
+  struct Pacman {
     GLuint m_vao{};
     GLuint m_vbo{};
 
@@ -39,12 +39,12 @@ class Squares {
     glm::vec2 m_velocity{glm::vec2(0)};
   };
 
-  std::list<Square> m_squares;
+  std::list<Pacman> m_pacmans;
 
   std::default_random_engine m_randomEngine;
   std::uniform_real_distribution<float> m_randomDist{-1.0f, 1.0f};
 
-  Squares::Square createSquare(glm::vec2 translation = glm::vec2(0),
+  Pacmans::Pacman createPacman(glm::vec2 translation = glm::vec2(0),
                                      float scale = 0.15f);
 };
 

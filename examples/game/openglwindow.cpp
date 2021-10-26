@@ -49,8 +49,8 @@ void OpenGLWindow::initializeGL() {
 void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
 
-  m_triangle.initializeGL(m_objectsProgram);
-  m_squares.initializeGL(m_objectsProgram, 3);
+  m_ghost.initializeGL(m_objectsProgram);
+  m_pacmans.initializeGL(m_objectsProgram, 3);
 }
 
 void OpenGLWindow::update() {
@@ -63,8 +63,8 @@ void OpenGLWindow::update() {
     return;
   }
 
-  m_triangle.update(m_gameData);
-  m_squares.update(m_triangle, deltaTime);
+  m_ghost.update(m_gameData);
+  m_pacmans.update(m_ghost, deltaTime);
 }
 
 void OpenGLWindow::paintGL() {
@@ -73,8 +73,8 @@ void OpenGLWindow::paintGL() {
   abcg::glClear(GL_COLOR_BUFFER_BIT);
   abcg::glViewport(0, 0, m_viewportWidth, m_viewportHeight);
 
-  m_squares.paintGL();
-  m_triangle.paintGL(m_gameData);
+  m_pacmans.paintGL();
+  m_ghost.paintGL(m_gameData);
 }
 
 void OpenGLWindow::paintUI() {
@@ -113,6 +113,6 @@ void OpenGLWindow::resizeGL(int width, int height) {
 void OpenGLWindow::terminateGL() {
   abcg::glDeleteProgram(m_objectsProgram);
 
-  m_triangle.terminateGL();
-  m_squares.terminateGL();
+  m_ghost.terminateGL();
+  m_pacmans.terminateGL();
 }

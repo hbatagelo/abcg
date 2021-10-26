@@ -1,9 +1,9 @@
-#include "triangle.hpp"
+#include "ghost.hpp"
 
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
-void Triangle::initializeGL(GLuint program) {
+void Ghost::initializeGL(GLuint program) {
   terminateGL();
 
   m_program = program;
@@ -91,7 +91,7 @@ void Triangle::initializeGL(GLuint program) {
   abcg::glBindVertexArray(0);
 }
 
-void Triangle::paintGL(const GameData &gameData) {
+void Ghost::paintGL(const GameData &gameData) {
   if (gameData.m_state != State::Playing) return;
 
   abcg::glUseProgram(m_program);
@@ -109,17 +109,17 @@ void Triangle::paintGL(const GameData &gameData) {
   abcg::glUseProgram(0);
 }
 
-void Triangle::terminateGL() {
+void Ghost::terminateGL() {
   abcg::glDeleteBuffers(1, &m_vbo);
   abcg::glDeleteBuffers(1, &m_ebo);
   abcg::glDeleteVertexArrays(1, &m_vao);
 }
 
-void Triangle::update(const GameData &gameData) {
+void Ghost::update(const GameData &gameData) {
 
-  if (m_triangleTimer.elapsed() > 10.0 / 1000.0) {
+  if (m_ghostTimer.elapsed() > 10.0 / 1000.0) {
 
-    m_triangleTimer.restart();
+    m_ghostTimer.restart();
 
     if (gameData.m_input[static_cast<size_t>(Input::Left)]) {
       if (m_translation.x - 0.02f >= -1.0f) m_translation.x -= 0.02f;

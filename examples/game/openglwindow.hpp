@@ -6,8 +6,8 @@
 #include <random>
 
 #include "abcg.hpp"
-#include "triangle.hpp"
-#include "squares.hpp"
+#include "ghost.hpp"
+#include "pacmans.hpp"
 
 
 class OpenGLWindow : public abcg::OpenGLWindow {
@@ -27,8 +27,8 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   GameData m_gameData;
 
-  Triangle m_triangle;
-  Squares m_squares;
+  Ghost m_ghost;
+  Pacmans m_pacmans;
 
   abcg::ElapsedTimer m_restartWaitTimer;
 

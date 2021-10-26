@@ -16,7 +16,8 @@ class Pacmans {
   void paintGL();
   void terminateGL();
 
-  void update(const Ghost &ghost, float deltaTime);
+  void update(float deltaTime);
+  void generatePacmans();
 
  private:
   friend OpenGLWindow;
@@ -31,7 +32,7 @@ class Pacmans {
     GLuint m_vbo{};
 
     float m_angularVelocity{};
-    glm::vec4 m_color{1};
+    glm::vec4 m_color{};
     bool m_hit{false};
     int m_polygonSides{};
     float m_scale{};
@@ -40,9 +41,9 @@ class Pacmans {
   };
 
   std::list<Pacman> m_pacmans;
-
   std::default_random_engine m_randomEngine;
   std::uniform_real_distribution<float> m_randomDist{-1.0f, 1.0f};
+  abcg::ElapsedTimer m_generatetWaitTimer;
 
   Pacmans::Pacman createPacman(glm::vec2 translation = glm::vec2(0),
                                      float scale = 0.15f);

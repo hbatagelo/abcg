@@ -50,7 +50,7 @@ void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
 
   m_ghost.initializeGL(m_objectsProgram);
-  m_pacmans.initializeGL(m_objectsProgram, 3);
+  m_pacmans.initializeGL(m_objectsProgram, 5);
 }
 
 void OpenGLWindow::update() {
@@ -64,7 +64,7 @@ void OpenGLWindow::update() {
   }
 
   m_ghost.update(m_gameData);
-  m_pacmans.update(m_ghost, deltaTime);
+  m_pacmans.update(deltaTime);
 }
 
 void OpenGLWindow::paintGL() {

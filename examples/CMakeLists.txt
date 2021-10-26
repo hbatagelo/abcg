@@ -1,4 +1,6 @@
 #add_subdirectory(helloworld)
 #add_subdirectory(firstapp)
 #add_subdirectory(jogodavelha)
-add_subdirectory(sierpinski)
+#add_subdirectory(sierpinski)
+#add_subdirectory(asteroids)
+add_subdirectory(pong)

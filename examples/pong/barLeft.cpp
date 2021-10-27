@@ -1,4 +1,4 @@
-#include "bar.hpp"
+#include "barLeft.hpp"
 
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
@@ -13,16 +13,16 @@ void BarLeft::initializeGL(GLuint program) {
   m_translationLoc = abcg::glGetUniformLocation(m_program, "translation");
 
   m_rotation = 0.0f;
-  m_translation = glm::vec2(0);
+  m_translation = glm::vec2{0, 0};
   m_velocity = glm::vec2(0);
 
   // clang-format off
   std::array<glm::vec2, 24> positions{
       // bar body
-      glm::vec2{-15.5f, -5.5f}, // Inferior Esquerdo 0
-      glm::vec2{-10.5f, -5.5f}, // Inferior Direito 1
-      glm::vec2{-10.5f, +5.5f}, // Superior Direito 2 
-      glm::vec2{-15.5f, +5.5f}, // Superior Esquerdo 3
+      glm::vec2{-15.5f, -3.5f}, // Inferior Esquerdo 0
+      glm::vec2{-14.5f, -3.5f}, // Inferior Direito 1
+      glm::vec2{-14.5f, +3.5f}, // Superior Direito 2 
+      glm::vec2{-15.5f, +3.5f}, // Superior Esquerdo 3
       /*
       glm::vec2{-03.5f, -12.5f}, glm::vec2{+03.5f, -12.5f},
       glm::vec2{+09.5f, -07.5f}, glm::vec2{+15.5f, -12.5f},
@@ -165,20 +165,15 @@ void BarLeft::terminateGL() {
   abcg::glDeleteVertexArrays(1, &m_vao);
 }
 
-/*
-void Ship::update(const GameData &gameData, float deltaTime) {
-  // Rotate
-  if (gameData.m_input[static_cast<size_t>(Input::Left)])
-    m_rotation = glm::wrapAngle(m_rotation + 4.0f * deltaTime);
-  if (gameData.m_input[static_cast<size_t>(Input::Right)])
-    m_rotation = glm::wrapAngle(m_rotation - 4.0f * deltaTime);
 
-  // Apply thrust
-  if (gameData.m_input[static_cast<size_t>(Input::Up)] &&
-      gameData.m_state == State::Playing) {
-    // Thrust in the forward vector
-    glm::vec2 forward = glm::rotate(glm::vec2{0.0f, 1.0f}, m_rotation);
-    m_velocity += forward * deltaTime;
+void BarLeft::update(const GameData &gameData, float deltaTime) {
+  m_velocity = glm::vec2{0.0f, 300.0f} * deltaTime;
+
+  if (gameData.m_inputLeft[static_cast<size_t>(Input::Up)] && gameData.m_state == State::Playing) {
+    m_translation += m_velocity * deltaTime;
+
+  }else if (gameData.m_inputLeft[static_cast<size_t>(Input::Down)] && gameData.m_state == State::Playing) {
+    m_translation -= m_velocity * deltaTime;
   }
 }
-*/
+

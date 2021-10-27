@@ -7,32 +7,31 @@
 void OpenGLWindow::handleEvent(SDL_Event &event) {
   // Keyboard events LeftBar
   if (event.type == SDL_KEYDOWN) {
-    if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
+    if (event.key.keysym.sym == SDLK_w)
       m_gameData.m_inputLeft.set(static_cast<size_t>(Input::Up));
-    if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
+    if (event.key.keysym.sym == SDLK_s)
       m_gameData.m_inputLeft.set(static_cast<size_t>(Input::Down));
   }
   if (event.type == SDL_KEYUP) {
-    if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
+    if (event.key.keysym.sym == SDLK_w)
       m_gameData.m_inputLeft.reset(static_cast<size_t>(Input::Up));
-    if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
+    if (event.key.keysym.sym == SDLK_s)
       m_gameData.m_inputLeft.reset(static_cast<size_t>(Input::Down));
   }
   
   // Keyboard events RightBar
   if (event.type == SDL_KEYDOWN) {
-    if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_UP)
+    if (event.key.keysym.sym == SDLK_UP)
       m_gameData.m_inputRight.set(static_cast<size_t>(Input::Up));
-    if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_DOWN)
+    if (event.key.keysym.sym == SDLK_DOWN)
       m_gameData.m_inputRight.set(static_cast<size_t>(Input::Down));
 
   }
   if (event.type == SDL_KEYUP) {
-    if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_UP)
+    if (event.key.keysym.sym == SDLK_UP)
       m_gameData.m_inputRight.reset(static_cast<size_t>(Input::Up));
-    if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_DOWN)
+    if (event.key.keysym.sym == SDLK_DOWN)
       m_gameData.m_inputRight.reset(static_cast<size_t>(Input::Down));
-
   }
   
 }
@@ -72,7 +71,8 @@ void OpenGLWindow::initializeGL() {
 void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
 
-  m_bar.initializeGL(m_objectsProgram);
+  m_barLeft.initializeGL(m_objectsProgram);
+  m_ball.initializeGL(m_objectsProgram);
   // m_starLayers.initializeGL(m_starsProgram, 25);
   // m_ship.initializeGL(m_objectsProgram);
   // m_asteroids.initializeGL(m_objectsProgram, 3);
@@ -89,19 +89,19 @@ void OpenGLWindow::update() {
     return;
   }
 
-  // m_bar.update(m_gameData, deltaTime);
-
+  m_barLeft.update(m_gameData, deltaTime);
+  m_ball.update(m_barLeft, m_gameData, deltaTime);
   // m_ship.update(m_gameData, deltaTime);
   // m_starLayers.update(m_ship, deltaTime);
   // m_asteroids.update(m_ship, deltaTime);
   // m_bullets.update(m_ship, m_gameData, deltaTime);
 
-/*
+
   if (m_gameData.m_state == State::Playing) {
     checkCollisions();
-    checkWinCondition();
+    // checkWinCondition();
   }
-*/
+
 }
 
 void OpenGLWindow::paintGL() {
@@ -116,7 +116,8 @@ void OpenGLWindow::paintGL() {
   m_bullets.paintGL();
   m_ship.paintGL(m_gameData);
   */
-  m_bar.paintGL(m_gameData);
+  m_barLeft.paintGL(m_gameData);
+  m_ball.paintGL();
 }
 
 void OpenGLWindow::paintUI() {
@@ -162,11 +163,23 @@ void OpenGLWindow::terminateGL() {
   m_ship.terminateGL();
   m_starLayers.terminateGL();
   */
-  m_bar.terminateGL();
+  m_barLeft.terminateGL();
+  m_ball.terminateGL();
 }
 
-/*
+
 void OpenGLWindow::checkCollisions() {
+  // Check collision between bar and ball
+  const auto ballTranslation{m_ball.m_translation};
+  const auto distance{glm::distance(glm::vec2{-1, m_barLeft.m_translation.y}, ballTranslation)};
+
+  if (distance < m_barLeft.m_scale * 0.07f + m_ball.m_scale) {
+    m_ball.direction = !m_ball.direction;
+    // m_gameData.m_state = State::GameOver;
+    // m_restartWaitTimer.restart();
+  }
+
+  /*
   // Check collision between ship and asteroids
   for (const auto &asteroid : m_asteroids.m_asteroids) {
     const auto asteroidTranslation{asteroid.m_translation};
@@ -216,8 +229,10 @@ void OpenGLWindow::checkCollisions() {
     m_asteroids.m_asteroids.remove_if(
         [](const Asteroids::Asteroid &a) { return a.m_hit; });
   }
+  */
 }
 
+/*
 void OpenGLWindow::checkWinCondition() {
   if (m_asteroids.m_asteroids.empty()) {
     m_gameData.m_state = State::Win;

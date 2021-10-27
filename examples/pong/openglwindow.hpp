@@ -6,8 +6,8 @@
 #include <random>
 
 #include "abcg.hpp"
-//#include "ball.hpp"
-#include "bar.hpp"
+#include "ball.hpp"
+#include "barLeft.hpp"
 
 
 class OpenGLWindow : public abcg::OpenGLWindow {
@@ -34,7 +34,8 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   Ship m_ship;
   StarLayers m_starLayers;
   */
-  BarLeft m_bar;
+  BarLeft m_barLeft;
+  Ball m_ball;
 
   abcg::ElapsedTimer m_restartWaitTimer;
 
@@ -42,10 +43,10 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   std::default_random_engine m_randomEngine;
 
-  /*
+  
   void checkCollisions();
-  void checkWinCondition();
-  */
+  // void checkWinCondition();
+  
 
   void restart();
   void update();

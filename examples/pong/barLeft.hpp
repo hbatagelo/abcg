@@ -10,6 +10,7 @@ class Bullets;
 class StarLayers;
 */
 class OpenGLWindow;
+class Ball;
 
 class BarLeft {
  public:
@@ -17,13 +18,14 @@ class BarLeft {
   void paintGL(const GameData &gameData);
   void terminateGL();
 
-  /*
+  
   void update(const GameData &gameData, float deltaTime);
-  void setRotation(float rotation) { m_rotation = rotation; }
-  */
+  
 
  private:
-   friend OpenGLWindow;  
+  friend OpenGLWindow;  
+  friend Ball;
+
 /*  friend Asteroids;
   friend Bullets;
   friend StarLayers;
@@ -40,12 +42,12 @@ class BarLeft {
 
   glm::vec4 m_color{1};
   float m_rotation{};
-  float m_scale{0.125f};
+  float m_scale{1.000f};
   glm::vec2 m_translation{glm::vec2(0)};
   glm::vec2 m_velocity{glm::vec2(0)};
 
   abcg::ElapsedTimer m_trailBlinkTimer;
-  abcg::ElapsedTimer m_bulletCoolDownTimer;
+  abcg::ElapsedTimer m_ballCoolDownTimer;
 };
 
 #endif

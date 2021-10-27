@@ -566,7 +566,12 @@ void abcg::OpenGLWindow::initialize(std::string_view basePath) {
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, majorVersion);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minorVersion);
 
-  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+  if (m_openGLSettings.preserveWebGLDrawingBuffer) {
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 0);
+  } else {
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+  }
+
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, m_openGLSettings.depthBufferSize);
   SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, m_openGLSettings.stencilSize);
   if (m_openGLSettings.samples > 0) {
@@ -696,7 +701,12 @@ void abcg::OpenGLWindow::paint() {
   ImGui::Render();
   paintGL();
   ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-  SDL_GL_SwapWindow(m_window);
+
+  if (m_openGLSettings.preserveWebGLDrawingBuffer) {
+    glFinish();
+  } else {
+    SDL_GL_SwapWindow(m_window);
+  }
 
   // Cap to 480 Hz
   if (m_deltaTime.elapsed() >= 1.0 / 480.0) {

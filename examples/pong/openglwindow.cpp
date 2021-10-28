@@ -174,13 +174,21 @@ void OpenGLWindow::terminateGL() {
 
 void OpenGLWindow::checkCollisions() {
   // Check collision between bar and ball
-  const auto ballTranslation{m_ball.m_translation};
+  const auto ballTranslation{m_ball.m_translation * glm::vec2{15.5f, 15.5f}};
+  
+  /*
   const auto distance{glm::distance(glm::vec2{-1, m_barLeft.m_translation.y}, ballTranslation)};
 
   if (distance < m_barLeft.m_scale * 0.07f + m_ball.m_scale) {
     m_ball.direction = !m_ball.direction;
     // m_gameData.m_state = State::GameOver;
     // m_restartWaitTimer.restart();
+  }
+  */
+
+  
+  if(ballTranslation.x <= -14.5f && (ballTranslation.y >= ((m_barLeft.m_translation.y * 15.5f) - 3.5f) && ballTranslation.y <= ((m_barLeft.m_translation.y * 15.5f) + 3.5f))){
+    m_ball.direction = !m_ball.direction;
   }
 
   /*
@@ -244,3 +252,10 @@ void OpenGLWindow::checkWinCondition() {
   }
 }
 */
+/*
+void OpenGLWindow::transformPosition(auto position) {
+
+  position /= 15.5f;
+
+  return position;
+}*/

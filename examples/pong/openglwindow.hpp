@@ -8,6 +8,7 @@
 #include "abcg.hpp"
 #include "ball.hpp"
 #include "barLeft.hpp"
+#include "barRight.hpp"
 #include "scenary.hpp"
 
 
@@ -36,6 +37,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   StarLayers m_starLayers;
   */
   BarLeft m_barLeft;
+  BarRight m_barRight;
   Ball m_ball;
   Scenary m_scenary;
 

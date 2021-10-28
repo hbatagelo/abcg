@@ -1,5 +1,5 @@
-#ifndef BARL_HPP_
-#define BARL_HPP_
+#ifndef BARR_HPP_
+#define BARR_HPP_
 
 #include "abcg.hpp"
 #include "gamedata.hpp"
@@ -12,7 +12,7 @@ class StarLayers;
 class OpenGLWindow;
 class Ball;
 
-class BarLeft {
+class BarRight {
  public:
   void initializeGL(GLuint program);
   void paintGL(const GameData &gameData);

@@ -1,9 +1,9 @@
-#include "scenary.hpp"
+#include "barRight.hpp"
 
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
-void Scenary::initializeGL(GLuint program) {
+void BarRight::initializeGL(GLuint program) {
   terminateGL();
 
   m_program = program;
@@ -18,16 +18,11 @@ void Scenary::initializeGL(GLuint program) {
 
   // clang-format off
   std::array<glm::vec2, 24> positions{
-      // Baixo
-      glm::vec2{-15.5f, -15.5f}, // Inferior Esquerdo 0
-      glm::vec2{+15.5f, -15.5f}, // Inferior Direito 1
-      glm::vec2{+15.5f, -14.5f}, // Superior Direito 2 
-      glm::vec2{-15.5f, -14.5f}, // Superior Esquerdo 3
-      // Cima
-      glm::vec2{-15.5f, +15.5f}, // Superior Esquerdo 0
-      glm::vec2{+15.5f, +15.5f}, // Superior Direito 1
-      glm::vec2{+15.5f, +14.5f}, // Inferior Direito 2 
-      glm::vec2{-15.5f, +14.5f}, // Inferior Esquerdo 3
+      // bar body
+      glm::vec2{+15.5f, -3.5f}, // Inferior Esquerdo 0
+      glm::vec2{+14.5f, -3.5f}, // Inferior Direito 1
+      glm::vec2{+14.5f, +3.5f}, // Superior Direito 2 
+      glm::vec2{+15.5f, +3.5f}, // Superior Esquerdo 3
       /*
       glm::vec2{-03.5f, -12.5f}, glm::vec2{+03.5f, -12.5f},
       glm::vec2{+09.5f, -07.5f}, glm::vec2{+15.5f, -12.5f},
@@ -60,19 +55,14 @@ void Scenary::initializeGL(GLuint program) {
     position /= glm::vec2{15.5f, 15.5f};
   }
 /* vertices da barra
-3-----2
-|     |
-0-----1 
-
-7-----6
-|     |
-4-----5 
+3-2
+| |
+| |
+| |
+0-1 
 */
   const std::array indices{0, 1, 3,
                            1, 2, 3,
-                           4, 5, 6,
-                           4, 6, 7,
-
                            /*
                            0, 3, 4,
                            0, 4, 5,
@@ -129,7 +119,7 @@ void Scenary::initializeGL(GLuint program) {
   abcg::glBindVertexArray(0);
 }
 
-void Scenary::paintGL(const GameData &gameData) {
+void BarRight::paintGL(const GameData &gameData) {
   if (gameData.m_state != State::Playing) return;
 
   abcg::glUseProgram(m_program);
@@ -162,32 +152,28 @@ void Scenary::paintGL(const GameData &gameData) {
   */
 
   abcg::glUniform4fv(m_colorLoc, 1, &m_color.r);
-  abcg::glDrawElements(GL_TRIANGLES, 4 * 3, GL_UNSIGNED_INT, nullptr);
+  abcg::glDrawElements(GL_TRIANGLES, 2 * 3, GL_UNSIGNED_INT, nullptr);
 
   abcg::glBindVertexArray(0);
 
   abcg::glUseProgram(0);
 }
 
-void Scenary::terminateGL() {
+void BarRight::terminateGL() {
   abcg::glDeleteBuffers(1, &m_vbo);
   abcg::glDeleteBuffers(1, &m_ebo);
   abcg::glDeleteVertexArrays(1, &m_vao);
 }
 
 
-void Scenary::update(const GameData &gameData, float deltaTime) {
-  // gambiarra para build
-  if (gameData.m_state == State::Playing){
-  m_velocity += 0; // glm::vec2{0.0f, 300.0f} * deltaTime;
-  m_translation += 0;}
-  /*
-  if (gameData.m_inputLeft[static_cast<size_t>(Input::Up)] && gameData.m_state == State::Playing) {
+void BarRight::update(const GameData &gameData, float deltaTime) {
+  m_velocity = glm::vec2{0.0f, 300.0f} * deltaTime;
+
+  if (gameData.m_inputRight[static_cast<size_t>(Input::Up)] && gameData.m_state == State::Playing) {
     m_translation += m_velocity * deltaTime;
 
-  }else if (gameData.m_inputLeft[static_cast<size_t>(Input::Down)] && gameData.m_state == State::Playing) {
+  }else if (gameData.m_inputRight[static_cast<size_t>(Input::Down)] && gameData.m_state == State::Playing) {
     m_translation -= m_velocity * deltaTime;
   }
-  */
 }
 

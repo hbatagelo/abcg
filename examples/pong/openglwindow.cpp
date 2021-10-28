@@ -72,6 +72,7 @@ void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
 
   m_barLeft.initializeGL(m_objectsProgram);
+  m_barRight.initializeGL(m_objectsProgram);
   m_ball.initializeGL(m_objectsProgram);
   m_scenary.initializeGL(m_objectsProgram);
   // m_starLayers.initializeGL(m_starsProgram, 25);
@@ -89,9 +90,9 @@ void OpenGLWindow::update() {
     restart();
     return;
   }
-
+  m_barRight.update(m_gameData, deltaTime);
   m_barLeft.update(m_gameData, deltaTime);
-  m_ball.update(m_barLeft, m_gameData, deltaTime);
+  m_ball.update(m_barLeft, m_barRight, m_gameData, deltaTime);
   m_scenary.update(m_gameData, deltaTime);
   // m_ship.update(m_gameData, deltaTime);
   // m_starLayers.update(m_ship, deltaTime);
@@ -119,6 +120,7 @@ void OpenGLWindow::paintGL() {
   m_ship.paintGL(m_gameData);
   */
   m_barLeft.paintGL(m_gameData);
+  m_barRight.paintGL(m_gameData);
   m_scenary.paintGL(m_gameData);
   m_ball.paintGL();
 }
@@ -166,6 +168,7 @@ void OpenGLWindow::terminateGL() {
   m_ship.terminateGL();
   m_starLayers.terminateGL();
   */
+  m_barRight.terminateGL();
   m_barLeft.terminateGL();
   m_ball.terminateGL();
   m_scenary.terminateGL();
@@ -190,7 +193,9 @@ void OpenGLWindow::checkCollisions() {
   if(ballTranslation.x <= -14.5f && (ballTranslation.y >= ((m_barLeft.m_translation.y * 15.5f) - 3.5f) && ballTranslation.y <= ((m_barLeft.m_translation.y * 15.5f) + 3.5f))){
     m_ball.direction = !m_ball.direction;
   }
-
+  if(ballTranslation.x <= -14.5f && (ballTranslation.y >= ((m_barRight.m_translation.y * 15.5f) - 3.5f) && ballTranslation.y <= ((m_barRight.m_translation.y * 15.5f) + 3.5f))){
+    m_ball.direction = !m_ball.direction;
+  }
   /*
   // Check collision between ship and asteroids
   for (const auto &asteroid : m_asteroids.m_asteroids) {

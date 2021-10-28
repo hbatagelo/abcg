@@ -6,6 +6,7 @@
 #include "abcg.hpp"
 #include "gamedata.hpp"
 #include "barLeft.hpp"
+#include "barRight.hpp"
 
 class OpenGLWindow;
 
@@ -15,7 +16,7 @@ class Ball {
   void paintGL();
   void terminateGL();
 
-  void update(BarLeft &barLeft, const GameData &gameData, float deltaTime);
+  void update(BarLeft &barLeft, BarRight &barRight, const GameData &gameData, float deltaTime);
 
  private:
   friend OpenGLWindow;

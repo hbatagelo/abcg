@@ -12,10 +12,9 @@ void Ball::initializeGL(GLuint program) {
   m_scaleLoc = abcg::glGetUniformLocation(m_program, "scale");
   m_translationLoc = abcg::glGetUniformLocation(m_program, "translation");
 
-  const auto ballSpeed{1.0f};
   m_dead = false,
   m_translation = glm::vec2{0.0f, 0.0f},
-  m_velocity = glm::vec2{1.0f, 0.0f} * ballSpeed;
+  m_velocity = glm::vec2{1.0f, 0.0f} * m_ballSpeed;
 
   // Create regular polygon
   const auto sides{10};

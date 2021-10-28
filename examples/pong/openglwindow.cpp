@@ -191,13 +191,18 @@ void OpenGLWindow::checkCollisions() {
 
   if(ballTranslation.x <= -14.5f && (ballTranslation.y >= ((m_barLeft.m_translation.y * 15.5f) - 3.5f) && ballTranslation.y <= ((m_barLeft.m_translation.y * 15.5f) + 3.5f))){
     m_ball.direction = !m_ball.direction;
+    m_ball.m_velocity = glm::vec2{1.0f, ((ballTranslation.y / 15.5f) - m_barLeft.m_translation.y)} * m_ball.m_ballSpeed;
   }
-  if(ballTranslation.x <= +14.5f && (ballTranslation.y >= ((m_barRight.m_translation.y * 15.5f) + 3.5f) && ballTranslation.y <= ((m_barRight.m_translation.y * 15.5f) - 3.5f))){
+
+  if(ballTranslation.x >= +14.5f && (ballTranslation.y >= ((m_barRight.m_translation.y * 15.5f) - 3.5f) && ballTranslation.y <= ((m_barRight.m_translation.y * 15.5f) + 3.5f))){
     m_ball.direction = !m_ball.direction;
+    m_ball.m_velocity = glm::vec2{1.0f, (m_barRight.m_translation.y - (ballTranslation.y / 15.5f))} * m_ball.m_ballSpeed;
   }
+
+  /*
   if(ballTranslation.x <= -14.5f && (ballTranslation.y >= ((m_scenary.m_translation.y * 15.5f) - 3.5f) && ballTranslation.y <= ((m_scenary.m_translation.y * 15.5f) + 3.5f))){
     m_ball.direction = !m_ball.direction;
-  }
+  }*/
 
   /*
   // Check collision between ship and asteroids

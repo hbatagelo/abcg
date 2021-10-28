@@ -8,6 +8,7 @@
 #include "abcg.hpp"
 #include "ball.hpp"
 #include "barLeft.hpp"
+#include "scenary.hpp"
 
 
 class OpenGLWindow : public abcg::OpenGLWindow {
@@ -36,6 +37,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   */
   BarLeft m_barLeft;
   Ball m_ball;
+  Scenary m_scenary;
 
   abcg::ElapsedTimer m_restartWaitTimer;
 

@@ -35,7 +35,7 @@ class Ball {
 
   bool direction{false};
 
-  float m_scale{0.030f};
+  float m_scale{0.050f};
 
   // std::list<Ball> m_balls;
 };

@@ -73,6 +73,7 @@ void OpenGLWindow::restart() {
 
   m_barLeft.initializeGL(m_objectsProgram);
   m_ball.initializeGL(m_objectsProgram);
+  m_scenary.initializeGL(m_objectsProgram);
   // m_starLayers.initializeGL(m_starsProgram, 25);
   // m_ship.initializeGL(m_objectsProgram);
   // m_asteroids.initializeGL(m_objectsProgram, 3);
@@ -91,6 +92,7 @@ void OpenGLWindow::update() {
 
   m_barLeft.update(m_gameData, deltaTime);
   m_ball.update(m_barLeft, m_gameData, deltaTime);
+  m_scenary.update(m_gameData, deltaTime);
   // m_ship.update(m_gameData, deltaTime);
   // m_starLayers.update(m_ship, deltaTime);
   // m_asteroids.update(m_ship, deltaTime);
@@ -117,6 +119,7 @@ void OpenGLWindow::paintGL() {
   m_ship.paintGL(m_gameData);
   */
   m_barLeft.paintGL(m_gameData);
+  m_scenary.paintGL(m_gameData);
   m_ball.paintGL();
 }
 
@@ -165,6 +168,7 @@ void OpenGLWindow::terminateGL() {
   */
   m_barLeft.terminateGL();
   m_ball.terminateGL();
+  m_scenary.terminateGL();
 }
 
 

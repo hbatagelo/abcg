@@ -71,7 +71,7 @@ void Scenary::initializeGL(GLuint program) {
   const std::array indices{0, 1, 3,
                            1, 2, 3,
                            4, 5, 6,
-                           4, 6, 7,
+                           4, 6, 7
 
                            /*
                            0, 3, 4,

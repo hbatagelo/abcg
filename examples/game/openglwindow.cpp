@@ -3,6 +3,7 @@
 #include <imgui.h>
 
 #include "abcg.hpp"
+#include <stdlib.h>
 
 void OpenGLWindow::handleEvent(SDL_Event &event) {
   // Keyboard events
@@ -65,6 +66,10 @@ void OpenGLWindow::update() {
 
   m_ghost.update(m_gameData);
   m_pacmans.update(deltaTime);
+
+  if (m_gameData.m_state == State::Playing) {
+    checkCollisions();
+  }
 }
 
 void OpenGLWindow::paintGL() {
@@ -115,4 +120,22 @@ void OpenGLWindow::terminateGL() {
 
   m_ghost.terminateGL();
   m_pacmans.terminateGL();
+}
+
+void OpenGLWindow::checkCollisions() {
+  for (auto &pacman : m_pacmans.m_pacmans) {
+  //   auto pacmanTranslation{pacman.m_translation};
+  //   auto distance{glm::distance(m_ghost.m_translation, pacmanTranslation)};
+
+  //   if (distance < m_ghost.m_scale * 0.9f + pacman.m_scale * 0.85f) {
+  //     m_gameData.m_state = State::GameOver;
+  //     m_restartWaitTimer.restart();
+  //   }
+    float minDistanceX = abs(pacman.m_translation.x - m_ghost.m_translation.x);
+    float minDistanceY = abs(pacman.m_translation.y - m_ghost.m_translation.y);
+    if (minDistanceX <= 0.25f && minDistanceY <= 0.015f) {
+      m_gameData.m_state = State::GameOver;
+      m_restartWaitTimer.restart();
+    }
+  }
 }

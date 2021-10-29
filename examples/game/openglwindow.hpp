@@ -38,6 +38,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   void restart();
   void update();
+  void checkCollisions();
 };
 
 #endif

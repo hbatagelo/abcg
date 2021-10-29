@@ -9,7 +9,6 @@
 #include "ghost.hpp"
 #include "pacmans.hpp"
 
-
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
   void handleEvent(SDL_Event& event) override;

@@ -7,7 +7,6 @@
 class Pacmans;
 class OpenGLWindow;
 
-
 class Ghost {
  public:
   void initializeGL(GLuint program);
@@ -34,6 +33,5 @@ class Ghost {
   glm::vec2 m_velocity{glm::vec2(0)};
 
   abcg::ElapsedTimer m_ghostTimer;
-  abcg::ElapsedTimer m_bulletCoolDownTimer;
 };
 #endif

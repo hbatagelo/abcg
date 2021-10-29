@@ -1,23 +1,15 @@
 #include "pacmans.hpp"
-#include "ghost.hpp"
 
 #include <cppitertools/itertools.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
 
+#include "ghost.hpp"
+
 void Pacmans::generatePacmans() {
-    // m_program = program;
-// Start pseudo-random number generator
-
-    // m_pacmans.resize(quantity);
-
-    for (auto &pacman : m_pacmans) {
-      pacman = createPacman();
-
-      // do {
-        pacman.m_translation = {m_randomDist(m_randomEngine),
-                                  1.0f};
-      // } while (true);
-    }
+  for (auto &pacman : m_pacmans) {
+    pacman = createPacman();
+    pacman.m_translation = {m_randomDist(m_randomEngine), 1.0f};
+  }
 }
 
 void Pacmans::initializeGL(GLuint program, int quantity) {
@@ -35,28 +27,16 @@ void Pacmans::initializeGL(GLuint program, int quantity) {
   m_pacmans.clear();
   m_pacmans.resize(quantity);
   generatePacmans();
-  // for (auto &pacman : m_pacmans) {
-  //   pacman = createPacman();
-
-  //   // do {
-  //     pacman.m_translation = {0.0f,
-  //                               1.0f};
-  //   // } while (true);
-  // }
 }
 
 void Pacmans::paintGL() {
   glUseProgram(m_program);
-
-  // float deltaTime{static_cast<float>(getDeltaTime())};
 
   // Wait 5 seconds before restarting
   if (m_generatetWaitTimer.elapsed() > 5) {
     m_generatetWaitTimer.restart();
     generatePacmans();
   }
-  
-  
 
   for (auto &pacman : m_pacmans) {
     glBindVertexArray(pacman.m_vao);
@@ -64,14 +44,10 @@ void Pacmans::paintGL() {
     glUniform4fv(m_colorLoc, 1, &pacman.m_color.r);
     glUniform1f(m_scaleLoc, pacman.m_scale);
 
-    // for (auto i : {-2, 0, 2}) {
-    //   for (auto j : {-2, 0, 2}) {
-        glUniform2f(m_translationLoc, pacman.m_translation.x,
-                    pacman.m_translation.y);
+    glUniform2f(m_translationLoc, pacman.m_translation.x,
+                pacman.m_translation.y);
 
-        glDrawArrays(GL_TRIANGLE_FAN, 0, pacman.m_polygonSides);
-    //   }
-    // }
+    glDrawArrays(GL_TRIANGLE_FAN, 0, pacman.m_polygonSides);
 
     glBindVertexArray(0);
   }
@@ -88,19 +64,11 @@ void Pacmans::terminateGL() {
 
 void Pacmans::update(float deltaTime) {
   for (auto &pacman : m_pacmans) {
-    // pacman.m_translation -= ghost.m_velocity * deltaTime;
     pacman.m_translation += pacman.m_velocity * deltaTime;
-
-    // Wrap-around
-    // if (pacman.m_translation.x < -1.0f) pacman.m_translation.x += 2.0f;
-    // if (pacman.m_translation.x > +1.0f) pacman.m_translation.x -= 2.0f;
-    // if (pacman.m_translation.y < -1.0f) pacman.m_translation.y += 2.0f;
-    // if (pacman.m_translation.y > +1.0f) pacman.m_translation.y -= 2.0f;
   }
 }
 
-Pacmans::Pacman Pacmans::createPacman(glm::vec2 translation,
-                                              float scale) {
+Pacmans::Pacman Pacmans::createPacman(glm::vec2 translation, float scale) {
   Pacman pacman;
 
   auto &re{m_randomEngine};

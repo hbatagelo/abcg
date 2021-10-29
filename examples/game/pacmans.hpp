@@ -33,7 +33,6 @@ class Pacmans {
 
     float m_angularVelocity{};
     glm::vec4 m_color{};
-    bool m_hit{false};
     int m_polygonSides{};
     float m_scale{};
     glm::vec2 m_translation{glm::vec2(0)};
@@ -46,7 +45,7 @@ class Pacmans {
   abcg::ElapsedTimer m_generatetWaitTimer;
 
   Pacmans::Pacman createPacman(glm::vec2 translation = glm::vec2(0),
-                                     float scale = 0.15f);
+                               float scale = 0.15f);
 };
 
 #endif

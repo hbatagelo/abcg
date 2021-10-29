@@ -1,8 +1,5 @@
 #include "ghost.hpp"
 
-#include <glm/gtx/fast_trigonometry.hpp>
-#include <glm/gtx/rotate_vector.hpp>
-
 void Ghost::initializeGL(GLuint program) {
   terminateGL();
 
@@ -19,16 +16,16 @@ void Ghost::initializeGL(GLuint program) {
       glm::vec2{-2.0f, -4.0f},
       glm::vec2{-2.0f, -6.0f},
       glm::vec2{2.0f, -4.0f},
-      glm::vec2{2.0f, -6.0f}, 
-      
+      glm::vec2{2.0f, -6.0f},
+
       // Body
-      glm::vec2{-4.0f, -12.0f}, 
+      glm::vec2{-4.0f, -12.0f},
       glm::vec2{4.0f, -12.0f},
       glm::vec2{-4.0f, -6.0f},
       glm::vec2{4.0f, -6.0f},
 
       // Foot
-      glm::vec2{-4.0f, -13.0f}, 
+      glm::vec2{-4.0f, -13.0f},
       glm::vec2{-3.0f, -12.0f},
       glm::vec2{-2.0f, -13.0f},
       glm::vec2{-1.0f, -12.0f},
@@ -44,17 +41,9 @@ void Ghost::initializeGL(GLuint program) {
     position /= glm::vec2{15.5f, 15.5f};
   }
 
-  const std::array indices{0, 6, 1,
-                           0, 1, 2,
-                           2, 1, 3,
-                           2, 3, 7, 
-                           4, 5, 6,
-                           5, 6, 7,
-                           4, 8, 9,
-                           9, 10, 11,
-                           11, 12, 13,
-                           13, 14, 15,
-                           15, 16, 5};
+  const std::array indices{0,  6,  1,  0,  1,  2,  2,  1,  3,  2,  3,
+                           7,  4,  5,  6,  5,  6,  7,  4,  8,  9,  9,
+                           10, 11, 11, 12, 13, 13, 14, 15, 15, 16, 5};
 
   // Generate VBO
   abcg::glGenBuffers(1, &m_vbo);
@@ -116,9 +105,7 @@ void Ghost::terminateGL() {
 }
 
 void Ghost::update(const GameData &gameData) {
-
   if (m_ghostTimer.elapsed() > 10.0 / 1000.0) {
-
     m_ghostTimer.restart();
 
     if (gameData.m_input[static_cast<size_t>(Input::Left)]) {

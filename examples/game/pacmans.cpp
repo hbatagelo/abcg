@@ -8,7 +8,7 @@
 void Pacmans::generatePacmans() {
   for (auto &pacman : m_pacmans) {
     pacman = createPacman();
-    pacman.m_translation = {m_randomDist(m_randomEngine), 1.0f};
+    pacman.m_translation = {m_randomDist(m_randomEngine), 1.5f};
   }
 }
 
@@ -29,11 +29,13 @@ void Pacmans::initializeGL(GLuint program, int quantity) {
   generatePacmans();
 }
 
-void Pacmans::paintGL() {
+void Pacmans::paintGL(const GameData &gameData) {
+  if (gameData.m_state != State::Playing) return;
+
   glUseProgram(m_program);
 
   // Wait 5 seconds before restarting
-  if (m_generatetWaitTimer.elapsed() > 5) {
+  if (m_generatetWaitTimer.elapsed() > 3) {
     m_generatetWaitTimer.restart();
     generatePacmans();
   }
@@ -71,7 +73,7 @@ void Pacmans::update(float deltaTime) {
 Pacmans::Pacman Pacmans::createPacman(glm::vec2 translation, float scale) {
   Pacman pacman;
 
-  auto &re{m_randomEngine};
+  // auto &re{m_randomEngine};
   pacman.m_polygonSides = 10;
 
   // Choose color (actually yellow)
@@ -80,11 +82,11 @@ Pacmans::Pacman Pacmans::createPacman(glm::vec2 translation, float scale) {
   pacman.m_translation = translation;
 
   // Choose a random angular velocity
-  pacman.m_angularVelocity = m_randomDist(re);
+  // pacman.m_angularVelocity = m_randomDist(re);
 
   // Choose a direction
   glm::vec2 direction{0.0f, -1.0f};
-  pacman.m_velocity = glm::normalize(direction) / 2.0f;
+  pacman.m_velocity = glm::normalize(direction);
 
   // Create Pacman Geometry
   std::vector<glm::vec2> positions(0);

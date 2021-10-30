@@ -13,7 +13,7 @@ class OpenGLWindow;
 class Pacmans {
  public:
   void initializeGL(GLuint program, int quantity);
-  void paintGL();
+  void paintGL(const GameData &gameData);
   void terminateGL();
 
   void update(float deltaTime);
@@ -41,7 +41,7 @@ class Pacmans {
 
   std::list<Pacman> m_pacmans;
   std::default_random_engine m_randomEngine;
-  std::uniform_real_distribution<float> m_randomDist{-1.0f, 1.0f};
+  std::uniform_real_distribution<float> m_randomDist{-0.85f, 0.85f};
   abcg::ElapsedTimer m_generatetWaitTimer;
 
   Pacmans::Pacman createPacman(glm::vec2 translation = glm::vec2(0),

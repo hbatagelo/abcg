@@ -78,7 +78,7 @@ void OpenGLWindow::paintGL() {
   abcg::glClear(GL_COLOR_BUFFER_BIT);
   abcg::glViewport(0, 0, m_viewportWidth, m_viewportHeight);
 
-  m_pacmans.paintGL();
+  m_pacmans.paintGL(m_gameData);
   m_ghost.paintGL(m_gameData);
 }
 
@@ -86,7 +86,6 @@ void OpenGLWindow::paintUI() {
   abcg::OpenGLWindow::paintUI();
 
   {
-    // const auto size{ImVec2(300, 85)};
     const auto size{ImVec2(440, 85)};
     const auto position{ImVec2((m_viewportWidth - size.x) / 2.0f,
                                (m_viewportHeight - size.y) / 2.0f)};
@@ -125,13 +124,13 @@ void OpenGLWindow::terminateGL() {
 
 void OpenGLWindow::checkCollisions() {
   for (auto &pacman : m_pacmans.m_pacmans) {
-    //   auto pacmanTranslation{pacman.m_translation};
-    //   auto distance{glm::distance(m_ghost.m_translation, pacmanTranslation)};
+      // auto pacmanTranslation{pacman.m_translation};
+      // auto distance{glm::distance(m_ghost.m_translation, pacmanTranslation)};
 
-    //   if (distance < m_ghost.m_scale * 0.9f + pacman.m_scale * 0.85f) {
-    //     m_gameData.m_state = State::GameOver;
-    //     m_restartWaitTimer.restart();
-    //   }
+      // if (distance < m_ghost.m_scale * 0.1f + pacman.m_scale * 0.01f) {
+      //   m_gameData.m_state = State::GameOver;
+      //   m_restartWaitTimer.restart();
+      // }
     float minDistanceX = abs(pacman.m_translation.x - m_ghost.m_translation.x);
     float minDistanceY = abs(pacman.m_translation.y - m_ghost.m_translation.y);
     if (minDistanceX <= 0.25f && minDistanceY <= 0.025f) {

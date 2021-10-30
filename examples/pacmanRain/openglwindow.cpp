@@ -24,9 +24,13 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
 void OpenGLWindow::initializeGL() {
   // Load a new font
   ImGuiIO &io{ImGui::GetIO()};
-  auto filename{getAssetsPath() + "pac-font.ttf"};
-  m_font = io.Fonts->AddFontFromFileTTF(filename.c_str(), 50.0f);
-  if (m_font == nullptr) {
+  auto filenamePacFont{getAssetsPath() + "pac-font.ttf"};
+  auto filenameTimerFont{getAssetsPath() + "timer-font.ttf"};
+
+  m_pac_font = io.Fonts->AddFontFromFileTTF(filenamePacFont.c_str(), 50.0f);
+  m_timer_font = io.Fonts->AddFontFromFileTTF(filenameTimerFont.c_str(), 20.0f);
+
+  if (m_pac_font == nullptr || m_timer_font == nullptr) {
     throw abcg::Exception{abcg::Exception::Runtime("Cannot load font file")};
   }
 
@@ -49,6 +53,7 @@ void OpenGLWindow::initializeGL() {
 
 void OpenGLWindow::restart() {
   m_gameData.m_state = State::Playing;
+  m_timeElapsedToWin.restart();
 
   m_ghost.initializeGL(m_objectsProgram);
   m_pacmans.initializeGL(m_objectsProgram, 5);
@@ -59,7 +64,7 @@ void OpenGLWindow::update() {
 
   // Wait 5 seconds before restarting
   if (m_gameData.m_state != State::Playing &&
-      m_restartWaitTimer.elapsed() > 5) {
+      m_restartWaitTimer.elapsed() > 5) {    
     restart();
     return;
   }
@@ -69,6 +74,7 @@ void OpenGLWindow::update() {
 
   if (m_gameData.m_state == State::Playing) {
     checkCollisions();
+    checkWinCondition();
   }
 }
 
@@ -86,25 +92,44 @@ void OpenGLWindow::paintUI() {
   abcg::OpenGLWindow::paintUI();
 
   {
-    const auto size{ImVec2(440, 85)};
-    const auto position{ImVec2((m_viewportWidth - size.x) / 2.0f,
-                               (m_viewportHeight - size.y) / 2.0f)};
-    ImGui::SetNextWindowPos(position);
-    ImGui::SetNextWindowSize(size);
     ImGuiWindowFlags flags{ImGuiWindowFlags_NoBackground |
-                           ImGuiWindowFlags_NoTitleBar |
-                           ImGuiWindowFlags_NoInputs};
-    ImGui::Begin(" ", nullptr, flags);
-    ImGui::PushFont(m_font);
+                        ImGuiWindowFlags_NoTitleBar |
+                        ImGuiWindowFlags_NoInputs};
 
-    if (m_gameData.m_state == State::GameOver) {
-      ImGui::Text("game over");
-    } else if (m_gameData.m_state == State::Win) {
-      ImGui::Text("1you win1");
+    if(m_gameData.m_state == State::Playing) {
+      const auto sizeTimer{ImVec2(m_viewportWidth, 50)};
+      const auto positionTimer{ImVec2(10, 10)};
+      ImGui::SetNextWindowPos(positionTimer);
+      ImGui::SetNextWindowSize(sizeTimer);
+      ImGui::Begin(" ", nullptr, flags);
+
+      ImGui::PushFont(m_timer_font);
+      ImGui::Text("Timer to WIN: %.1f", m_timeElapsedToWin.elapsed());
+      ImGui::Text("Survive for 60s");
+
+      ImGui::PopFont();
+      ImGui::End();
     }
+    else {
+      const auto size{ImVec2(440, 85)};
+      const auto position{ImVec2((m_viewportWidth - size.x) / 2.0f,
+                                (m_viewportHeight - size.y) / 2.0f)};
+      ImGui::SetNextWindowPos(position);
+      ImGui::SetNextWindowSize(size);
 
-    ImGui::PopFont();
-    ImGui::End();
+      ImGui::Begin(" ", nullptr, flags);
+      
+      ImGui::PushFont(m_pac_font);
+
+      if (m_gameData.m_state == State::GameOver) {
+        ImGui::Text("game over");
+      } else if (m_gameData.m_state == State::Win) {
+        ImGui::Text("1you win1");
+      }
+
+      ImGui::PopFont();
+      ImGui::End();
+    }
   }
 }
 
@@ -124,13 +149,13 @@ void OpenGLWindow::terminateGL() {
 
 void OpenGLWindow::checkCollisions() {
   for (auto &pacman : m_pacmans.m_pacmans) {
-      // auto pacmanTranslation{pacman.m_translation};
-      // auto distance{glm::distance(m_ghost.m_translation, pacmanTranslation)};
+    // auto pacmanTranslation{pacman.m_translation};
+    // auto distance{glm::distance(m_ghost.m_translation, pacmanTranslation)};
 
-      // if (distance < m_ghost.m_scale * 0.1f + pacman.m_scale * 0.01f) {
-      //   m_gameData.m_state = State::GameOver;
-      //   m_restartWaitTimer.restart();
-      // }
+    // if (distance < m_ghost.m_scale * 0.1f + pacman.m_scale * 0.01f) {
+    //   m_gameData.m_state = State::GameOver;
+    //   m_restartWaitTimer.restart();
+    // }
     float minDistanceX = abs(pacman.m_translation.x - m_ghost.m_translation.x);
     float minDistanceY = abs(pacman.m_translation.y - m_ghost.m_translation.y);
     if (minDistanceX <= 0.25f && minDistanceY <= 0.025f) {
@@ -138,4 +163,15 @@ void OpenGLWindow::checkCollisions() {
       m_restartWaitTimer.restart();
     }
   }
+}
+
+void OpenGLWindow::checkWinCondition() {
+  if (m_timeElapsedToWin.elapsed() > 60) {
+    m_gameData.m_state = State::Win;
+    m_restartWaitTimer.restart();
+  }
+  // if (m_asteroids.m_asteroids.empty()) {
+  //   m_gameData.m_state = State::Win;
+  //   m_restartWaitTimer.restart();
+  // }
 }

@@ -30,14 +30,17 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   Pacmans m_pacmans;
 
   abcg::ElapsedTimer m_restartWaitTimer;
+  abcg::ElapsedTimer m_timeElapsedToWin;
 
-  ImFont* m_font{};
+  ImFont* m_pac_font{};
+  ImFont* m_timer_font{};
 
   std::default_random_engine m_randomEngine;
 
   void restart();
   void update();
   void checkCollisions();
+  void checkWinCondition();
 };
 
 #endif

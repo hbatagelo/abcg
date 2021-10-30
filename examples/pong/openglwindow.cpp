@@ -102,7 +102,7 @@ void OpenGLWindow::update() {
 
   if (m_gameData.m_state == State::Playing) {
     checkCollisions();
-    // checkWinCondition();
+    checkWinCondition();
   }
 
 }
@@ -140,10 +140,10 @@ void OpenGLWindow::paintUI() {
     ImGui::Begin(" ", nullptr, flags);
     ImGui::PushFont(m_font);
 
-    if (m_gameData.m_state == State::GameOver) {
-      ImGui::Text("Game Over!");
-    } else if (m_gameData.m_state == State::Win) {
-      ImGui::Text("*You Win!*");
+    if (m_gameData.m_state == State::WinPlayer1) {
+      ImGui::Text("*Player 1 Win!*");
+    } else if (m_gameData.m_state == State::WinPlayer2) {
+      ImGui::Text("*Player 2 Win!*");
     }
 
     ImGui::PopFont();
@@ -257,14 +257,21 @@ void OpenGLWindow::checkCollisions() {
   */
 }
 
-/*
+
 void OpenGLWindow::checkWinCondition() {
-  if (m_asteroids.m_asteroids.empty()) {
-    m_gameData.m_state = State::Win;
+  const auto ballTranslation{m_ball.m_translation * glm::vec2{15.5f, 15.5f}};
+  
+  if (ballTranslation.x > +15.5f) {
+    m_gameData.m_state = State::WinPlayer1;
     m_restartWaitTimer.restart();
   }
+  if (ballTranslation.x < -15.5f) {
+    m_gameData.m_state = State::WinPlayer2;
+    m_restartWaitTimer.restart();
+  }
+
 }
-*/
+
 /*
 void OpenGLWindow::transformPosition(auto position) {
 

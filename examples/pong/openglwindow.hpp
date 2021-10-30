@@ -49,7 +49,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   
   void checkCollisions();
-  // void checkWinCondition();
+  void checkWinCondition();
   
 
   void restart();

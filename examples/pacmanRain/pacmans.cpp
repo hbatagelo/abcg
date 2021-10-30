@@ -34,7 +34,7 @@ void Pacmans::paintGL(const GameData &gameData) {
 
   glUseProgram(m_program);
 
-  // Wait 5 seconds before restarting
+  // Timer to generate Pacmans on top
   if (m_generatetWaitTimer.elapsed() > 3) {
     m_generatetWaitTimer.restart();
     generatePacmans();
@@ -73,22 +73,18 @@ void Pacmans::update(float deltaTime) {
 Pacmans::Pacman Pacmans::createPacman(glm::vec2 translation, float scale) {
   Pacman pacman;
 
-  // auto &re{m_randomEngine};
   pacman.m_polygonSides = 10;
 
-  // Choose color (actually yellow)
+  // Choose a color
   pacman.m_color = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
   pacman.m_scale = scale;
   pacman.m_translation = translation;
-
-  // Choose a random angular velocity
-  // pacman.m_angularVelocity = m_randomDist(re);
 
   // Choose a direction
   glm::vec2 direction{0.0f, -1.0f};
   pacman.m_velocity = glm::normalize(direction);
 
-  // Create Pacman Geometry
+  // Create Pac-man Geometry
   std::vector<glm::vec2> positions(0);
   positions.emplace_back(0, 0);
   auto step{M_PI * 2 / pacman.m_polygonSides};

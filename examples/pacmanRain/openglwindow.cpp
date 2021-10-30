@@ -22,7 +22,7 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
 }
 
 void OpenGLWindow::initializeGL() {
-  // Load a new font
+  // Load fonts
   ImGuiIO &io{ImGui::GetIO()};
   auto filenamePacFont{getAssetsPath() + "pac-font.ttf"};
   auto filenameTimerFont{getAssetsPath() + "timer-font.ttf"};
@@ -64,7 +64,7 @@ void OpenGLWindow::update() {
 
   // Wait 5 seconds before restarting
   if (m_gameData.m_state != State::Playing &&
-      m_restartWaitTimer.elapsed() > 5) {    
+      m_restartWaitTimer.elapsed() > 5) {
     restart();
     return;
   }
@@ -93,10 +93,11 @@ void OpenGLWindow::paintUI() {
 
   {
     ImGuiWindowFlags flags{ImGuiWindowFlags_NoBackground |
-                        ImGuiWindowFlags_NoTitleBar |
-                        ImGuiWindowFlags_NoInputs};
+                           ImGuiWindowFlags_NoTitleBar |
+                           ImGuiWindowFlags_NoInputs};
 
-    if(m_gameData.m_state == State::Playing) {
+    // Display timer
+    if (m_gameData.m_state == State::Playing) {
       const auto sizeTimer{ImVec2(m_viewportWidth, 50)};
       const auto positionTimer{ImVec2(10, 10)};
       ImGui::SetNextWindowPos(positionTimer);
@@ -109,16 +110,17 @@ void OpenGLWindow::paintUI() {
 
       ImGui::PopFont();
       ImGui::End();
-    }
-    else {
+
+      // Display win or lose text
+    } else {
       const auto size{ImVec2(440, 85)};
       const auto position{ImVec2((m_viewportWidth - size.x) / 2.0f,
-                                (m_viewportHeight - size.y) / 2.0f)};
+                                 (m_viewportHeight - size.y) / 2.0f)};
       ImGui::SetNextWindowPos(position);
       ImGui::SetNextWindowSize(size);
 
       ImGui::Begin(" ", nullptr, flags);
-      
+
       ImGui::PushFont(m_pac_font);
 
       if (m_gameData.m_state == State::GameOver) {
@@ -170,8 +172,4 @@ void OpenGLWindow::checkWinCondition() {
     m_gameData.m_state = State::Win;
     m_restartWaitTimer.restart();
   }
-  // if (m_asteroids.m_asteroids.empty()) {
-  //   m_gameData.m_state = State::Win;
-  //   m_restartWaitTimer.restart();
-  // }
 }

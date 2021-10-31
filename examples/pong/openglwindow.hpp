@@ -55,6 +55,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   void restart();
   void update();
   // void transformPosition(auto position);
+  abcg::ElapsedTimer m_colisionTimer;
 };
 
 #endif

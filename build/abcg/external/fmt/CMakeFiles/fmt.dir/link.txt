@@ -1,0 +1,2 @@
+"/usr/bin/gcc-ar-10" cr libfmt.a CMakeFiles/fmt.dir/format.cc.o
+"/usr/bin/gcc-ranlib-10" libfmt.a

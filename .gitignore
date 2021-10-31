@@ -11,8 +11,8 @@
 .vscode
 
 # Build directories
-build
-cmake-build*
+# build
+# cmake-build*
 
 # Doxygen documentation
 Dox

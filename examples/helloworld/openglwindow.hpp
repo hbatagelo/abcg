@@ -38,7 +38,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   int m_viewportWidth{};
   int m_viewportHeight{};
 
-  std::default_random_engine m_randomEngine;    // Teste para gerar posicoes aleatorias da bolinha
+  std::default_random_engine m_randomEngine;
 
   float ratio = 16.0f/9.0f;
 

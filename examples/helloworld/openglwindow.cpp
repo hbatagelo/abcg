@@ -33,17 +33,37 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
   }
 }
 
+void updateBallSpeed(float* ball_xSpeed, float* ball_ySpeed){
+  
+  std::default_random_engine m_randomEngine;
+  m_randomEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+
+  std::uniform_real_distribution<float> m_randomDist{-0.5f, 0.5f};
+
+  float xSpeed_aux= m_randomDist(m_randomEngine);
+
+  *ball_ySpeed = m_randomDist(m_randomEngine);
+
+  if(xSpeed_aux > 0.0f){
+
+    *ball_xSpeed = 0.5f;
+
+  }
+  else{
+
+    *ball_xSpeed = -0.5f;
+
+  }
+
+}
+
 void OpenGLWindow::initializeGL() {
 
   m_randomEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
 
   std::uniform_real_distribution<float> m_randomDist{-0.5f, 0.5f};
 
-  ball_xSpeed = m_randomDist(m_randomEngine);                  // Define a velocidade aleatória inicial em X da bolinha
-  ball_ySpeed = m_randomDist(m_randomEngine);                  // Define a velocidade aleatória inicial em Y da bolinha
-
-  // pad_leftSpeed = m_randomDist(m_randomEngine);                // Define a velocidade aleatória inicial da pad esquerda
-  // pad_rightSpeed = m_randomDist(m_randomEngine);               // Define a velocidade aleatória inicial da pad direita
+  updateBallSpeed(&ball_xSpeed, &ball_ySpeed);        // Define randomicamente a velocidade da bolinha em X e Y;
 
   pad_leftSpeed = 0.0f;                // Define a velocidade aleatória inicial da pad esquerda
   pad_rightSpeed = 0.0f;               // Define a velocidade aleatória inicial da pad direita
@@ -164,8 +184,9 @@ void OpenGLWindow::paintUI() {
 
 void updatePosBolinha(float* ball_xCenter, float* ball_yCenter, float* ball_xSpeed, float* ball_ySpeed, float* pad_leftCenter, float* pad_rightCenter, float* deltaTime, GameData* m_gameData){
 
-  *ball_xCenter = *ball_xCenter + ((*ball_xSpeed) * (*deltaTime));
-  *ball_yCenter = *ball_yCenter + ((*ball_ySpeed) * (*deltaTime));
+  float ball_xCenter_aux = *ball_xCenter + ((*ball_xSpeed) * (*deltaTime));
+  float ball_yCenter_aux = *ball_yCenter + ((*ball_ySpeed) * (*deltaTime));
+
 
   if(*ball_xCenter > 2.0f || *ball_xCenter < -2.0f){    // Reseta a bolinha após percorrer uma longa distancia em X
 
@@ -174,50 +195,51 @@ void updatePosBolinha(float* ball_xCenter, float* ball_yCenter, float* ball_xSpe
     // } else {
       // m_gameData->m_state = State::LeftWin;
     // }
-    
+
     *ball_xCenter = 0.0f;
     *ball_yCenter = 0.0f;
     
-
-    std::default_random_engine m_randomEngine;
-    m_randomEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
-    std::uniform_real_distribution<float> m_randomDist{-0.5f, 0.5f};
-
-    *ball_xSpeed = m_randomDist(m_randomEngine);
-    *ball_ySpeed = m_randomDist(m_randomEngine);
+    updateBallSpeed(ball_xSpeed, ball_ySpeed);     // Define randomicamente uma nova velocidade para a bolinha em X e Y
 
   }
 
-  if(*ball_yCenter >=0.91 || *ball_yCenter <= -0.91){    // Colisao com as paredes!
+  if(ball_yCenter_aux >=0.91 || ball_yCenter_aux <= -0.91){    // Colisao com as paredes!
 
     *ball_ySpeed = (-1) * (*ball_ySpeed);                // Inverte o sentido da velocidade em Y
 
   }
 
-  if(*ball_xCenter < -0.965f && *ball_xCenter > -1.1f){                          // Colisao com a pad da esquerda
+  if(ball_xCenter_aux < -0.965f && ball_xCenter_aux > -1.1f){                          // Colisao com a pad da esquerda
 
-    if(*ball_yCenter >= *pad_leftCenter - 0.2f && *ball_yCenter <= *pad_leftCenter + 0.2f){
+    if(ball_yCenter_aux >= *pad_leftCenter - 0.25f && ball_yCenter_aux <= *pad_leftCenter + 0.25f){
 
-      *ball_xSpeed = (-1) * (*ball_xSpeed);
-
-    }
-
-  }
-  else if(*ball_xCenter > 0.965f && *ball_xCenter < 1.1f){                     // Colisao com a pad da direita
-
-    if(*ball_yCenter >= *pad_rightCenter - 0.2f && *ball_yCenter <= *pad_rightCenter + 0.2f){
-
-      *ball_xSpeed = (-1) * (*ball_xSpeed);
+      *ball_xSpeed = (-1) * (*ball_xSpeed) * 1.1f;     // incrementa a velocidade em X em 10% toda vez que um pad bate na bolinha!
+      
+      *ball_ySpeed = *ball_ySpeed + ((*ball_yCenter - *pad_leftCenter) * 2.0f);    // Altera a velocidade em Y conforme a posicao de colisao em Y no Pad
 
     }
 
   }
+  else if(ball_xCenter_aux > 0.965f && ball_xCenter_aux < 1.1f){                       // Colisao com a pad da direita
+
+    if(ball_yCenter_aux >= *pad_rightCenter - 0.25f && ball_yCenter_aux <= *pad_rightCenter + 0.25f){
+
+      *ball_xSpeed = (-1) * (*ball_xSpeed) * 1.1f;     // incrementa a velocidade em X em 10% toda vez que um pad bate na bolinha!
+
+      *ball_ySpeed = *ball_ySpeed + ((*ball_yCenter - *pad_rightCenter) * 2.0f);   // Altera a velocidade em Y conforme a posicao de colisao em Y no Pad
+
+    }
+
+  }
+
+  *ball_xCenter = *ball_xCenter + ((*ball_xSpeed) * (*deltaTime));
+  *ball_yCenter = *ball_yCenter + ((*ball_ySpeed) * (*deltaTime));
 
 }
 
 void updatePosPad(float* pad_center, float* pad_velocity, float* deltaTime){
 
-  if(*pad_center > -0.800f && *pad_center < 0.800f ){
+  if((*pad_center > -0.800f && *pad_center < 0.800f) || (*pad_center <= -0.800f && *pad_velocity > 0) || (*pad_center >= 0.800f && *pad_velocity < 0)){
 
     *pad_center = *pad_center + ((*pad_velocity) * (*deltaTime));
 
@@ -225,23 +247,23 @@ void updatePosPad(float* pad_center, float* pad_velocity, float* deltaTime){
 
 }
 
-// void updatePadSpeed(float* pad_velocity){      // Fazer aqui a interação com o input dos jogadores!
+
 void updatePadSpeed(GameData m_gameData, float* pad_leftSpeed, float* pad_rightSpeed){
   
   *pad_leftSpeed=0.0f;
   *pad_rightSpeed=0.0f;
 
   if(m_gameData.m_input[static_cast<size_t>(Input::LUp)]){
-    *pad_leftSpeed=0.5f;
+    *pad_leftSpeed=1.0f;
   }
   if(m_gameData.m_input[static_cast<size_t>(Input::LDown)]){
-    *pad_leftSpeed=-0.5f;
+    *pad_leftSpeed=-1.0f;
   }
   if(m_gameData.m_input[static_cast<size_t>(Input::RUp)]){
-    *pad_rightSpeed=0.5f;
+    *pad_rightSpeed=1.0f;
   }
   if(m_gameData.m_input[static_cast<size_t>(Input::RDown)]){
-    *pad_rightSpeed=-0.5f;
+    *pad_rightSpeed=-1.0f;
   }
 
 }

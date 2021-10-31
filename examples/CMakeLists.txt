@@ -1,2 +1,11 @@
-add_subdirectory(helloworld)
-
+# add_subdirectory(helloworld)
+# add_subdirectory(firstapp)
+# add_subdirectory(sierpinski)
+# add_subdirectory(tictactoe)
+# add_subdirectory(tictactoe_meu)
+# add_subdirectory(coloredtriangles)
+# add_subdirectory(projeto)
+# add_subdirectory(regularpolygons)
+# add_subdirectory(asteroids)
+add_subdirectory(pong)
+# add_subdirectory(asteroids3)

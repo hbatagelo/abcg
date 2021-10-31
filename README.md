@@ -1,18 +1,14 @@
-### Web Assembly
+Autores:
 
-https://matheuzs.github.io/abcg/pacmanRain/
+Matheus Augusto Correa de Oliveira        RA: 11201721710
+Henrique Jotten Mendonca de Souza         RA: 11045812
 
-ABCg
-======
 
-Development framework accompanying the course MCTA008-17 Computer Graphics at [UFABC](https://www.ufabc.edu.br/).
+Descrição do Projeto:
 
-----
+Pac-Man Rain é um jogo 2D que utiliza a biblioteca abcg e é baseado no projeto Asteroids, o objetivo do jogo é que você fuja com o Fantasma dos Pac-Mans que estão caindo do topo da tela, toda a movimentação é feita com as teclas A/D ou Left/Rigth. 
+O jogo termina em vitória se o fantasma sobreviva sem colidir com os Pac-Mans por 60 segundos (Timer na tela) e em Game Over em caso de colisão, em ambos o jogo resetará após 5 segundos da sua conclusão.
 
-### Credits
+![img](https://imgur.com/a/UBQJN0r)
 
-Developed by Harlen Batagelo.
 
-### License
-
-ABCg is licensed under the MIT License. See [LICENSE](https://github.com/hbatagelo/abcg/blob/main/LICENSE) for more information.

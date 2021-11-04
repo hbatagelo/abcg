@@ -75,15 +75,15 @@ include CMakeFiles/foo.dir/flags.make
 CMakeFiles/foo.dir/foo.cpp.o: CMakeFiles/foo.dir/flags.make
 CMakeFiles/foo.dir/foo.cpp.o: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/foo.dir/foo.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/foo.dir/foo.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/foo.dir/foo.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp
 
 CMakeFiles/foo.dir/foo.cpp.i: cmake_force
 	@echo "Preprocessing CXX source to CMakeFiles/foo.dir/foo.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp > CMakeFiles/foo.dir/foo.cpp.i
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp > CMakeFiles/foo.dir/foo.cpp.i
 
 CMakeFiles/foo.dir/foo.cpp.s: cmake_force
 	@echo "Compiling CXX source to assembly CMakeFiles/foo.dir/foo.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp -o CMakeFiles/foo.dir/foo.cpp.s
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/foo.cpp -o CMakeFiles/foo.dir/foo.cpp.s
 
 # Object files for target foo
 foo_OBJECTS = \

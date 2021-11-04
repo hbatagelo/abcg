@@ -75,15 +75,15 @@ include CMakeFiles/foo.dir/flags.make
 CMakeFiles/foo.dir/foo.c.o: CMakeFiles/foo.dir/flags.make
 CMakeFiles/foo.dir/foo.c.o: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/foo.dir/foo.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/foo.dir/foo.c.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c
+	/bin/x86_64-linux-gnu-gcc-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/foo.dir/foo.c.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c
 
 CMakeFiles/foo.dir/foo.c.i: cmake_force
 	@echo "Preprocessing C source to CMakeFiles/foo.dir/foo.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c > CMakeFiles/foo.dir/foo.c.i
+	/bin/x86_64-linux-gnu-gcc-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c > CMakeFiles/foo.dir/foo.c.i
 
 CMakeFiles/foo.dir/foo.c.s: cmake_force
 	@echo "Compiling C source to assembly CMakeFiles/foo.dir/foo.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c -o CMakeFiles/foo.dir/foo.c.s
+	/bin/x86_64-linux-gnu-gcc-10 $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-C/src/foo.c -o CMakeFiles/foo.dir/foo.c.s
 
 # Object files for target foo
 foo_OBJECTS = \

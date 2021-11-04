@@ -73,15 +73,15 @@ abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.o: abcg/external/fmt/CMakeFiles/f
 abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.o: ../abcg/external/fmt/format.cc
 abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.o: abcg/external/fmt/CMakeFiles/fmt.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.o"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/abcg/external/fmt && /usr/bin/ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.o -MF CMakeFiles/fmt.dir/format.cc.o.d -o CMakeFiles/fmt.dir/format.cc.o -c /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt/format.cc
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/abcg/external/fmt && /usr/bin/ccache /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.o -MF CMakeFiles/fmt.dir/format.cc.o.d -o CMakeFiles/fmt.dir/format.cc.o -c /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt/format.cc
 
 abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/fmt.dir/format.cc.i"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/abcg/external/fmt && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt/format.cc > CMakeFiles/fmt.dir/format.cc.i
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/abcg/external/fmt && /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt/format.cc > CMakeFiles/fmt.dir/format.cc.i
 
 abcg/external/fmt/CMakeFiles/fmt.dir/format.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/fmt.dir/format.cc.s"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/abcg/external/fmt && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt/format.cc -o CMakeFiles/fmt.dir/format.cc.s
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/abcg/external/fmt && /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt/format.cc -o CMakeFiles/fmt.dir/format.cc.s
 
 # Object files for target fmt
 fmt_OBJECTS = \

@@ -75,15 +75,15 @@ include CMakeFiles/boo.dir/flags.make
 CMakeFiles/boo.dir/main.cpp.o: CMakeFiles/boo.dir/flags.make
 CMakeFiles/boo.dir/main.cpp.o: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/boo.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/boo.dir/main.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/boo.dir/main.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp
 
 CMakeFiles/boo.dir/main.cpp.i: cmake_force
 	@echo "Preprocessing CXX source to CMakeFiles/boo.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp > CMakeFiles/boo.dir/main.cpp.i
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp > CMakeFiles/boo.dir/main.cpp.i
 
 CMakeFiles/boo.dir/main.cpp.s: cmake_force
 	@echo "Compiling CXX source to assembly CMakeFiles/boo.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp -o CMakeFiles/boo.dir/main.cpp.s
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/_CMakeLTOTest-CXX/src/main.cpp -o CMakeFiles/boo.dir/main.cpp.s
 
 # Object files for target boo
 boo_OBJECTS = \

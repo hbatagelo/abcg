@@ -73,29 +73,29 @@ examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.o: examples/helloworld/CM
 examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.o: ../examples/helloworld/main.cpp
 examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.o: examples/helloworld/CMakeFiles/helloworld.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.o"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.o -MF CMakeFiles/helloworld.dir/main.cpp.o.d -o CMakeFiles/helloworld.dir/main.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/main.cpp
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/ccache /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.o -MF CMakeFiles/helloworld.dir/main.cpp.o.d -o CMakeFiles/helloworld.dir/main.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/main.cpp
 
 examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/helloworld.dir/main.cpp.i"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/main.cpp > CMakeFiles/helloworld.dir/main.cpp.i
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/main.cpp > CMakeFiles/helloworld.dir/main.cpp.i
 
 examples/helloworld/CMakeFiles/helloworld.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/helloworld.dir/main.cpp.s"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/main.cpp -o CMakeFiles/helloworld.dir/main.cpp.s
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/main.cpp -o CMakeFiles/helloworld.dir/main.cpp.s
 
 examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.o: examples/helloworld/CMakeFiles/helloworld.dir/flags.make
 examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.o: ../examples/helloworld/openglwindow.cpp
 examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.o: examples/helloworld/CMakeFiles/helloworld.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.o"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.o -MF CMakeFiles/helloworld.dir/openglwindow.cpp.o.d -o CMakeFiles/helloworld.dir/openglwindow.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/openglwindow.cpp
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/ccache /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.o -MF CMakeFiles/helloworld.dir/openglwindow.cpp.o.d -o CMakeFiles/helloworld.dir/openglwindow.cpp.o -c /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/openglwindow.cpp
 
 examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/helloworld.dir/openglwindow.cpp.i"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/openglwindow.cpp > CMakeFiles/helloworld.dir/openglwindow.cpp.i
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/openglwindow.cpp > CMakeFiles/helloworld.dir/openglwindow.cpp.i
 
 examples/helloworld/CMakeFiles/helloworld.dir/openglwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/helloworld.dir/openglwindow.cpp.s"
-	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/openglwindow.cpp -o CMakeFiles/helloworld.dir/openglwindow.cpp.s
+	cd /home/maciel/Documentos/Comp_grafica/abcg/build/examples/helloworld && /bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/maciel/Documentos/Comp_grafica/abcg/examples/helloworld/openglwindow.cpp -o CMakeFiles/helloworld.dir/openglwindow.cpp.s
 
 # Object files for target helloworld
 helloworld_OBJECTS = \

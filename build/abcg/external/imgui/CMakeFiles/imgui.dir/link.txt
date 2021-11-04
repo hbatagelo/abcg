@@ -1,2 +1,2 @@
-"/usr/bin/gcc-ar-10" cr libimgui.a CMakeFiles/imgui.dir/imgui.cpp.o CMakeFiles/imgui.dir/imgui_demo.cpp.o CMakeFiles/imgui.dir/imgui_draw.cpp.o CMakeFiles/imgui.dir/imgui_tables.cpp.o CMakeFiles/imgui.dir/imgui_widgets.cpp.o CMakeFiles/imgui.dir/imgui_impl_sdl.cpp.o CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.o
-"/usr/bin/gcc-ranlib-10" libimgui.a
+"/bin/x86_64-linux-gnu-gcc-ar-10" cr libimgui.a CMakeFiles/imgui.dir/imgui.cpp.o CMakeFiles/imgui.dir/imgui_demo.cpp.o CMakeFiles/imgui.dir/imgui_draw.cpp.o CMakeFiles/imgui.dir/imgui_tables.cpp.o CMakeFiles/imgui.dir/imgui_widgets.cpp.o CMakeFiles/imgui.dir/imgui_impl_sdl.cpp.o CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.o
+"/bin/x86_64-linux-gnu-gcc-ranlib-10" libimgui.a

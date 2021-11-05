@@ -20,6 +20,37 @@ struct hash<Vertex> {
 };
 }  // namespace std
 
+void OpenGLWindow::handleEvent(SDL_Event& ev) {
+  if (ev.type == SDL_KEYDOWN) {
+    if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
+      m_dollySpeed = 1.0f;
+    if (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s)
+      m_dollySpeed = -1.0f;
+    if (ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_a)
+      m_panSpeed = -1.0f;
+    if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d)
+      m_panSpeed = 1.0f;
+    if (ev.key.keysym.sym == SDLK_q) m_truckSpeed = -1.0f;
+    if (ev.key.keysym.sym == SDLK_e) m_truckSpeed = 1.0f;
+  }
+  if (ev.type == SDL_KEYUP) {
+    if ((ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w) &&
+        m_dollySpeed > 0)
+      m_dollySpeed = 0.0f;
+    if ((ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s) &&
+        m_dollySpeed < 0)
+      m_dollySpeed = 0.0f;
+    if ((ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_a) &&
+        m_panSpeed < 0)
+      m_panSpeed = 0.0f;
+    if ((ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d) &&
+        m_panSpeed > 0)
+      m_panSpeed = 0.0f;
+    if (ev.key.keysym.sym == SDLK_q && m_truckSpeed < 0) m_truckSpeed = 0.0f;
+    if (ev.key.keysym.sym == SDLK_e && m_truckSpeed > 0) m_truckSpeed = 0.0f;
+  }
+}
+
 void OpenGLWindow::initializeGL() {
   glClearColor(0, 0, 0, 1);
 
@@ -27,14 +58,11 @@ void OpenGLWindow::initializeGL() {
   glEnable(GL_DEPTH_TEST);
 
   // Create program
-  m_program = createProgramFromFile(getAssetsPath() + "loadmodel.vert",
-                                    getAssetsPath() + "loadmodel.frag");
+  m_program = createProgramFromFile(getAssetsPath() + "lookat.vert",
+                                    getAssetsPath() + "lookat.frag");
 
   // Load model
-  loadModelFromFile(getAssetsPath() + "sun.obj");
-  standardize();
-
-  m_verticesToDraw = m_indices.size();
+  loadModelFromFile(getAssetsPath() + "sphere.obj");
 
   // Generate VBO
   glGenBuffers(1, &m_VBO);
@@ -67,6 +95,8 @@ void OpenGLWindow::initializeGL() {
 
   // End of binding to current VAO
   glBindVertexArray(0);
+
+  resizeGL(getWindowSettings().width, getWindowSettings().height);
 }
 
 void OpenGLWindow::loadModelFromFile(std::string_view path) {
@@ -121,7 +151,7 @@ void OpenGLWindow::loadModelFromFile(std::string_view path) {
         Vertex vertex{};
         vertex.position = {vx, vy, vz};
 
-        // If hash doesn't contain this vertex
+        // If uniqueVertices doesn't contain this vertex
         if (hash.count(vertex) == 0) {
           // Add this index (size of m_vertices)
           hash[vertex] = m_vertices.size();
@@ -136,33 +166,8 @@ void OpenGLWindow::loadModelFromFile(std::string_view path) {
   }
 }
 
-void OpenGLWindow::standardize() {
-  // Center to origin and normalize largest bound to [-1, 1]
-
-  // Get bounds
-  glm::vec3 max(std::numeric_limits<float>::lowest());
-  glm::vec3 min(std::numeric_limits<float>::max());
-  for (const auto& vertex : m_vertices) {
-    max.x = std::max(max.x, vertex.position.x);
-    max.y = std::max(max.y, vertex.position.y);
-    max.z = std::max(max.z, vertex.position.z);
-    min.x = std::min(min.x, vertex.position.x);
-    min.y = std::min(min.y, vertex.position.y);
-    min.z = std::min(min.z, vertex.position.z);
-  }
-
-  // Center and scale
-  const auto center{(min + max) / 2.0f};
-  const auto scaling{1.0f / glm::length(max - min)};
-  for (auto& vertex : m_vertices) {
-    vertex.position = (vertex.position - center) * scaling;
-  }
-}
-
 void OpenGLWindow::paintGL() {
-  // Animate angle by 15 degrees per second
-  float deltaTime{static_cast<float>(getDeltaTime())};
-  m_angle = glm::wrapAngle(m_angle + glm::radians(15.0f) * deltaTime);
+  update();
 
   // Clear color buffer and depth buffer
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -172,89 +177,66 @@ void OpenGLWindow::paintGL() {
   glUseProgram(m_program);
   glBindVertexArray(m_VAO);
 
-  // Update uniform variable
-  GLint angleLoc{glGetUniformLocation(m_program, "angle")};
-  glUniform1f(angleLoc, m_angle);
+  // Get location of uniform variables (could be precomputed)
+  GLint viewMatrixLoc{glGetUniformLocation(m_program, "viewMatrix")};
+  GLint projMatrixLoc{glGetUniformLocation(m_program, "projMatrix")};
+  GLint modelMatrixLoc{glGetUniformLocation(m_program, "modelMatrix")};
+  GLint colorLoc{glGetUniformLocation(m_program, "color")};
 
-  // Draw triangles
-  glDrawElements(GL_TRIANGLES, m_verticesToDraw, GL_UNSIGNED_INT, nullptr);
+  // Set uniform variables for viewMatrix and projMatrix
+  // These matrices are used for every scene object
+  glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, &m_camera.m_viewMatrix[0][0]);
+  glUniformMatrix4fv(projMatrixLoc, 1, GL_FALSE, &m_camera.m_projMatrix[0][0]);
+
+  // Draw Sun
+  glm::mat4 model{1.0f};
+  model = glm::translate(model, glm::vec3(-0.8f, 0.3f, 0.0f));
+  // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0, 1, 0));
+  model = glm::scale(model, glm::vec3(0.3f));
+
+  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  glUniform4f(colorLoc, 1.0f, 1.0f, 0.0f, 1.0f);
+  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+
+  // Draw Earth
+  model = glm::mat4(1.0);
+  model = glm::translate(model, glm::vec3(1.0f, 0.3f, 0.0f));
+  model = glm::scale(model, glm::vec3(0.1f));
+
+  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f);
+  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+
+  // Draw blue bunny
+  // model = glm::mat4(1.0);
+  // model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+  // model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0, 1, 0));
+  // model = glm::scale(model, glm::vec3(0.2f));
+
+  // glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  // glUniform4f(colorLoc, 0.0f, 0.8f, 1.0f, 1.0f);
+  // glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+
+  // Draw red bunny
+  // model = glm::mat4(1.0);
+  // model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+  // model = glm::scale(model, glm::vec3(0.5f));
+
+  // glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  // glUniform4f(colorLoc, 1.0f, 0.0f, 0.0f, 1.0f);
+  // glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
   glBindVertexArray(0);
   glUseProgram(0);
 }
 
-void OpenGLWindow::paintUI() {
-  abcg::OpenGLWindow::paintUI();
-
-  // Create window for slider
-  {
-    ImGui::SetNextWindowPos(ImVec2(5, m_viewportHeight - 94));
-    ImGui::SetNextWindowSize(ImVec2(m_viewportWidth - 10, -1));
-    ImGui::Begin("Slider window", nullptr, ImGuiWindowFlags_NoDecoration);
-
-    // Create a slider to control the number of rendered triangles
-    {
-      // Slider will fill the space of the window
-      ImGui::PushItemWidth(m_viewportWidth - 25);
-
-      static int n{m_verticesToDraw / 3};
-      ImGui::SliderInt("", &n, 0, m_indices.size() / 3, "%d triangles");
-      m_verticesToDraw = n * 3;
-
-      ImGui::PopItemWidth();
-    }
-
-    ImGui::End();
-  }
-
-  // Create a window for the other widgets
-  {
-    auto widgetSize{ImVec2(172, 62)};
-    ImGui::SetNextWindowPos(ImVec2(m_viewportWidth - widgetSize.x - 5, 5));
-    ImGui::SetNextWindowSize(widgetSize);
-    ImGui::Begin("Widget window", nullptr, ImGuiWindowFlags_NoDecoration);
-
-    static bool faceCulling{};
-    ImGui::Checkbox("Back-face culling", &faceCulling);
-
-    if (faceCulling) {
-      glEnable(GL_CULL_FACE);
-    } else {
-      glDisable(GL_CULL_FACE);
-    }
-
-    // CW/CCW combo box
-    {
-      static std::size_t currentIndex{};
-      std::vector<std::string> comboItems{"CW", "CCW"};
-
-      ImGui::PushItemWidth(70);
-      if (ImGui::BeginCombo("Front face",
-                            comboItems.at(currentIndex).c_str())) {
-        for (auto index : iter::range(comboItems.size())) {
-          const bool isSelected{currentIndex == index};
-          if (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))
-            currentIndex = index;
-          if (isSelected) ImGui::SetItemDefaultFocus();
-        }
-        ImGui::EndCombo();
-      }
-      ImGui::PopItemWidth();
-
-      if (currentIndex == 0) {
-        glFrontFace(GL_CW);
-      } else {
-        glFrontFace(GL_CCW);
-      }
-    }
-
-    ImGui::End();
-  }
-}
+void OpenGLWindow::paintUI() { abcg::OpenGLWindow::paintUI(); }
 
 void OpenGLWindow::resizeGL(int width, int height) {
   m_viewportWidth = width;
   m_viewportHeight = height;
+
+  m_camera.computeProjectionMatrix(width, height);
 }
 
 void OpenGLWindow::terminateGL() {
@@ -262,4 +244,13 @@ void OpenGLWindow::terminateGL() {
   glDeleteBuffers(1, &m_EBO);
   glDeleteBuffers(1, &m_VBO);
   glDeleteVertexArrays(1, &m_VAO);
+}
+
+void OpenGLWindow::update() {
+  float deltaTime{static_cast<float>(getDeltaTime())};
+
+  // Update LookAt camera
+  m_camera.dolly(m_dollySpeed * deltaTime);
+  m_camera.truck(m_truckSpeed * deltaTime);
+  m_camera.pan(m_panSpeed * deltaTime);
 }

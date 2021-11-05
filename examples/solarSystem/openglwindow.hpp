@@ -2,6 +2,7 @@
 #define OPENGLWINDOW_HPP_
 
 #include "abcg.hpp"
+#include "camera.hpp"
 #include <vector>
 
 struct Vertex {
@@ -14,6 +15,7 @@ struct Vertex {
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
+  void handleEvent(SDL_Event& ev) override;
   void initializeGL() override;
   void paintGL() override;
   void paintUI() override;
@@ -29,14 +31,16 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   int m_viewportWidth{};
   int m_viewportHeight{};
 
-  float m_angle{};
-  int m_verticesToDraw{};
+  Camera m_camera;
+  float m_dollySpeed{0.0f};
+  float m_truckSpeed{0.0f};
+  float m_panSpeed{0.0f};
 
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;
 
   void loadModelFromFile(std::string_view path);
-  void standardize();
+  void update();
 };
 
 #endif

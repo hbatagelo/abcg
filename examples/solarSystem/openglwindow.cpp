@@ -188,10 +188,12 @@ void OpenGLWindow::paintGL() {
   glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, &m_camera.m_viewMatrix[0][0]);
   glUniformMatrix4fv(projMatrixLoc, 1, GL_FALSE, &m_camera.m_projMatrix[0][0]);
 
+  float timer = m_timer.elapsed();
+
   // Draw Sun
   glm::mat4 model{1.0f};
   model = glm::translate(model, glm::vec3(-0.8f, 0.3f, 0.0f));
-  // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0, 1, 0));
+  model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, glm::vec3(0.3f));
 
   glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
@@ -201,6 +203,7 @@ void OpenGLWindow::paintGL() {
   // Draw Earth
   model = glm::mat4(1.0);
   model = glm::translate(model, glm::vec3(1.0f, 0.3f, 0.0f));
+  model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, glm::vec3(0.1f));
 
   glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);

@@ -39,6 +39,8 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;
 
+  abcg::ElapsedTimer m_timer;
+
   void loadModelFromFile(std::string_view path);
   void update();
 };

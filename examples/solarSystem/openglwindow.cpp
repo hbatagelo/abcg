@@ -202,7 +202,7 @@ void OpenGLWindow::paintGL() {
 
   // Draw Earth
   model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3(1.0f * sin(timer), 0.5f, 1.0f * cos(timer)));
+  model = glm::translate(model, glm::vec3((1.0f * sin(timer)), 0.5f, 1.0f * cos(timer)));
   model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, glm::vec3(0.1f));
 
@@ -210,15 +210,15 @@ void OpenGLWindow::paintGL() {
   glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f);
   glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
-  // Draw blue bunny
-  // model = glm::mat4(1.0);
-  // model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
-  // model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0, 1, 0));
-  // model = glm::scale(model, glm::vec3(0.2f));
+  // Draw Moon
+  model = glm::mat4(1.0);
+  model = glm::translate(model, glm::vec3(0.7f * sin(timer), 0.5f, 1.0f * cos(timer)));
+  model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
+  model = glm::scale(model, glm::vec3(0.02f));
 
-  // glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  // glUniform4f(colorLoc, 0.0f, 0.8f, 1.0f, 1.0f);
-  // glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  glUniform4f(colorLoc, 0.8f, 0.8f, 0.8f, 1.0f);
+  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
   // Draw red bunny
   // model = glm::mat4(1.0);
@@ -233,7 +233,13 @@ void OpenGLWindow::paintGL() {
   glUseProgram(0);
 }
 
-void OpenGLWindow::paintUI() { abcg::OpenGLWindow::paintUI(); }
+void OpenGLWindow::paintUI() { 
+  abcg::OpenGLWindow::paintUI();
+  ImGui::Begin("Coordenadas Translacao (teste)");
+  ImGui::Text("X -> Sin(timer): %.2f", 1.0f * sin(m_timer.elapsed()));
+  ImGui::Text("Z -> Cos(timer): %.2f", 1.0f * cos(m_timer.elapsed()));
+  ImGui::End();
+}
 
 void OpenGLWindow::resizeGL(int width, int height) {
   m_viewportWidth = width;

@@ -192,7 +192,7 @@ void OpenGLWindow::paintGL() {
 
   // Draw Sun
   glm::mat4 model{1.0f};
-  model = glm::translate(model, glm::vec3(-0.8f, 0.3f, 0.0f));
+  model = glm::translate(model, glm::vec3(0.0f, 0.5f, 0.0f));
   model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, glm::vec3(0.3f));
 
@@ -202,7 +202,7 @@ void OpenGLWindow::paintGL() {
 
   // Draw Earth
   model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3(1.0f, 0.3f, 0.0f));
+  model = glm::translate(model, glm::vec3(1.0f * sin(timer), 0.5f, 1.0f * cos(timer)));
   model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, glm::vec3(0.1f));
 

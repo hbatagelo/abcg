@@ -3,11 +3,7 @@
 out vec4 outColor;
 
 void main() {
-  float i = 1.0 - gl_FragCoord.z;
+  float i = 0.5 - gl_FragCoord.z;
 
-  if (gl_FrontFacing) {
-    outColor = vec4(i, i, i, 1);
-  } else {
-    outColor = vec4(i, 0, 0, 1);
-  }
+  outColor = vec4(1, 1, i, 1);
 }

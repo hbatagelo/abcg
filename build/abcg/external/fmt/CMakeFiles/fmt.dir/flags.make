@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt
 
-CXX_FLAGS = -O2 -g -DNDEBUG -flto -fno-fat-lto-objects -std=gnu++2a
+CXX_FLAGS = -g -flto -fno-fat-lto-objects -std=gnu++2a
 

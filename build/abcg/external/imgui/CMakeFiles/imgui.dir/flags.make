@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/usr/include/SDL2 -I/opt/local/include -I/home/maciel/Documentos/Comp_grafica/abcg/abcg/external/imgui
 
-CXX_FLAGS = -O2 -g -DNDEBUG -flto -fno-fat-lto-objects
+CXX_FLAGS = -g -flto -fno-fat-lto-objects
 

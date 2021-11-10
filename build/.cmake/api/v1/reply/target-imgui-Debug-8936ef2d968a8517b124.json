@@ -52,7 +52,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O2 -g -DNDEBUG -flto -fno-fat-lto-objects"
+					"fragment" : "-g -flto -fno-fat-lto-objects"
 				}
 			],
 			"includes" : 

@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/usr/include/SDL2 -I/home/maciel/Documentos/Comp_grafica/abcg/abcg -I/home/maciel/Documentos/Comp_grafica/abcg/abcg/external/cppitertools -I/home/maciel/Documentos/Comp_grafica/abcg/abcg/external/fmt -I/home/maciel/Documentos/Comp_grafica/abcg/abcg/external/glm/.. -I/home/maciel/Documentos/Comp_grafica/abcg/abcg/external/imgui -isystem /home/maciel/Documentos/Comp_grafica/abcg/abcg/external
 
-CXX_FLAGS = -O2 -g -DNDEBUG -flto -fno-fat-lto-objects -std=gnu++2a
+CXX_FLAGS = -g -flto -fno-fat-lto-objects -std=gnu++2a
 

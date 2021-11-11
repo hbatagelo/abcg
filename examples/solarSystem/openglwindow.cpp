@@ -3,6 +3,7 @@
 #include <fmt/core.h>
 #include <imgui.h>
 #include <tiny_obj_loader.h>
+#include <array>
 
 #include <cppitertools/itertools.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
@@ -194,51 +195,110 @@ void OpenGLWindow::paintGL() {
   glm::mat4 model{1.0f};
   model = glm::translate(model, glm::vec3(0.0f, 0.5f, 0.0f));
   model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
-  model = glm::scale(model, glm::vec3(0.3f));
+  model = glm::scale(model, glm::vec3(0.4f));
 
   glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
   glUniform4f(colorLoc, 1.0f, 1.0f, 0.0f, 1.0f);
   glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
+  Planet mercury;
+  mercury.planetColor = glm::vec4{0.41f, 0.41f, 0.6f, 0.6f};
+  mercury.planetScale = glm::vec3(0.05f);
+
+  Planet venus;
+  venus.planetColor = glm::vec4{0.89f, 0.47f, 0.08f, 0.89f};
+  venus.planetScale = glm::vec3(0.08f);
+
+  Planet earth;
+  earth.planetColor = glm::vec4{0.0f, 0.0f, 1.0f, 1.0f};
+  earth.planetScale = glm::vec3(0.1f);
+
+  Planet mars;
+  mars.planetColor = glm::vec4{1.0f, 0.0f, 0.0f, 1.0f};
+  mars.planetScale = glm::vec3(0.08f);
+
+  Planet jupiter;
+  jupiter.planetColor = glm::vec4{0.54f, 0.36f, 0.34f, 0.55f};
+  jupiter.planetScale = glm::vec3(0.29f);
+
+  Planet saturn;
+  saturn.planetColor = glm::vec4{0.99f, 0.86f, 0.44f, 1.0f};
+  saturn.planetScale = glm::vec3(0.25f);
+
+  Planet uranus;
+  uranus.planetColor = glm::vec4{0.84f, 0.99f, 0.99f, 1.0f};
+  uranus.planetScale = glm::vec3(0.18f);
+
+  Planet neptune;
+  neptune.planetColor = glm::vec4{0.25f, 0.25f, 0.67f, 0.67f};
+  neptune.planetScale = glm::vec3(0.15f);
+
+  std::array<Planet, sizeof(Planet)> planets{mercury,
+                                             venus,
+                                             earth,
+                                             mars,
+                                             jupiter,
+                                             saturn,
+                                             uranus,
+                                             neptune};
+
   // Draw Earth
-  model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3((1.0f * sin(timer)), 0.5f, 1.0f * cos(timer)));
-  model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
-  model = glm::scale(model, glm::vec3(0.1f));
-
-  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f);
-  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
-
-  // Draw Moon
-  model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3(0.7f * sin(timer), 0.5f, 1.0f * cos(timer)));
-  model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
-  model = glm::scale(model, glm::vec3(0.02f));
-
-  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, 0.8f, 0.8f, 0.8f, 1.0f);
-  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
-
-  // Draw red bunny
-  // model = glm::mat4(1.0);
-  // model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-  // model = glm::scale(model, glm::vec3(0.5f));
+  // glm::mat4 model(1.0f);
+  // model = glm::translate(model, glm::vec3((1.0f * sin(timer)), 0.5f, 1.0f * cos(timer)));
+  // model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
+  // model = glm::scale(model, glm::vec3(0.1f));
 
   // glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  // glUniform4f(colorLoc, 1.0f, 0.0f, 0.0f, 1.0f);
+  // glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f);
   // glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+
+  model = glm::mat4(1.0);
+  model = glm::translate(model, glm::vec3((1.6f * sin(timer/5)), 0.5f, 1.6f * cos(timer/5)));
+  model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
+  model = glm::scale(model, planets[planetIndex].planetScale);
+
+  glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  glUniform4f(colorLoc, planets[planetIndex].planetColor.r, planets[planetIndex].planetColor.g,
+  planets[planetIndex].planetColor.b, planets[planetIndex].planetColor.a );
+  glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
   glBindVertexArray(0);
   glUseProgram(0);
 }
 
-void OpenGLWindow::paintUI() { 
+void OpenGLWindow::paintUI() {
   abcg::OpenGLWindow::paintUI();
-  ImGui::Begin("Coordenadas Translacao (teste)");
-  ImGui::Text("X -> Sin(timer): %.2f", 1.0f * sin(m_timer.elapsed()));
-  ImGui::Text("Z -> Cos(timer): %.2f", 1.0f * cos(m_timer.elapsed()));
-  ImGui::End();
+ 
+  // Create a window for the other widgets
+  {
+    auto widgetSize{ImVec2(190, 50)};
+    ImGui::SetNextWindowPos(ImVec2(m_viewportWidth - widgetSize.x - 5, 5));
+    ImGui::SetNextWindowSize(widgetSize);
+    ImGui::Begin("Widget window", nullptr, ImGuiWindowFlags_NoDecoration);
+
+    {
+      static std::size_t currentIndex{};
+      std::vector<std::string> comboItems{"Mercurio", "Venus", "Terra", "Marte", 
+                                          "Jupiter", "Saturno", "Urano", "Netuno"};
+
+      ImGui::PushItemWidth(100);
+      if (ImGui::BeginCombo("Planetas",
+                            comboItems.at(currentIndex).c_str())) {
+        for (auto index : iter::range(comboItems.size())) {
+          const bool isSelected{currentIndex == index};
+          if (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))
+            currentIndex = index;
+          if (isSelected) ImGui::SetItemDefaultFocus();
+        }
+        ImGui::EndCombo();
+      }
+      ImGui::PopItemWidth();
+
+      planetIndex = currentIndex;
+    }
+
+    ImGui::End();
+  }
 }
 
 void OpenGLWindow::resizeGL(int width, int height) {

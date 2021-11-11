@@ -4,6 +4,7 @@
 #include "abcg.hpp"
 #include "camera.hpp"
 #include <vector>
+#include <array>
 
 struct Vertex {
   glm::vec3 position;
@@ -12,6 +13,12 @@ struct Vertex {
     return position == other.position;
   }
 };
+
+struct Planet {
+  glm::vec3 planetScale;
+  glm::vec4 planetColor;
+};
+
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
@@ -35,6 +42,8 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float m_dollySpeed{0.0f};
   float m_truckSpeed{0.0f};
   float m_panSpeed{0.0f};
+
+  int planetIndex;
 
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;

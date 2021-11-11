@@ -1,10 +1,11 @@
 #ifndef OPENGLWINDOW_HPP_
 #define OPENGLWINDOW_HPP_
 
+#include <array>
+#include <vector>
+
 #include "abcg.hpp"
 #include "camera.hpp"
-#include <vector>
-#include <array>
 
 struct Vertex {
   glm::vec3 position;
@@ -18,7 +19,6 @@ struct Planet {
   glm::vec3 planetScale;
   glm::vec4 planetColor;
 };
-
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
@@ -44,7 +44,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float m_panSpeed{0.0f};
 
   int planetIndex;
-  int velocity;
+  int velocity = 5;
 
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;

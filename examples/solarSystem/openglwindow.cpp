@@ -3,8 +3,8 @@
 #include <fmt/core.h>
 #include <imgui.h>
 #include <tiny_obj_loader.h>
-#include <array>
 
+#include <array>
 #include <cppitertools/itertools.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
 #include <glm/gtx/hash.hpp>
@@ -12,14 +12,14 @@
 
 // Custom specialization of std::hash injected in namespace std
 namespace std {
-template <>
-struct hash<Vertex> {
-  size_t operator()(Vertex const& vertex) const noexcept {
-    std::size_t h1{std::hash<glm::vec3>()(vertex.position)};
-    return h1;
-  }
-};
-}  // namespace std
+  template <>
+  struct hash<Vertex> {
+    size_t operator()(Vertex const& vertex) const noexcept {
+      std::size_t h1{std::hash<glm::vec3>()(vertex.position)};
+      return h1;
+    }
+  };
+}
 
 void OpenGLWindow::handleEvent(SDL_Event& ev) {
   if (ev.type == SDL_KEYDOWN) {
@@ -64,8 +64,6 @@ void OpenGLWindow::initializeGL() {
 
   // Load model
   loadModelFromFile(getAssetsPath() + "sphere.obj");
-
-  velocity = 5;
 
   // Generate VBO
   glGenBuffers(1, &m_VBO);
@@ -235,33 +233,21 @@ void OpenGLWindow::paintGL() {
   neptune.planetColor = glm::vec4{0.25f, 0.25f, 0.67f, 0.67f};
   neptune.planetScale = glm::vec3(0.15f);
 
-  std::array<Planet, sizeof(Planet)> planets{mercury,
-                                             venus,
-                                             earth,
-                                             mars,
-                                             jupiter,
-                                             saturn,
-                                             uranus,
-                                             neptune};
+  std::array<Planet, sizeof(Planet)> planets{mercury, venus,  earth,  mars,
+                                             jupiter, saturn, uranus, neptune};
 
-  // Draw Earth
-  // glm::mat4 model(1.0f);
-  // model = glm::translate(model, glm::vec3((1.0f * sin(timer)), 0.5f, 1.0f * cos(timer)));
-  // model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
-  // model = glm::scale(model, glm::vec3(0.1f));
-
-  // glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  // glUniform4f(colorLoc, 0.0f, 0.0f, 1.0f, 1.0f);
-  // glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
-
+  // Draw Planets
   model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3((1.6f * sin(timer/velocity)), 0.5f, 1.6f * cos(timer/velocity)));
+  model = glm::translate(model, glm::vec3((1.6f * sin(timer / velocity)), 0.5f,
+                                          1.6f * cos(timer / velocity)));
   model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, planets[planetIndex].planetScale);
 
   glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  glUniform4f(colorLoc, planets[planetIndex].planetColor.r, planets[planetIndex].planetColor.g,
-  planets[planetIndex].planetColor.b, planets[planetIndex].planetColor.a );
+  glUniform4f(colorLoc, planets[planetIndex].planetColor.r,
+              planets[planetIndex].planetColor.g,
+              planets[planetIndex].planetColor.b,
+              planets[planetIndex].planetColor.a);
   glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
   glBindVertexArray(0);
@@ -270,8 +256,8 @@ void OpenGLWindow::paintGL() {
 
 void OpenGLWindow::paintUI() {
   abcg::OpenGLWindow::paintUI();
- 
-  // Create a window for the other widgets
+
+  // Create a widgets window
   {
     auto widgetSize{ImVec2(190, 95)};
     ImGui::SetNextWindowPos(ImVec2(m_viewportWidth - widgetSize.x - 5, 5));
@@ -279,13 +265,14 @@ void OpenGLWindow::paintUI() {
     ImGui::Begin("Widget window", nullptr, ImGuiWindowFlags_NoDecoration);
 
     {
+      // Change planets widget
       static std::size_t currentIndex{};
-      std::vector<std::string> comboItems{"Mercurio", "Venus", "Terra", "Marte", 
-                                          "Jupiter", "Saturno", "Urano", "Netuno"};
+      std::vector<std::string> comboItems{"Mercurio", "Venus",   "Terra",
+                                          "Marte",    "Jupiter", "Saturno",
+                                          "Urano",    "Netuno"};
 
       ImGui::PushItemWidth(100);
-      if (ImGui::BeginCombo("Planetas",
-                            comboItems.at(currentIndex).c_str())) {
+      if (ImGui::BeginCombo("Planetas", comboItems.at(currentIndex).c_str())) {
         for (auto index : iter::range(comboItems.size())) {
           const bool isSelected{currentIndex == index};
           if (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))
@@ -298,13 +285,15 @@ void OpenGLWindow::paintUI() {
 
       planetIndex = currentIndex;
 
+      // Change velocity widget
       ImGui::PushItemWidth(widgetSize.x - 16);
-      ImGui::SliderInt("", &velocity, 10, 1,
-                      "Velocidade = %d");
+      ImGui::SliderInt("", &velocity, 10, 1, "Velocidade = %d");
       ImGui::PopItemWidth();
 
-      int click = ImGui::Button("Camera Inicial!", ImVec2(widgetSize.x - 16, 25));
-      if(click) {
+      // Button to restart camera
+      int click =
+          ImGui::Button("Camera Inicial!", ImVec2(widgetSize.x - 16, 25));
+      if (click) {
         m_camera.m_eye = glm::vec3(0.0f, 0.5f, 3.5f);
         m_camera.m_at = glm::vec3(0.0f, 0.5f, 0.0f);
         m_camera.m_up = glm::vec3(0.0f, 1.0f, 0.0f);

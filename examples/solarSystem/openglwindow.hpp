@@ -44,6 +44,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float m_panSpeed{0.0f};
 
   int planetIndex;
+  int velocity;
 
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;

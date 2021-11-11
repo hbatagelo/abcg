@@ -65,6 +65,8 @@ void OpenGLWindow::initializeGL() {
   // Load model
   loadModelFromFile(getAssetsPath() + "sphere.obj");
 
+  velocity = 5;
+
   // Generate VBO
   glGenBuffers(1, &m_VBO);
   glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
@@ -253,7 +255,7 @@ void OpenGLWindow::paintGL() {
   // glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
   model = glm::mat4(1.0);
-  model = glm::translate(model, glm::vec3((1.6f * sin(timer/5)), 0.5f, 1.6f * cos(timer/5)));
+  model = glm::translate(model, glm::vec3((1.6f * sin(timer/velocity)), 0.5f, 1.6f * cos(timer/velocity)));
   model = glm::rotate(model, glm::radians(15.0f * timer), glm::vec3(0, 1, 0));
   model = glm::scale(model, planets[planetIndex].planetScale);
 
@@ -271,7 +273,7 @@ void OpenGLWindow::paintUI() {
  
   // Create a window for the other widgets
   {
-    auto widgetSize{ImVec2(190, 50)};
+    auto widgetSize{ImVec2(190, 95)};
     ImGui::SetNextWindowPos(ImVec2(m_viewportWidth - widgetSize.x - 5, 5));
     ImGui::SetNextWindowSize(widgetSize);
     ImGui::Begin("Widget window", nullptr, ImGuiWindowFlags_NoDecoration);
@@ -295,6 +297,18 @@ void OpenGLWindow::paintUI() {
       ImGui::PopItemWidth();
 
       planetIndex = currentIndex;
+
+      ImGui::PushItemWidth(widgetSize.x - 16);
+      ImGui::SliderInt("", &velocity, 10, 1,
+                      "Velocidade = %d");
+      ImGui::PopItemWidth();
+
+      int click = ImGui::Button("Camera Inicial!", ImVec2(widgetSize.x - 16, 25));
+      if(click) {
+        m_camera.m_eye = glm::vec3(0.0f, 0.5f, 3.5f);
+        m_camera.m_at = glm::vec3(0.0f, 0.5f, 0.0f);
+        m_camera.m_up = glm::vec3(0.0f, 1.0f, 0.0f);
+      }
     }
 
     ImGui::End();

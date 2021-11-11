@@ -43,6 +43,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float m_truckSpeed{0.0f};
   float m_panSpeed{0.0f};
 
+  std::array<Planet, sizeof(Planet)> planets{};
   int planetIndex;
   int velocity = 5;
 
@@ -53,6 +54,7 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   void loadModelFromFile(std::string_view path);
   void update();
+  std::array<Planet, sizeof(Planet)> initializePlanetAttrib();
 };
 
 #endif

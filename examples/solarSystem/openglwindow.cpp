@@ -201,40 +201,7 @@ void OpenGLWindow::paintGL() {
   glUniform4f(colorLoc, 1.0f, 1.0f, 0.0f, 1.0f);
   glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 
-  Planet mercury;
-  mercury.planetColor = glm::vec4{0.41f, 0.41f, 0.6f, 0.6f};
-  mercury.planetScale = glm::vec3(0.05f);
-
-  Planet venus;
-  venus.planetColor = glm::vec4{0.89f, 0.47f, 0.08f, 0.89f};
-  venus.planetScale = glm::vec3(0.08f);
-
-  Planet earth;
-  earth.planetColor = glm::vec4{0.0f, 0.0f, 1.0f, 1.0f};
-  earth.planetScale = glm::vec3(0.1f);
-
-  Planet mars;
-  mars.planetColor = glm::vec4{1.0f, 0.0f, 0.0f, 1.0f};
-  mars.planetScale = glm::vec3(0.08f);
-
-  Planet jupiter;
-  jupiter.planetColor = glm::vec4{0.54f, 0.36f, 0.34f, 0.55f};
-  jupiter.planetScale = glm::vec3(0.29f);
-
-  Planet saturn;
-  saturn.planetColor = glm::vec4{0.99f, 0.86f, 0.44f, 1.0f};
-  saturn.planetScale = glm::vec3(0.25f);
-
-  Planet uranus;
-  uranus.planetColor = glm::vec4{0.84f, 0.99f, 0.99f, 1.0f};
-  uranus.planetScale = glm::vec3(0.18f);
-
-  Planet neptune;
-  neptune.planetColor = glm::vec4{0.25f, 0.25f, 0.67f, 0.67f};
-  neptune.planetScale = glm::vec3(0.15f);
-
-  std::array<Planet, sizeof(Planet)> planets{mercury, venus,  earth,  mars,
-                                             jupiter, saturn, uranus, neptune};
+  planets = initializePlanetAttrib();
 
   // Draw Planets
   model = glm::mat4(1.0);
@@ -325,4 +292,40 @@ void OpenGLWindow::update() {
   m_camera.dolly(m_dollySpeed * deltaTime);
   m_camera.truck(m_truckSpeed * deltaTime);
   m_camera.pan(m_panSpeed * deltaTime);
+}
+
+std::array<Planet, sizeof(Planet)> OpenGLWindow::initializePlanetAttrib() {
+  Planet mercury;
+  mercury.planetColor = glm::vec4{0.41f, 0.41f, 0.6f, 0.6f};
+  mercury.planetScale = glm::vec3(0.05f);
+
+  Planet venus;
+  venus.planetColor = glm::vec4{0.89f, 0.47f, 0.08f, 0.89f};
+  venus.planetScale = glm::vec3(0.08f);
+
+  Planet earth;
+  earth.planetColor = glm::vec4{0.0f, 0.0f, 1.0f, 1.0f};
+  earth.planetScale = glm::vec3(0.1f);
+
+  Planet mars;
+  mars.planetColor = glm::vec4{1.0f, 0.0f, 0.0f, 1.0f};
+  mars.planetScale = glm::vec3(0.08f);
+
+  Planet jupiter;
+  jupiter.planetColor = glm::vec4{0.54f, 0.36f, 0.34f, 0.55f};
+  jupiter.planetScale = glm::vec3(0.29f);
+
+  Planet saturn;
+  saturn.planetColor = glm::vec4{0.99f, 0.86f, 0.44f, 1.0f};
+  saturn.planetScale = glm::vec3(0.25f);
+
+  Planet uranus;
+  uranus.planetColor = glm::vec4{0.84f, 0.99f, 0.99f, 1.0f};
+  uranus.planetScale = glm::vec3(0.18f);
+
+  Planet neptune;
+  neptune.planetColor = glm::vec4{0.25f, 0.25f, 0.67f, 0.67f};
+  neptune.planetScale = glm::vec3(0.15f);
+
+  return {mercury, venus,  earth,  mars, jupiter, saturn, uranus, neptune};
 }

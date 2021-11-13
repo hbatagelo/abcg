@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-g++-10 -flto -fno-fat-lto-objects CMakeFiles/boo.dir/main.cpp.o -o boo  libfoo.a 

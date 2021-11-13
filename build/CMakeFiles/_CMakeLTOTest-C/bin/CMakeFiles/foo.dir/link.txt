@@ -1,0 +1,2 @@
+"/bin/x86_64-linux-gnu-gcc-ar-10" cr libfoo.a CMakeFiles/foo.dir/foo.c.o
+"/bin/x86_64-linux-gnu-gcc-ranlib-10" libfoo.a

@@ -1,2 +1,2 @@
-"/bin/x86_64-linux-gnu-gcc-ar-10" cr libabcg.a CMakeFiles/abcg.dir/abcg_application.cpp.o CMakeFiles/abcg.dir/abcg_elapsedtimer.cpp.o CMakeFiles/abcg.dir/abcg_exception.cpp.o CMakeFiles/abcg.dir/abcg_image.cpp.o CMakeFiles/abcg.dir/abcg_openglfunctions.cpp.o CMakeFiles/abcg.dir/abcg_openglwindow.cpp.o CMakeFiles/abcg.dir/abcg_string.cpp.o CMakeFiles/abcg.dir/abcg_trackball.cpp.o
-"/bin/x86_64-linux-gnu-gcc-ranlib-10" libabcg.a
+"/home/maciel/emsdk/upstream/emscripten/emar" cr libabcg.a CMakeFiles/abcg.dir/abcg_application.cpp.o CMakeFiles/abcg.dir/abcg_elapsedtimer.cpp.o CMakeFiles/abcg.dir/abcg_exception.cpp.o CMakeFiles/abcg.dir/abcg_image.cpp.o CMakeFiles/abcg.dir/abcg_openglfunctions.cpp.o CMakeFiles/abcg.dir/abcg_openglwindow.cpp.o CMakeFiles/abcg.dir/abcg_string.cpp.o CMakeFiles/abcg.dir/abcg_trackball.cpp.o
+"/home/maciel/emsdk/upstream/emscripten/emranlib" libabcg.a

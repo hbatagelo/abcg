@@ -1,2 +1,2 @@
-"/bin/x86_64-linux-gnu-gcc-ar-10" cr libfoo.a CMakeFiles/foo.dir/foo.cpp.o
-"/bin/x86_64-linux-gnu-gcc-ranlib-10" libfoo.a
+"/home/maciel/emsdk/upstream/emscripten/emar" cr libfoo.a CMakeFiles/foo.dir/foo.cpp.o
+"/home/maciel/emsdk/upstream/emscripten/emranlib" libfoo.a

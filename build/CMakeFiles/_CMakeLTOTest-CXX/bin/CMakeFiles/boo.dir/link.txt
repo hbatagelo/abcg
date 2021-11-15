@@ -1,1 +1,1 @@
-/bin/x86_64-linux-gnu-g++-10 -flto -fno-fat-lto-objects CMakeFiles/boo.dir/main.cpp.o -o boo  libfoo.a 
+/home/maciel/emsdk/upstream/emscripten/em++ -flto=thin @CMakeFiles/boo.dir/objects1.rsp -o boo.js @CMakeFiles/boo.dir/linklibs.rsp

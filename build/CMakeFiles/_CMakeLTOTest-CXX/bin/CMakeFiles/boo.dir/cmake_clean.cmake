@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/boo.dir/main.cpp.o"
-  "boo"
+  "CMakeFiles/boo.dir/main.cpp.o.d"
+  "boo.js"
   "boo.pdb"
 )
 

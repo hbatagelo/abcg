@@ -1,45 +1,31 @@
 abcg/CMakeFiles/abcg.dir/abcg_elapsedtimer.cpp.o: \
- /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_elapsedtimer.cpp \
- /usr/include/stdc-predef.h \
- /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_elapsedtimer.hpp \
- /usr/include/c++/10/chrono /usr/include/c++/10/ratio \
- /usr/include/c++/10/type_traits \
- /usr/include/x86_64-linux-gnu/c++/10/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/10/bits/os_defines.h \
- /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
- /usr/include/x86_64-linux-gnu/bits/wordsize.h \
- /usr/include/x86_64-linux-gnu/bits/long-double.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/c++/10/bits/cpu_defines.h \
- /usr/include/c++/10/pstl/pstl_config.h /usr/include/c++/10/cstdint \
- /usr/lib/gcc/x86_64-linux-gnu/10/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
- /usr/include/x86_64-linux-gnu/bits/types.h \
- /usr/include/x86_64-linux-gnu/bits/timesize.h \
- /usr/include/x86_64-linux-gnu/bits/typesizes.h \
- /usr/include/x86_64-linux-gnu/bits/time64.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/c++/10/limits /usr/include/c++/10/ctime /usr/include/time.h \
- /usr/lib/gcc/x86_64-linux-gnu/10/include/stddef.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/timex.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
- /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endianness.h \
- /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/c++/10/bits/parse_numbers.h \
- /usr/include/c++/10/ext/numeric_traits.h \
- /usr/include/c++/10/bits/cpp_type_traits.h \
- /usr/include/c++/10/ext/type_traits.h /usr/include/c++/10/concepts \
- /usr/include/c++/10/compare
+  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_elapsedtimer.cpp \
+  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_elapsedtimer.hpp \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/chrono \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__config \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/pthread.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__availability \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ctime \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/time.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/time.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/type_traits \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstddef \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/version \
+  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/stddef.h \
+  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/__stddef_max_align_t.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__nullptr \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ratio \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdint \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdint.h \
+  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/stdint.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/stdint.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/stdint.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/climits \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/limits.h \
+  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/limits.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/limits.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/limits.h \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__undef_macros \
+  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/limits

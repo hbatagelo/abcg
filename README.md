@@ -5,7 +5,7 @@ Nome: Eduardo Maciel de Souza                                              --   
 Professor: Harlen Batagelo                                                 --                                      Turma: A2-Noturno SA
 
        
-# Entrega – Aplicativo 2D Interativo - Pong
+# Entrega 2 – Aplicativo 3D - Jumping Block
 
 •	Links:
   o	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2

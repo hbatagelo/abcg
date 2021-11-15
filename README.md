@@ -1,25 +1,27 @@
-Nome: Henrique Fantato                                                                                                   RA: 21053916         
-Nome: Eduardo Maciel de Souza                                                                                            RA: 11055516
-Professor: Harlen Batagelo                                                                                       Turma: A2-Noturno SA
+Nome: Henrique Fantato                                                     --                                              RA: 21053916   
+
+Nome: Eduardo Maciel de Souza                                              --                                              RA: 11055516
+
+Professor: Harlen Batagelo                                                 --                                      Turma: A2-Noturno SA
+
        
-Entrega – Aplicativo 2D Interativo - Pong
+# Entrega – Aplicativo 2D Interativo - Pong
 
 •	Links:
-  o	Repositório GitHub: https://github.com/edumacsou/abcg/tree/main
-  o	Repositório WebAssembly: https://github.com/edumacsou/abcg/tree/main/public
-  o	Página WebAssembly: https://edumacsou.github.io/abcg/
-  Observação: Criamos a página em WebAssembly utilizando o tutorial informado no site da disciplina, porém é gerado um erro no arquivo javascript e a página não funciona           corretamente. O nome dos arquivos contidos na página são derivações de hello world, pois o próprio script cria com essa nomenclatura, caso contrário ele falha.
+  o	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2
+  o	Repositório WebAssembly: https://github.com/edumacsou/abcg/tree/Entrega-2/public
+  o	Página WebAssembly: https://edumacsou.github.io/abcg/public/lookat.html
+  
 
 
 •	Descrição:
 
-  Implementamos o jogo clássico Pong, utilizando a biblioteca ABCg e C++. Foram criadas as geometrias dos objetos desenhados em tela e, 
- com base na variável de translação do shader utilizado, realizamos toda a movimentação do jogo. 
-  Foram criadas funções para atualização de posição das raquetes dos jogadores, bem como uma função para controlar a velocidade delas com base num EventHandler, 
- onde as raquetes podem ser controladas com as teclas W e S(raquete esquerda), e as setas Up e Down(raquete direita). Também foi implementado uma função que 
- controla a bolinha, realizando atualização de sua posição em tela, bem como atualização de sua velocidade e uma decetção de colisão com os objetos em cena. 
-
-
+  Implementamos uma animação gráfica onde dois cubos interagem entre si, o cubo vermelho está inicialmente em queda livre e, ao atingir o cubo maior azul, este 
+ é deformado tal qual uma mola, impulsionando o cubo vermelho para cima. A aplicação foi realizada utilizando C++ e a biblioteca ABCg, bem como foi utilizado como
+base o código "lookat" disponibilizado em aula pelo professor. Os objetos utilizados em tela são carregados de um arquivo modelo, que contém todos os vértices 
+necesários, na função "initializeGL()". Os cálculos de todas as variáveis de posição e escala são feitos na função "update()". A deformação do cubo azul é feita 
+utilizando a função "glm:scale()", onde são passadas as variáveis calculadas na função "update()" para realizar a distorção, com base na posição dos cubos e na 
+existência de colisão ou não.
 
 
 

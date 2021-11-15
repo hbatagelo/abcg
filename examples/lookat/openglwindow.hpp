@@ -37,8 +37,14 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float m_dollySpeed{0.0f};
   float m_truckSpeed{0.0f};
   float m_panSpeed{0.0f};
-  float v_box_size{0.2f};
-  float size_rate{-0.4f};
+
+
+  float v_box_size{0.4f};
+  float size_rate{0.4f};
+
+  float v_box_hight{1.5f};
+  float vertical_speed{1.5f};
+  float is_flying{true};
 
   Ground m_ground;
 

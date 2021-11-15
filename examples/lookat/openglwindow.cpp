@@ -185,14 +185,23 @@ void OpenGLWindow::paintGL() {
 
   abcg::glBindVertexArray(m_VAO);
 
-  // Draw white bunny
+  // Draw Blue Cube
   glm::mat4 model{1.0f};
-  model = glm::translate(model, glm::vec3(0.0f, v_box_size*1.46f, 0.0f));
-  model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0, 1, 0));
-  model = glm::scale(model, glm::vec3(0.4f, v_box_size, 0.4f));
+  model = glm::translate(model, glm::vec3(0.0f, v_box_size*1.463f, 0.0f));
+  model = glm::scale(model, glm::vec3(0.4f+0.5f*(0.4f-v_box_size) , v_box_size, 0.4f+0.5f*(0.4f-v_box_size)));
 
   abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
   abcg::glUniform4f(colorLoc, 0.0f, 0.8f, 1.0f, 1.0f);
+  abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
+                       nullptr);
+
+  // Draw red Cube
+  model = glm::mat4(1.0);
+  model = glm::translate(model, glm::vec3(0.0f, 0.3f*1.15f+2*(v_box_size*1.463f)+v_box_hight, 0.0f));
+  model = glm::scale(model, glm::vec3(0.3f , 0.3f, 0.3f));
+
+  abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
+  abcg::glUniform4f(colorLoc, 1.0f, 0.25f, 0.25f, 1.0f);
   abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
                        nullptr);
 
@@ -217,14 +226,6 @@ void OpenGLWindow::paintGL() {
   // abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
   //                      nullptr);
 
-  // // Draw red bunny
-  // model = glm::mat4(1.0);
-  // model = glm::scale(model, glm::vec3(0.1f));
-
-  // abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  // abcg::glUniform4f(colorLoc, 1.0f, 0.25f, 0.25f, 1.0f);
-  // abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
-  //                      nullptr);
 
   abcg::glBindVertexArray(0);
 
@@ -259,8 +260,30 @@ void OpenGLWindow::update() {
   m_camera.dolly(m_dollySpeed * deltaTime);
   m_camera.truck(m_truckSpeed * deltaTime);
   m_camera.pan(m_panSpeed * deltaTime);
-  if((v_box_size <= 0.12f) | (v_box_size >= 0.4f)){
-    size_rate *= -1;
+
+
+
+  if (is_flying){
+    if(v_box_hight <= 0.0f){
+      vertical_speed *= -1;
+      v_box_hight = 0.0f;
+      is_flying = false;
+    }
+    if (v_box_hight >= 1.5f){
+      vertical_speed *= -1;
+      v_box_hight = 1.5f;
+    }
+    v_box_hight += vertical_speed*deltaTime;
+  } else {
+    if(v_box_size <= 0.2f){
+      size_rate *= -1;
+      v_box_size = 0.2f;
+    }
+    if (v_box_size >= 0.4f){
+      size_rate *= -1;
+      v_box_size = 0.4f;
+      is_flying = true;
+    }
+    v_box_size += size_rate*deltaTime;
   }
-  v_box_size += size_rate*deltaTime;
 }

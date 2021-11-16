@@ -9,11 +9,11 @@ Professor: Harlen Batagelo                                                 --   
 
 •	Links:
 
-       •	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2
+   •	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2
   
-       •	Repositório WebAssembly: https://github.com/edumacsou/abcg/tree/Entrega-2/public
+   •	Repositório WebAssembly: https://github.com/edumacsou/abcg/tree/Entrega-2/public
   
-       •	Página WebAssembly: https://edumacsou.github.io/abcg/public/lookat.html
+   •	Página WebAssembly: https://edumacsou.github.io/abcg/public/lookat.html
   
 
 

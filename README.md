@@ -8,9 +8,9 @@ Professor: Harlen Batagelo                                                 --   
 # Entrega 2 – Aplicativo 3D - Jumping Block
 
 •	Links:
-  o	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2
-  o	Repositório WebAssembly: https://github.com/edumacsou/abcg/tree/Entrega-2/public
-  o	Página WebAssembly: https://edumacsou.github.io/abcg/public/lookat.html
+  •	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2
+  •	Repositório WebAssembly: https://github.com/edumacsou/abcg/tree/Entrega-2/public
+  •	Página WebAssembly: https://edumacsou.github.io/abcg/public/lookat.html
   
 
 

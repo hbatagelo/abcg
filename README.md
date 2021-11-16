@@ -7,7 +7,7 @@ Professor: Harlen Batagelo                                                 --   
        
 # Entrega 2 – Aplicativo 3D - Jumping Block
 
-***Links:
+***Links:***
 
    •	Repositório GitHub: https://github.com/edumacsou/abcg/tree/Entrega-2
   
@@ -17,7 +17,7 @@ Professor: Harlen Batagelo                                                 --   
   
 
 
-***Descrição:
+***Descrição:***
 
   Implementamos uma animação gráfica onde dois cubos interagem entre si, o cubo vermelho está inicialmente em queda livre e, ao atingir o cubo maior azul, este 
  é deformado tal qual uma mola, impulsionando o cubo vermelho para cima. A aplicação foi realizada utilizando C++ e a biblioteca ABCg, bem como foi utilizado como

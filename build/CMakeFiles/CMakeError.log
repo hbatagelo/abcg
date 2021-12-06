@@ -62,3 +62,53 @@ gmake: *** [Makefile:127: cmTC_5c69b/fast] Erro 2
 
 
 
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_99b19 && [1/2] Building C object CMakeFiles/cmTC_99b19.dir/src.c.o
+[2/2] Linking C executable cmTC_99b19
+FAILED: cmTC_99b19 
+: && /bin/x86_64-linux-gnu-gcc-10   CMakeFiles/cmTC_99b19.dir/src.c.o -o cmTC_99b19   && :
+/usr/bin/ld: CMakeFiles/cmTC_99b19.dir/src.c.o: na função "main":
+src.c:(.text+0x2f): referência não definida para "pthread_create"
+/usr/bin/ld: src.c:(.text+0x3b): referência não definida para "pthread_detach"
+/usr/bin/ld: src.c:(.text+0x47): referência não definida para "pthread_cancel"
+/usr/bin/ld: src.c:(.text+0x58): referência não definida para "pthread_join"
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_db340 && [1/2] Building C object CMakeFiles/cmTC_db340.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_db340
+FAILED: cmTC_db340 
+: && /bin/x86_64-linux-gnu-gcc-10 -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_db340.dir/CheckFunctionExists.c.o -o cmTC_db340  -lpthreads && :
+/usr/bin/ld: não foi possível localizar -lpthreads
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+

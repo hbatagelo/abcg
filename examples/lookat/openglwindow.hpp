@@ -38,10 +38,16 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float m_truckSpeed{0.0f};
   float m_panSpeed{0.0f};
 
-
   float v_box_size{0.4f};
   float size_rate{0.4f};
 
+  glm::vec3 c_green {.0f, 1.f, .0f};
+  glm::vec3 c_red   {1.f, .0f, .0f};
+  glm::vec3 c_blue  {.0f, .0f, 1.f};
+  glm::vec3 random_color{c_green};
+  glm::vec3 box_color{c_green};
+
+  float max_height{1.5f};
   float v_box_hight{1.5f};
   float vertical_speed{1.5f};
   float is_flying{true};

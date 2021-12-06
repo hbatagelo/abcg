@@ -32,6 +32,9 @@ void OpenGLWindow::handleEvent(SDL_Event& ev) {
       m_panSpeed = 1.0f;
     if (ev.key.keysym.sym == SDLK_q) m_truckSpeed = -1.0f;
     if (ev.key.keysym.sym == SDLK_e) m_truckSpeed = 1.0f;
+    if (ev.key.keysym.sym == SDLK_j) box_color = c_red;
+    if (ev.key.keysym.sym == SDLK_k) box_color = c_green;
+    if (ev.key.keysym.sym == SDLK_l) box_color = c_blue;
   }
   if (ev.type == SDL_KEYUP) {
     if ((ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w) &&
@@ -191,7 +194,7 @@ void OpenGLWindow::paintGL() {
   model = glm::scale(model, glm::vec3(0.4f+0.5f*(0.4f-v_box_size) , v_box_size, 0.4f+0.5f*(0.4f-v_box_size)));
 
   abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  abcg::glUniform4f(colorLoc, 0.0f, 0.8f, 1.0f, 1.0f);
+  abcg::glUniform4f(colorLoc, random_color[0]-0.5f, random_color[1]-0.5f, random_color[2]-0.5f, 1.0f);
   abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
                        nullptr);
 
@@ -201,30 +204,9 @@ void OpenGLWindow::paintGL() {
   model = glm::scale(model, glm::vec3(0.3f , 0.3f, 0.3f));
 
   abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  abcg::glUniform4f(colorLoc, 1.0f, 0.25f, 0.25f, 1.0f);
+  abcg::glUniform4f(colorLoc, box_color[0], box_color[1], box_color[2], 1.0f);
   abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
                        nullptr);
-
-  // Draw yellow bunny
-  // model = glm::mat4(1.0);
-  // model = glm::translate(model, glm::vec3(0.0f, 0.0f, -1.0f));
-  // model = glm::scale(model, glm::vec3(0.5f));
-
-  // abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  // abcg::glUniform4f(colorLoc, 1.0f, 0.8f, 0.0f, 1.0f);
-  // abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
-  //                      nullptr);
-
-  // // Draw blue bunny
-  // model = glm::mat4(1.0);
-  // model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
-  // model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0, 1, 0));
-  // model = glm::scale(model, glm::vec3(0.5f));
-
-  // abcg::glUniformMatrix4fv(modelMatrixLoc, 1, GL_FALSE, &model[0][0]);
-  // abcg::glUniform4f(colorLoc, 0.0f, 0.8f, 1.0f, 1.0f);
-  // abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
-  //                      nullptr);
 
 
   abcg::glBindVertexArray(0);
@@ -262,24 +244,26 @@ void OpenGLWindow::update() {
   m_camera.pan(m_panSpeed * deltaTime);
 
 
-
   if (is_flying){
-    if(v_box_hight <= 0.0f){
+    if(v_box_hight < 0.0f){
       vertical_speed *= -1;
       v_box_hight = 0.0f;
+      max_height = max_height - (max_height * 0.1f);
+      /* ******* ESCOLHER AQUI NOVA COR ENTRE [c_green,c_red, c_blue]********* */
+      random_color = c_green;
       is_flying = false;
     }
-    if (v_box_hight >= 1.5f){
+    if (v_box_hight > max_height){
       vertical_speed *= -1;
-      v_box_hight = 1.5f;
+      v_box_hight = max_height;
     }
     v_box_hight += vertical_speed*deltaTime;
   } else {
-    if(v_box_size <= 0.2f){
+    if(v_box_size < 0.2f){
       size_rate *= -1;
       v_box_size = 0.2f;
     }
-    if (v_box_size >= 0.4f){
+    if (v_box_size > 0.4f){
       size_rate *= -1;
       v_box_size = 0.4f;
       is_flying = true;

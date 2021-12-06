@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "../../../public/lookat.js"
-  "../../../public/lookat.pdb"
+  "../../bin/lookat"
+  "../../bin/lookat.pdb"
   "CMakeFiles/lookat.dir/camera.cpp.o"
   "CMakeFiles/lookat.dir/camera.cpp.o.d"
   "CMakeFiles/lookat.dir/ground.cpp.o"

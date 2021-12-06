@@ -1,2 +1,2 @@
-"/home/maciel/emsdk/upstream/emscripten/emar" cr libfmt.a CMakeFiles/fmt.dir/format.cc.o
-"/home/maciel/emsdk/upstream/emscripten/emranlib" libfmt.a
+"/usr/bin/gcc-ar-11" cr libfmt.a CMakeFiles/fmt.dir/format.cc.o
+"/usr/bin/gcc-ranlib-11" libfmt.a

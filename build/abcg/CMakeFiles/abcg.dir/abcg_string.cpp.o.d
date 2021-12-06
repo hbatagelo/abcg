@@ -1,91 +1,137 @@
 abcg/CMakeFiles/abcg.dir/abcg_string.cpp.o: \
-  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_string.cpp \
-  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_string.hpp \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/string \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__config \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/pthread.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/string_view \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__string \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/algorithm \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/initializer_list \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstddef \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/version \
-  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/stddef.h \
-  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/__stddef_max_align_t.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__nullptr \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/type_traits \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstring \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/string.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/string.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/string.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/features.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/alltypes.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/strings.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/utility \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__tuple \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdint \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdint.h \
-  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/stdint.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/stdint.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/stdint.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__debug \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/iosfwd \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/wchar.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/wchar.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stddef.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/wchar.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/memory \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__availability \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/typeinfo \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/exception \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/base.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__undef_macros \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdlib \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/stdlib.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdlib.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/stdlib.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/alloca.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/new \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/limits \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/iterator \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__functional_base \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/tuple \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdexcept \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/allocator_traits.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/pointer_traits.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__memory/utilities.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/atomic \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__threading_support \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/chrono \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ctime \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/time.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/time.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ratio \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/climits \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/limits.h \
-  /home/maciel/emsdk/upstream/lib/clang/14.0.0/include/limits.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/limits.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/limits.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/errno.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/errno.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/errno.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/wasi/api.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/sched.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/semaphore.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/fcntl.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/bits/fcntl.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/functional \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/bit \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/__bits \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cstdio \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/stdio.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/stdio.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cwchar \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cwctype \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/cctype \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/ctype.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/ctype.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/ctype.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/compat/wctype.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/c++/v1/wctype.h \
-  /home/maciel/emsdk/upstream/emscripten/cache/sysroot/include/wctype.h
+ /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_string.cpp \
+ /usr/include/stdc-predef.h \
+ /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_string.hpp \
+ /usr/include/c++/11/string \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/long-double.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
+ /usr/include/c++/11/pstl/pstl_config.h \
+ /usr/include/c++/11/bits/stringfwd.h \
+ /usr/include/c++/11/bits/memoryfwd.h \
+ /usr/include/c++/11/bits/char_traits.h \
+ /usr/include/c++/11/bits/stl_algobase.h \
+ /usr/include/c++/11/bits/functexcept.h \
+ /usr/include/c++/11/bits/exception_defines.h \
+ /usr/include/c++/11/bits/cpp_type_traits.h \
+ /usr/include/c++/11/ext/type_traits.h \
+ /usr/include/c++/11/ext/numeric_traits.h \
+ /usr/include/c++/11/bits/stl_pair.h /usr/include/c++/11/bits/move.h \
+ /usr/include/c++/11/type_traits /usr/include/c++/11/compare \
+ /usr/include/c++/11/concepts \
+ /usr/include/c++/11/bits/stl_iterator_base_types.h \
+ /usr/include/c++/11/bits/iterator_concepts.h \
+ /usr/include/c++/11/bits/ptr_traits.h \
+ /usr/include/c++/11/bits/ranges_cmp.h \
+ /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/11/bits/concept_check.h \
+ /usr/include/c++/11/debug/assertions.h \
+ /usr/include/c++/11/bits/stl_iterator.h /usr/include/c++/11/new \
+ /usr/include/c++/11/bits/exception.h /usr/include/c++/11/debug/debug.h \
+ /usr/include/c++/11/bits/predefined_ops.h \
+ /usr/include/c++/11/bits/postypes.h /usr/include/c++/11/cwchar \
+ /usr/include/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/c++/11/cstdint \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/timesize.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/time64.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/c++/11/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+ /usr/include/c++/11/ext/new_allocator.h \
+ /usr/include/c++/11/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
+ /usr/include/c++/11/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/11/iosfwd \
+ /usr/include/c++/11/cctype /usr/include/ctype.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/c++/11/bits/ostream_insert.h \
+ /usr/include/c++/11/bits/cxxabi_forced.h \
+ /usr/include/c++/11/bits/stl_function.h \
+ /usr/include/c++/11/backward/binders.h \
+ /usr/include/c++/11/bits/stl_algo.h /usr/include/c++/11/cstdlib \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/timer_t.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/c++/11/bits/std_abs.h \
+ /usr/include/c++/11/bits/algorithmfwd.h \
+ /usr/include/c++/11/initializer_list /usr/include/c++/11/bits/stl_heap.h \
+ /usr/include/c++/11/bits/stl_tempbuf.h \
+ /usr/include/c++/11/bits/stl_construct.h \
+ /usr/include/c++/11/bits/uniform_int_dist.h \
+ /usr/include/c++/11/bits/range_access.h \
+ /usr/include/c++/11/bits/basic_string.h \
+ /usr/include/c++/11/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/11/ext/alloc_traits.h \
+ /usr/include/c++/11/bits/alloc_traits.h /usr/include/c++/11/string_view \
+ /usr/include/c++/11/bits/functional_hash.h \
+ /usr/include/c++/11/bits/hash_bytes.h \
+ /usr/include/c++/11/bits/ranges_base.h \
+ /usr/include/c++/11/bits/max_size_type.h /usr/include/c++/11/numbers \
+ /usr/include/c++/11/bits/string_view.tcc \
+ /usr/include/c++/11/ext/string_conversions.h /usr/include/c++/11/cstdio \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/c++/11/cerrno /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+ /usr/include/c++/11/bits/charconv.h \
+ /usr/include/c++/11/bits/basic_string.tcc

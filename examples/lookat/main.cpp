@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
     abcg::Application app(argc, argv);
 
     auto window{std::make_unique<OpenGLWindow>()};
-    window->setOpenGLSettings({.samples = 4});
+    window->setOpenGLSettings({.samples = 4, .vsync = true});
     window->setWindowSettings(
         {.width = 600, .height = 600, .title = "LookAt Camera"});
 

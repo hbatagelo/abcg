@@ -1,2 +1,2 @@
-"/home/maciel/emsdk/upstream/emscripten/emar" cr libfoo.a CMakeFiles/foo.dir/foo.c.o
-"/home/maciel/emsdk/upstream/emscripten/emranlib" libfoo.a
+"/usr/bin/gcc-ar-11" cr libfoo.a CMakeFiles/foo.dir/foo.c.o
+"/usr/bin/gcc-ranlib-11" libfoo.a

@@ -250,7 +250,25 @@ void OpenGLWindow::update() {
       v_box_hight = 0.0f;
       max_height = max_height - (max_height * 0.1f);
       /* ******* ESCOLHER AQUI NOVA COR ENTRE [c_green,c_red, c_blue]********* */
-      random_color = c_green;
+      m_randomEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+
+      randomInt = m_randomDist(m_randomEngine);
+      randomIndex = randomInt % 3;
+
+      if(randomIndex == 0)
+      {
+        random_color = c_green;
+      }
+      else if(randomIndex == 1)
+      {
+        random_color = c_red;
+      }
+      else{
+        random_color = c_blue;
+      }
+
+      //random_color = c_green;
+
       is_flying = false;
     }
     if (v_box_hight > max_height){

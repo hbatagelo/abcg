@@ -2,6 +2,7 @@
 #define OPENGLWINDOW_HPP_
 
 #include <vector>
+#include <random>
 
 #include "abcg.hpp"
 #include "camera.hpp"
@@ -33,6 +34,9 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   int m_viewportWidth{};
   int m_viewportHeight{};
 
+  int randomInt=0;
+  int randomIndex=0;
+
   Camera m_camera;
   float m_dollySpeed{0.0f};
   float m_truckSpeed{0.0f};
@@ -47,6 +51,8 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   glm::vec3 random_color{c_green};
   glm::vec3 box_color{c_green};
 
+  // melhoria: criar um vetor com as cores e definir com indice ao inves de if elses
+
   float max_height{1.5f};
   float v_box_hight{1.5f};
   float vertical_speed{1.5f};
@@ -56,6 +62,9 @@ class OpenGLWindow : public abcg::OpenGLWindow {
 
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;
+
+  std::default_random_engine m_randomEngine;    // Teste para gerar posicoes aleatorias da bolinha
+  std::uniform_real_distribution<float> m_randomDist{1, 10};
 
   void loadModelFromFile(std::string_view path);
   void update();

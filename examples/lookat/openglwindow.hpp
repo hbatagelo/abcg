@@ -4,6 +4,8 @@
 #include <vector>
 #include <random>
 
+#include <imgui.h>  // necessario para fontes?
+
 #include "abcg.hpp"
 #include "camera.hpp"
 #include "ground.hpp"
@@ -66,8 +68,35 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   std::default_random_engine m_randomEngine;    // Teste para gerar posicoes aleatorias da bolinha
   std::uniform_real_distribution<float> m_randomDist{1, 10};
 
+
+  // UI variables
+
+  ImFont* m_font{};
+
+
+  // Game State Variables
+
+  int gameState=0;
+
+  float stateTimer=0.0f;
+
+  int jumpCount=0;
+
+
+  // Light and material properties
+  glm::vec4 m_lightDir{-1.0f, -1.0f, -1.0f, 0.0f};
+  glm::vec4 m_Ia{1.0f, 1.0f, 1.0f, 1.0f};
+  glm::vec4 m_Id{1.0f, 1.0f, 1.0f, 1.0f};
+  glm::vec4 m_Is{1.0f, 1.0f, 1.0f, 1.0f};
+  glm::vec4 m_Ka{0.1f, 0.1f, 0.1f, 1.0f};
+  glm::vec4 m_Kd{0.7f, 0.7f, 0.7f, 1.0f};
+  glm::vec4 m_Ks{1.0f, 1.0f, 1.0f, 1.0f};
+  float m_shininess{25.0f};
+
+
   void loadModelFromFile(std::string_view path);
   void update();
+  void restart();
 };
 
 #endif

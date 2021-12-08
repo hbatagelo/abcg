@@ -60,6 +60,15 @@ void OpenGLWindow::initializeGL() {
   // Enable depth buffering
   abcg::glEnable(GL_DEPTH_TEST);
 
+
+  // Load a new font
+  ImGuiIO &io{ImGui::GetIO()};
+  const auto filename{getAssetsPath() + "Inconsolata-Medium.ttf"};
+  m_font = io.Fonts->AddFontFromFileTTF(filename.c_str(), 60.0f);
+  if (m_font == nullptr) {
+    throw abcg::Exception{abcg::Exception::Runtime("Cannot load font file")};
+  }
+
   // Create program
   m_program = createProgramFromFile(getAssetsPath() + "lookat.vert",
                                     getAssetsPath() + "lookat.frag");
@@ -161,7 +170,27 @@ void OpenGLWindow::loadModelFromFile(std::string_view path) {
 }
 
 void OpenGLWindow::paintGL() {
-  update();
+  
+  if(gameState == 0 ){  // Só modifica a tela se o estado for 0, ou seja, estado = jogar!
+
+    update();
+
+  }
+  else{
+
+    // Cronometro de tempo de estados de win e game over
+    const float deltaTime{static_cast<float>(getDeltaTime())};
+    stateTimer += deltaTime;
+
+  }
+
+  if(stateTimer >= 5.0f){  // Apos 5 segs de tela de win/game over, reinicia o game!
+
+    stateTimer = 0.0f;
+    restart();
+
+  }
+  
 
   // Clear color buffer and depth buffer
   abcg::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -197,6 +226,7 @@ void OpenGLWindow::paintGL() {
   abcg::glUniform4f(colorLoc, random_color[0]-0.5f, random_color[1]-0.5f, random_color[2]-0.5f, 1.0f);
   abcg::glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT,
                        nullptr);
+  
 
   // Draw red Cube
   model = glm::mat4(1.0);
@@ -217,7 +247,35 @@ void OpenGLWindow::paintGL() {
   abcg::glUseProgram(0);
 }
 
-void OpenGLWindow::paintUI() { abcg::OpenGLWindow::paintUI(); }
+//void OpenGLWindow::paintUI() { abcg::OpenGLWindow::paintUI(); }     // trocar pelo paintUI do asteroids!
+
+
+void OpenGLWindow::paintUI() {
+  abcg::OpenGLWindow::paintUI();
+
+  {
+    const auto size{ImVec2(300, 85)};
+    const auto position{ImVec2((m_viewportWidth - size.x) / 2.0f,
+                               (m_viewportHeight - size.y) / 2.0f)};
+    ImGui::SetNextWindowPos(position);
+    ImGui::SetNextWindowSize(size);
+    ImGuiWindowFlags flags{ImGuiWindowFlags_NoBackground |
+                           ImGuiWindowFlags_NoTitleBar |
+                           ImGuiWindowFlags_NoInputs};
+    ImGui::Begin(" ", nullptr, flags);
+    ImGui::PushFont(m_font);
+
+    if (gameState == 1) {
+      ImGui::Text("Game Over!");
+    } else if (gameState == 2) {
+      ImGui::Text("*You Win!*");
+    }
+
+    ImGui::PopFont();
+    ImGui::End();
+  }
+
+}
 
 void OpenGLWindow::resizeGL(int width, int height) {
   m_viewportWidth = width;
@@ -255,6 +313,7 @@ void OpenGLWindow::update() {
       randomInt = m_randomDist(m_randomEngine);
       randomIndex = randomInt % 3;
 
+      // logica para definir cor aleatoria
       if(randomIndex == 0)
       {
         random_color = c_green;
@@ -285,7 +344,44 @@ void OpenGLWindow::update() {
       size_rate *= -1;
       v_box_size = 0.4f;
       is_flying = true;
+
+      // logica simples para testar telas de gameover e win
+      // inserir aqui futuramente criterios para definir win e game over states
+      jumpCount += 1;
+
+      if (jumpCount == 10){
+
+        gameState = 1;
+
+      }
+      else if (jumpCount == 20){
+
+        gameState = 2;
+      }
+      else if(jumpCount >= 30){
+
+        gameState = 0;
+        jumpCount = 0;
+      }
     }
     v_box_size += size_rate*deltaTime;
   }
+}
+
+void OpenGLWindow::restart() {
+
+  // define o estado para jogando
+  gameState = 0;
+
+  // redefinir variaveis para estado inicial
+  jumpCount = 0;
+
+  v_box_hight = 1.5f;
+  v_box_size = 0.4f;
+  max_height = 1.5f;
+
+  vertical_speed = 1.5f;
+
+  is_flying = true;
+
 }

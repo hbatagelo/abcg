@@ -3,14 +3,20 @@ abcg/CMakeFiles/abcg.dir/abcg_image.cpp.o: \
  /usr/include/stdc-predef.h \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_image.hpp \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_external.hpp \
- /usr/include/GL/glew.h /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/GL/glew.h /usr/include/c++/11/cstddef \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
+ /usr/include/c++/11/pstl/pstl_config.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
+ /usr/include/c++/11/cstdint \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
@@ -55,11 +61,7 @@ abcg/CMakeFiles/abcg.dir/abcg_image.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
  /usr/include/c++/11/stdlib.h /usr/include/c++/11/cstdlib \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
- /usr/include/c++/11/pstl/pstl_config.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
@@ -223,7 +225,7 @@ abcg/CMakeFiles/abcg.dir/abcg_image.cpp.o: \
  /usr/include/c++/11/iosfwd /usr/include/c++/11/bits/stringfwd.h \
  /usr/include/c++/11/bits/memoryfwd.h /usr/include/c++/11/bits/postypes.h \
  /usr/include/c++/11/cwchar /usr/include/c++/11/bits/char_traits.h \
- /usr/include/c++/11/cstdint /usr/include/c++/11/bits/functional_hash.h \
+ /usr/include/c++/11/bits/functional_hash.h \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/ostream_insert.h \
  /usr/include/c++/11/bits/cxxabi_forced.h \
@@ -304,7 +306,7 @@ abcg/CMakeFiles/abcg.dir/abcg_image.cpp.o: \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/variant \
  /usr/include/c++/11/bits/parse_numbers.h \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/cppitertools/internal/iterbase.hpp \
- /usr/include/c++/11/cstddef /usr/include/c++/11/optional \
+ /usr/include/c++/11/optional \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/cppitertools/internal/iterbase.hpp \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/cppitertools/batched.hpp \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/cppitertools/internal/iteratoriterator.hpp \

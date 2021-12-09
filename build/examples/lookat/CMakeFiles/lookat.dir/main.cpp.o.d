@@ -201,9 +201,10 @@ examples/lookat/CMakeFiles/lookat.dir/main.cpp.o: \
  /usr/include/c++/11/experimental/source_location \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_image.hpp \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_external.hpp \
- /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h \
- /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
- /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
+ /usr/include/GL/glew.h /usr/include/c++/11/cstddef /usr/include/GL/glu.h \
+ /usr/include/GL/gl.h /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
+ /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
  /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
  /usr/include/SDL2/close_code.h /usr/include/c++/11/stdlib.h \
@@ -350,7 +351,6 @@ examples/lookat/CMakeFiles/lookat.dir/main.cpp.o: \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/glm/detail/qualifier.hpp \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/glm/detail/setup.hpp \
  /usr/include/c++/11/cassert /usr/include/assert.h \
- /usr/include/c++/11/cstddef \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/glm/simd/platform.h \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/glm/detail/type_vec2.inl \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/glm/detail/compute_vector_relational.hpp \
@@ -531,6 +531,14 @@ examples/lookat/CMakeFiles/lookat.dir/main.cpp.o: \
  /home/maciel/Documentos/Comp_grafica/abcg/examples/lookat/openglwindow.hpp \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/random \
+ /usr/include/c++/11/bits/random.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+ /usr/include/c++/11/bits/random.tcc /usr/include/c++/11/numeric \
+ /usr/include/c++/11/bits/stl_numeric.h \
+ /usr/include/c++/11/pstl/glue_numeric_defs.h \
+ /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/imgui/imgui.h \
+ /home/maciel/Documentos/Comp_grafica/abcg/abcg/external/imgui/imconfig.h \
  /home/maciel/Documentos/Comp_grafica/abcg/examples/lookat/camera.hpp \
- /home/maciel/Documentos/Comp_grafica/abcg/examples/lookat/ground.hpp
+ /home/maciel/Documentos/Comp_grafica/abcg/examples/lookat/ground.hpp \
+ /home/maciel/Documentos/Comp_grafica/abcg/examples/lookat/model.hpp

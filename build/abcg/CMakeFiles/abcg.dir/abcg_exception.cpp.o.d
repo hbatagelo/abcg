@@ -276,5 +276,5 @@ abcg/CMakeFiles/abcg.dir/abcg_exception.cpp.o: \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h \
  /home/maciel/Documentos/Comp_grafica/abcg/abcg/abcg_external.hpp \
- /usr/include/GL/glew.h /usr/include/GL/glu.h /usr/include/GL/gl.h \
- /usr/include/SDL2/SDL.h
+ /usr/include/GL/glew.h /usr/include/c++/11/cstddef /usr/include/GL/glu.h \
+ /usr/include/GL/gl.h /usr/include/SDL2/SDL.h

@@ -1,24 +1,24 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_bc710/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_bc710.dir/build.make CMakeFiles/cmTC_bc710.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ee124/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ee124.dir/build.make CMakeFiles/cmTC_ee124.dir/build
 gmake[1]: Entrando no diretório '/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp'
 
-Building C object CMakeFiles/cmTC_bc710.dir/src.c.o
-/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_bc710.dir/src.c.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_bc710
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc710.dir/link.txt --verbose=1
-/usr/bin/cc CMakeFiles/cmTC_bc710.dir/src.c.o -o cmTC_bc710 
-/usr/bin/ld: CMakeFiles/cmTC_bc710.dir/src.c.o: na função "main":
+Building C object CMakeFiles/cmTC_ee124.dir/src.c.o
+/usr/lib/ccache/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_ee124.dir/src.c.o -c /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_ee124
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ee124.dir/link.txt --verbose=1
+/usr/lib/ccache/cc CMakeFiles/cmTC_ee124.dir/src.c.o -o cmTC_ee124 
+/usr/bin/ld: CMakeFiles/cmTC_ee124.dir/src.c.o: na função "main":
 src.c:(.text+0x2f): referência não definida para "pthread_create"
 /usr/bin/ld: src.c:(.text+0x3b): referência não definida para "pthread_detach"
 /usr/bin/ld: src.c:(.text+0x47): referência não definida para "pthread_cancel"
 /usr/bin/ld: src.c:(.text+0x58): referência não definida para "pthread_join"
 collect2: error: ld returned 1 exit status
-gmake[1]: *** [CMakeFiles/cmTC_bc710.dir/build.make:99: cmTC_bc710] Erro 1
+gmake[1]: *** [CMakeFiles/cmTC_ee124.dir/build.make:99: cmTC_ee124] Erro 1
 gmake[1]: Saindo do diretório '/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp'
 
-gmake: *** [Makefile:127: cmTC_bc710/fast] Erro 2
+gmake: *** [Makefile:127: cmTC_ee124/fast] Erro 2
 
 
 Source file was:
@@ -45,70 +45,20 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_5c69b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5c69b.dir/build.make CMakeFiles/cmTC_5c69b.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d0db9/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d0db9.dir/build.make CMakeFiles/cmTC_d0db9.dir/build
 gmake[1]: Entrando no diretório '/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp'
 
-Building C object CMakeFiles/cmTC_5c69b.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_5c69b.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.21/Modules/CheckFunctionExists.c
-Linking C executable cmTC_5c69b
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5c69b.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_5c69b.dir/CheckFunctionExists.c.o -o cmTC_5c69b  -lpthreads 
+Building C object CMakeFiles/cmTC_d0db9.dir/CheckFunctionExists.c.o
+/usr/lib/ccache/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_d0db9.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d0db9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d0db9.dir/link.txt --verbose=1
+/usr/lib/ccache/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_d0db9.dir/CheckFunctionExists.c.o -o cmTC_d0db9  -lpthreads 
 /usr/bin/ld: não foi possível localizar -lpthreads
 collect2: error: ld returned 1 exit status
-gmake[1]: *** [CMakeFiles/cmTC_5c69b.dir/build.make:99: cmTC_5c69b] Erro 1
+gmake[1]: *** [CMakeFiles/cmTC_d0db9.dir/build.make:99: cmTC_d0db9] Erro 1
 gmake[1]: Saindo do diretório '/home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp'
 
-gmake: *** [Makefile:127: cmTC_5c69b/fast] Erro 2
-
-
-
-Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
-Change Dir: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):/usr/bin/ninja cmTC_99b19 && [1/2] Building C object CMakeFiles/cmTC_99b19.dir/src.c.o
-[2/2] Linking C executable cmTC_99b19
-FAILED: cmTC_99b19 
-: && /bin/x86_64-linux-gnu-gcc-10   CMakeFiles/cmTC_99b19.dir/src.c.o -o cmTC_99b19   && :
-/usr/bin/ld: CMakeFiles/cmTC_99b19.dir/src.c.o: na função "main":
-src.c:(.text+0x2f): referência não definida para "pthread_create"
-/usr/bin/ld: src.c:(.text+0x3b): referência não definida para "pthread_detach"
-/usr/bin/ld: src.c:(.text+0x47): referência não definida para "pthread_cancel"
-/usr/bin/ld: src.c:(.text+0x58): referência não definida para "pthread_join"
-collect2: error: ld returned 1 exit status
-ninja: build stopped: subcommand failed.
-
-
-Source file was:
-#include <pthread.h>
-
-static void* test_func(void* data)
-{
-  return data;
-}
-
-int main(void)
-{
-  pthread_t thread;
-  pthread_create(&thread, NULL, test_func, NULL);
-  pthread_detach(thread);
-  pthread_cancel(thread);
-  pthread_join(thread, NULL);
-  pthread_atfork(NULL, NULL, NULL);
-  pthread_exit(NULL);
-
-  return 0;
-}
-
-Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/maciel/Documentos/Comp_grafica/abcg/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):/usr/bin/ninja cmTC_db340 && [1/2] Building C object CMakeFiles/cmTC_db340.dir/CheckFunctionExists.c.o
-[2/2] Linking C executable cmTC_db340
-FAILED: cmTC_db340 
-: && /bin/x86_64-linux-gnu-gcc-10 -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_db340.dir/CheckFunctionExists.c.o -o cmTC_db340  -lpthreads && :
-/usr/bin/ld: não foi possível localizar -lpthreads
-collect2: error: ld returned 1 exit status
-ninja: build stopped: subcommand failed.
+gmake: *** [Makefile:127: cmTC_d0db9/fast] Erro 2
 
 
 

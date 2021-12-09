@@ -9,14 +9,15 @@
 #include "abcg.hpp"
 #include "camera.hpp"
 #include "ground.hpp"
+#include "model.hpp"
 
-struct Vertex {
-  glm::vec3 position;
-
-  bool operator==(const Vertex& other) const {
-    return position == other.position;
-  }
-};
+// struct Vertex {
+//   glm::vec3 position;
+// 
+//   bool operator==(const Vertex& other) const {
+//     return position == other.position;
+//   }
+// };
 
 class OpenGLWindow : public abcg::OpenGLWindow {
  protected:
@@ -58,14 +59,15 @@ class OpenGLWindow : public abcg::OpenGLWindow {
   float max_height{1.5f};
   float v_box_hight{1.5f};
   float vertical_speed{1.5f};
-  float is_flying{true};
+  bool is_flying{true};
 
   Ground m_ground;
-
+  
+  Model m_model;
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;
 
-  std::default_random_engine m_randomEngine;    // Teste para gerar posicoes aleatorias da bolinha
+  std::default_random_engine m_randomEngine;    // Gerador de números aleatórios para a cor do bloco
   std::uniform_real_distribution<float> m_randomDist{1, 10};
 
 

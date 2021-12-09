@@ -307,6 +307,26 @@ void OpenGLWindow::update() {
       vertical_speed *= -1;
       v_box_hight = 0.0f;
       max_height = max_height - (max_height * 0.1f);
+      
+
+      if (box_color == random_color)
+      {
+        jumpCount += 1;
+      } else {
+        gameState = 1;
+      }
+
+      is_flying = false;
+    }
+    if (v_box_hight > max_height){
+      vertical_speed *= -1;
+      v_box_hight = max_height;
+    }
+    v_box_hight += vertical_speed*deltaTime;
+  } else {
+    if(v_box_size < 0.2f){
+      size_rate *= -1;
+      v_box_size = 0.2f;
       /* ******* ESCOLHER AQUI NOVA COR ENTRE [c_green,c_red, c_blue]********* */
       m_randomEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
 
@@ -326,42 +346,15 @@ void OpenGLWindow::update() {
         random_color = c_blue;
       }
 
-      //random_color = c_green;
-
-      is_flying = false;
-    }
-    if (v_box_hight > max_height){
-      vertical_speed *= -1;
-      v_box_hight = max_height;
-    }
-    v_box_hight += vertical_speed*deltaTime;
-  } else {
-    if(v_box_size < 0.2f){
-      size_rate *= -1;
-      v_box_size = 0.2f;
     }
     if (v_box_size > 0.4f){
       size_rate *= -1;
       v_box_size = 0.4f;
       is_flying = true;
 
-      // logica simples para testar telas de gameover e win
-      // inserir aqui futuramente criterios para definir win e game over states
-      jumpCount += 1;
-
-      if (jumpCount == 10){
-
-        gameState = 1;
-
-      }
-      else if (jumpCount == 20){
-
+      // logica do win state
+      if (jumpCount == 14){
         gameState = 2;
-      }
-      else if(jumpCount >= 30){
-
-        gameState = 0;
-        jumpCount = 0;
       }
     }
     v_box_size += size_rate*deltaTime;

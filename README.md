@@ -30,6 +30,12 @@ Professor: Harlen Batagelo                                                 --   
   K -> Altera a cor para Verde  
   L -> Altera a cor para Azul  
  
+ 
+ ***Observação**
+ 
+ Devido a problemas no desenvolvimento, não foi possível concluir o desenvolvimento do jogo utilizando iluminação e texturas. 
+ Mais detalhes em: https://github.com/edumacsou/abcg/tree/teste-luz
+ 
 
 ABCg
 ======

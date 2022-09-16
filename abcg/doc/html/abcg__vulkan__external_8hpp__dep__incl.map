@@ -1,0 +1,15 @@
+<map id="/home/harlen/dev/abcg2/abcg/abcg_vulkan_external.hpp" name="/home/harlen/dev/abcg2/abcg/abcg_vulkan_external.hpp">
+<area shape="rect" id="node1" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="542,5,773,47"/>
+<area shape="rect" id="node2" href="$abcg__vulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="568,95,747,136"/>
+<area shape="rect" id="node3" href="$abcg__vulkan_8cpp.html" title=" " alt="" coords="5,295,184,337"/>
+<area shape="rect" id="node4" href="$abcg__vulkan__device_8hpp.html" title="Header file of abcg::VulkanDevice." alt="" coords="419,191,639,233"/>
+<area shape="rect" id="node7" href="$abcg__vulkan__window_8hpp.html" title="Header file of abcg::VulkanWindow." alt="" coords="829,295,1056,337"/>
+<area shape="rect" id="node9" href="$abcg__vulkan__instance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="984,191,1216,233"/>
+<area shape="rect" id="node12" href="$abcg__vulkan__physical__device_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="192,184,395,240"/>
+<area shape="rect" id="node13" href="$abcg__vulkan__swapchain_8hpp.html" title="Header file of abcg::VulkanSwapchain." alt="" coords="663,191,910,233"/>
+<area shape="rect" id="node5" href="$abcg__vulkan__device_8cpp.html" title="Definition of abcg::VulkanDevice." alt="" coords="259,295,477,337"/>
+<area shape="rect" id="node6" href="$abcg__vulkan__swapchain_8cpp.html" title="Definition of abcg::VulkanSwapchain." alt="" coords="572,392,817,433"/>
+<area shape="rect" id="node8" href="$abcg__vulkan__window_8cpp.html" title="Definition of abcg::VulkanWindow members." alt="" coords="926,392,1151,433"/>
+<area shape="rect" id="node10" href="$abcg__vulkan__instance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="1081,295,1311,337"/>
+<area shape="rect" id="node11" href="$abcg__vulkan__physical__device_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="552,288,755,344"/>
+</map>

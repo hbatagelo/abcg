@@ -1,0 +1,8 @@
+<map id="/home/harlen/dev/abcg2/abcg/abcg_shader.hpp" name="/home/harlen/dev/abcg2/abcg/abcg_shader.hpp">
+<area shape="rect" id="node1" title="Declaration of helper functions for building shaders and programs." alt="" coords="68,5,247,47"/>
+<area shape="rect" id="node2" href="$abcg__opengl__shader_8hpp.html" title="Declaration of helper functions for building OpenGL shaders." alt="" coords="47,95,268,136"/>
+<area shape="rect" id="node3" href="$abcg__opengl_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="5,273,184,315"/>
+<area shape="rect" id="node4" href="$abcg__opengl__shader_8cpp.html" title="Definition of helper functions for building OpenGL shaders." alt="" coords="47,184,267,225"/>
+<area shape="rect" id="node5" href="$abcg__opengl__window_8hpp.html" title="Header file of abcg::OpenGLWindow." alt="" coords="292,184,519,225"/>
+<area shape="rect" id="node6" href="$abcg__opengl__window_8cpp.html" title="Definition of abcg::OpenGLWindow members." alt="" coords="292,273,519,315"/>
+</map>

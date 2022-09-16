@@ -5,7 +5,7 @@ function(set_project_warnings project_target project_warnings)
   # Set warning flags for MSVC
   set(_MSVC_WARNINGS
       /W4 # Baseline reasonable warnings
-      /w14242 # 'identfier': conversion from 'type1' to 'type1', possible loss
+      /w14242 # 'identifier': conversion from 'type1' to 'type1', possible loss
               # of data
       /w14254 # 'operator': conversion from 'type1:field_bits' to
               # 'type2:field_bits', possible loss of data
@@ -35,6 +35,7 @@ function(set_project_warnings project_target project_warnings)
       /w14928 # illegal copy-initialization; more than one user-defined
               # conversion has been implicitly applied
       /permissive- # standards conformance mode for MSVC compiler
+      /wd4201 # Disable "nonstandard extension used: nameless struct/union"
   )
 
   # Set warning flags for Clang
@@ -86,6 +87,7 @@ function(set_project_warnings project_target project_warnings)
   else()
     set(_PROJECT_WARNINGS ${_GCC_WARNINGS})
   endif()
+
   target_compile_options(${project_target} INTERFACE ${_PROJECT_WARNINGS})
 
   set(${project_warnings}

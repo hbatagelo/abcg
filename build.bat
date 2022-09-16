@@ -1,6 +1,7 @@
 @echo off
 
-set BUILD_TYPE=Debug
+if "%1"=="" ( set BUILD_TYPE=Release  ) else ( set BUILD_TYPE=%1 )
+set CMAKE_EXTRA_ARGS=%2
 
 :: Reset build directory
 rd /s /q build 2>nul
@@ -10,6 +11,7 @@ mkdir build & cd build
 cmake -GNinja -DCMAKE_BUILD_TYPE=%BUILD_TYPE% ^
               -DCMAKE_CXX_COMPILER=g++ ^
               -DCMAKE_C_COMPILER=gcc ^
+              %CMAKE_EXTRA_ARGS% ^
               ..
 
 :: Build

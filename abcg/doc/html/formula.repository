@@ -1,0 +1,2 @@
+\_form#0=116x14:$\lfloor \log_2(\max(w, h)) \rfloor + 1$
+\_form#1=30x14:$(w,h)$

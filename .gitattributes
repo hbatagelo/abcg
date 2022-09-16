@@ -1,2 +1,3 @@
 # Ensure that text files will not have their line endings normalized
 * -text
+abcg/doc/** linguist-vendored

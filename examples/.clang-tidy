@@ -1,0 +1,5 @@
+---
+# Additional checks disabled for examples
+Checks: '-readability-identifier-length,
+         -readability-function-cognitive-complexity,
+         -performance-no-int-to-ptr'

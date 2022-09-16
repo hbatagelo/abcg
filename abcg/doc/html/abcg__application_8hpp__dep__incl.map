@@ -1,0 +1,8 @@
+<map id="/home/harlen/dev/abcg2/abcg/abcg_application.hpp" name="/home/harlen/dev/abcg2/abcg/abcg_application.hpp">
+<area shape="rect" id="node1" title="Header file of abcg::Application." alt="" coords="442,5,641,47"/>
+<area shape="rect" id="node2" href="$abcg_8hpp.html" title="Shortcut header that includes the most common ABCg headers." alt="" coords="5,95,184,136"/>
+<area shape="rect" id="node3" href="$abcg__application_8cpp.html" title="Definition of abcg::Application members." alt="" coords="209,95,407,136"/>
+<area shape="rect" id="node4" href="$abcg__opengl__shader_8cpp.html" title="Definition of helper functions for building OpenGL shaders." alt="" coords="431,95,651,136"/>
+<area shape="rect" id="node5" href="$abcg__vulkan__instance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="675,95,906,136"/>
+<area shape="rect" id="node6" href="$abcg__vulkan__swapchain_8cpp.html" title="Definition of abcg::VulkanSwapchain." alt="" coords="931,95,1176,136"/>
+</map>

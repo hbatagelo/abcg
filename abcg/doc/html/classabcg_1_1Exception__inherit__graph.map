@@ -1,0 +1,9 @@
+<map id="abcg::Exception" name="abcg::Exception">
+<area shape="rect" id="node1" title="Base class for ABCg exception objects." alt="" coords="168,107,293,133"/>
+<area shape="rect" id="node3" href="$classabcg_1_1OpenGLError.html" title="Represents an exception object for OpenGL errors." alt="" coords="349,5,492,32"/>
+<area shape="rect" id="node4" href="$classabcg_1_1RuntimeError.html" title="Represents an exception object for runtime errors." alt="" coords="347,56,494,83"/>
+<area shape="rect" id="node5" href="$classabcg_1_1SDLError.html" title="Represents an exception object for SDL errors." alt="" coords="362,107,479,133"/>
+<area shape="rect" id="node6" href="$classabcg_1_1SDLImageError.html" title="Represents an exception object for SDL_image errors." alt="" coords="341,157,500,184"/>
+<area shape="rect" id="node7" href="$classabcg_1_1VulkanError.html" title="Represents an exception object for Vulkan runtime errors." alt="" coords="353,208,488,235"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,107,120,133"/>
+</map>

@@ -9,15 +9,14 @@
 # Visual Studio and VS Code
 .vs
 .vscode
+.devcontainer
 
 # Build directories
 build
+out
 cmake-build*
 
-# Doxygen documentation
-Dox
-
-# Conan imports for imgui
+# Conan imports for Dear ImGui
 bindings
 
 # CMake build configuration
@@ -28,3 +27,6 @@ compile_commands.json
 public/*.data
 public/*.js
 public/*.wasm
+
+# Git
+*.stackdump

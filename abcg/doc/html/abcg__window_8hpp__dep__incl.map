@@ -1,0 +1,12 @@
+<map id="/home/harlen/dev/abcg2/abcg/abcg_window.hpp" name="/home/harlen/dev/abcg2/abcg/abcg_window.hpp">
+<area shape="rect" id="node1" title="Header file of abcg::Window." alt="" coords="555,5,734,47"/>
+<area shape="rect" id="node2" href="$abcg__application_8cpp.html" title="Definition of abcg::Application members." alt="" coords="5,95,204,136"/>
+<area shape="rect" id="node3" href="$abcg__opengl__window_8cpp.html" title="Definition of abcg::OpenGLWindow members." alt="" coords="127,184,354,225"/>
+<area shape="rect" id="node4" href="$abcg__opengl__window_8hpp.html" title="Header file of abcg::OpenGLWindow." alt="" coords="278,95,505,136"/>
+<area shape="rect" id="node6" href="$abcg__vulkan__instance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="529,95,760,136"/>
+<area shape="rect" id="node7" href="$abcg__vulkan__window_8cpp.html" title="Definition of abcg::VulkanWindow members." alt="" coords="685,184,911,225"/>
+<area shape="rect" id="node8" href="$abcg__vulkan__window_8hpp.html" title="Header file of abcg::VulkanWindow." alt="" coords="835,95,1062,136"/>
+<area shape="rect" id="node10" href="$abcg__window_8cpp.html" title="Definition of abcg::Window members." alt="" coords="1086,95,1265,136"/>
+<area shape="rect" id="node5" href="$abcg__opengl_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="378,184,557,225"/>
+<area shape="rect" id="node9" href="$abcg__vulkan__swapchain_8cpp.html" title="Definition of abcg::VulkanSwapchain." alt="" coords="935,184,1181,225"/>
+</map>

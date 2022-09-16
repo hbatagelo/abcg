@@ -1,0 +1,4 @@
+<map id="abcg::VulkanPipelineSettings" name="abcg::VulkanPipelineSettings">
+<area shape="rect" id="node1" title="Creation info structure for abcg::VulkanPipeline::create." alt="" coords="5,95,215,121"/>
+<area shape="rect" id="node2" href="$classabcg_1_1VulkanSwapchain.html" title="A class for representing a Vulkan swapchain." alt="" coords="23,5,197,32"/>
+</map>

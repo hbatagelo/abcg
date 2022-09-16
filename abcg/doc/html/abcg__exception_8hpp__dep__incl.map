@@ -1,0 +1,19 @@
+<map id="/home/harlen/dev/abcg2/abcg/abcg_exception.hpp" name="/home/harlen/dev/abcg2/abcg/abcg_exception.hpp">
+<area shape="rect" id="node1" title="Header file of abcg::Exception and derived classes." alt="" coords="1385,5,1575,47"/>
+<area shape="rect" id="node2" href="$abcg_8hpp.html" title="Shortcut header that includes the most common ABCg headers." alt="" coords="5,102,184,143"/>
+<area shape="rect" id="node3" href="$abcg__application_8cpp.html" title="Definition of abcg::Application members." alt="" coords="209,102,407,143"/>
+<area shape="rect" id="node4" href="$abcg__exception_8cpp.html" title="Definition of abcg::Exception members." alt="" coords="431,102,622,143"/>
+<area shape="rect" id="node5" href="$abcg__opengl__error_8hpp.html" title="Header file of abcg::OpenGLError and derived classes." alt="" coords="647,102,855,143"/>
+<area shape="rect" id="node8" href="$abcg__opengl__image_8cpp.html" title="Definition of OpenGL texture loading helper functions." alt="" coords="879,102,1097,143"/>
+<area shape="rect" id="node9" href="$abcg__opengl__shader_8cpp.html" title="Definition of helper functions for building OpenGL shaders." alt="" coords="1122,102,1342,143"/>
+<area shape="rect" id="node10" href="$abcg__opengl__window_8cpp.html" title="Definition of abcg::OpenGLWindow members." alt="" coords="1367,102,1593,143"/>
+<area shape="rect" id="node11" href="$abcg__vulkan__device_8cpp.html" title="Definition of abcg::VulkanDevice." alt="" coords="1617,102,1836,143"/>
+<area shape="rect" id="node12" href="$abcg__vulkan__error_8hpp.html" title="Header file of abcg::VulkanError and derived classes." alt="" coords="1861,102,2067,143"/>
+<area shape="rect" id="node14" href="$abcg__vulkan__window_8cpp.html" title="Definition of abcg::VulkanWindow members." alt="" coords="1993,199,2218,240"/>
+<area shape="rect" id="node15" href="$abcg__vulkan__instance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="2143,102,2374,143"/>
+<area shape="rect" id="node16" href="$abcg__vulkan__physical__device_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="2399,95,2601,151"/>
+<area shape="rect" id="node17" href="$abcg__vulkan__swapchain_8cpp.html" title="Definition of abcg::VulkanSwapchain." alt="" coords="2625,102,2871,143"/>
+<area shape="rect" id="node6" href="$abcg__opengl__error_8cpp.html" title="Definition of abcg::OpenGLError members." alt="" coords="526,199,733,240"/>
+<area shape="rect" id="node7" href="$abcg__opengl__function_8cpp.html" title="Definition of OpenGL&#45;related error checking functions." alt="" coords="757,199,987,240"/>
+<area shape="rect" id="node13" href="$abcg__vulkan__error_8cpp.html" title="Definition of abcg::VulkanError members." alt="" coords="1762,199,1969,240"/>
+</map>

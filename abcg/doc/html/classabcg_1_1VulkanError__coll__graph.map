@@ -1,0 +1,5 @@
+<map id="abcg::VulkanError" name="abcg::VulkanError">
+<area shape="rect" id="node1" title="Represents an exception object for Vulkan runtime errors." alt="" coords="5,155,140,181"/>
+<area shape="rect" id="node2" href="$classabcg_1_1Exception.html" title="Base class for ABCg exception objects." alt="" coords="10,80,135,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="15,5,130,32"/>
+</map>

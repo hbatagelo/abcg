@@ -1,19 +1,23 @@
 /**
  * @file abcg.hpp
- * @brief ABCg shortcut header file.
+ * @brief Shortcut header that includes the most common ABCg headers.
  *
- * A shortcut to most headers used by ABCg.
+ * A shortcut to the main headers used by ABCg.
  *
+ * This file is part of ABCg (https://github.com/hbatagelo/abcg).
+ *
+ * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #ifndef ABCG_HPP_
 #define ABCG_HPP_
 
-#include "abcg_application.hpp"
-#include "abcg_image.hpp"
-#include "abcg_openglwindow.hpp"
-#include "abcg_string.hpp"
-#include "abcg_trackball.hpp"
+#include "abcgApplication.hpp"
+#include "abcgException.hpp"
+#include "abcgExternal.hpp"
+#include "abcgTrackball.hpp"
+#include "abcgUtil.hpp"
+#include "abcgWindow.hpp"
 
 #endif

@@ -1,26 +1,23 @@
 ---
-# Configure clang-tidy for this project
-
 Checks: '*,
          -abseil*,
-         -android*,         
-         -fuchsia*,         
+         -altera*,
+         -android*,
+         -fuchsia*,
          -google*,
-         -llvm*,         
+         -llvm*,
          -zircon*,
-         -*braces-around-statements,         
-         -*magic-numbers,         
+         -*braces-around-statements,
+         -*magic-numbers,
          -*use-trailing-return-type,
          -*reinterpret-cast,
          -*signed-bitwise,
          -*type-union-access,
          -*vararg,
-         -*uppercase-literal-suffix'
-
+         -*uppercase-literal-suffix,
+         -*readability-identifier-name,
+         -*swappable-parameters'
 WarningsAsErrors: '*'
-
 HeaderFilterRegex: '.*'
-
 AnalyzeTemporaryDtors: false
-
-FormatStyle: google
+FormatStyle: llvm

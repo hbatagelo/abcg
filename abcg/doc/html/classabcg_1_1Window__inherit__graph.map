@@ -1,0 +1,5 @@
+<map id="abcg::Window" name="abcg::Window">
+<area shape="rect" id="node1" title="Base abstract class that represents a SDL window." alt="" coords="122,5,235,32"/>
+<area shape="rect" id="node2" href="$classabcg_1_1OpenGLWindow.html" title="Base class for a window that displays graphics using an OpenGL context." alt="" coords="5,80,168,107"/>
+<area shape="rect" id="node3" href="$classabcg_1_1VulkanWindow.html" title="Base class for a window that displays graphics using a Vulkan context." alt="" coords="193,80,349,107"/>
+</map>

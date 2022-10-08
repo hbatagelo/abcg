@@ -1,13 +1,9 @@
 # Gravity Sim
 ## Simulador de gravidade utilizando lei Gravitacional de Newton
 
----
-
 ## Comandos
 * Botão esquerdo: Adiciona uma particula
 * Arrastar botão esquerdo: Adiciona uma particula com velocidade inicial.
-
----
 
 ## Como foi feito
 Foi utilizado a feature de [DrawList](https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp) para criar o canvas, borda, particulas, linha de disparo.

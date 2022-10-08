@@ -10,7 +10,7 @@
 ---
 
 ## Como foi feito
-Foi utilizado a feature de [DrawList](https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp) para criar a área, borda, particulas, linha de disparo.
+Foi utilizado a feature de [DrawList](https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp) para criar o canvas, borda, particulas, linha de disparo.
 
 A parte de criacao do canvas, borda e evento sobre o canvas foram retirados do [imgui_demo.cpp](https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp#L7642).
 

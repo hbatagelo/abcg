@@ -1,6 +1,9 @@
 # Gravity Sim
 ## Simulador de gravidade utilizando lei Gravitacional de Newton
 
+## Nome: Gabriel Jorge Menezes
+## RA: 11201921315
+
 ## Comandos
 * Botão esquerdo: Adiciona uma particula
 * Arrastar botão esquerdo: Adiciona uma particula com velocidade inicial.

@@ -34,3 +34,5 @@ Para cada frame:
 Alguns propriedades das particulas são levemente alteradas para tornar a simulação mais utilizavel
 * Velocidade inicial: Como o espaço do canvas é relativamente grande so calcular pos mouse inicial - pos mouse final resultaria numa velocidade inicial muito alta, com isto multiplicamos por uma contantes pare reduzir este valor
 * Velocidade calculada a frame: Motivo é similar ao anterior
+
+As particulas vão mudar de cor as vezes quando absorverem outras particulas, pois a verificação ocorre em ordem de inserção e a particula que é mantida é a que foi inserida a mais tempo. Porem a massa e momento sem conservam.

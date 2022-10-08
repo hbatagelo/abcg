@@ -4,7 +4,8 @@
 Particle::Particle(const glm::vec2& pos, const glm::vec2& vel, const float mass, const glm::vec3& col) 
 :
 m_Pos_(pos),
-m_Vel_(vel),
+//we divide the initial velocity by 3 so the particle don't start really fast
+m_Vel_(vel/3.f),
 m_Col_(col),
 m_Mass_(mass),
 m_Radius_(std::cbrt(m_Mass_)),
@@ -14,13 +15,13 @@ m_Res_force_(0,0)
 {
 }
 
-void Particle::updatePos() {
+void Particle::updatePos(float dt) {
     //we multiple by 0.5 to avoid slingshot scenarios
-    m_Vel_ += 0.5f*m_Acceleration_;
+    m_Vel_ += dt*m_Acceleration_;
     m_Momentum_ = m_Vel_*m_Mass_;
 
-    //we divide by 20 because the animation would be too fast
-    m_Pos_ += m_Vel_/20.f;
+    //we divide by 10 because the animation would be too fast
+    m_Pos_ += m_Vel_/10.f;
 }
 
 const glm::vec2& Particle::getPos() const {

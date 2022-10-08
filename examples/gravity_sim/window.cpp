@@ -137,7 +137,7 @@ void Window::onPaintUI() {
 			}
 
 			//updates the particle position
-			particle.updatePos();
+			particle.updatePos(io.DeltaTime);
 		}
 
 		draw_list->PopClipRect();

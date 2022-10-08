@@ -7,7 +7,7 @@ class Particle {
 public:
     Particle(const glm::vec2& pos, const glm::vec2& vel, const float mass, const glm::vec3& col);
 
-    void updatePos();
+    void updatePos(float dt);
     const glm::vec2& getPos() const;
     const glm::vec3& getColor() const;
     float getRadius() const;

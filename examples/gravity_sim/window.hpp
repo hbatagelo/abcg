@@ -14,7 +14,7 @@ private:
     bool m_Adding_particle = false;
     std::vector<glm::vec2> m_Mouse_pos_;
     std::vector<Particle> m_Particles_;
-    int m_Mass_power_ = 6;
+    int m_Mass_power_ = 11;
     float m_Mass_;
     glm::vec3 m_Next_color_;
     float m_Gravity_ = 70.f;

@@ -26,7 +26,7 @@ Para cada frame:
 4. Verifica se houve colisão entre duas particulas (iteramos sobre todos os possiveis pares de particulas), caso ocorra uma colisão marcamos uma das particulas como absorvida para evitar que seja verificada numa proxima iteração e absorvemos esta particula.
 5. Removemos as particulas absorvidas
 6. Desenhamos cada particula e verificamos a interação entre a particula atual e todas as outras particulas do sistema, sendo o resultado é acumulado no vetor de força resultante 
-7. Atualizamos a posição da particula atual com base na aceleração gerada pela força resultante, utilizando o delta time entre o frame anterior o atual
+7. Atualizamos a posição da particula atual com base na aceleração gerada pela força resultante, utilizando o delta time entre o frame atual e anterior
 
 ## Parametros controlaveis
 * Gravidade

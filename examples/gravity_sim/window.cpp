@@ -87,7 +87,7 @@ void Window::onPaintUI() {
 			}
 		}
 
-		//optimization to avoid drawing particles outside the cavas area
+		//optimization/fix the problem of particles outside the cavas area
 		draw_list->PushClipRect(canvas_p0, canvas_p1, true);
 
 		//draws the shooting line

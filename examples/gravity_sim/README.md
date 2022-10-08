@@ -19,9 +19,9 @@ Para cada frame:
 1. Desenhamos o canvas e caputramos eventos sobre o mesmo
 2. Verificamos eventos sobre o canvas e caso o botão esquero seja clicado ou arrastado adicionamos uma particula com velocidade: pos mouse inicial - pos mouse final.
 3. Reiniciamos a força resultante de todas as particulas (calculado no frame anterior)
-4. Verifica se houve colisão entre duas particulas (iteramos sobre todos os possiveis pares de particulas), caso ocorra uma colisão marcamos uma das particulas como absorvida para evitar que seja verificada numa proxima iteração e absorvemos esta particula.
+4. Verifica se houve colisão entre duas particulas (iteramos sobre todos os possiveis pares de particulas), caso ocorra uma colisão marcamos uma das particulas como absorvida para evitar que seja verificada em uma proxima iteração e absorvemos esta particula.
 5. Removemos as particulas absorvidas
-6. Desenhamos cada particula e verificamos a interação entre a particula atual e todas as outras particulas do sistema, sendo o resultado é acumulado no vetor de força resultante 
+6. Desenhamos cada particula e verificamos a interação entre a particula atual e todas as outras particulas do sistema, sendo que o resultado é acumulado no vetor de força resultante 
 7. Atualizamos a posição da particula atual com base na aceleração gerada pela força resultante, utilizando o delta time entre o frame atual e anterior
 
 ## Parametros controlaveis
@@ -29,7 +29,6 @@ Para cada frame:
 * Limpar todas as particulas
 * O exponte da massa da particula (2^n)
 * Cor da particula (gerado aleatoriamente cada vez que uma particula é adicionada)
-
 
 ## Observações
 Alguns propriedades das particulas são levemente alteradas para tornar a simulação mais utilizavel

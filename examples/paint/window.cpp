@@ -110,18 +110,16 @@ void Window::onPaintUI() {
 		ImGui::ColorEdit3("Backgroung", &m_BakgroundColor_.r, ImGuiColorEditFlags_NoInputs);
 		ImGui::Combo("Shape", &m_SelectedShape_, m_ShapeNames_.data(), m_ShapeNames_.size());
 
-		uint32_t j = 0;
-		bool del = false;
+		int j = -1;
 		for (uint32_t i = 0; i < m_Shapes_.size(); i++) {
 			ImGui::PushID(i);
-			del = !m_Shapes_[i]->draw_ui();
-			if (del) {
+			if (!m_Shapes_[i]->draw_ui()) {
 				j = i;
 			}
 			ImGui::PopID();
 		}
 
-		if (del) {
+		if (j != -1) {
 			m_Shapes_.erase(m_Shapes_.begin()+j);
 		}
 

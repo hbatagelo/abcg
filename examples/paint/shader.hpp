@@ -12,6 +12,7 @@ struct Shader {
     GLint timelULoc;
     GLint randomlULoc;
     GLint alphalULoc;
+    GLint viewportlULoc;
 };
 
 #endif

@@ -9,7 +9,7 @@
 
 class BaseShape {
 public:
-    virtual void draw() = 0;
+    virtual void draw(const glm::ivec2& viewport) = 0;
     virtual bool draw_ui() = 0;
 };
 
@@ -29,12 +29,13 @@ public:
 
     ~Shape() {}
 
-    void draw() override {
+    void draw(const glm::ivec2& viewport) override {
         auto time = (float)m_Timer_.elapsed();
         abcg::glUseProgram(m_Shader_->program);
         abcg::glBindVertexArray(m_VAO_);
 
         abcg::glUniformMatrix4fv(m_Shader_->modelULoc, 1, GL_FALSE, glm::value_ptr(m_Model_));
+        abcg::glUniform2iv(m_Shader_->viewportlULoc, 1, &viewport.x);
         abcg::glUniform4fv(m_Shader_->colorlULoc, 1, &m_Color_.r);
         abcg::glUniform1iv(m_Shader_->applylULoc, 1, &m_ApplyV_);
         abcg::glUniform1fv(m_Shader_->timelULoc, 1, &time);

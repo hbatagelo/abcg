@@ -28,6 +28,7 @@ void Window::create_shaders() {
 		.timelULoc = abcg::glGetUniformLocation(defaultProgram, "u_time"),
 		.randomlULoc = abcg::glGetUniformLocation(defaultProgram, "u_random"),
 		.alphalULoc = abcg::glGetUniformLocation(defaultProgram, "u_alpha"),
+		.viewportlULoc = abcg::glGetUniformLocation(defaultProgram, "u_viewport"),
 	};
 
 	GLuint circleProgram = abcg::createOpenGLProgram({
@@ -43,6 +44,7 @@ void Window::create_shaders() {
 		.timelULoc = abcg::glGetUniformLocation(circleProgram, "u_time"),
 		.randomlULoc = abcg::glGetUniformLocation(circleProgram, "u_random"),
 		.alphalULoc = abcg::glGetUniformLocation(circleProgram, "u_alpha"),
+		.viewportlULoc = abcg::glGetUniformLocation(circleProgram, "u_viewport"),
 	};
 }
 
@@ -136,7 +138,7 @@ void Window::onPaint() {
 	abcg::glEnable(GL_BLEND);
 	abcg::glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	for (const auto& s : m_Shapes_) {
-		s->draw();
+		s->draw(m_Viewport_);
 	}
 	abcg::glDisable(GL_BLEND);
 }

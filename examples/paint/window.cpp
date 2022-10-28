@@ -108,7 +108,7 @@ void Window::onPaintUI() {
 		ImGui::Begin("Paint", nullptr, ImGuiWindowFlags_NoResize);
 		ImGui::ColorEdit4("Color", &m_Color_.r, ImGuiColorEditFlags_NoInputs);
 		ImGui::ColorEdit3("Backgroung", &m_BakgroundColor_.r, ImGuiColorEditFlags_NoInputs);
-		ImGui::Combo("Combo", &m_SelectedShape_, m_ShapeNames_.data(), m_ShapeNames_.size());
+		ImGui::Combo("Shape", &m_SelectedShape_, m_ShapeNames_.data(), m_ShapeNames_.size());
 
 		uint32_t j = 0;
 		bool del = false;

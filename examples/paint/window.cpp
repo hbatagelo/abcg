@@ -23,7 +23,11 @@ void Window::create_shaders() {
 		.program = defaultProgram,
 		.positionALoc = abcg::glGetAttribLocation(defaultProgram, "l_position"),
 		.modelULoc = abcg::glGetUniformLocation(defaultProgram, "u_model"),
-		.colorlULoc = abcg::glGetUniformLocation(defaultProgram, "u_color")
+		.colorlULoc = abcg::glGetUniformLocation(defaultProgram, "u_color"),
+		.applylULoc = abcg::glGetUniformLocation(defaultProgram, "u_apply"),
+		.timelULoc = abcg::glGetUniformLocation(defaultProgram, "u_time"),
+		.randomlULoc = abcg::glGetUniformLocation(defaultProgram, "u_random"),
+		.alphalULoc = abcg::glGetUniformLocation(defaultProgram, "u_alpha"),
 	};
 
 	GLuint circleProgram = abcg::createOpenGLProgram({
@@ -34,7 +38,11 @@ void Window::create_shaders() {
 		.program = circleProgram,
 		.positionALoc = abcg::glGetAttribLocation(circleProgram, "l_position"),
 		.modelULoc = abcg::glGetUniformLocation(circleProgram, "u_model"),
-		.colorlULoc = abcg::glGetUniformLocation(circleProgram, "u_color")
+		.colorlULoc = abcg::glGetUniformLocation(circleProgram, "u_color"),
+		.applylULoc = abcg::glGetUniformLocation(circleProgram, "u_apply"),
+		.timelULoc = abcg::glGetUniformLocation(circleProgram, "u_time"),
+		.randomlULoc = abcg::glGetUniformLocation(circleProgram, "u_random"),
+		.alphalULoc = abcg::glGetUniformLocation(circleProgram, "u_alpha"),
 	};
 }
 
@@ -67,6 +75,22 @@ void Window::onEvent(SDL_Event const &event) {
 				glm::vec2(x_ndc, y_ndc),
 				m_Color_
 			));
+		}
+	}
+
+	if (event.type == SDL_KEYDOWN) {
+		if (event.key.keysym.sym == SDLK_ESCAPE) {
+			m_Shapes_.clear();
+		} else if (event.key.keysym.sym == SDLK_UP) {
+			m_SelectedShape_--;
+			if (m_SelectedShape_ < 0) {
+				m_SelectedShape_ = 0;
+			}
+		} else if (event.key.keysym.sym == SDLK_DOWN) {
+			m_SelectedShape_++;
+			if (m_SelectedShape_ >= (int)m_ShapeNames_.size()) {
+				m_SelectedShape_ = m_ShapeNames_.size() - 1;
+			}
 		}
 	}
 }

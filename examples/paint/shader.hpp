@@ -8,6 +8,10 @@ struct Shader {
     GLint positionALoc;
     GLint modelULoc;
     GLint colorlULoc;
+    GLint applylULoc;
+    GLint timelULoc;
+    GLint randomlULoc;
+    GLint alphalULoc;
 };
 
 #endif

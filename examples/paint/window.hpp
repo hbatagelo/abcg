@@ -29,7 +29,7 @@ private:
         Pentagon,
         Star,
     };
-    int m_SelectedShape_ = 0;
+    int m_SelectedShape_ = 5;
     std::vector<const char*> m_ShapeNames_ = {
         "Rectangle",
         "Circle",

@@ -1,9 +1,9 @@
 #include "boid.hpp"
 #include <array>
 
-float Boid::s_MaxForce_ = 7.f;
+float Boid::s_Perception_ = 30.f;
+float Boid::s_MaxForce_ = 10.f;
 float Boid::s_MaxVel_ = 30.f;
-float Boid::s_Perception_ = 20.f;
 unsigned int Boid::s_EBOSize_ = 0;
 GLuint Boid::s_VAO_ = 0;
 GLuint Boid::s_VBO_ = 0;

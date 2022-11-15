@@ -17,6 +17,10 @@ public:
                 Dica: Adicionar algumas variaveis e mexer no showUI
                 Dica: Lembrar de chamar computeViewMatrix e computeProjectionMatrix
     */
+    void dolly(float speed);
+    void truck(float speed);
+    void pan(float speed);
+    void onUpdate(float deltaTime);
 
     void computeViewMatrix();
     void computeProjectionMatrix(glm::vec2 const &size);
@@ -26,7 +30,20 @@ public:
     
     void showUI();
 
+    void setDollySpeed(float value);
+    void setPanSpeed(float value);
+    void setTruckSpeed(float value);
+
+    float getDollySpeed();
+    float getPanSpeed();
+    float getTruckSpeed();
+
 private:
+
+    float m_DollySpeed_;
+    float m_TruckSpeed_;
+    float m_PanSpeed_;
+
     // glm::vec3 m_Eye_{150.f, 150.f, 180.f};    // Camera position
     glm::vec3 m_Eye_{55.f, 154.f, 187.f};    // Camera position
     // glm::vec3 m_Eye_{72.f, 64.f, 97.f};    // Camera position

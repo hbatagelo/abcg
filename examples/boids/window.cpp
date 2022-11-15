@@ -69,8 +69,8 @@ void Window::onResize(glm::ivec2 const &size) {
 
 void Window::onUpdate() {
   auto const deltaTime{gsl::narrow_cast<float>(getDeltaTime())};
-
   m_Camera_.onUpdate(deltaTime);
+  m_Camera_.computeViewMatrix();
 }
 
 void Window::onEvent(SDL_Event const &event) {

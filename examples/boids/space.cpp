@@ -1,30 +1,25 @@
-#include "boid.hpp"
+#include "space.hpp"
 #include <array>
 
-unsigned int Boid::s_EBOSize_ = 0;
-GLuint Boid::s_VAO_ = 0;
-GLuint Boid::s_VBO_ = 0;
-GLuint Boid::s_EBO_ = 0;
-GLuint Boid::s_Shader_ = 0;
-GLint Boid::s_ModelLocation_ = 0;
-GLint Boid::s_ViewLocation_ = 0;
-GLint Boid::s_ProjLocation_ = 0;
+unsigned int Space::s_EBOSize_ = 0;
+GLuint Space::s_VAO_ = 0;
+GLuint Space::s_VBO_ = 0;
+GLuint Space::s_EBO_ = 0;
+GLuint Space::s_Shader_ = 0;
+GLint Space::s_ModelLocation_ = 0;
+GLint Space::s_ViewLocation_ = 0;
+GLint Space::s_ProjLocation_ = 0;
 
-Boid::Boid(const glm::vec3& pos) : 
-    m_Pos_(pos),
-    m_Vel_(0.f, 0.f, 0.f),
-    m_Acc_(0.f, 0.f, 0.f)
+Space::Space() : m_Model_(glm::scale(glm::mat4(1.f), glm::vec3(m_Size_)))
 {
-    m_Model_ = glm::mat4(1.f);
-    m_Model_ = glm::translate(m_Model_, m_Pos_);
-    m_Model_ = glm::scale(m_Model_, glm::vec3(0.5f));
 }
 
-Boid::~Boid() {
+Space::~Space() {
     
 }
 
-void Boid::show(const Camera& camera) {
+void Space::show(const Camera& camera) {
+    abcg::glLineWidth(3.0);
     abcg::glUseProgram(s_Shader_);
     abcg::glBindVertexArray(s_VAO_);
 
@@ -33,38 +28,42 @@ void Boid::show(const Camera& camera) {
     abcg::glUniformMatrix4fv(s_ProjLocation_, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
 
     abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_EBO_);
-    abcg::glDrawElements(GL_TRIANGLES, s_EBOSize_, GL_UNSIGNED_INT, nullptr);
+    abcg::glDrawElements(GL_LINES, s_EBOSize_, GL_UNSIGNED_INT, nullptr);
     abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     abcg::glBindVertexArray(0);
     abcg::glUseProgram(0);
+    abcg::glLineWidth(1.0);
 }
 
-void Boid::setup() {
+void Space::setup() {
     std::vector<float> vertices = {
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f
+        -1.0f, -1.0f,  1.0f,
+        -1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f,  1.0f,
+        -1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f
     };
 
     std::vector<unsigned int> indices = {
-        0, 2, 1,
-        2, 0, 3, 
-        4, 6, 5, 
-        6, 4, 7, 
-        0, 5, 3, 
-        5, 0, 4, 
-        3, 6, 2, 
-        6, 3, 5, 
-        2, 7, 1, 
-        7, 2, 6, 
-        1, 4, 0, 
-        4, 1, 7
+        0, 1,
+        1, 2,
+        2, 3,
+        3, 0,
+
+        3, 5,
+        5, 6,
+        6, 2,
+
+        4, 5,
+        4, 7,
+        6, 7,
+
+        1, 7,
+        0, 4
     };
 
     s_EBOSize_ = indices.size();
@@ -72,7 +71,7 @@ void Boid::setup() {
     const auto assetsPath = abcg::Application::getAssetsPath();
 	s_Shader_ = abcg::createOpenGLProgram({
 		{.source = assetsPath + "shader.vert", .stage = abcg::ShaderStage::Vertex},
-		{.source = assetsPath + "boid.frag", .stage = abcg::ShaderStage::Fragment}
+		{.source = assetsPath + "space.frag", .stage = abcg::ShaderStage::Fragment}
 	});
     auto postionLoc = abcg::glGetAttribLocation(s_Shader_, "l_position");
 

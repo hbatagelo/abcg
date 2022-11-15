@@ -5,7 +5,7 @@
 void Camera::computeProjectionMatrix(glm::vec2 const &size) {
     m_projMatrix = glm::mat4(1.0f);
     auto const aspect{size.x / size.y};
-    m_projMatrix = glm::perspective(glm::radians(90.0f), aspect, 0.1f, 5.0f);
+    m_projMatrix = glm::perspective(glm::radians(90.0f), aspect, 0.1f, 50.0f);
 }
 
 void Camera::computeViewMatrix() {

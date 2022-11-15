@@ -1,21 +1,20 @@
-#ifndef BOID_HPP_
-#define BOID_HPP_
+#ifndef SPACE_HPP_
+#define SPACE_HPP_
 
 #include "camera.hpp"
 #include "abcgOpenGL.hpp"
 
-class Boid {
+class Space {
 public:
-    Boid(const glm::vec3& pos);
-    ~Boid();
+    Space();
+    ~Space();
 
     void show(const Camera& camera);
+    float size() { return m_Size_; }
 
     static void setup();
 private:
-    glm::vec3 m_Pos_;
-    glm::vec3 m_Vel_;
-    glm::vec3 m_Acc_;
+    float m_Size_ = 10.f;
     glm::mat4 m_Model_;
 
     static unsigned int s_EBOSize_;

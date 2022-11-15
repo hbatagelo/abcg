@@ -40,9 +40,9 @@ public:
 
 private:
 
-    float m_DollySpeed_;
-    float m_TruckSpeed_;
-    float m_PanSpeed_;
+    float m_DollySpeed_{0};
+    float m_TruckSpeed_{0};
+    float m_PanSpeed_{0};
 
     // glm::vec3 m_Eye_{150.f, 150.f, 180.f};    // Camera position
     glm::vec3 m_Eye_{55.f, 154.f, 187.f};    // Camera position

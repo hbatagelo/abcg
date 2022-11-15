@@ -76,17 +76,17 @@ void Window::onUpdate() {
 void Window::onEvent(SDL_Event const &event) {
   if (event.type == SDL_KEYDOWN) {
     if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
-      m_Camera_.setDollySpeed(1.0f);
+      m_Camera_.setDollySpeed(100.0f);
     if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-      m_Camera_.setDollySpeed(-1.0f);
+      m_Camera_.setDollySpeed(-100.0f);
     if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a)
       m_Camera_.setPanSpeed(-1.0f);
     if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
       m_Camera_.setPanSpeed(1.0f);
     if (event.key.keysym.sym == SDLK_q)
-      m_Camera_.setTruckSpeed(-1.0f);
+      m_Camera_.setTruckSpeed(-100.0f);
     if (event.key.keysym.sym == SDLK_e)
-      m_Camera_.setTruckSpeed(1.0f);
+      m_Camera_.setTruckSpeed(100.0f);
   }
   if (event.type == SDL_KEYUP) {
     if ((event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w) &&

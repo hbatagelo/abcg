@@ -27,6 +27,7 @@ void Camera::dolly(float speed) {
   // Move eye and center forward (speed > 0) or backward (speed < 0)
   m_Eye_ += forward * speed;
   m_At_ += forward * speed;
+//   computeViewMatrix();
 }
 
 void Camera::truck(float speed) {
@@ -38,6 +39,7 @@ void Camera::truck(float speed) {
   // Move eye and center to the left (speed < 0) or to the right (speed > 0)
   m_At_ -= left * speed;
   m_Eye_ -= left * speed;
+//   computeViewMatrix();
 }
 
 void Camera::pan(float speed) {

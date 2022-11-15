@@ -14,9 +14,11 @@ protected:
     void onPaintUI() override;
     void onPaint() override;
     void onResize(glm::ivec2 const &size) override;
+
+    void createBoids();
 private:
-    std::mt19937 m_Gen_;
-    std::uniform_real_distribution<float> m_Dis_;
+    int m_NumberOfBoids_ = 300;
+    abcg::Timer m_Timer_;
     Camera m_Camera_;
     Space m_Space_;
     std::vector<Boid> m_Boids_;

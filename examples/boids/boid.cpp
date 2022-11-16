@@ -165,9 +165,16 @@ void Boid::setup() {
         4, 1, 7
     };
 
-    s_EBOSize_ = indices.size();
 
     const auto assetsPath = abcg::Application::getAssetsPath();
+
+    // std::tuple< std::vector<float>, std::vector<unsigned int>> obj = loadModelFromFile(assetsPath + "fish_changed.obj");
+
+    // std::vector<float> vertices = std::get<0>(obj);
+    // std::vector<unsigned int> indices = std::get<1>(obj);
+
+    s_EBOSize_ = indices.size();
+
 	s_Shader_ = abcg::createOpenGLProgram({
 		{.source = assetsPath + "shader.vert", .stage = abcg::ShaderStage::Vertex},
 		{.source = assetsPath + "boid.frag", .stage = abcg::ShaderStage::Fragment}
@@ -204,3 +211,54 @@ void Boid::showUI() {
     ImGui::DragFloat("Maximum Force", &s_MaxForce_);
     ImGui::DragFloat("Velocity", &s_MaxVel_);
 }
+
+// std::tuple< std::vector<float>, std::vector<unsigned int>> Boid::loadModelFromFile(std::string_view path) {
+//     tinyobj::ObjReader reader;
+
+//     std::vector<float> vertices;
+//     std::vector<unsigned int> indices;
+
+//     if (!reader.ParseFromFile(path.data())) {
+//         if (!reader.Error().empty()) {
+//             throw abcg::RuntimeError(
+//                 fmt::format("Failed to load model {} ({})", path, reader.Error()));
+//         }
+//     throw abcg::RuntimeError(fmt::format("Failed to load model {}", path));
+//     }
+
+//     if (!reader.Warning().empty()) {
+//         fmt::print("Warning: {}\n", reader.Warning());
+//     }
+
+//     auto const &attributes{reader.GetAttrib()};
+//     auto const &shapes{reader.GetShapes()};
+
+//     vertices.clear();
+//     indices.clear();
+
+//     // Loop over shapes
+//     for (auto const &shape : shapes) {
+//         // Loop over indices
+//         for (auto const offset : iter::range(shape.mesh.indices.size())) {
+//             // Access to vertex
+//             auto const index{shape.mesh.indices.at(offset)};
+
+//             // Vertex position
+//             auto const startIndex{3 * index.vertex_index};
+//             auto const vx{attributes.vertices.at(startIndex + 0)};
+//             vertices.push_back(vx);
+
+//             auto const vy{attributes.vertices.at(startIndex + 1)};
+//             vertices.push_back(vy);
+
+//             auto const vz{attributes.vertices.at(startIndex + 2)};
+//             vertices.push_back(vz);
+
+
+//             indices.push_back(index.vertex_index);
+//         }
+//     }
+    
+//     std::tuple< std::vector<float>, std::vector<unsigned int>> tuple{vertices, indices};
+//     return tuple;
+// }

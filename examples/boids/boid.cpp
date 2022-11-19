@@ -139,39 +139,8 @@ void Boid::update(float dt) {
 }
 
 void Boid::setup() {
-    std::vector<float> vertices = {
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f
-    };
-
-    std::vector<unsigned int> indices = {
-        0, 2, 1,
-        2, 0, 3, 
-        4, 6, 5, 
-        6, 4, 7, 
-        0, 5, 3, 
-        5, 0, 4, 
-        3, 6, 2, 
-        6, 3, 5, 
-        2, 7, 1, 
-        7, 2, 6, 
-        1, 4, 0, 
-        4, 1, 7
-    };
-
-
     const auto assetsPath = abcg::Application::getAssetsPath();
-
-    // std::tuple< std::vector<float>, std::vector<unsigned int>> obj = loadModelFromFile(assetsPath + "fish_changed.obj");
-
-    // std::vector<float> vertices = std::get<0>(obj);
-    // std::vector<unsigned int> indices = std::get<1>(obj);
+    auto [vertices, indices] = loadModelFromFile(assetsPath + "fish.obj");
 
     s_EBOSize_ = indices.size();
 
@@ -187,7 +156,7 @@ void Boid::setup() {
 
     abcg::glGenBuffers(1, &s_VBO_);
     abcg::glBindBuffer(GL_ARRAY_BUFFER, s_VBO_);
-    abcg::glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+    abcg::glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
     abcg::glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     abcg::glGenBuffers(1, &s_EBO_);
@@ -212,53 +181,54 @@ void Boid::showUI() {
     ImGui::DragFloat("Velocity", &s_MaxVel_);
 }
 
-// std::tuple< std::vector<float>, std::vector<unsigned int>> Boid::loadModelFromFile(std::string_view path) {
-//     tinyobj::ObjReader reader;
+std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFile(std::string_view path) {
+    tinyobj::ObjReader reader;
 
-//     std::vector<float> vertices;
-//     std::vector<unsigned int> indices;
+    // std::vector<float> vertices;
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
 
-//     if (!reader.ParseFromFile(path.data())) {
-//         if (!reader.Error().empty()) {
-//             throw abcg::RuntimeError(
-//                 fmt::format("Failed to load model {} ({})", path, reader.Error()));
-//         }
-//     throw abcg::RuntimeError(fmt::format("Failed to load model {}", path));
-//     }
+    if (!reader.ParseFromFile(path.data())) {
+        if (!reader.Error().empty()) {
+            throw abcg::RuntimeError(
+                fmt::format("Failed to load model {} ({})", path, reader.Error()));
+        }
+        throw abcg::RuntimeError(fmt::format("Failed to load model {}", path));
+    }
 
-//     if (!reader.Warning().empty()) {
-//         fmt::print("Warning: {}\n", reader.Warning());
-//     }
+    if (!reader.Warning().empty()) {
+        fmt::print("Warning: {}\n", reader.Warning());
+    }
 
-//     auto const &attributes{reader.GetAttrib()};
-//     auto const &shapes{reader.GetShapes()};
+    std::unordered_map<Vertex, unsigned int> hash{};
+    auto const &attrib{reader.GetAttrib()};
+    auto const &shapes{reader.GetShapes()};
 
-//     vertices.clear();
-//     indices.clear();
+    // Loop over shapes
+    for (auto const &shape : shapes) {
+        // Loop over indices
+        for (auto const offset : iter::range(shape.mesh.indices.size())) {
+            // Access to vertex
+            auto const index{shape.mesh.indices.at(offset)};
 
-//     // Loop over shapes
-//     for (auto const &shape : shapes) {
-//         // Loop over indices
-//         for (auto const offset : iter::range(shape.mesh.indices.size())) {
-//             // Access to vertex
-//             auto const index{shape.mesh.indices.at(offset)};
+            // Vertex position
+            const auto startIndex = 3 * index.vertex_index;
+            const auto vx = attrib.vertices.at(startIndex + 0);
+            const auto vy = attrib.vertices.at(startIndex + 1);
+            const auto vz = attrib.vertices.at(startIndex + 2);
 
-//             // Vertex position
-//             auto const startIndex{3 * index.vertex_index};
-//             auto const vx{attributes.vertices.at(startIndex + 0)};
-//             vertices.push_back(vx);
+            const Vertex vertex{.position = {vx, vy, vz}};
 
-//             auto const vy{attributes.vertices.at(startIndex + 1)};
-//             vertices.push_back(vy);
+            // If map doesn't contain this vertex
+            if (!hash.contains(vertex)) {
+                // Add this index (size of m_vertices)
+                hash[vertex] = vertices.size();
+                // Add this vertex
+                vertices.push_back(vertex);
+            }
+            indices.push_back(hash[vertex]);
+        }
+    }
 
-//             auto const vz{attributes.vertices.at(startIndex + 2)};
-//             vertices.push_back(vz);
-
-
-//             indices.push_back(index.vertex_index);
-//         }
-//     }
-    
-//     std::tuple< std::vector<float>, std::vector<unsigned int>> tuple{vertices, indices};
-//     return tuple;
-// }
+    return {vertices, indices};
+}

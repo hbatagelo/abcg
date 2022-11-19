@@ -2,16 +2,32 @@
 #define BOID_HPP_
 
 #include <vector>
+#include <iostream>
 #include "camera.hpp"
 #include "abcgOpenGL.hpp"
+#include "unordered_map"
+
+
+struct Vertex {
+    glm::vec3 position{};
+
+    friend bool operator==(Vertex const &, Vertex const &) = default;
+};
+
+
+// Explicit specialization of std::hash for Vertex
+template <> struct std::hash<Vertex> {
+    size_t operator()(Vertex const &vertex) const noexcept {
+        auto const h1{std::hash<glm::vec3>()(vertex.position)};
+        return h1;
+    }
+};
 
 class Boid {
 public:
     //Note: Force = Acceleration, since Mass = 1
     /*
         TODO:
-            * Alterar os boids para passaros
-                Dica: mexer no setup e shaders
             * Garantir que a parte de frente do passaro esta alinhado com a velocidade
                 Dica: mexer no calcModelMatrix e adicionar alguma forma de rotacao
             * Adicionar um slide float para etapa da simulacao (Alignment, Cohesion, Separation), onde o mesmo tem valor default 1 e serve como peso
@@ -40,6 +56,7 @@ public:
 
     //Generate the OpenGL Buffers
     static void setup();
+    static std::pair<std::vector<Vertex>, std::vector<unsigned int>> loadModelFromFile(std::string_view path);
 
     //Render the ImGui
     static void showUI();

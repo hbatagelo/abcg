@@ -20,7 +20,8 @@ public:
     void dolly(float speed);
     void truck(float speed);
     void pan(float speed);
-    void onUpdate(float deltaTime);
+    // void onUpdate(float deltaTime);
+    void onEvent(const SDL_Event& event, float dt);
 
     void computeViewMatrix();
     void computeProjectionMatrix(glm::vec2 const &size);
@@ -48,7 +49,8 @@ private:
     glm::vec3 m_Eye_{55.f, 154.f, 187.f};    // Camera position
     // glm::vec3 m_Eye_{72.f, 64.f, 97.f};    // Camera position
     
-    glm::vec3 m_At_{0.0f, 0.0f, 0.0f};  // Look-at point
+    // glm::vec3 m_At_{0.0f, 0.0f, 0.0f};  // Look-at point
+    glm::vec3 m_At_{-0.221404f, -0.61993f, -0.752773f};  // Look-at point
     glm::vec3 m_Up_{0.0f, 1.0f, 0.0f};  // "up" direction
 
     // Matrix to change from world space to camera space

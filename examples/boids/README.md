@@ -35,9 +35,9 @@ A classe ```Boid```, onde os principais métodos são:
 
 * **update**: Realiza o update da posição e velocidade dos boids.
 
-* **show**: Envia as matrizes necessárias para os shaders e desenha os triângulos.
+* **show**: Responsável por criar os vértices e índices (especificados em código), carregar o vertex  e fragment shader, criar os buffers e fazer os *binds* necessários.
 
-* **setup**: Responsável por criar os buffers.
+* **setup**: Responsável por criar os buffers e enviar para GPU.
 
 * **showUI**: Responsável por desenhar a ImGui na tela.
 
@@ -70,7 +70,7 @@ Os comandos de mouse e teclado foram implementados de forma a simular câmeras n
 
 * **W/S**: Representa o movimento ***dolly*** (jargão cinematográfico).
 * **A/D**: Representa o movimento ***pan*** (jargão cinematográfico).
-* **Mouse**: Muda a posição para qual a câmera está olhando.
+* **Mouse**: Muda a posição para qual a câmera está olhando (É necessario segurar o botão esquerdo do mouse para mover a câmera).
 
 Os comandos de ***dolly*** (**W/S**) e ***pan*** (**A/D**) são implementados alterando-se a posição da câmera (na coordenada do mundo), representada pela variável ```m_Eye_```.
 
@@ -80,17 +80,21 @@ A implementação pode ser encontrada no arquivo [camera.cpp](camera.cpp), e sua
 
 ## **Parametros controlaveis**
 
-Boids:
+* **Number of boids**: Muda a quantidade de boids no espaço.
 
-* **Alignment**: Velocidade média dos boids vizinhos.
-* **Cohesion**: Posição média dos boids vizinhos.
+Boids:
+* **Alignment**: Alinha velocidade baseado na velocidade média dos vizinhos.
+* **Cohesion**: Alinha posição baseado na posição média dos vizinhos.
 * **Separation**: Evita colisões (inversamente proporcional a distância).
 * **Perception Radius**: Altera a esfera de percepção dos boids.
-* **Maximum Force**: xxxx
+* **Maximum Force**: Como neste mundo a massa = 1, este parametro é igual a aceleração máxima.
 * **Velocity**: Aumenta a velocidade dos boids.
 
-* **Number of birds**: Muda a quantidade de boids no espaço.
-
+Camera:
+* **Speed**: Velocidade da câmera.
+* **FOV**: FOV da câmera.
+* **Z Near**: Z Near da câmera.
+* **Z Far**: Z Far da câmera.
 
 ## **Observações**
 

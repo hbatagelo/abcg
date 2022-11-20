@@ -132,6 +132,8 @@ void Boid::simulate(const std::vector<Boid>& boids) {
 void Boid::update(float dt) {
     //Update the position and velocity
     m_Pos_ += dt * m_Vel_;
+    calcModelMatrix();
+
     m_Vel_ += dt * m_Acc_;
     
     //Clamp the velocity to s_MaxVel_
@@ -141,8 +143,6 @@ void Boid::update(float dt) {
 
     //Reset the acceleration
     m_Acc_ = glm::vec3(0.f);
-
-    calcModelMatrix();
 }
 
 void Boid::setup() {

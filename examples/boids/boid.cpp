@@ -29,12 +29,16 @@ Boid::~Boid() {
 }
 
 void Boid::calcModelMatrix() {
-    auto rotationVec = glm::vec4(glm::normalize(glm::vec3(m_Vel_.x, m_Vel_.y, 0.f)), 1.0f);
-    rotationVec = glm::rotate(glm::mat4(1.f), glm::radians(90.f), glm::vec3(0.f, 0.f, 1.f)) * rotationVec;
+    auto geometryFront = glm::vec3(0.0f, 0.f, 1.f);
+    auto normVel = glm::normalize(m_Vel_);
+    auto rotationVec = glm::cross(geometryFront, normVel);
+    auto angle = glm::acos(glm::dot(geometryFront, normVel));
 
     m_Model_ = glm::mat4(1.f);
     m_Model_ = glm::translate(m_Model_, m_Pos_);
-    m_Model_ = glm::rotate(m_Model_, glm::radians(90.f), glm::vec3(rotationVec));
+    if (glm::length2(rotationVec) != 0.f) {
+        m_Model_ = glm::rotate(m_Model_, angle, rotationVec);
+    }
     m_Model_ = glm::scale(m_Model_, glm::vec3(7.f));
 }
 

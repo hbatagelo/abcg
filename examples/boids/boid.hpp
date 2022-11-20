@@ -25,14 +25,7 @@ template <> struct std::hash<Vertex> {
 
 class Boid {
 public:
-    //Note: Force = Acceleration, since Mass = 1
-    /*
-        TODO:
-            * Adicionar um slide float para etapa da simulacao (Alignment, Cohesion, Separation), onde o mesmo tem valor default 1 e serve como peso
-                Dica: criar umas variaveis estaticas
-                Dica: mexer no showUI
-                Dica: mexer no simulate (na parte de acumulo da aceleracao)
-    */
+    //NOTE: Force = Acceleration, since Mass = 1
 
     Boid(const glm::vec3& pos, const glm::vec3& vel);
     ~Boid();
@@ -76,6 +69,14 @@ private:
     glm::vec3 m_Acc_;
     //Model matrix
     glm::mat4 m_Model_;
+
+
+    //Maximum velocity all boids in the simulation can go
+    static float s_AlignmentMult_;
+    //Perception radius of the boid
+    static float s_CohesionMult_;
+    //Maximum steering force
+    static float s_SeparationMult_;
 
     //Maximum velocity all boids in the simulation can go
     static float s_MaxVel_;

@@ -1,6 +1,9 @@
 #include "boid.hpp"
 #include <array>
 
+float Boid::s_AlignmentMult_ = 1.f;
+float Boid::s_CohesionMult_ = 1.f;
+float Boid::s_SeparationMult_ = 1.f;
 float Boid::s_Perception_ = 30.f;
 float Boid::s_MaxForce_ = 10.f;
 float Boid::s_MaxVel_ = 30.f;
@@ -123,7 +126,7 @@ void Boid::simulate(const std::vector<Boid>& boids) {
     avgCohesion -= m_Pos_;
 
     //Steer towards each part of the simulation and accumulate in the acceleration
-    m_Acc_ += steer(avgAlignment) + steer(avgCohesion) + steer(avgSeparation);
+    m_Acc_ += s_AlignmentMult_ * steer(avgAlignment) + s_CohesionMult_ * steer(avgCohesion) + s_SeparationMult_ * steer(avgSeparation);
 }
 
 void Boid::update(float dt) {
@@ -180,7 +183,10 @@ void Boid::setup() {
 void Boid::showUI() {
     if (!ImGui::CollapsingHeader("Boids"))
         return;
-    ImGui::DragFloat("Perception Radius", &s_Perception_);
+    ImGui::DragFloat("Aligment", &s_AlignmentMult_, 0.1f, 0.f, 10.f);
+    ImGui::DragFloat("Cohesion", &s_CohesionMult_, 0.1f, 0.f, 10.f);
+    ImGui::DragFloat("Separation", &s_SeparationMult_, 0.1f, 0.f, 10.f);
+    ImGui::DragFloat("Perception Radius", &s_Perception_, 0.1f, 0.f, 10.f);
     ImGui::DragFloat("Maximum Force", &s_MaxForce_);
     ImGui::DragFloat("Velocity", &s_MaxVel_);
 }

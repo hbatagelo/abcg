@@ -65,7 +65,8 @@ void Window::onPaint() {
 }
 
 void Window::onResize(const glm::ivec2& size) {
-	m_Camera_.computeProjectionMatrix(size);
+	abcg::glViewport(0, 0, size.x, size.y);
+	m_Camera_.setSize(size);
 }
 
 void Window::onEvent(const SDL_Event& event) {

@@ -2,9 +2,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
-void Camera::computeProjectionMatrix(glm::vec2 const &size) {
-    const auto aspect = size.x / size.y;
-    m_ProjMatrix_ = glm::perspective(glm::radians(90.0f), aspect, 0.1f, 500.0f);
+// void Camera::computeProjectionMatrix(const glm::vec2& size) {
+void Camera::computeProjectionMatrix() {
+    const auto aspect = m_Size_.x / m_Size_.y;
+    m_ProjMatrix_ = glm::perspective(glm::radians(m_Fov_), aspect, m_ZNear_, m_ZFar_);
 }
 
 void Camera::computeViewMatrix() {
@@ -14,10 +15,21 @@ void Camera::computeViewMatrix() {
 void Camera::showUI() {
     if (!ImGui::CollapsingHeader("Camera"))
         return;
+
+    ImGui::SliderFloat("Speed", &m_Speed_, 0.f, 1000.f);
+    if (ImGui::SliderFloat("FOV", &m_Fov_, 1.f, 359.f)) {
+        computeProjectionMatrix();
+    }
+    if (ImGui::SliderFloat("Z Near", &m_ZNear_, 0.1f, 500.f)) {
+        computeProjectionMatrix();
+    }
+    if (ImGui::SliderFloat("Z Far", &m_ZFar_, 50.f, 1000.f)) {
+        computeProjectionMatrix();
+    }
 }
 
 void Camera::onEvent(const SDL_Event& event, float dt) {
-    const float cameraSpeed = 200.f * dt; // adjust accordingly
+    const float cameraSpeed = m_Speed_ * dt;
     if (event.type == SDL_KEYDOWN) {
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
 			m_Eye_ += cameraSpeed * m_Front_;

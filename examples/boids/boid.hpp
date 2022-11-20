@@ -28,8 +28,6 @@ public:
     //Note: Force = Acceleration, since Mass = 1
     /*
         TODO:
-            * Garantir que a parte de frente do passaro esta alinhado com a velocidade
-                Dica: mexer no calcModelMatrix e adicionar alguma forma de rotacao
             * Adicionar um slide float para etapa da simulacao (Alignment, Cohesion, Separation), onde o mesmo tem valor default 1 e serve como peso
                 Dica: criar umas variaveis estaticas
                 Dica: mexer no showUI
@@ -55,8 +53,7 @@ public:
     void show(const Camera& camera);
 
     //Generate the OpenGL Buffers
-    static void setup();
-    static std::pair<std::vector<Vertex>, std::vector<unsigned int>> loadModelFromFile(std::string_view path);
+    static void setup();    
 
     //Render the ImGui
     static void showUI();
@@ -64,6 +61,9 @@ public:
 private:
     //Calculate the steering force based on disired target
     glm::vec3 steer(const glm::vec3& desired);
+
+    static void standardize(std::vector<Vertex>& vertices);
+    static std::pair<std::vector<Vertex>, std::vector<unsigned int>> loadModelFromFile(std::string_view path, bool normalize);
 
     //Calculate he Model Matrix
     void calcModelMatrix();

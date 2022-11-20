@@ -3,7 +3,6 @@
 #include <iostream>
 
 void Window::onCreate() {
-	SDL_ShowCursor(false);
 	abcg::glEnable(GL_DEPTH_TEST);
 	abcg::glDepthFunc(GL_LESS);
 
@@ -37,7 +36,7 @@ void Window::onPaintUI() {
 	{
 		ImGui::Begin("Boid", nullptr);
 		if (ImGui::InputInt("Number of Boids", &m_NumberOfBoids_)) {
-		createBoids();
+			createBoids();
 		}
 
 		Boid::showUI();
@@ -65,45 +64,11 @@ void Window::onPaint() {
 	m_Space_.show(m_Camera_);
 }
 
-void Window::onResize(glm::ivec2 const &size) {
+void Window::onResize(const glm::ivec2& size) {
 	m_Camera_.computeProjectionMatrix(size);
 }
 
-// void Window::onUpdate() {
-// 	auto const deltaTime{gsl::narrow_cast<float>(getDeltaTime())};
-// 	m_Camera_.onUpdate(deltaTime);
-// }
-
-void Window::onEvent(SDL_Event const &event) {
+void Window::onEvent(const SDL_Event& event) {
 	auto dt = m_Timer_.elapsed();
 	m_Camera_.onEvent(event, dt);
-	// if (event.type == SDL_KEYDOWN) {
-	// 	if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
-	// 		m_Camera_.setDollySpeed(100.0f);
-	// 	if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-	// 		m_Camera_.setDollySpeed(-100.0f);
-	// 	if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a)
-	// 		m_Camera_.setPanSpeed(-1.0f);
-	// 	if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
-	// 		m_Camera_.setPanSpeed(1.0f);
-	// 	if (event.key.keysym.sym == SDLK_q)
-	// 		m_Camera_.setTruckSpeed(-100.0f);
-	// 	if (event.key.keysym.sym == SDLK_e)
-	// 		m_Camera_.setTruckSpeed(100.0f);
-	// }
-
-	// if (event.type == SDL_KEYUP) {
-	// 	if ((event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w) && m_Camera_.getDollySpeed() > 0)
-	// 		m_Camera_.setDollySpeed(0.0f);
-	// 	if ((event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s) && m_Camera_.getDollySpeed() < 0)
-	// 		m_Camera_.setDollySpeed(0.0f);
-	// 	if ((event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a) && m_Camera_.getPanSpeed() < 0)
-	// 		m_Camera_.setPanSpeed(0.0f);
-	// 	if ((event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d) && m_Camera_.getPanSpeed() > 0)
-	// 		m_Camera_.setPanSpeed(0.0f);
-	// 	if (event.key.keysym.sym == SDLK_q && m_Camera_.getTruckSpeed() < 0)
-	// 		m_Camera_.setTruckSpeed(0.0f);
-	// 	if (event.key.keysym.sym == SDLK_e && m_Camera_.getTruckSpeed() > 0)
-	// 		m_Camera_.setTruckSpeed(0.0f);
-	// }
 }

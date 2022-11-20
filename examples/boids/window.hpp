@@ -13,13 +13,12 @@ protected:
     void onCreate() override;
     void onPaintUI() override;
     void onPaint() override;
-    // void onUpdate() override;
-    void onResize(glm::ivec2 const &size) override;
-    void onEvent(SDL_Event const &event) override;
+    void onResize(const glm::ivec2& size) override;
+    void onEvent(const SDL_Event& event) override;
     void createBoids();
 
 private:
-    int m_NumberOfBoids_ = 300;
+    int m_NumberOfBoids_ = 150;
     abcg::Timer m_Timer_;
     Camera m_Camera_;
     Space m_Space_;

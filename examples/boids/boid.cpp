@@ -26,9 +26,13 @@ Boid::~Boid() {
 }
 
 void Boid::calcModelMatrix() {
+    auto rotationVec = glm::vec4(glm::normalize(glm::vec3(m_Vel_.x, m_Vel_.y, 0.f)), 1.0f);
+    rotationVec = glm::rotate(glm::mat4(1.f), glm::radians(90.f), glm::vec3(0.f, 0.f, 1.f)) * rotationVec;
+
     m_Model_ = glm::mat4(1.f);
     m_Model_ = glm::translate(m_Model_, m_Pos_);
-    m_Model_ = glm::scale(m_Model_, glm::vec3(2.5f));
+    m_Model_ = glm::rotate(m_Model_, glm::radians(90.), glm::vec3(rotationVec));
+    m_Model_ = glm::scale(m_Model_, glm::vec3(7.f));
 }
 
 void Boid::show(const Camera& camera) {
@@ -140,7 +144,7 @@ void Boid::update(float dt) {
 
 void Boid::setup() {
     const auto assetsPath = abcg::Application::getAssetsPath();
-    auto [vertices, indices] = loadModelFromFile(assetsPath + "fish.obj");
+    auto [vertices, indices] = loadModelFromFile(assetsPath + "bird.obj", true);
 
     s_EBOSize_ = indices.size();
 
@@ -181,7 +185,7 @@ void Boid::showUI() {
     ImGui::DragFloat("Velocity", &s_MaxVel_);
 }
 
-std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFile(std::string_view path) {
+std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFile(std::string_view path, bool normalize) {
     tinyobj::ObjReader reader;
 
     // std::vector<float> vertices;
@@ -230,5 +234,26 @@ std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFil
         }
     }
 
+    if (normalize)
+        standardize(vertices);
+
     return {vertices, indices};
+}
+
+void Boid::standardize(std::vector<Vertex>& vertices) {
+    // Center to origin and normalize bounds to [-1, 1]
+    // Get bounds
+    glm::vec3 max(std::numeric_limits<float>::lowest());
+    glm::vec3 min(std::numeric_limits<float>::max());
+    for (const auto& vertex : vertices) {
+        max = glm::max(max, vertex.position);
+        min = glm::min(min, vertex.position);
+    }
+
+    // Center and scale
+    auto const center = (min + max) / 2.0f;
+    auto const scaling = 2.0f / glm::length(max - min);
+    for (auto& vertex : vertices) {
+        vertex.position = (vertex.position - center) * scaling;
+    }
 }

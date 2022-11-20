@@ -30,9 +30,6 @@ public:
     Boid(const glm::vec3& pos, const glm::vec3& vel);
     ~Boid();
 
-
-    // static std::tuple< std::vector<float>, std::vector<unsigned int>> loadModelFromFile(std::string_view path);
-
     //Check if the boid is outside the world and repostion it
     void checkEdge(float worldSize);
 

@@ -10,7 +10,6 @@ public:
     void onEvent(const SDL_Event& event, float dt);
 
     void computeViewMatrix();
-    // void computeProjectionMatrix(const glm::vec2& size);
     void computeProjectionMatrix();
     void setSize(const glm::vec2& size) { 
         m_Size_ = size;

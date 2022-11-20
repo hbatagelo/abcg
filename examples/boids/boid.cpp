@@ -31,7 +31,7 @@ void Boid::calcModelMatrix() {
 
     m_Model_ = glm::mat4(1.f);
     m_Model_ = glm::translate(m_Model_, m_Pos_);
-    m_Model_ = glm::rotate(m_Model_, glm::radians(90.), glm::vec3(rotationVec));
+    m_Model_ = glm::rotate(m_Model_, glm::radians(90.f), glm::vec3(rotationVec));
     m_Model_ = glm::scale(m_Model_, glm::vec3(7.f));
 }
 

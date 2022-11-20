@@ -7,13 +7,13 @@
 ## Nome: Rodrigo Cabrera
 ## RA: 21005515
 
-## Introdução 
+## **Introdução**
 
 Esse projeto consiste em criar um programa de ***Boids*** 3D (do inglês, *bird-oid object*), criado por Craig Reynolds em 1986. Esse programa se enquadra na categoria de algoritmos de vida artificial, onde um conjunto de regras simples aplicadas em um sistema com vários objetos apresentam comportamentos complexos, como exemplo de tais programas temos o jogo da vida de John Conway. 
 
 No caso especifico do ***Boids***, espera-se que apartir de 3 simples regras seja possível simular um comportamento de rebanho.
 
-## Como foi feito
+## **Como foi feito**
 
 A classe ```Space``` representa a região no formato de um cubo onde os ***boids*** vão se mover. Essa classe implementam as seguintes  funções:
 
@@ -21,7 +21,6 @@ A classe ```Space``` representa a região no formato de um cubo onde os ***boids
 
 * **show**: Responsável por desenhar aresta por aresta utilizando o comando ***GL_LINES***. Essa lógica está implementada no arquivo [space.cpp](./space.cpp) e sua respectiva interface [space.hpp](./space.hpp).
 
-<font color = "red"><b>TODO: CHECAR</b></font>
 
 O vertex shader utilizado está no arquivo: [shader.vert](./assets/shader.vert) e contém somente as multiplicações matrizes que permitem transformar do espaço do objeto para o espaço da câmera com perspectiva. 
 
@@ -44,11 +43,19 @@ A classe ```Boid```, onde os principais métodos são:
 
 O vertex shader utilizado está no arquivo: [shader.vert](./assets/shader.vert) e contém somente as multiplicações matrizes que permitem transformar do espaço do objeto para o espaço da câmera com perspectiva. 
 
-<font color = "red"><b>TODO: CHECAR</b></font>
 
 O fragment shader utilizado está no arquivo: [boid.frag](./assets/boid.frag) e contém somente o output de uma cor.
 
-## Como funciona
+---
+
+A classe ```Camera``` contém as funções:
+
+* **computeProjectionMatrix**: Calcula a matriz que transforma do ***espaço da camera*** para o ***clip space***.
+* **computeViewMatrix**: Calcula a matriz que transforma do ***espaço do mundo*** para o ***espaço da camera***
+* **showUI**: Rendeneriza os componentes do ***ImGui*** na tela. 
+* **onEvent**: Atualiza posição da câmera e para a direção na qual ela está olhando de acordo com os inputs de teclado e mouse. 
+
+## **Como funciona**
 
 Regras:
 
@@ -57,7 +64,7 @@ Regras:
 3. Todo Boid deve se mover para o centro de boids próximos.
 
 
-## Comandos
+## **Comandos**
 
 Os comandos de mouse e teclado foram implementados de forma a simular câmeras normalmente utilizadas em jogos de FPS (do inglês, *First-person shooter*):
 
@@ -71,7 +78,7 @@ O comando relacionado ao **Mouse** é implementado ao se alterar a posição na 
 
 A implementação pode ser encontrada no arquivo [camera.cpp](camera.cpp), e sua respectiva interface pode ser encontrada no arquivo [camera.hpp](camera.hpp).
 
-## Parametros controlaveis
+## **Parametros controlaveis**
 
 Boids:
 
@@ -85,6 +92,6 @@ Boids:
 * **Number of birds**: Muda a quantidade de boids no espaço.
 
 
-## Observações
+## **Observações**
 
 O projeto teve como inspiração esse [Vídeo](https://www.youtube.com/watch?v=bqtqltqcQhw).

@@ -7,6 +7,7 @@
 #include "camera.hpp"
 #include <random>
 #include <vector>
+#include <memory>
 
 class Window : public abcg::OpenGLWindow {
 protected:
@@ -18,6 +19,7 @@ protected:
     void createBoids();
 
 private:
+    std::unique_ptr<Shader> m_Shader_;
     int m_NumberOfBoids_ = 150;
     abcg::Timer m_Timer_;
     Camera m_Camera_;

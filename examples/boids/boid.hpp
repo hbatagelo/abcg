@@ -3,23 +3,30 @@
 
 #include <vector>
 #include <iostream>
+#include "light.hpp"
 #include "camera.hpp"
 #include "abcgOpenGL.hpp"
 #include "unordered_map"
 
+extern DirLight s_DirLight;
+extern PointLight s_PointLights[];
+extern size_t s_NumPointLights;
 
 struct Vertex {
-    glm::vec3 position{};
+    glm::vec3 position;
+    glm::vec3 normal;
+    glm::vec2 texCoord;
 
-    friend bool operator==(Vertex const &, Vertex const &) = default;
+    friend bool operator==(const Vertex&, const Vertex&) = default;
 };
-
 
 // Explicit specialization of std::hash for Vertex
 template <> struct std::hash<Vertex> {
-    size_t operator()(Vertex const &vertex) const noexcept {
-        auto const h1{std::hash<glm::vec3>()(vertex.position)};
-        return h1;
+    size_t operator()(const Vertex& vertex) const noexcept {
+        const auto h1 = std::hash<glm::vec3>()(vertex.position);
+        const auto h2 = std::hash<glm::vec3>()(vertex.normal);
+        const auto h3 = std::hash<glm::vec2>()(vertex.texCoord);
+        return abcg::hashCombine(h1, h2, h3);
     }
 };
 
@@ -87,9 +94,30 @@ private:
     static GLuint s_VAO_;
     static GLuint s_VBO_;
     static GLuint s_EBO_;
+
     static GLint s_ModelLocation_;
     static GLint s_ViewLocation_;
     static GLint s_ProjLocation_;
+    static GLint s_CamPositionLocation_;
+
+    struct Material : public LightProperty {
+        Material() {}
+
+        void showUI() {
+            ImGui::PushID(0);
+            ImGui::Separator();
+            LightProperty::showUI();
+            ImGui::SliderFloat("Shininess", &shininess, 0.f, 100.f);
+            ImGui::PopID();
+        }
+
+        unsigned int diffuseTexture;
+        float shininess;
+
+        GLint LocationDiffuseTexture;
+        GLint LocationShininess;
+    };
+    static Material s_Material_;
 };
 
 #endif

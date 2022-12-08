@@ -5,10 +5,6 @@ unsigned int Space::s_EBOSize_ = 0;
 GLuint Space::s_VAO_ = 0;
 GLuint Space::s_VBO_ = 0;
 GLuint Space::s_EBO_ = 0;
-GLuint Space::s_Shader_ = 0;
-GLint Space::s_ModelLocation_ = 0;
-GLint Space::s_ViewLocation_ = 0;
-GLint Space::s_ProjLocation_ = 0;
 
 Space::Space() : m_Model_(glm::scale(glm::mat4(1.f), glm::vec3(m_Size_)))
 {
@@ -18,14 +14,16 @@ Space::~Space() {
     
 }
 
-void Space::show(const Camera& camera) {
+void Space::show(const Camera& camera, const Shader& shader) {
     abcg::glLineWidth(3.0);
-    abcg::glUseProgram(s_Shader_);
+    abcg::glUseProgram(shader.program);
     abcg::glBindVertexArray(s_VAO_);
 
-    abcg::glUniformMatrix4fv(s_ModelLocation_, 1, GL_FALSE, &m_Model_[0][0]);
-    abcg::glUniformMatrix4fv(s_ViewLocation_, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
-    abcg::glUniformMatrix4fv(s_ProjLocation_, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
+    abcg::glUniformMatrix4fv(shader.modelULoc, 1, GL_FALSE, &m_Model_[0][0]);
+    abcg::glUniformMatrix4fv(shader.viewULoc, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
+    abcg::glUniformMatrix4fv(shader.projULoc, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
+    abcg::glUniform1i(shader.stripULoc, 0);
+    abcg::glUniform3f(shader.AcolorULoc, 1.0f, 1.0f, 1.0f);
 
     abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_EBO_);
     abcg::glDrawElements(GL_LINES, s_EBOSize_, GL_UNSIGNED_INT, nullptr);
@@ -36,7 +34,7 @@ void Space::show(const Camera& camera) {
     abcg::glLineWidth(1.0);
 }
 
-void Space::setup() {
+void Space::setup(const Shader& shader) {
     std::vector<float> vertices = {
         -1.0f, -1.0f,  1.0f,
         -1.0f, -1.0f, -1.0f,
@@ -68,17 +66,6 @@ void Space::setup() {
 
     s_EBOSize_ = indices.size();
 
-    const auto assetsPath = abcg::Application::getAssetsPath();
-	s_Shader_ = abcg::createOpenGLProgram({
-		{.source = assetsPath + "shader.vert", .stage = abcg::ShaderStage::Vertex},
-		{.source = assetsPath + "space.frag", .stage = abcg::ShaderStage::Fragment}
-	});
-    auto postionLoc = abcg::glGetAttribLocation(s_Shader_, "l_position");
-
-    s_ModelLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_model");
-    s_ViewLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_view");
-    s_ProjLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_proj");
-
     abcg::glGenBuffers(1, &s_VBO_);
     abcg::glBindBuffer(GL_ARRAY_BUFFER, s_VBO_);
     abcg::glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
@@ -91,9 +78,9 @@ void Space::setup() {
 
     abcg::glGenVertexArrays(1, &s_VAO_);
     abcg::glBindVertexArray(s_VAO_);
-    abcg::glEnableVertexAttribArray(postionLoc);
+    abcg::glEnableVertexAttribArray(shader.positionALoc);
     abcg::glBindBuffer(GL_ARRAY_BUFFER, s_VBO_);
-    abcg::glVertexAttribPointer(postionLoc, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    abcg::glVertexAttribPointer(shader.positionALoc, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     abcg::glBindBuffer(GL_ARRAY_BUFFER, 0);
     abcg::glBindVertexArray(0);
 }

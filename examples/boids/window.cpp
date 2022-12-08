@@ -13,8 +13,10 @@ void Window::onCreate() {
 	m_Camera_.computeViewMatrix();
 
 	// Generate the OpenGL buffers
+	m_Shader_ = std::make_unique<Shader>();
 	Boid::setup();
-	Space::setup();
+	Space::setup(*m_Shader_);
+	PointLight::setup(*m_Shader_);
 
 	createBoids();
 }
@@ -29,6 +31,10 @@ void Window::createBoids() {
 		auto vel = glm::ballRand(Boid::maxVel());
 		m_Boids_.emplace_back(pos, vel);
 	}
+	// auto vel = glm::vec3(-0.01f, 0.f, 0.f);
+	// m_Boids_.emplace_back(glm::vec3(0.f, 0.f, 0.f), vel);
+	// m_Boids_.emplace_back(glm::vec3(4.f, 4.f, 0.f), vel);
+
 }
 
 void Window::onPaintUI() {
@@ -41,6 +47,21 @@ void Window::onPaintUI() {
 
 		Boid::showUI();
 		m_Camera_.showUI();
+
+		if (ImGui::CollapsingHeader("Lights")) {
+			ImGui::Indent();
+
+			s_DirLight.showUI();
+
+			if (ImGui::CollapsingHeader("Point Lights")) {
+				ImGui::Indent();
+				for (size_t i = 0; i < s_NumPointLights; i++) {
+					s_PointLights[i].showUI();
+				}
+				ImGui::Unindent();
+			}
+			ImGui::Unindent();
+		}
 		ImGui::End();
 	}
 }
@@ -51,8 +72,12 @@ void Window::onPaint() {
 	auto dt = m_Timer_.elapsed();
 	m_Timer_.restart();
 
-	abcg::glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	abcg::glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	abcg::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	for (size_t i = 0; i < s_NumPointLights; i++) {
+		s_PointLights[i].show(m_Camera_, *m_Shader_);
+	}
 
 	for (auto &b : m_Boids_) {
 		b.simulate(m_Boids_);
@@ -61,7 +86,7 @@ void Window::onPaint() {
 		b.show(m_Camera_);
 	}
 
-	m_Space_.show(m_Camera_);
+	m_Space_.show(m_Camera_, *m_Shader_);
 }
 
 void Window::onResize(const glm::ivec2& size) {

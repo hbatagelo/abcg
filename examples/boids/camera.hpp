@@ -18,6 +18,7 @@ public:
 
     const glm::mat4& getViewMatrix() const { return m_ViewMatrix_; }
     const glm::mat4& getProjMatrix() const { return m_ProjMatrix_; }
+    const glm::vec3& getPosition() const { return m_Eye_; }
     
     void showUI();
 private:

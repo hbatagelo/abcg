@@ -13,8 +13,9 @@ struct Material {
 
 struct DirLight {
     vec3 direction;
+
     float strength;
-	
+
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
@@ -22,6 +23,7 @@ struct DirLight {
 
 struct PointLight {
     vec3 position;
+
     float constant;
     float linear;
     float quadratic;
@@ -30,13 +32,33 @@ struct PointLight {
     vec3 diffuse;
     vec3 specular;
 };
+#define NUM_POINT_LIGHTS 5
 
-#define NUM_POINT_LIGHTS 15
+struct SpotLight {
+    vec3 position;
+    vec3 direction;
+
+    float constant;
+    float linear;
+    float quadratic;
+	
+    float cutOff;
+    float outerCutOff;
+
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+};
+#define NUM_SPOT_LIGHTS 5
 
 uniform vec3 u_CamPosition;
 uniform Material u_Material;
 uniform DirLight u_DirLight;
 uniform PointLight u_PointLights[NUM_POINT_LIGHTS];
+uniform SpotLight u_SpotLights[NUM_SPOT_LIGHTS];
+uniform int u_UseDirLight;
+uniform int u_UsePointLight;
+uniform int u_UseSpotLight;
 
 in vec3 io_WorldPosition;
 in vec3 io_Normal;
@@ -76,13 +98,40 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 viewDir) {
     return attenuation*CalcLight(lightDir, light.ambient, light.diffuse, light.specular, normal, viewDir);;
 }
 
+vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 viewDir) {
+    vec3 lightDir = normalize(light.position - io_WorldPosition);
+
+    // attenuation
+    float d = length(light.position - io_WorldPosition);
+    float attenuation = 1.0 / (light.constant + light.linear * d + light.quadratic * (d * d));
+
+    // intensity
+    float theta = dot(lightDir, normalize(-light.direction)); 
+    float epsilon = light.cutOff - light.outerCutOff;
+    float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
+
+    return attenuation*intensity*CalcLight(lightDir, light.ambient, light.diffuse, light.specular, normal, viewDir);
+}
+
 void main() {
     vec3 norm = normalize(io_Normal);
     vec3 viewDir = normalize(u_CamPosition - io_WorldPosition);
-    vec3 color = DirectLightContribution(norm, viewDir);
+    vec3 color = vec3(0.0);
 
-    for (int i = 0; i < NUM_POINT_LIGHTS; i++) {
-        color += CalcPointLight(u_PointLights[i], norm, viewDir);
+    if (u_UseDirLight == 1) {
+        color += DirectLightContribution(norm, viewDir);
+    }
+
+    if (u_UsePointLight == 1) {
+        for (int i = 0; i < NUM_POINT_LIGHTS; i++) {
+            color += CalcPointLight(u_PointLights[i], norm, viewDir);
+        }
+    }
+
+    if (u_UseSpotLight == 1) {
+        for (int i = 0; i < NUM_SPOT_LIGHTS; i++) {
+            color += CalcSpotLight(u_SpotLights[i], norm, viewDir);
+        }
     }
 
     outColor = vec4(color, 1.0);

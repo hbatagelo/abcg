@@ -5,12 +5,8 @@
 #include <iostream>
 #include "light.hpp"
 #include "camera.hpp"
+#include "space.hpp"
 #include "abcgOpenGL.hpp"
-#include "unordered_map"
-
-extern DirLight s_DirLight;
-extern PointLight s_PointLights[];
-extern size_t s_NumPointLights;
 
 struct Vertex {
     glm::vec3 position;
@@ -47,13 +43,13 @@ public:
     void update(float dt);
 
     //Render
-    void show(const Camera& camera);
+    void show(const Camera& camera, Space& space, bool useDirLight, bool usePointLight, bool useSpotLight);
 
     //Generate the OpenGL Buffers
-    static void setup();    
+    static void setup(Space& space);    
 
     //Render the ImGui
-    static void showUI();
+    static void showUI(int id);
     static float maxVel() { return s_MaxVel_; }
 private:
     //Calculate the steering force based on disired target
@@ -99,12 +95,16 @@ private:
     static GLint s_ViewLocation_;
     static GLint s_ProjLocation_;
     static GLint s_CamPositionLocation_;
+    static GLint s_UseDirLightLocation_;
+    static GLint s_UsePointLightLocation_;
+    static GLint s_UseSpotLightLocation_;
 
+    //Boid material used for by the texture
     struct Material : public LightProperty {
         Material() {}
 
-        void showUI() {
-            ImGui::PushID(0);
+        void showUI(int id) {
+            ImGui::PushID(id);
             ImGui::Separator();
             LightProperty::showUI();
             ImGui::SliderFloat("Shininess", &shininess, 0.f, 100.f);

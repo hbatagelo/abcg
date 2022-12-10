@@ -18,6 +18,9 @@ GLint Boid::s_ModelLocation_ = 0;
 GLint Boid::s_ViewLocation_ = 0;
 GLint Boid::s_ProjLocation_ = 0;
 GLint Boid::s_CamPositionLocation_ = 0;
+GLint Boid::s_UseDirLightLocation_ = 0;
+GLint Boid::s_UsePointLightLocation_ = 0;
+GLint Boid::s_UseSpotLightLocation_ = 0;
 
 Boid::Material Boid::s_Material_;
 
@@ -47,33 +50,39 @@ void Boid::calcModelMatrix() {
     m_Model_ = glm::scale(m_Model_, glm::vec3(7.f));
 }
 
-void Boid::show(const Camera& camera) {
+void Boid::show(const Camera& camera, Space& space, bool useDirLight, bool usePointLight, bool useSpotLight) {
     abcg::glUseProgram(s_Shader_);
     abcg::glBindVertexArray(s_VAO_);
 
+    //activate and bind the texture
     abcg::glActiveTexture(GL_TEXTURE0);
     abcg::glBindTexture(GL_TEXTURE_2D, s_Material_.diffuseTexture);
-    // Set minification and magnification parameters
     abcg::glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     abcg::glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // Set texture wrapping parameters
     abcg::glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     abcg::glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    //set the material uniform
     abcg::glUniform1i(s_Material_.LocationDiffuseTexture, 0);
     abcg::glUniform3fv(s_Material_.LocationAmbient, 1, &s_Material_.ambient[0]);
     abcg::glUniform3fv(s_Material_.LocationDiffuse, 1, &s_Material_.diffuse[0]);
     abcg::glUniform3fv(s_Material_.LocationSpecular, 1, &s_Material_.specular[0]);
     abcg::glUniform1fv(s_Material_.LocationShininess, 1, &s_Material_.shininess);
 
-    abcg::glUniform3fv(s_DirLight.LocationDirection, 1, &s_DirLight.direction[0]);
-    abcg::glUniform3fv(s_DirLight.LocationAmbient, 1, &s_DirLight.ambient[0]);
-    abcg::glUniform3fv(s_DirLight.LocationDiffuse, 1, &s_DirLight.diffuse[0]);
-    abcg::glUniform3fv(s_DirLight.LocationSpecular, 1, &s_DirLight.specular[0]);
-    abcg::glUniform1f(s_DirLight.LocationStrength, s_DirLight.strength);
+    //set the directional light uniform
+    int useDirLightI = useDirLight;
+    abcg::glUniform1i(s_UseDirLightLocation_, useDirLightI);
+    auto& dirLight = space.getDirLight();
+    abcg::glUniform3fv(dirLight.LocationDirection, 1, &dirLight.direction[0]);
+    abcg::glUniform3fv(dirLight.LocationAmbient, 1, &dirLight.ambient[0]);
+    abcg::glUniform3fv(dirLight.LocationDiffuse, 1, &dirLight.diffuse[0]);
+    abcg::glUniform3fv(dirLight.LocationSpecular, 1, &dirLight.specular[0]);
+    abcg::glUniform1f(dirLight.LocationStrength, dirLight.strength);
 
-    for (size_t i = 0; i < s_NumPointLights; i++)
+    int usePointLightI = usePointLight;
+    abcg::glUniform1i(s_UsePointLightLocation_, usePointLightI);
+    //set the point lights uniforms
+    for (auto& pointLight : space.getPointLights())
     {
-        auto& pointLight = s_PointLights[i];
         abcg::glUniform3fv(pointLight.LocationPosition, 1, &pointLight.position[0]);
         abcg::glUniform1f(pointLight.LocationConstant, pointLight.constant);
         abcg::glUniform1f(pointLight.LocationLinear, pointLight.linear);
@@ -83,12 +92,32 @@ void Boid::show(const Camera& camera) {
         abcg::glUniform3fv(pointLight.LocationSpecular, 1, &pointLight.specular[0]);
     }
 
+    int usSpotLightI = useSpotLight;
+    abcg::glUniform1i(s_UseSpotLightLocation_, usSpotLightI);
+    //set the spot lights uniforms
+    for (auto& spotLight : space.getSpotLights())
+    {
+        abcg::glUniform3fv(spotLight.LocationPosition, 1, &spotLight.position[0]);
+        abcg::glUniform3fv(spotLight.LocationDirection, 1, &spotLight.direction[0]);
+        abcg::glUniform1f(spotLight.LocationConstant, spotLight.constant);
+        abcg::glUniform1f(spotLight.LocationLinear, spotLight.linear);
+        abcg::glUniform1f(spotLight.LocationQuadractic, spotLight.quadratic);
+        abcg::glUniform1f(spotLight.LocationCutOff, spotLight.cutOff);
+        abcg::glUniform1f(spotLight.LocationOuterCutOff, spotLight.outerCutOff);
+        abcg::glUniform3fv(spotLight.LocationAmbient, 1, &spotLight.ambient[0]);
+        abcg::glUniform3fv(spotLight.LocationDiffuse, 1, &spotLight.diffuse[0]);
+        abcg::glUniform3fv(spotLight.LocationSpecular, 1, &spotLight.specular[0]);
+    }
+
+    //set the camera uniform
     abcg::glUniform3fv(s_CamPositionLocation_, 1, &camera.getPosition()[0]);
 
+    //set mvp uniform
     abcg::glUniformMatrix4fv(s_ModelLocation_, 1, GL_FALSE, &m_Model_[0][0]);
     abcg::glUniformMatrix4fv(s_ViewLocation_, 1, GL_FALSE, &camera.getViewMatrix()[0][0]);
     abcg::glUniformMatrix4fv(s_ProjLocation_, 1, GL_FALSE, &camera.getProjMatrix()[0][0]);
 
+    //draw
     abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s_EBO_);
     abcg::glDrawElements(GL_TRIANGLES, s_EBOSize_, GL_UNSIGNED_INT, nullptr);
     abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -188,7 +217,7 @@ void Boid::update(float dt) {
     m_Acc_ = glm::vec3(0.f);
 }
 
-void Boid::setup() {
+void Boid::setup(Space& space) {
     const auto assetsPath = abcg::Application::getAssetsPath();
     auto [vertices, indices] = loadModelFromFile(assetsPath + "eagle/eagle.obj", true);
 
@@ -198,14 +227,19 @@ void Boid::setup() {
 		{.source = assetsPath + "boid.vert", .stage = abcg::ShaderStage::Vertex},
 		{.source = assetsPath + "boid.frag", .stage = abcg::ShaderStage::Fragment}
 	});
+    //get the attribute locations
     auto postionLoc = abcg::glGetAttribLocation(s_Shader_, "l_Position");
     auto normalLoc = abcg::glGetAttribLocation(s_Shader_, "l_Normal");
     auto texLoc = abcg::glGetAttribLocation(s_Shader_, "l_Tex");
 
+    //get uniform locations
     s_ModelLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_Model");
     s_ViewLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_View");
     s_ProjLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_Proj");
     s_CamPositionLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_CamPosition");
+    s_UseDirLightLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_UseDirLight");
+    s_UsePointLightLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_UsePointLight");
+    s_UseSpotLightLocation_ = abcg::glGetUniformLocation(s_Shader_, "u_UseSpotLight");
 
     s_Material_.LocationDiffuseTexture = abcg::glGetUniformLocation(s_Shader_, "u_Material.diffuseTexture");
     s_Material_.LocationAmbient = abcg::glGetUniformLocation(s_Shader_, "u_Material.ambient");
@@ -213,16 +247,17 @@ void Boid::setup() {
     s_Material_.LocationSpecular = abcg::glGetUniformLocation(s_Shader_, "u_Material.specular");
     s_Material_.LocationShininess = abcg::glGetUniformLocation(s_Shader_, "u_Material.shininess");
 
-    s_DirLight.LocationDirection = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.direction");
-    s_DirLight.LocationAmbient = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.ambient");
-    s_DirLight.LocationDiffuse = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.diffuse");
-    s_DirLight.LocationSpecular = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.specular");
-    s_DirLight.LocationStrength = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.strength");
+    auto& dirLight = space.getDirLight();
+    dirLight.LocationDirection = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.direction");
+    dirLight.LocationAmbient = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.ambient");
+    dirLight.LocationDiffuse = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.diffuse");
+    dirLight.LocationSpecular = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.specular");
+    dirLight.LocationStrength = abcg::glGetUniformLocation(s_Shader_, "u_DirLight.strength");
 
-    for (size_t i = 0; i < s_NumPointLights; i++)
-    {
+    auto& pointLights = space.getPointLights();
+    for (size_t i = 0; i < pointLights.size(); i++) {
         auto prefix = "u_PointLights[" + std::to_string(i) + "].";
-        auto& pointLight = s_PointLights[i];
+        auto& pointLight = pointLights[i];
 
         auto name = prefix + "position";
         pointLight.LocationPosition = abcg::glGetUniformLocation(s_Shader_, name.c_str());
@@ -240,6 +275,35 @@ void Boid::setup() {
         pointLight.LocationSpecular = abcg::glGetUniformLocation(s_Shader_, name.c_str());
     }
 
+    auto& spotLights = space.getSpotLights();
+    for (size_t i = 0; i < spotLights.size(); i++)
+    {
+        auto prefix = "u_SpotLights[" + std::to_string(i) + "].";
+        auto& spotLight = spotLights[i];
+
+        auto name = prefix + "position";
+        spotLight.LocationPosition = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "direction";
+        spotLight.LocationDirection = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "constant";
+        spotLight.LocationConstant = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "linear";
+        spotLight.LocationLinear = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "quadratic";
+        spotLight.LocationQuadractic = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "cutOff";
+        spotLight.LocationCutOff = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "outerCutOff";
+        spotLight.LocationOuterCutOff = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "ambient";
+        spotLight.LocationAmbient = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "diffuse";
+        spotLight.LocationDiffuse = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+        name = prefix + "specular";
+        spotLight.LocationSpecular = abcg::glGetUniformLocation(s_Shader_, name.c_str());
+    }
+
+    //gen the vao and buffers
     abcg::glGenBuffers(1, &s_VBO_);
     abcg::glBindBuffer(GL_ARRAY_BUFFER, s_VBO_);
     abcg::glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
@@ -265,7 +329,7 @@ void Boid::setup() {
     abcg::glBindVertexArray(0);
 }
 
-void Boid::showUI() {
+void Boid::showUI(int id) {
     if (!ImGui::CollapsingHeader("Boids"))
         return;
     ImGui::DragFloat("Aligment", &s_AlignmentMult_, 0.1f, 0.f, 10.f);
@@ -274,7 +338,7 @@ void Boid::showUI() {
     ImGui::DragFloat("Perception Radius", &s_Perception_, 0.1f, 0.f, 10.f);
     ImGui::DragFloat("Maximum Force", &s_MaxForce_);
     ImGui::DragFloat("Velocity", &s_MaxVel_);
-    s_Material_.showUI();
+    s_Material_.showUI(id);
 }
 
 std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFile(std::string_view path, bool normalize) {
@@ -302,21 +366,21 @@ std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFil
     const auto& shapes = reader.GetShapes();
     const auto& materials = reader.GetMaterials();
 
-    // Loop over shapes
+    //lpop over shapes
     for (auto const& shape : shapes) {
-        // Loop over indices
+        //loop over indices
         for (auto const offset : iter::range(shape.mesh.indices.size())) {
-            // Access to vertex
+            //access to vertex
             auto const index = shape.mesh.indices.at(offset);
 
-            // Vertex position
+            //vertex position
             const auto startIndex = 3 * index.vertex_index;
             const auto vx = attrib.vertices.at(startIndex + 0);
             const auto vy = attrib.vertices.at(startIndex + 1);
             const auto vz = attrib.vertices.at(startIndex + 2);
             glm::vec3 position = {vx, vy, vz};
 
-            // Normal
+            //normal
             glm::vec3 normal;
             if (index.normal_index >= 0) {
                 const auto normalStartIndex = 3 * index.normal_index;
@@ -326,7 +390,7 @@ std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFil
                 normal = {nx, ny, nz};
             }
 
-            // Texture coordinates
+            //texture coordinates
             glm::vec2 texCoord;
             if (index.texcoord_index >= 0) {
                 const auto texCoordsStartIndex = 2 * index.texcoord_index;
@@ -337,18 +401,18 @@ std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFil
 
             const Vertex vertex {.position = position, .normal = normal, .texCoord = texCoord};
 
-            // If map doesn't contain this vertex
+            //if map doesn't contain this vertex
             if (!hash.contains(vertex)) {
-                // Add this index (size of m_vertices)
+                //add this index (size of m_vertices)
                 hash[vertex] = vertices.size();
-                // Add this vertex
+                //add this vertex
                 vertices.push_back(vertex);
             }
             indices.push_back(hash[vertex]);
         }
     }
 
-    // Use properties of first material, if available
+    //use properties of first material, if available
     if (!materials.empty()) {
         const auto& mat = materials.at(0); // First material
         s_Material_.ambient = {mat.ambient[0], mat.ambient[1], mat.ambient[2]};
@@ -368,8 +432,8 @@ std::pair<std::vector<Vertex>, std::vector<unsigned int>> Boid::loadModelFromFil
 }
 
 void Boid::standardize(std::vector<Vertex>& vertices) {
-    // Center to origin and normalize bounds to [-1, 1]
-    // Get bounds
+    //center to origin and normalize bounds to [-1, 1]
+    //get bounds
     glm::vec3 max(std::numeric_limits<float>::lowest());
     glm::vec3 min(std::numeric_limits<float>::max());
     for (const auto& vertex : vertices) {
@@ -377,7 +441,7 @@ void Boid::standardize(std::vector<Vertex>& vertices) {
         min = glm::min(min, vertex.position);
     }
 
-    // Center and scale
+    //center and scale
     auto const center = (min + max) / 2.0f;
     auto const scaling = 2.0f / glm::length(max - min);
     for (auto& vertex : vertices) {

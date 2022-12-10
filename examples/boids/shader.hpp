@@ -3,6 +3,7 @@
 
 #include "abcgOpenGL.hpp"
 
+//shader representation
 struct Shader {
     Shader() {
         const auto assetsPath = abcg::Application::getAssetsPath();

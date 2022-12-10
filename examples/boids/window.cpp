@@ -14,9 +14,10 @@ void Window::onCreate() {
 
 	// Generate the OpenGL buffers
 	m_Shader_ = std::make_unique<Shader>();
-	Boid::setup();
-	Space::setup(*m_Shader_);
 	PointLight::setup(*m_Shader_);
+	SpotLight::setup(*m_Shader_);
+	Space::setup(*m_Shader_);
+	Boid::setup(m_Space_);
 
 	createBoids();
 }
@@ -31,10 +32,6 @@ void Window::createBoids() {
 		auto vel = glm::ballRand(Boid::maxVel());
 		m_Boids_.emplace_back(pos, vel);
 	}
-	// auto vel = glm::vec3(-0.01f, 0.f, 0.f);
-	// m_Boids_.emplace_back(glm::vec3(0.f, 0.f, 0.f), vel);
-	// m_Boids_.emplace_back(glm::vec3(4.f, 4.f, 0.f), vel);
-
 }
 
 void Window::onPaintUI() {
@@ -45,21 +42,40 @@ void Window::onPaintUI() {
 			createBoids();
 		}
 
-		Boid::showUI();
+		int id = 0;
+		Boid::showUI(id);
+		id++;
+
 		m_Camera_.showUI();
 
 		if (ImGui::CollapsingHeader("Lights")) {
 			ImGui::Indent();
 
-			s_DirLight.showUI();
+			ImGui::Checkbox("Use Direct Light", &m_UseDirLight_);
+			ImGui::Checkbox("Use Point Light", &m_UsePointLight_);
+			ImGui::Checkbox("Use Spot Light", &m_UseSpotLight_);
+
+			m_Space_.getDirLight().showUI(id);
+			id++;
 
 			if (ImGui::CollapsingHeader("Point Lights")) {
 				ImGui::Indent();
-				for (size_t i = 0; i < s_NumPointLights; i++) {
-					s_PointLights[i].showUI();
+				for (auto& light : m_Space_.getPointLights()) {
+					light.showUI(id);
+					id++;
+				}
+				ImGui::Unindent();
+			}			
+			
+			if (ImGui::CollapsingHeader("Spot Lights")) {
+				ImGui::Indent();
+				for (auto& light : m_Space_.getSpotLights()) {
+					light.showUI(id);
+					id++;
 				}
 				ImGui::Unindent();
 			}
+
 			ImGui::Unindent();
 		}
 		ImGui::End();
@@ -75,15 +91,23 @@ void Window::onPaint() {
 	abcg::glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	abcg::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for (size_t i = 0; i < s_NumPointLights; i++) {
-		s_PointLights[i].show(m_Camera_, *m_Shader_);
+	if (m_UsePointLight_) {
+		for (auto& light : m_Space_.getPointLights()) {
+			light.show(m_Camera_, *m_Shader_);
+		}
+	}
+
+	if (m_UseSpotLight_) {
+		for (auto& light : m_Space_.getSpotLights()) {
+			light.show(m_Camera_, *m_Shader_);
+		}
 	}
 
 	for (auto &b : m_Boids_) {
 		b.simulate(m_Boids_);
 		b.update(dt);
 		b.checkEdge(m_Space_.size());
-		b.show(m_Camera_);
+		b.show(m_Camera_, m_Space_, m_UseDirLight_, m_UsePointLight_, m_UseSpotLight_);
 	}
 
 	m_Space_.show(m_Camera_, *m_Shader_);

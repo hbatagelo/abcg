@@ -3,7 +3,9 @@
 
 #include "camera.hpp"
 #include "shader.hpp"
+#include "light.hpp"
 #include "abcgOpenGL.hpp"
+#include <vector>
 
 class Space {
 public:
@@ -20,9 +22,30 @@ public:
 
     //Generate the OpenGL Buffers
     static void setup(const Shader& shader);
+
+    DirLight& getDirLight() { return m_DirLight_; }
+    std::vector<PointLight>& getPointLights() { return m_PointLights_; }
+    std::vector<SpotLight>& getSpotLights() { return m_SpotLights_; }
 private:
     float m_Size_ = 100.f;
     glm::mat4 m_Model_;
+
+    DirLight m_DirLight_;
+    std::vector<PointLight> m_PointLights_ = {
+        PointLight(m_Size_),
+        PointLight(m_Size_),
+        PointLight(m_Size_),
+        PointLight(m_Size_),
+        PointLight(m_Size_),
+    };
+
+    std::vector<SpotLight> m_SpotLights_ = {
+        SpotLight(m_Size_),
+        SpotLight(m_Size_),
+        SpotLight(m_Size_),
+        SpotLight(m_Size_),
+        SpotLight(m_Size_),
+    };
 
     static unsigned int s_EBOSize_;
     static GLuint s_VAO_;

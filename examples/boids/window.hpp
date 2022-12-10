@@ -25,6 +25,10 @@ private:
     Camera m_Camera_;
     Space m_Space_;
     std::vector<Boid> m_Boids_;
+
+    bool m_UseDirLight_ = true;
+    bool m_UsePointLight_ = true;
+    bool m_UseSpotLight_ = true;
 };
 
 #endif

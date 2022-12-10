@@ -8,8 +8,11 @@ uniform mat4 u_Model;
 uniform mat4 u_View;
 uniform mat4 u_Proj;
 
+//fragment in world space
 out vec3 io_WorldPosition;
+//normal matrix
 out vec3 io_Normal;
+//texture coordinate of the vertex
 out vec2 io_TexCoord;
 
 void main() {

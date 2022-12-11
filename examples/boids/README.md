@@ -9,93 +9,28 @@
 
 ## **Introdução**
 
-Esse projeto consiste em criar um programa de ***Boids*** 3D (do inglês, *bird-oid object*), criado por Craig Reynolds em 1986. Esse programa se enquadra na categoria de algoritmos de vida artificial, onde um conjunto de regras simples aplicadas em um sistema com vários objetos apresentam comportamentos complexos, como exemplo de tais programas temos o jogo da vida de John Conway. 
-
-No caso especifico do ***Boids***, espera-se que apartir de 3 simples regras seja possível simular um comportamento de rebanho.
+Esse projeto consiste na continuação do trabalho do ***Boids*** (Atividade 3) com a adição de shaders de texturização e iluminação.
 
 ## **Como foi feito**
 
-A classe ```Space``` representa a região no formato de um cubo onde os ***boids*** vão se mover. Essa classe implementam as seguintes  funções:
+Inicialmente foi adicionado no struct do vértice um vetor normal (**normal (vec3)**) e um vetor de textura (**texCoord (vec2)**). Além disso, é necessário atualizarmos a função hash do vértice para levar em consideração essas novas componentes. Isso é importante porque agora vértices do objeto com a mesma posição podem ser diferentes dependendo das componentes do vetor normal e de textura.
 
-* **setup**: Responsável por criar os vértices e índices (especificados em código), carregar o vertex  e fragment shader, criar os buffers e fazer os *binds* necessários.
+Nos arquivos **light** (**light.hpp** e **light.cpp**) são implementados três tipos de luz diferentes com suas respectivas interfaces ImGui, conforme apresentado na Aula 9 secção 2 na parte *Fontes de luz*:
 
-* **show**: Responsável por desenhar aresta por aresta utilizando o comando ***GL_LINES***. Essa lógica está implementada no arquivo [space.cpp](./space.cpp) e sua respectiva interface [space.hpp](./space.hpp).
+- **Luz direcional**: Ilumina todo mundo com a mesma intensidade. Como não tem posição no espaço não calcula-se a atenuação.
 
+- **Luz pontual**: Ilumina em toda a direção e a intensidade diminui conforme a distância aumenta. 
 
-O vertex shader utilizado está no arquivo: [shader.vert](./assets/shader.vert) e contém somente as multiplicações matrizes que permitem transformar do espaço do objeto para o espaço da câmera com perspectiva. 
+- **Luz Spot**: Ilumina em formato de cone (parecido com uma lanterna) e a intensidade diminui conforme a distância aumenta.
 
-O fragment shader utilizado está no arquivo: [space.frag](./assets/space.frag) e contém somente o output de uma cor.
+No espaço temos uma luz direcional e cinco fontes de luz pontuais e spot. No arquivo **boid.frag** na função *CalcLight* é calculada a intensidade de Blinn–Phong (Aula 9 secção 3), a qual é utilizada pelos 3 tipos de fonte luz em suas respectivas funções (*DirectLightContribution*, *CalcPointLight*, *CalcSpotLight*). Por último na função *main* ocorre a soma da contribuição de cada fonte de luz no cenário, permitindo atribuir aos vértices a cor de maneira proporcional a iluminação que eles recebem criando os efeitos visuais.
 
----
-A classe ```Boid```, onde os principais métodos são:
+Vale notar que calculamos a equação do modelo de iluminação para cada fragmento, logo estamos utilizando o sombreamento de Phong que obtém melhor resultado, mas é mais custoso quando comparado ao modelo Flat ou de Gouraud. 
 
-* **checkEdge**: Checa se um boid está dentro do espaço permitido e o reposiciona caso necessário.
+**Funcionlidades Adicionadas**
 
-* **simulate**: Implementa as regras que permitem o comportamento de rebanho.
-
-* **update**: Realiza o update da posição e velocidade dos boids.
-
-* **show**: Responsável por criar os vértices e índices (especificados em código), carregar o vertex  e fragment shader, criar os buffers e fazer os *binds* necessários.
-
-* **setup**: Responsável por criar os buffers e enviar para GPU.
-
-* **showUI**: Responsável por desenhar a ImGui na tela.
-
-O vertex shader utilizado está no arquivo: [shader.vert](./assets/shader.vert) e contém somente as multiplicações matrizes que permitem transformar do espaço do objeto para o espaço da câmera com perspectiva. 
-
-
-O fragment shader utilizado está no arquivo: [boid.frag](./assets/boid.frag) e contém somente o output de uma cor.
-
----
-
-A classe ```Camera``` contém as funções:
-
-* **computeProjectionMatrix**: Calcula a matriz que transforma do ***espaço da camera*** para o ***clip space***.
-* **computeViewMatrix**: Calcula a matriz que transforma do ***espaço do mundo*** para o ***espaço da camera***
-* **showUI**: Rendeneriza os componentes do ***ImGui*** na tela. 
-* **onEvent**: Atualiza posição da câmera e para a direção na qual ela está olhando de acordo com os inputs de teclado e mouse. 
-
-## **Como funciona**
-
-Regras:
-
-1. Os Boids devem desviar de outros boids.
-2. Os Boids devem se mover na mesma direção de boids próximos.
-3. Todo Boid deve se mover para o centro de boids próximos.
-
-
-## **Comandos**
-
-Os comandos de mouse e teclado foram implementados de forma a simular câmeras normalmente utilizadas em jogos de FPS (do inglês, *First-person shooter*):
-
-* **W/S**: Representa o movimento ***dolly*** (jargão cinematográfico).
-* **A/D**: Representa o movimento ***pan*** (jargão cinematográfico).
-* **Mouse**: Muda a posição para qual a câmera está olhando (É necessario segurar o botão esquerdo do mouse para mover a câmera).
-
-Os comandos de ***dolly*** (**W/S**) e ***pan*** (**A/D**) são implementados alterando-se a posição da câmera (na coordenada do mundo), representada pela variável ```m_Eye_```.
-
-O comando relacionado ao **Mouse** é implementado ao se alterar a posição na qual a câmera está olhando (na coordenada do mundo), representada pela variável ```m_Front_```.
-
-A implementação pode ser encontrada no arquivo [camera.cpp](camera.cpp), e sua respectiva interface pode ser encontrada no arquivo [camera.hpp](camera.hpp).
-
-## **Parametros controlaveis**
-
-* **Number of boids**: Muda a quantidade de boids no espaço.
-
-Boids:
-* **Alignment**: Alinha velocidade baseado na velocidade média dos vizinhos.
-* **Cohesion**: Alinha posição baseado na posição média dos vizinhos.
-* **Separation**: Evita colisões (inversamente proporcional a distância).
-* **Perception Radius**: Altera a esfera de percepção dos boids.
-* **Maximum Force**: Como neste mundo a massa = 1, este parametro é igual a aceleração máxima.
-* **Velocity**: Aumenta a velocidade dos boids.
-
-Camera:
-* **Speed**: Velocidade da câmera.
-* **FOV**: FOV da câmera.
-* **Z Near**: Z Near da câmera.
-* **Z Far**: Z Far da câmera.
-
-## **Observações**
-
-O projeto teve como inspiração esse [Vídeo](https://www.youtube.com/watch?v=bqtqltqcQhw).
+- Na ImGui é possível ativar ou desativar cada fonte de luz. Permitindo ver como cada contribuição afeta o resultado final.
+- Para as fontes de luz pontuais e spot é possível alterar:
+    - Suas posições no espeço alterando as componentes x,y e z. 
+    - Sua atenuação alterando a componente constante, linear ou quadrática da equação de atenuação utilizada.
+    -

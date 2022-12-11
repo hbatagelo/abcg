@@ -33,4 +33,4 @@ Vale notar que calculamos a equação do modelo de iluminação para cada fragme
 - Para as fontes de luz pontuais e spot é possível alterar:
     - Suas posições no espeço alterando as componentes x,y e z. 
     - Sua atenuação alterando a componente constante, linear ou quadrática da equação de atenuação utilizada.
-    -
+    - Sua componente ambiente ($I_a$), difusa ($I_d$) e especular ($I_s$).

@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -27,7 +27,7 @@ void abcg::VulkanPipeline::create(VulkanSwapchain const &swapchain,
   }
 
   // Vertex binding and attributes
-  vk::PipelineVertexInputStateCreateInfo vertexInputState{
+  vk::PipelineVertexInputStateCreateInfo const vertexInputState{
       .vertexBindingDescriptionCount =
           gsl::narrow<uint32_t>(createInfo.bindingDescriptions.size()),
       .pVertexBindingDescriptions = createInfo.bindingDescriptions.data(),
@@ -43,7 +43,7 @@ void abcg::VulkanPipeline::create(VulkanSwapchain const &swapchain,
        .maxDepth = 1}})};
   auto scissors{createInfo.scissors.value_or(
       std::vector<vk::Rect2D>{{.extent = swapchain.getExtent()}})};
-  vk::PipelineViewportStateCreateInfo viewportState{
+  vk::PipelineViewportStateCreateInfo const viewportState{
       .viewportCount = gsl::narrow<uint32_t>(viewports.size()),
       .pViewports = viewports.data(),
       .scissorCount = gsl::narrow<uint32_t>(scissors.size()),
@@ -94,7 +94,7 @@ void abcg::VulkanPipeline::create(VulkanSwapchain const &swapchain,
           .pAttachments = &colorBlendAttachment})};
 
   // Dynamic state
-  vk::PipelineDynamicStateCreateInfo dynamicState{
+  vk::PipelineDynamicStateCreateInfo const dynamicState{
       .dynamicStateCount =
           gsl::narrow<uint32_t>(createInfo.dynamicStates.size()),
       .pDynamicStates = createInfo.dynamicStates.data()};
@@ -102,7 +102,7 @@ void abcg::VulkanPipeline::create(VulkanSwapchain const &swapchain,
   // Pipeline layout
   m_pipelineLayout = m_device.createPipelineLayout(createInfo.pipelineLayout);
 
-  vk::GraphicsPipelineCreateInfo pipelineCreateInfo{
+  vk::GraphicsPipelineCreateInfo const pipelineCreateInfo{
       .stageCount = gsl::narrow<uint32_t>(shaderStages.size()),
       .pStages = shaderStages.data(),
       .pVertexInputState = &vertexInputState,
@@ -133,4 +133,20 @@ void abcg::VulkanPipeline::destroy() {
   m_device.waitIdle();
   m_device.destroyPipeline(m_pipeline);
   m_device.destroyPipelineLayout(m_pipelineLayout);
+}
+
+/**
+ * @brief Conversion to vk::Pipeline.
+ */
+abcg::VulkanPipeline::operator vk::Pipeline const &() const noexcept {
+  return m_pipeline;
+}
+
+/**
+ * @brief Access to vk::PipelineLayout.
+ *
+ * @return Pipeline layout of the pipeline.
+ */
+vk::PipelineLayout const &abcg::VulkanPipeline::getLayout() const noexcept {
+  return m_pipelineLayout;
 }

@@ -8,16 +8,20 @@ set(GRAPHICS_API
     CACHE STRING "Choose the graphics API.")
 set_property(CACHE GRAPHICS_API PROPERTY STRINGS "OpenGL" "Vulkan" "None")
 
-# Conan
-option(ENABLE_CONAN "Use Conan Package Manager" OFF)
-
-# IPO
-option(ENABLE_IPO "Enable Interprocedural Optimization" ON)
-
-# mold
-option(ENABLE_MOLD "Enable mold (Modern Linker)" OFF)
-
 if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+  # Conan
+  option(ENABLE_CONAN "Use Conan Package Manager" OFF)
+
+  # mold
+  if(NOT MSVC)
+    option(ENABLE_MOLD "Enable mold (Modern Linker)" ON)
+  endif()
+
+  # IPO
+  if(NOT ENABLE_MOLD)
+    option(ENABLE_IPO "Enable Interprocedural Optimization" ON)
+  endif()
+
   set(OPTIONS_TARGET options)
   set(SANITIZERS_TARGET sanitizers)
   set(WARNINGS_TARGET warnings)
@@ -46,7 +50,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 # Conan
-if(ENABLE_CONAN AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+if(ENABLE_CONAN)
   # Set up some extra Conan dependencies based on our needs before loading Conan
   set(CONAN_SETTINGS "")
   set(CONAN_EXTRA_REQUIRES "")
@@ -54,10 +58,10 @@ if(ENABLE_CONAN AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
   set(CONAN_IMPORTS "")
 
   # fmt
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} fmt/8.1.1)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} fmt/10.0.0)
 
   # imGUI
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui/1.87)
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} imgui/1.89.4) # 1.87
   set(CONAN_IMPORTS
       ${CONAN_IMPORTS} "./res/bindings, *.cpp -> ${CMAKE_SOURCE_DIR}/bindings"
       "./res/bindings, *.h -> ${CMAKE_SOURCE_DIR}/bindings")
@@ -72,12 +76,10 @@ if(ENABLE_CONAN AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} ms-gsl/4.0.0)
 
   # SDL2
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl/2.0.20)
-  # NAS won't compile with GCC 11
+  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl/2.26.5)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl*:pulse=False)
   set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl*:nas=False)
-  # SDL audio doesn't work correctly when ALSA is built as a static library
-  # https://stackoverflow.com/questions/64706266/unable-to-set-up-sdl2-to-run-with-audio-alsa-on-linux-ubuntu-20-04-using-conan
-  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} libalsa*:shared=True)
+  set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl*:wayland=False)
 
   # SDL2_image
   set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} sdl_image/2.0.5)
@@ -94,15 +96,12 @@ if(ENABLE_CONAN AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
   set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl_image*:with_libtiff=False)
   set(CONAN_EXTRA_OPTIONS ${CONAN_EXTRA_OPTIONS} sdl_image*:with_libwebp=False)
 
-  # Fix conflict between different versions of zlib
-  set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} zlib/1.2.12)
-
   if(${GRAPHICS_API} MATCHES "OpenGL")
     # GLEW
     set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} glew/2.2.0)
   elseif(${GRAPHICS_API} MATCHES "Vulkan")
     set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} glslang/11.7.0)
-    set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} volk/1.3.204)
+    set(CONAN_EXTRA_REQUIRES ${CONAN_EXTRA_REQUIRES} volk/1.3.243.0)
   endif()
 
   include(${CMAKE_CURRENT_LIST_DIR}/Conan.cmake)
@@ -150,14 +149,12 @@ endif()
 
 # mold
 if(ENABLE_MOLD)
-  if(NOT MSVC AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
-    find_program(MOLD mold)
-    if(MOLD)
-      message("Using mold")
-      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=mold")
-    else()
-      message("Not using mold - not found")
-    endif()
+  find_program(MOLD mold)
+  if(MOLD)
+    message("Using mold")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=mold")
+  else()
+    message("Not using mold - not found")
   endif()
 endif()
 

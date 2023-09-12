@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.21)
 project(imgui)
 
 set(IMGUI_FILES imgui.cpp imgui_demo.cpp imgui_draw.cpp imgui_tables.cpp
-                imgui_widgets.cpp imgui_impl_sdl.cpp)
+                imgui_widgets.cpp imgui_impl_sdl2.cpp)
 
 if(${GRAPHICS_API} MATCHES "OpenGL")
   set(IMGUI_FILES ${IMGUI_FILES} imgui_impl_opengl3.cpp)

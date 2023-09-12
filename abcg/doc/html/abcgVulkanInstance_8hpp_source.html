@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -120,21 +120,21 @@ $(document).ready(function(){initNavTree('abcgVulkanInstance_8hpp_source.html','
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;              std::string_view applicationName = {});</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1VulkanInstance.html#a617850d1b31fc2b4960951ff839f5168">destroy</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanInstance.html#a6ec883f5f84307353b0bbfe85e5c749f">   35</a></span>&#160;  <span class="keyword">explicit</span> <span class="keyword">operator</span> vk::Instance <span class="keyword">const</span> &amp;() <span class="keyword">const</span> noexcept { <span class="keywordflow">return</span> m_instance; }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">explicit</span> <span class="keyword">operator</span> vk::Instance <span class="keyword">const</span> &amp;() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  vk::Instance m_instance;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  vk::Instance m_instance{};</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#if defined(ABCG_VULKAN_DEBUG_REPORT)</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  vk::DebugUtilsMessengerEXT m_debugMessenger{};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#if defined(ABCG_VULKAN_DEBUG_REPORT)</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  vk::DebugUtilsMessengerEXT m_debugMessenger{};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgVulkanExternal_8hpp_html"><div class="ttname"><a href="abcgVulkanExternal_8hpp.html">abcgVulkanExternal.hpp</a></div><div class="ttdoc">Header file for including Vulkan-related dependencies.</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanInstance_html"><div class="ttname"><a href="classabcg_1_1VulkanInstance.html">abcg::VulkanInstance</a></div><div class="ttdoc">A class for representing a Vulkan instance.</div><div class="ttdef"><b>Definition:</b> abcgVulkanInstance.hpp:25</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanInstance_html_a617850d1b31fc2b4960951ff839f5168"><div class="ttname"><a href="classabcg_1_1VulkanInstance.html#a617850d1b31fc2b4960951ff839f5168">abcg::VulkanInstance::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdef"><b>Definition:</b> abcgVulkanInstance.cpp:200</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanInstance_html_abdd4efd069ddeb2937f6771897765730"><div class="ttname"><a href="classabcg_1_1VulkanInstance.html#abdd4efd069ddeb2937f6771897765730">abcg::VulkanInstance::create</a></div><div class="ttdeci">void create(std::vector&lt; char const * &gt; const &amp;layers={}, std::vector&lt; char const * &gt; const &amp;extensions={}, std::string_view applicationName={})</div><div class="ttdef"><b>Definition:</b> abcgVulkanInstance.cpp:139</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanInstance_html_a617850d1b31fc2b4960951ff839f5168"><div class="ttname"><a href="classabcg_1_1VulkanInstance.html#a617850d1b31fc2b4960951ff839f5168">abcg::VulkanInstance::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdef"><b>Definition:</b> abcgVulkanInstance.cpp:201</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanInstance_html_abdd4efd069ddeb2937f6771897765730"><div class="ttname"><a href="classabcg_1_1VulkanInstance.html#abdd4efd069ddeb2937f6771897765730">abcg::VulkanInstance::create</a></div><div class="ttdeci">void create(std::vector&lt; char const * &gt; const &amp;layers={}, std::vector&lt; char const * &gt; const &amp;extensions={}, std::string_view applicationName={})</div><div class="ttdef"><b>Definition:</b> abcgVulkanInstance.cpp:140</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -4,18 +4,18 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgWindow.hpp"
 
 #include <SDL_video.h>
-#include <utility>
 
-#include <imgui_impl_sdl.h>
+#include <imgui_impl_sdl2.h>
 
-static ImVec4 ColorAlpha(ImVec4 const &color, float const alpha) {
+namespace {
+ImVec4 ColorAlpha(ImVec4 const &color, float const alpha) {
   return {color.x, color.y, color.z, alpha};
 }
 
@@ -25,7 +25,7 @@ static ImVec4 ColorAlpha(ImVec4 const &color, float const alpha) {
  * @param darkTheme Whether to use a dark theme.
  * @param alpha Transparency factor (0=totally transparent, 1=totally opaque).
  */
-static void setupImGuiStyle(bool const darkTheme, float const alpha) {
+void setupImGuiStyle(bool const darkTheme, float const alpha) {
   auto &style{ImGui::GetStyle()};
 
   ImVec4 const black{0.00f, 0.00f, 0.00f, 1.00f};
@@ -122,6 +122,7 @@ static void setupImGuiStyle(bool const darkTheme, float const alpha) {
     }
   }
 }
+} // namespace
 
 int abcg::resizingEventWatcher(void *data, SDL_Event *event) {
   if (event->type == SDL_WINDOWEVENT &&
@@ -290,7 +291,7 @@ void abcg::Window::toggleFullscreen() {
   constexpr Uint32 windowFlags{SDL_WINDOW_FULLSCREEN |
                                SDL_WINDOW_FULLSCREEN_DESKTOP};
   bool const fullscreen{(SDL_GetWindowFlags(m_window) & windowFlags) != 0U};
-  enum class WindowType { Windowed, Fullscreen, FullscreenExclusive };
+  enum class WindowType { Windowed, Fullscreen /*, FullscreenExclusive*/ };
 
   switch (auto const desiredWindowType{fullscreen ? WindowType::Windowed
                                                   : WindowType::Fullscreen};
@@ -300,9 +301,9 @@ void abcg::Window::toggleFullscreen() {
     SDL_SetWindowSize(m_window, m_windowSettings.width,
                       m_windowSettings.height);
     break;
-  case WindowType::FullscreenExclusive:
-    SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
-    break;
+    //  case WindowType::FullscreenExclusive:
+    //    SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
+    //    break;
   case WindowType::Fullscreen:
     SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN_DESKTOP);
     break;

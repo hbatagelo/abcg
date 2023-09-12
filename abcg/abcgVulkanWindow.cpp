@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -12,9 +12,8 @@
 
 #include <SDL_vulkan.h>
 #include <algorithm>
-#include <cmath>
 #include <gsl/gsl>
-#include <imgui_impl_sdl.h>
+#include <imgui_impl_sdl2.h>
 #include <imgui_impl_vulkan.h>
 
 #include "abcgEmbeddedFonts.hpp"
@@ -23,7 +22,8 @@
 #include "abcgVulkanInstance.hpp"
 #include "abcgWindow.hpp"
 
-[[nodiscard]] static std::vector<char const *>
+namespace {
+[[nodiscard]] std::vector<char const *>
 getRequiredExtensions(gsl::not_null<SDL_Window *> window) {
   uint32_t extensionCount{};
   if (SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, nullptr) !=
@@ -48,7 +48,7 @@ getRequiredExtensions(gsl::not_null<SDL_Window *> window) {
   extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
   // fmt::print("Required extensions:\n");
-  // for (const auto &extension : extensionData.names) {
+  // for (const auto &extension : extensions) {
   //   fmt::print("\t{}\n", extension);
   // }
 #endif
@@ -56,9 +56,8 @@ getRequiredExtensions(gsl::not_null<SDL_Window *> window) {
   return extensions;
 }
 
-static void checkVkResultSingleArg(VkResult retCode) {
-  abcg::checkVkResult(retCode);
-}
+void checkVkResultSingleArg(VkResult retCode) { abcg::checkVkResult(retCode); }
+} // namespace
 
 /**
  * @brief Returns the configuration settings of the Vulkan instance.
@@ -83,6 +82,32 @@ void abcg::VulkanWindow::setVulkanSettings(
   if (abcg::Window::getSDLWindow() != nullptr)
     return;
   m_vulkanSettings = vulkanSettings;
+}
+
+/**
+ * @brief Access to abcg::VulkanPhysicalDevice.
+ *
+ * @return Instance of vulkan physical device associated with this window.
+ */
+abcg::VulkanPhysicalDevice const &
+abcg::VulkanWindow::getPhysicalDevice() const noexcept {
+  return m_physicalDevice;
+}
+/**
+ * @brief Access to abcg::VulkanDevice.
+ *
+ * @return Instance of vulkan device associated with this window.
+ */
+abcg::VulkanDevice const &abcg::VulkanWindow::getDevice() const noexcept {
+  return m_device;
+}
+/**
+ * @brief Access to abcg::VulkanSwapchain.
+ *
+ * @return Instance of swapchain associated with this window.
+ */
+abcg::VulkanSwapchain const &abcg::VulkanWindow::getSwapchain() const noexcept {
+  return m_swapchain;
 }
 
 /**
@@ -130,8 +155,8 @@ void abcg::VulkanWindow::onPaint([[maybe_unused]] VulkanFrame const &frame) {}
  * This is not called when the window is minimized.
  *
  * Override it for custom behavior. By default, it shows a FPS counter if
- * abcg::WindowSettings::showFPS is set to `true`, and a toggle fullscren button
- * if abcg::WindowSettings::showFullscreenButton is set to `true`.
+ * abcg::WindowSettings::showFPS is set to `true`, and a toggle fullscreen
+ * button if abcg::WindowSettings::showFullscreenButton is set to `true`.
  */
 void abcg::VulkanWindow::onPaintUI() {
   // FPS counter
@@ -282,7 +307,7 @@ void abcg::VulkanWindow::create() {
   // Create swapchain
   m_swapchain.create(m_device, m_vulkanSettings, getWindowSize());
 
-  // Create descriptol pool
+  // Create descriptor pool
   std::vector<vk::DescriptorPoolSize> const poolSizes{
       {{vk::DescriptorType::eSampler, 100},
        {vk::DescriptorType::eCombinedImageSampler, 100},
@@ -325,7 +350,7 @@ void abcg::VulkanWindow::create() {
       .Instance = static_cast<vk::Instance>(m_instance),
       .PhysicalDevice = static_cast<vk::PhysicalDevice>(m_physicalDevice),
       .Device = static_cast<vk::Device>(m_device),
-      .QueueFamily = m_physicalDevice.getQueuesFamilies().graphics.value(),
+      .QueueFamily = m_physicalDevice.getQueuesFamilies().graphics.value_or(0),
       .Queue = m_device.getQueues().graphics,
       .PipelineCache = VK_NULL_HANDLE,
       .DescriptorPool = m_UIdescriptorPool,
@@ -415,10 +440,10 @@ void abcg::VulkanWindow::destroy() {
   m_instance.destroy();
 }
 
-[[nodiscard]] glm::ivec2 abcg::VulkanWindow::getWindowSize() const {
+glm::ivec2 abcg::VulkanWindow::getWindowSize() const {
   glm::ivec2 size{};
 
-  if (auto *window{abcg::Window::getSDLWindow()}; window != nullptr) {
+  if (auto *window{abcg::Window::getSDLWindow()}) {
     SDL_Vulkan_GetDrawableSize(window, &size.x, &size.y);
   }
   return size;

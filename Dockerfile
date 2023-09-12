@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
   libsdl2-image-dev \
   # glvnd and X dependencies for interop with NVIDIA Container Toolkit
   libglx0 \
-  libxext6 libx11-6 \  
+  libxext6 libx11-6 \
   libglvnd0 libglvnd-dev \
   libgl1 libgl1-mesa-dev \
   libegl1 libegl1-mesa-dev \

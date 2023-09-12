@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -14,12 +14,12 @@
 #include <gsl/gsl>
 #include <imgui_impl_vulkan.h>
 
-#include "abcgApplication.hpp"
 #include "abcgException.hpp"
 #include "abcgVulkanDevice.hpp"
 #include "abcgVulkanPhysicalDevice.hpp"
 #include "abcgVulkanWindow.hpp"
 
+namespace {
 struct SurfaceSupport {
   vk::SurfaceKHR surfaceKHR{};
   vk::SurfaceCapabilitiesKHR capabilities{};
@@ -50,7 +50,7 @@ chooseSwapPresentMode(std::vector<vk::PresentModeKHR> const &requestModes,
                       SurfaceSupport const &surfaceSupport) {
   // #if defined(ABCG_VULKAN_DEBUG_REPORT)
   //   fmt::print("Supported presentation modes:\n");
-  //   for (auto const &mode : supportedDetails.presentModes) {
+  //   for (auto const &mode : surfaceSupport.presentModes) {
   //     fmt::print("\t{}\n", vk::to_string(mode));
   //   }
   // #endif
@@ -65,7 +65,7 @@ chooseSwapPresentMode(std::vector<vk::PresentModeKHR> const &requestModes,
   return vk::PresentModeKHR::eFifo; // Always supported
 }
 
-[[nodiscard]] static uint32_t
+[[nodiscard]] uint32_t
 getMinImageCountFromPresentMode(vk::PresentModeKHR presentMode) {
   switch (presentMode) {
   case vk::PresentModeKHR::eMailbox:
@@ -99,6 +99,7 @@ chooseSwapExtent(vk::SurfaceCapabilitiesKHR capabilities,
                                            capabilities.minImageExtent.height,
                                            capabilities.maxImageExtent.height)};
 }
+} // namespace
 
 void abcg::VulkanSwapchain::create(VulkanDevice const &device,
                                    VulkanSettings const &settings,
@@ -322,9 +323,16 @@ bool abcg::VulkanSwapchain::checkRebuild(VulkanSettings const &settings,
       .clipped = VK_TRUE,
       .oldSwapchain = oldSwapchain};
 
-  if (auto const &queuesFamilies{
-          m_device.getPhysicalDevice().getQueuesFamilies()};
-      queuesFamilies.graphics != queuesFamilies.present) {
+  auto const &queuesFamilies{m_device.getPhysicalDevice().getQueuesFamilies()};
+  if (!queuesFamilies.graphics.has_value()) {
+    throw abcg::RuntimeError("Graphics queue family not found");
+  }
+
+  if (!queuesFamilies.present.has_value()) {
+    throw abcg::RuntimeError("Present queue family not found");
+  }
+
+  if (queuesFamilies.graphics.value() != queuesFamilies.present.value()) {
     // If the graphics and present queues are from different queue families, we
     // either have to explicitly transfer ownership of images between the
     // queues, or we have to create the swapchain with imageSharingMode as
@@ -364,6 +372,79 @@ bool abcg::VulkanSwapchain::checkRebuild(VulkanSettings const &settings,
   return true;
 }
 
+/**
+ * @brief Conversion to vk::SwapchainKHR.
+ */
+abcg::VulkanSwapchain::operator vk::SwapchainKHR const &() const noexcept {
+  return m_swapchainKHR;
+}
+
+/**
+ * @brief Access to abcg::VulkanDevice.
+ *
+ * @return Instance of vulkan device associated with this swapchain.
+ */
+abcg::VulkanDevice const &abcg::VulkanSwapchain::getDevice() const noexcept {
+  return m_device;
+}
+
+/**
+ * @brief Returns the in-flight frames.
+ *
+ * @return Container of in-flight frames.
+ */
+std::vector<abcg::VulkanFrame> const &
+abcg::VulkanSwapchain::getFrames() const noexcept {
+  return m_frames;
+}
+
+/**
+ * @brief Returns the current in-flight frame.
+ *
+ * @return Current frame being rendered to.
+ */
+abcg::VulkanFrame const &
+abcg::VulkanSwapchain::getCurrentFrame() const noexcept {
+  return m_frames[m_currentFrame];
+}
+
+/**
+ * @brief Returns the main render pass.
+ *
+ * @return Instance of the main render pass.
+ */
+vk::RenderPass const &
+abcg::VulkanSwapchain::getMainRenderPass() const noexcept {
+  return m_renderPassMain;
+}
+
+/**
+ * @brief Returns the UI render pass.
+ *
+ * @return Instance of the UI render pass.
+ */
+vk::RenderPass const &abcg::VulkanSwapchain::getUIRenderPass() const noexcept {
+  return m_renderPassUI;
+}
+
+/**
+ * @brief Returns the swapchain extent.
+ *
+ * @return Extent of the swapchain.
+ */
+vk::Extent2D const &abcg::VulkanSwapchain::getExtent() const noexcept {
+  return m_swapchainExtent;
+}
+
+/**
+ * @brief Returns the depth image object.
+ *
+ * @return Depth image object.
+ */
+abcg::VulkanImage const &abcg::VulkanSwapchain::getDepthImage() const noexcept {
+  return m_depthImage;
+}
+
 void abcg::VulkanSwapchain::createFrames() {
   auto const swapchainImages{
       static_cast<vk::Device>(m_device).getSwapchainImagesKHR(m_swapchainKHR)};
@@ -376,7 +457,7 @@ void abcg::VulkanSwapchain::createFrames() {
 
   for (auto &&[frame, image, index] :
        iter::zip(m_frames, swapchainImages, iter::range(m_frames.size()))) {
-    frame.index = index;
+    frame.index = gsl::narrow<uint32_t>(index);
     frame.colorImage.create(
         m_device,
         {.viewInfo = {
@@ -490,11 +571,11 @@ abcg::VulkanSwapchain::getDepthFormat(VulkanSettings const &settings) {
 
 void abcg::VulkanSwapchain::createDepthResources(
     VulkanSettings const &settings) {
-  auto hasStencilComponent{[](vk::Format format) {
-    return format == vk::Format::eD32SfloatS8Uint ||
-           format == vk::Format::eD24UnormS8Uint ||
-           format == vk::Format::eD16UnormS8Uint;
-  }};
+  // auto hasStencilComponent{[](vk::Format format) {
+  //   return format == vk::Format::eD32SfloatS8Uint ||
+  //          format == vk::Format::eD24UnormS8Uint ||
+  //          format == vk::Format::eD16UnormS8Uint;
+  // }};
 
   auto const depthFormat{getDepthFormat(settings)};
 
@@ -707,11 +788,16 @@ void abcg::VulkanSwapchain::createFramebuffers(VulkanSettings const &settings) {
   auto const &queuesFamilies{m_device.getPhysicalDevice().getQueuesFamilies()};
   auto const sampleCount{m_device.getPhysicalDevice().getSampleCount()};
 
+  if (!queuesFamilies.graphics.has_value()) {
+    throw abcg::RuntimeError("Graphics queue family not found");
+  }
+  auto const graphicsQueueFamily{queuesFamilies.graphics.value()};
+
   for (auto &frame : m_frames) {
     // Each frame has its own transient graphics command pool
     frame.commandPool = device.createCommandPool(
         {.flags = vk::CommandPoolCreateFlagBits::eTransient,
-         .queueFamilyIndex = queuesFamilies.graphics.value()});
+         .queueFamilyIndex = graphicsQueueFamily});
 
     // Create a primary command buffer
     frame.commandBuffer =

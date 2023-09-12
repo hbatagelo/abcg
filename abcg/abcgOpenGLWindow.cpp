@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -13,7 +13,7 @@
 #include <SDL_events.h>
 #include <SDL_image.h>
 #include <imgui_impl_opengl3.h>
-#include <imgui_impl_sdl.h>
+#include <imgui_impl_sdl2.h>
 
 #include "abcgEmbeddedFonts.hpp"
 #include "abcgException.hpp"
@@ -126,8 +126,8 @@ void abcg::OpenGLWindow::onPaint() {
  * This is not called when the window is minimized.
  *
  * Override it for custom behavior. By default, it shows a FPS counter if
- * abcg::WindowSettings::showFPS is set to `true`, and a toggle fullscren button
- * if abcg::WindowSettings::showFullscreenButton is set to `true`.
+ * abcg::WindowSettings::showFPS is set to `true`, and a toggle fullscreen
+ * button if abcg::WindowSettings::showFullscreenButton is set to `true`.
  */
 void abcg::OpenGLWindow::onPaintUI() {
   // FPS counter
@@ -344,7 +344,7 @@ void abcg::OpenGLWindow::create() {
     } else {
       break;
     }
-  };
+  }
 
   if (abcg::Window::getSDLWindow() == nullptr) {
     throw abcg::SDLError("SDL_CreateWindow failed");
@@ -362,26 +362,32 @@ void abcg::OpenGLWindow::create() {
 
 #if !defined(__EMSCRIPTEN__)
   if (auto const err{glewInit()}; GLEW_OK != err) {
-    throw abcg::Exception{fmt::format("Failed to initialize OpenGL loader: {}",
-                                      glewGetErrorString(err))};
+    throw abcg::Exception{
+        fmt::format("Failed to initialize OpenGL loader: {}",
+                    reinterpret_cast<char const *>(glewGetErrorString(err)))};
   }
-  fmt::print("Using GLEW.....: {}\n", glewGetString(GLEW_VERSION));
+  fmt::print("Using GLEW.....: {}\n",
+             reinterpret_cast<char const *>(glewGetString(GLEW_VERSION)));
 #endif
 
-  fmt::print("OpenGL vendor..: {}\n", glGetString(GL_VENDOR));
-  fmt::print("OpenGL renderer: {}\n", glGetString(GL_RENDERER));
-  fmt::print("OpenGL version.: {}\n", glGetString(GL_VERSION));
-  fmt::print("GLSL version...: {}\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+  fmt::print("OpenGL vendor..: {}\n",
+             reinterpret_cast<char const *>(glGetString(GL_VENDOR)));
+  fmt::print("OpenGL renderer: {}\n",
+             reinterpret_cast<char const *>(glGetString(GL_RENDERER)));
+  fmt::print("OpenGL version.: {}\n",
+             reinterpret_cast<char const *>(glGetString(GL_VERSION)));
+  fmt::print(
+      "GLSL version...: {}\n",
+      reinterpret_cast<char const *>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
 
-  /*
   // Print out extensions
-  GLint numExtensions{};
-  glGetIntegerv(GL_NUM_EXTENSIONS, &numExtensions);
-  for (std::size_t posStart{}; auto const index : iter::range(numExtensions)) {
-    fmt::print("GL extension {}: {}\n", index,
-               glGetStringi(GL_EXTENSIONS, index));
-  }
-  */
+  // GLint numExtensions{};
+  // glGetIntegerv(GL_NUM_EXTENSIONS, &numExtensions);
+  // for (auto const index : iter::range(gsl::narrow<GLuint>(numExtensions))) {
+  //   fmt::print(
+  //       "GL extension {}: {}\n", index,
+  //       reinterpret_cast<char const *>(glGetStringi(GL_EXTENSIONS, index)));
+  // }
 
   // Setup Dear ImGui context
   IMGUI_CHECKVERSION();

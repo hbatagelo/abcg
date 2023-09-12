@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -122,7 +122,7 @@ protected:
   /**
    * @brief Custom handler for window initialization tasks.
    *
-   * This is called only once after SDL initializetion.
+   * This is called only once after SDL initialization.
    */
   virtual void create() = 0;
 
@@ -156,8 +156,8 @@ protected:
   [[nodiscard]] double getElapsedTime() const;
   [[nodiscard]] SDL_Window *getSDLWindow() const noexcept;
   [[nodiscard]] Uint32 getSDLWindowID() const noexcept;
-  [[nodiscard]] bool createSDLWindow(SDL_WindowFlags extraFlags);
 
+  bool createSDLWindow(SDL_WindowFlags extraFlags);
   void setEnableResizingEventWatcher(bool enabled) noexcept;
   void toggleFullscreen();
 

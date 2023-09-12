@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -17,7 +17,7 @@
 namespace abcg {
 struct ShaderSource;
 enum class ShaderStage;
-}; // namespace abcg
+} // namespace abcg
 
 /**
  * @brief Enumeration of shader stages.

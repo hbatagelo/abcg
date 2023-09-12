@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -123,37 +123,37 @@ $(document).ready(function(){initNavTree('abcgTrackball_8hpp_source.html',''); i
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  [[nodiscard]] glm::quat <a class="code" href="classabcg_1_1TrackBall.html#a5801a1f9825c5ee5fae329406f4b4264">getRotation</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classabcg_1_1TrackBall.html#a77d9bbdf49272b6c04109cfbd8479693">   43</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1TrackBall.html#a77d9bbdf49272b6c04109cfbd8479693">setAxis</a>(glm::vec3 <span class="keyword">const</span> axis) noexcept { m_axis = axis; }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classabcg_1_1TrackBall.html#a19087363b152d422ae6b4d3e5bc1df89">   52</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1TrackBall.html#a19087363b152d422ae6b4d3e5bc1df89">setVelocity</a>(<span class="keywordtype">float</span> <span class="keyword">const</span> velocity) noexcept { m_velocity = velocity; }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1TrackBall.html#a78c570b915dd329448b0a6110da57af8">setAxis</a>(glm::vec3 axis) noexcept;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1TrackBall.html#abdd3ed81210312f961aba9d9a6ab940f">setVelocity</a>(<span class="keywordtype">float</span> velocity) noexcept;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  constexpr <span class="keyword">static</span> <span class="keywordtype">float</span> m_maxVelocity{glm::radians(720.0f / 1000.0f)};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  glm::vec3 m_axis{1.0f};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keywordtype">float</span> m_velocity{};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  glm::quat m_rotation{glm::quat(1.0, 0.0, 0.0, 0.0)};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordtype">float</span> m_durationSinceLastEvent{};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  glm::vec3 m_lastPosition{};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classabcg_1_1Timer.html">Timer</a> m_lastTime;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordtype">bool</span> m_mouseTracking{};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  glm::ivec2 m_viewportSize{0};</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  constexpr <span class="keyword">static</span> <span class="keywordtype">float</span> m_maxVelocity{glm::radians(720.0f / 1000.0f)};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  [[nodiscard]] glm::vec3 project(glm::vec2 <span class="keyword">const</span> &amp;mousePosition) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  glm::vec3 m_axis{1.0f};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordtype">float</span> m_velocity{};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  glm::quat m_rotation{glm::quat(1.0, 0.0, 0.0, 0.0)};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordtype">float</span> m_durationSinceLastEvent{};</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  glm::vec3 m_lastPosition{};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  Timer m_lastTime;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keywordtype">bool</span> m_mouseTracking{};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  glm::ivec2 m_viewportSize{0};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  [[nodiscard]] glm::vec3 project(glm::vec2 <span class="keyword">const</span> &amp;mousePosition) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgExternal_8hpp_html"><div class="ttname"><a href="abcgExternal_8hpp.html">abcgExternal.hpp</a></div><div class="ttdoc">Header file for including third-party dependencies.</div></div>
 <div class="ttc" id="aabcgTimer_8hpp_html"><div class="ttname"><a href="abcgTimer_8hpp.html">abcgTimer.hpp</a></div><div class="ttdoc">Header file of abcg::Timer.</div></div>
+<div class="ttc" id="aclassabcg_1_1Timer_html"><div class="ttname"><a href="classabcg_1_1Timer.html">abcg::Timer</a></div><div class="ttdoc">Represents a timer based on the monotonic clock std::chrono::steady_clock.</div><div class="ttdef"><b>Definition:</b> abcgTimer.hpp:24</div></div>
 <div class="ttc" id="aclassabcg_1_1TrackBall_html"><div class="ttname"><a href="classabcg_1_1TrackBall.html">abcg::TrackBall</a></div><div class="ttdoc">Manages a virtual trackball.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.hpp:27</div></div>
-<div class="ttc" id="aclassabcg_1_1TrackBall_html_a19087363b152d422ae6b4d3e5bc1df89"><div class="ttname"><a href="classabcg_1_1TrackBall.html#a19087363b152d422ae6b4d3e5bc1df89">abcg::TrackBall::setVelocity</a></div><div class="ttdeci">void setVelocity(float const velocity) noexcept</div><div class="ttdoc">Sets the trackball's rotation velocity.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.hpp:52</div></div>
 <div class="ttc" id="aclassabcg_1_1TrackBall_html_a3aa3387808cfa381b56782afad37534b"><div class="ttname"><a href="classabcg_1_1TrackBall.html#a3aa3387808cfa381b56782afad37534b">abcg::TrackBall::mousePress</a></div><div class="ttdeci">void mousePress(glm::ivec2 const &amp;position)</div><div class="ttdoc">Function to be called on a mouse press event.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:59</div></div>
 <div class="ttc" id="aclassabcg_1_1TrackBall_html_a5801a1f9825c5ee5fae329406f4b4264"><div class="ttname"><a href="classabcg_1_1TrackBall.html#a5801a1f9825c5ee5fae329406f4b4264">abcg::TrackBall::getRotation</a></div><div class="ttdeci">glm::quat getRotation() const</div><div class="ttdoc">Returns the current trackball rotation as a quaternion.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:98</div></div>
-<div class="ttc" id="aclassabcg_1_1TrackBall_html_a77d9bbdf49272b6c04109cfbd8479693"><div class="ttname"><a href="classabcg_1_1TrackBall.html#a77d9bbdf49272b6c04109cfbd8479693">abcg::TrackBall::setAxis</a></div><div class="ttdeci">void setAxis(glm::vec3 const axis) noexcept</div><div class="ttdoc">Sets the trackball's axis of rotation.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.hpp:43</div></div>
+<div class="ttc" id="aclassabcg_1_1TrackBall_html_a78c570b915dd329448b0a6110da57af8"><div class="ttname"><a href="classabcg_1_1TrackBall.html#a78c570b915dd329448b0a6110da57af8">abcg::TrackBall::setAxis</a></div><div class="ttdeci">void setAxis(glm::vec3 axis) noexcept</div><div class="ttdoc">Sets the trackball's axis of rotation.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:115</div></div>
 <div class="ttc" id="aclassabcg_1_1TrackBall_html_ab107dfd5ea36c76b57ed90fca8d019fe"><div class="ttname"><a href="classabcg_1_1TrackBall.html#ab107dfd5ea36c76b57ed90fca8d019fe">abcg::TrackBall::mouseRelease</a></div><div class="ttdeci">void mouseRelease(glm::ivec2 const &amp;position)</div><div class="ttdoc">Function to be called on a mouse release event.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:75</div></div>
+<div class="ttc" id="aclassabcg_1_1TrackBall_html_abdd3ed81210312f961aba9d9a6ab940f"><div class="ttname"><a href="classabcg_1_1TrackBall.html#abdd3ed81210312f961aba9d9a6ab940f">abcg::TrackBall::setVelocity</a></div><div class="ttdeci">void setVelocity(float velocity) noexcept</div><div class="ttdoc">Sets the trackball's rotation velocity.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:124</div></div>
 <div class="ttc" id="aclassabcg_1_1TrackBall_html_ad0e7501acd24d9ce7975561fab0092da"><div class="ttname"><a href="classabcg_1_1TrackBall.html#ad0e7501acd24d9ce7975561fab0092da">abcg::TrackBall::resizeViewport</a></div><div class="ttdeci">void resizeViewport(glm::ivec2 const &amp;size) noexcept</div><div class="ttdoc">Function to be called when the window is resized.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:89</div></div>
 <div class="ttc" id="aclassabcg_1_1TrackBall_html_ad19937746c776c6d57c649d5fc7ff946"><div class="ttname"><a href="classabcg_1_1TrackBall.html#ad19937746c776c6d57c649d5fc7ff946">abcg::TrackBall::mouseMove</a></div><div class="ttdeci">void mouseMove(glm::ivec2 const &amp;position)</div><div class="ttdoc">Function to be called on a mouse move event.</div><div class="ttdef"><b>Definition:</b> abcgTrackball.cpp:23</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>

@@ -1,8 +1,10 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgUtil.hpp" name="/home/harlen/dev/abcg/abcg/abcgUtil.hpp">
-<area shape="rect" id="node1" title="Declaration of general utility functions." alt="" coords="103,5,273,47"/>
+<area shape="rect" id="node1" title="Declaration of general utility functions." alt="" coords="412,5,583,47"/>
 <area shape="rect" id="node2" href="$abcg_8hpp.html" title="Shortcut header that includes the most common ABCg headers." alt="" coords="103,95,273,136"/>
+<area shape="rect" id="node6" href="$abcgException_8cpp.html" title="Definition of abcg::Exception members." alt="" coords="298,95,481,136"/>
+<area shape="rect" id="node7" href="$abcgOpenGLError_8cpp.html" title="Definition of abcg::OpenGLError members." alt="" coords="505,95,705,136"/>
+<area shape="rect" id="node8" href="$abcgUtil_8cpp.html" title="General utility functions." alt="" coords="729,95,900,136"/>
 <area shape="rect" id="node3" href="$abcgOpenGL_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="5,184,176,225"/>
 <area shape="rect" id="node4" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="200,184,371,225"/>
-<area shape="rect" id="node5" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="45,273,262,315"/>
-<area shape="rect" id="node6" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="287,273,548,315"/>
+<area shape="rect" id="node5" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="177,273,394,315"/>
 </map>

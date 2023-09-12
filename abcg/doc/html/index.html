@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">ABCg </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__home_harlen_dev_abcg_README"></a> <img src="https://github.com/hbatagelo/abcg/actions/workflows/linux.yml/badge.svg" alt="linux workflow" style="pointer-events: none;" class="inline"/> <img src="https://github.com/hbatagelo/abcg/actions/workflows/macos.yml/badge.svg" alt="macOS workflow" style="pointer-events: none;" class="inline"/> <img src="https://github.com/hbatagelo/abcg/actions/workflows/windows.yml/badge.svg" alt="Windows workflow" style="pointer-events: none;" class="inline"/> <img src="https://github.com/hbatagelo/abcg/actions/workflows/wasm.yml/badge.svg" alt="WASM workflow" style="pointer-events: none;" class="inline"/> <a href="https://github.com/hbatagelo/abcg/releases/latest"><img src="https://img.shields.io/github/v/release/hbatagelo/abcg" alt="GitHub release (latest by date)" class="inline"/></a></p>
+<div class="textblock"><p><a class="anchor" id="md__home_harlen_dev_abcg_README"></a> <img src="https://github.com/hbatagelo/abcg/actions/workflows/build.yml/badge.svg" alt="build workflow" style="pointer-events: none;" class="inline"/> <a href="https://github.com/hbatagelo/abcg/releases/latest"><img src="https://img.shields.io/github/v/release/hbatagelo/abcg" alt="GitHub release (latest by date)" class="inline"/></a></p>
 <p>Development framework accompanying the course <a href="http://professor.ufabc.edu.br/~harlen.batagelo/cg/">MCTA008-17 Computer Graphics</a> at <a href="https://www.ufabc.edu.br/">UFABC</a>.</p>
 <p><a href="https://hbatagelo.github.io/abcg/abcg/doc/html/">Documentation</a> | <a class="el" href="md__home_harlen_dev_abcg_CHANGELOG.html">Release notes</a></p>
 <p>ABCg is a lightweight C++ framework that simplifies the development of 3D graphics applications based on <a href="https://www.opengl.org">OpenGL</a>, <a href="https://www.khronos.org">OpenGL ES</a>, <a href="https://www.khronos.org/webgl/">WebGL</a>, and <a href="https://www.vulkan.org">Vulkan</a>. It is designed for the tutorials and assignments of the course "MCTA008-17 Computer Graphics" taught at Federal University of ABC (UFABC).</p>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 Main features</h1>
 <ul>
-<li>Supported platforms: Linux, mac OS, Windows, WebAssembly.</li>
+<li>Supported platforms: Linux, macOS, Windows, WebAssembly.</li>
 <li>Supported backends: OpenGL 3.3+, OpenGL ES 3.0+, WebGL 2.0 (via Emscripten), Vulkan 1.3.</li>
 <li>Applications that use the common subset of functions between OpenGL 3.3 and OpenGL ES 3.0 can be built for WebGL 2.0 using the same source code.</li>
 <li>OpenGL functions can be qualified with the <code>abcg::</code> namespace to enable throwing exceptions with descriptive GL error messages that include the source code location.</li>
@@ -123,7 +123,7 @@ Requirements</h1>
 <p>The following minimum requirements are shared among all platforms:</p>
 <ul>
 <li><a href="https://cmake.org/">CMake</a> 3.21.</li>
-<li>A C++ compiler with at least partial support for C++20 (tested with GCC 11, Clang 13, MSVC 17, and emcc 3.1).</li>
+<li>A C++ compiler with at least partial support for C++20 (tested with GCC 12, Clang 16, MSVC 17, and emcc 3.1.42).</li>
 <li>A system with support for OpenGL 3.3 (OpenGL backend) or Vulkan 1.3 (Vulkan backend). Conformant software rasterizers such as Mesa's <a href="https://docs.mesa3d.org/drivers/llvmpipe.html">Gallium llvmpipe</a> and lavapipe (post Jun 2022) are supported. Mesa's <a href="https://devblogs.microsoft.com/directx/directx-heart-linux/">D3D12</a> backend on <a href="https://docs.microsoft.com/en-us/windows/wsl/install">WSL 2.0</a> is supported as well.</li>
 </ul>
 <p>For WebAssembly:</p>
@@ -138,7 +138,7 @@ Requirements</h1>
 <li><a href="http://glew.sourceforge.net/">GLEW</a> 2.2.0 (required for OpenGL-based applications).</li>
 <li><a href="https://www.lunarg.com/vulkan-sdk/">Vulkan</a> 1.3 (required for Vulkan-based applications).</li>
 </ul>
-<p>Desktop dependencies can be resolved automatically with <a href="https://conan.io/">Conan</a>. It is disabled by default. To use it, install Conan 1.47 or later and then configure CMake with <code>-DENABLE_CONAN=ON</code>.</p>
+<p>Desktop dependencies can be resolved automatically with <a href="https://conan.io/">Conan</a>, but it is disabled by default. To use Conan, install Conan 1.47 or a later 1.* version (ABCg is not compatible with Conan 2.0!) and then configure CMake with <code>-DENABLE_CONAN=ON</code>.</p>
 <p>The default renderer backend is OpenGL (CMake option <code>GRAPHICS_API=OpenGL</code>). To use the Vulkan backend, configure CMake with <code>-DGRAPHICS_API=Vulkan</code>.</p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md3"></a>

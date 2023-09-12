@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('structabcg_1_1OpenGLCubemapCreateInfo.
 </div><!--header-->
 <div class="contents">
 
-<p>Configuration settings for creating an OpenGL 2D texture.  
+<p>Configuration settings for creating a cubemap texture for OpenGL.  
  <a href="structabcg_1_1OpenGLCubemapCreateInfo.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="abcgOpenGLImage_8hpp_source.html">abcgOpenGLImage.hpp</a>&gt;</code></p>
@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('structabcg_1_1OpenGLCubemapCreateInfo.
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa7c351d152aa3cbe2489d1c0a3321cf0"><td class="memItemLeft" align="right" valign="top">std::array&lt; std::string_view, 6 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structabcg_1_1OpenGLCubemapCreateInfo.html#aa7c351d152aa3cbe2489d1c0a3321cf0">paths</a> {}</td></tr>
-<tr class="memdesc:aa7c351d152aa3cbe2489d1c0a3321cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of paths to the texture files containing the sides of the cube map, given in the order +x, -y, +y, -y, +z, -z.  <a href="structabcg_1_1OpenGLCubemapCreateInfo.html#aa7c351d152aa3cbe2489d1c0a3321cf0">More...</a><br /></td></tr>
+<tr class="memdesc:aa7c351d152aa3cbe2489d1c0a3321cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of paths to the image files (PNG or JPEG) containing the sides of the cube map, given in the order +x, -y, +y, -y, +z, -z.  <a href="structabcg_1_1OpenGLCubemapCreateInfo.html#aa7c351d152aa3cbe2489d1c0a3321cf0">More...</a><br /></td></tr>
 <tr class="separator:aa7c351d152aa3cbe2489d1c0a3321cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affcc0a8f16f52376045888f01dad8563"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structabcg_1_1OpenGLCubemapCreateInfo.html#affcc0a8f16f52376045888f01dad8563">generateMipmaps</a> {true}</td></tr>
 <tr class="memdesc:affcc0a8f16f52376045888f01dad8563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to generate mipmap levels.  <a href="structabcg_1_1OpenGLCubemapCreateInfo.html#affcc0a8f16f52376045888f01dad8563">More...</a><br /></td></tr>
@@ -125,7 +125,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a243dcbc334ab16177e9a1c602da5b137"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Configuration settings for creating an OpenGL 2D texture. </p>
+<div class="textblock"><p>Configuration settings for creating a cubemap texture for OpenGL. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="affcc0a8f16f52376045888f01dad8563"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#affcc0a8f16f52376045888f01dad8563">&#9670;&nbsp;</a></span>generateMipmaps</h2>
@@ -155,7 +155,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Array of paths to the texture files containing the sides of the cube map, given in the order +x, -y, +y, -y, +z, -z. </p>
+<p>Array of paths to the image files (PNG or JPEG) containing the sides of the cube map, given in the order +x, -y, +y, -y, +z, -z. </p>
 
 </div>
 </div>

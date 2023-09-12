@@ -4,15 +4,14 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgException.hpp"
+#include "abcgUtil.hpp"
 
 #include <SDL_image.h>
-
-#include "abcgExternal.hpp"
 
 /**
  * @brief Constructs an abcg::Exception object.
@@ -22,6 +21,13 @@
  * abcg::Exception::OpenGL, abcg::Exception::SDL, or abcg::Exception::SDLImage.
  */
 abcg::Exception::Exception(std::string_view what) : m_what{what} {}
+
+/**
+ * @brief Returns the explanatory string.
+ *
+ * @return Pointer to a null-terminated string with explanatory information.
+ */
+char const *abcg::Exception::what() const noexcept { return m_what.data(); };
 
 #if !defined(NDEBUG) && !defined(__EMSCRIPTEN__) && !defined(__APPLE__)
 /**

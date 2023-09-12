@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -33,12 +33,12 @@ class VulkanWindow;
  */
 struct abcg::VulkanFrame {
   uint32_t index{};
-  vk::CommandPool commandPool{};
-  vk::CommandBuffer commandBuffer{};
-  vk::CommandBuffer commandBufferUI{};
-  vk::Fence fence{};
-  VulkanImage colorImage{};
-  vk::Framebuffer framebufferMain{};
+  vk::CommandPool commandPool;
+  vk::CommandBuffer commandBuffer;
+  vk::CommandBuffer commandBufferUI;
+  vk::Fence fence;
+  VulkanImage colorImage;
+  vk::Framebuffer framebufferMain;
 };
 
 /**
@@ -57,75 +57,15 @@ public:
   bool checkRebuild(VulkanSettings const &settings,
                     glm::ivec2 const &windowSize);
 
-  /**
-   * @brief Conversion to vk::SwapchainKHR.
-   */
-  explicit operator vk::SwapchainKHR const &() const noexcept {
-    return m_swapchainKHR;
-  }
+  explicit operator vk::SwapchainKHR const &() const noexcept;
 
-  /**
-   * @brief Access to abcg::VulkanDevice.
-   *
-   * @return Instance of vulkan device associated with this swapchain.
-   */
-  [[nodiscard]] VulkanDevice const &getDevice() const noexcept {
-    return m_device;
-  }
-
-  /**
-   * @brief Returns the in-flight frames.
-   *
-   * @return Container of in-flight frames.
-   */
-  [[nodiscard]] std::vector<VulkanFrame> const &getFrames() const noexcept {
-    return m_frames;
-  }
-
-  /**
-   * @brief Returns the current in-flight frame.
-   *
-   * @return Current frame being rendered to.
-   */
-  [[nodiscard]] VulkanFrame const &getCurrentFrame() const noexcept {
-    return m_frames[m_currentFrame];
-  }
-
-  /**
-   * @brief Returns the main render pass.
-   *
-   * @return Instance of the main render pass.
-   */
-  [[nodiscard]] vk::RenderPass const &getMainRenderPass() const noexcept {
-    return m_renderPassMain;
-  }
-
-  /**
-   * @brief Returns the UI render pass.
-   *
-   * @return Instance of the UI render pass.
-   */
-  [[nodiscard]] vk::RenderPass const &getUIRenderPass() const noexcept {
-    return m_renderPassUI;
-  }
-
-  /**
-   * @brief Returns the swapchain extent.
-   *
-   * @return Extent of the swapchain.
-   */
-  [[nodiscard]] vk::Extent2D const &getExtent() const noexcept {
-    return m_swapchainExtent;
-  }
-
-  /**
-   * @brief Returns the depth image object.
-   *
-   * @return Depth image object.
-   */
-  [[nodiscard]] VulkanImage const &getDepthImage() const noexcept {
-    return m_depthImage;
-  }
+  [[nodiscard]] VulkanDevice const &getDevice() const noexcept;
+  [[nodiscard]] std::vector<VulkanFrame> const &getFrames() const noexcept;
+  [[nodiscard]] VulkanFrame const &getCurrentFrame() const noexcept;
+  [[nodiscard]] vk::RenderPass const &getMainRenderPass() const noexcept;
+  [[nodiscard]] vk::RenderPass const &getUIRenderPass() const noexcept;
+  [[nodiscard]] vk::Extent2D const &getExtent() const noexcept;
+  [[nodiscard]] VulkanImage const &getDepthImage() const noexcept;
 
 private:
   void createFrames();
@@ -152,23 +92,23 @@ private:
 
   // Data for swapchain synchronization
   struct FrameSemaphores {
-    vk::Semaphore presentComplete{};
-    vk::Semaphore renderComplete{};
+    vk::Semaphore presentComplete;
+    vk::Semaphore renderComplete;
   };
 
   uint32_t m_currentFrame{};
-  std::vector<VulkanFrame> m_frames{};
+  std::vector<VulkanFrame> m_frames;
   // Current set of swapchain wait semaphores we're using (needs to be distinct
   // from per frame data)
   uint32_t m_currentSemaphore{};
-  std::vector<FrameSemaphores> m_frameSemaphores{};
+  std::vector<FrameSemaphores> m_frameSemaphores;
 
-  VulkanImage m_depthImage{};
-  VulkanImage m_MSAAImage{};
+  VulkanImage m_depthImage;
+  VulkanImage m_MSAAImage;
 
   // Render passes
-  vk::RenderPass m_renderPassMain{};
-  vk::RenderPass m_renderPassUI{};
+  vk::RenderPass m_renderPassMain;
+  vk::RenderPass m_renderPassUI;
 };
 
 #endif

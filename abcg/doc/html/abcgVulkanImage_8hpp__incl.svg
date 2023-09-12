@@ -5,16 +5,16 @@
  -->
 <!-- Title: /home/harlen/dev/abcg/abcg/abcgVulkanImage.hpp Pages: 1 -->
 <svg width="315pt" height="319pt"
- viewBox="0.00 0.00 314.50 319.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ viewBox="0.00 0.00 315.00 319.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 315)">
 <title>/home/harlen/dev/abcg/abcg/abcgVulkanImage.hpp</title>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Header file of abcg::VulkanImage.">
-<polygon fill="#bfbfbf" stroke="black" points="62,-280.5 62,-310.5 215,-310.5 215,-280.5 62,-280.5"/>
-<text text-anchor="start" x="70" y="-298.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/harlen/dev/abcg</text>
-<text text-anchor="middle" x="138.5" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">/abcg/abcgVulkanImage.hpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="133.5,-280.5 133.5,-310.5 286.5,-310.5 286.5,-280.5 133.5,-280.5"/>
+<text text-anchor="start" x="141.5" y="-298.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/harlen/dev/abcg</text>
+<text text-anchor="middle" x="210" y="-287.5" font-family="Helvetica,sans-Serif" font-size="10.00">/abcg/abcgVulkanImage.hpp</text>
 </a>
 </g>
 </g>
@@ -22,133 +22,142 @@
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="abcgVulkanDevice_8hpp.html" target="_top" xlink:title="Header file of abcg::VulkanDevice.">
-<polygon fill="none" stroke="black" points="16,-224.5 16,-243.5 143,-243.5 143,-224.5 16,-224.5"/>
-<text text-anchor="middle" x="79.5" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanDevice.hpp</text>
+<polygon fill="none" stroke="black" points="87.5,-224.5 87.5,-243.5 214.5,-243.5 214.5,-224.5 87.5,-224.5"/>
+<text text-anchor="middle" x="151" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanDevice.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M124.52,-280.4C115.77,-271.58 104.47,-260.18 95.38,-251.02"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="97.61,-248.29 88.09,-243.66 92.64,-253.22 97.61,-248.29"/>
+<path fill="none" stroke="midnightblue" d="M196.02,-280.4C187.27,-271.58 175.97,-260.18 166.88,-251.02"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="169.11,-248.29 159.59,-243.66 164.14,-253.22 169.11,-248.29"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="161.5,-224.5 161.5,-243.5 235.5,-243.5 235.5,-224.5 161.5,-224.5"/>
-<text text-anchor="middle" x="198.5" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">gsl/pointers</text>
+<!-- Node10 -->
+<g id="node10" class="node">
+<title>Node10</title>
+<g id="a_node10"><a xlink:title=" ">
+<polygon fill="none" stroke="#bfbfbf" points="233,-224.5 233,-243.5 307,-243.5 307,-224.5 233,-224.5"/>
+<text text-anchor="middle" x="270" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">gsl/pointers</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node9 -->
+<!-- Node1&#45;&gt;Node10 -->
 <g id="edge10" class="edge">
-<title>Node1&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M152.72,-280.4C161.71,-271.49 173.34,-259.95 182.63,-250.74"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="185.13,-253.18 189.77,-243.66 180.2,-248.21 185.13,-253.18"/>
+<title>Node1&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M224.22,-280.4C233.21,-271.49 244.84,-259.95 254.13,-250.74"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="256.63,-253.18 261.27,-243.66 251.7,-248.21 256.63,-253.18"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="abcgVulkanExternal_8hpp.html" target="_top" xlink:title="Header file for including Vulkan&#45;related dependencies.">
-<polygon fill="none" stroke="black" points="3.5,-56.5 3.5,-75.5 137.5,-75.5 137.5,-56.5 3.5,-56.5"/>
-<text text-anchor="middle" x="70.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanExternal.hpp</text>
+<g id="a_node3"><a xlink:href="abcgVulkanPhysicalDevice_8hpp.html" target="_top" xlink:title="Header file of abcg::VulkanPhysicalDevice.">
+<polygon fill="none" stroke="black" points="0.5,-168.5 0.5,-187.5 167.5,-187.5 167.5,-168.5 0.5,-168.5"/>
+<text text-anchor="middle" x="84" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanPhysicalDevice.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M69.06,-224.24C60.08,-215.97 47.75,-202.66 42.5,-188 29.71,-152.3 47.71,-108.54 60.23,-84.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="63.4,-86.15 65.15,-75.71 57.26,-82.78 63.4,-86.15"/>
+<path fill="none" stroke="midnightblue" d="M140.24,-224.32C130.23,-216.26 115.11,-204.08 103.07,-194.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="104.94,-191.38 94.96,-187.83 100.55,-196.83 104.94,-191.38"/>
 </g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="abcgVulkanPhysicalDevice_8hpp.html" target="_top" xlink:title="Header file of abcg::VulkanPhysicalDevice.">
-<polygon fill="none" stroke="black" points="52,-168.5 52,-187.5 219,-187.5 219,-168.5 52,-168.5"/>
-<text text-anchor="middle" x="135.5" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanPhysicalDevice.hpp</text>
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:title=" ">
+<polygon fill="none" stroke="#bfbfbf" points="185.5,-168.5 185.5,-187.5 250.5,-187.5 250.5,-168.5 185.5,-168.5"/>
+<text text-anchor="middle" x="218" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">functional</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node2&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M88.5,-224.32C96.69,-216.42 109.01,-204.55 118.97,-194.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="121.57,-197.29 126.34,-187.83 116.71,-192.26 121.57,-197.29"/>
+<!-- Node2&#45;&gt;Node9 -->
+<g id="edge9" class="edge">
+<title>Node2&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M161.76,-224.32C171.77,-216.26 186.89,-204.08 198.93,-194.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="201.45,-196.83 207.04,-187.83 197.06,-191.38 201.45,-196.83"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="0,-0.5 0,-19.5 47,-19.5 47,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="23.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">volk.h</text>
+<polygon fill="none" stroke="#bfbfbf" points="0,-112.5 0,-131.5 56,-131.5 56,-112.5 0,-112.5"/>
+<text text-anchor="middle" x="28" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">optional</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M62.74,-56.08C55.96,-48.3 45.96,-36.8 37.74,-27.37"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="40.32,-25 31.12,-19.75 35.04,-29.59 40.32,-25"/>
+<path fill="none" stroke="midnightblue" d="M75,-168.32C66.81,-160.42 54.49,-148.55 44.53,-138.94"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="46.79,-136.26 37.16,-131.83 41.93,-141.29 46.79,-136.26"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="65,-0.5 65,-19.5 170,-19.5 170,-0.5 65,-0.5"/>
-<text text-anchor="middle" x="117.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">vulkan/vulkan.hpp</text>
+<g id="a_node5"><a xlink:href="abcgVulkanExternal_8hpp.html" target="_top" xlink:title="Header file for including Vulkan&#45;related dependencies.">
+<polygon fill="none" stroke="black" points="64,-56.5 64,-75.5 198,-75.5 198,-56.5 64,-56.5"/>
+<text text-anchor="middle" x="131" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanExternal.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node3&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M78.26,-56.08C85.04,-48.3 95.04,-36.8 103.26,-27.37"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="105.96,-29.59 109.88,-19.75 100.68,-25 105.96,-29.59"/>
-</g>
-<!-- Node6&#45;&gt;Node3 -->
-<g id="edge7" class="edge">
-<title>Node6&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M123.63,-168.29C113.2,-160.04 98.35,-146.75 89.5,-132 80.9,-117.67 75.99,-99.2 73.33,-85.62"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="76.74,-84.81 71.59,-75.55 69.84,-86 76.74,-84.81"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:title=" ">
-<polygon fill="none" stroke="#bfbfbf" points="98.5,-112.5 98.5,-131.5 154.5,-131.5 154.5,-112.5 98.5,-112.5"/>
-<text text-anchor="middle" x="126.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">optional</text>
-</a>
-</g>
-</g>
-<!-- Node6&#45;&gt;Node7 -->
-<g id="edge6" class="edge">
-<title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M134.01,-168.08C132.82,-160.93 131.11,-150.64 129.62,-141.69"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="133.05,-141.04 127.96,-131.75 126.15,-142.19 133.05,-141.04"/>
+<path fill="none" stroke="midnightblue" d="M85.75,-168.32C88.48,-155.61 94.36,-131.32 103,-112 107.37,-102.24 113.54,-92.06 118.98,-83.86"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="121.9,-85.79 124.68,-75.57 116.13,-81.83 121.9,-85.79"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="abcgVulkanInstance_8hpp.html" target="_top" xlink:title="Header file of abcg::VulkanInstance.">
-<polygon fill="none" stroke="black" points="172.5,-112.5 172.5,-131.5 306.5,-131.5 306.5,-112.5 172.5,-112.5"/>
-<text text-anchor="middle" x="239.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanInstance.hpp</text>
+<polygon fill="none" stroke="black" points="112,-112.5 112,-131.5 246,-131.5 246,-112.5 112,-112.5"/>
+<text text-anchor="middle" x="179" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">abcgVulkanInstance.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node6&#45;&gt;Node8 -->
-<g id="edge8" class="edge">
-<title>Node6&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M152.21,-168.32C168.81,-159.7 194.5,-146.36 213.72,-136.39"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="215.57,-139.37 222.83,-131.65 212.34,-133.16 215.57,-139.37"/>
+<!-- Node3&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node3&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M99.26,-168.32C114.22,-159.82 137.25,-146.73 154.73,-136.8"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="156.81,-139.64 163.77,-131.65 153.35,-133.55 156.81,-139.64"/>
 </g>
-<!-- Node8&#45;&gt;Node3 -->
-<g id="edge9" class="edge">
-<title>Node8&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M212.72,-112.44C184.17,-103.32 138.77,-88.81 106.96,-78.65"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="107.74,-75.23 97.15,-75.52 105.61,-81.89 107.74,-75.23"/>
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:title=" ">
+<polygon fill="none" stroke="#bfbfbf" points="60.5,-0.5 60.5,-19.5 107.5,-19.5 107.5,-0.5 60.5,-0.5"/>
+<text text-anchor="middle" x="84" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">volk.h</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node5&#45;&gt;Node6</title>
+<path fill="none" stroke="midnightblue" d="M123.24,-56.08C116.46,-48.3 106.46,-36.8 98.24,-27.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="100.82,-25 91.62,-19.75 95.54,-29.59 100.82,-25"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:title=" ">
+<polygon fill="none" stroke="#bfbfbf" points="125.5,-0.5 125.5,-19.5 230.5,-19.5 230.5,-0.5 125.5,-0.5"/>
+<text text-anchor="middle" x="178" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">vulkan/vulkan.hpp</text>
+</a>
+</g>
+</g>
+<!-- Node5&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node5&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M138.76,-56.08C145.54,-48.3 155.54,-36.8 163.76,-27.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="166.46,-29.59 170.38,-19.75 161.18,-25 166.46,-29.59"/>
+</g>
+<!-- Node8&#45;&gt;Node5 -->
+<g id="edge8" class="edge">
+<title>Node8&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M171.07,-112.08C164.15,-104.3 153.93,-92.8 145.55,-83.37"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="148.04,-80.9 138.78,-75.75 142.81,-85.55 148.04,-80.9"/>
 </g>
 </g>
 </svg>

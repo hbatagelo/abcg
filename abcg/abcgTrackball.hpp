@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -33,23 +33,8 @@ public:
 
   [[nodiscard]] glm::quat getRotation() const;
 
-  /**
-   * @brief Sets the trackball's axis of rotation.
-   *
-   * @param axis Axis of rotation.
-   *
-   * The axis is expected to be a normalized vector.
-   */
-  void setAxis(glm::vec3 const axis) noexcept { m_axis = axis; }
-
-  /**
-   * @brief Sets the trackball's rotation velocity.
-   *
-   * @param velocity Velocity in radians per second.
-   *
-   * The velocity is not bound checked.
-   */
-  void setVelocity(float const velocity) noexcept { m_velocity = velocity; }
+  void setAxis(glm::vec3 axis) noexcept;
+  void setVelocity(float velocity) noexcept;
 
 private:
   constexpr static float m_maxVelocity{glm::radians(720.0f / 1000.0f)};

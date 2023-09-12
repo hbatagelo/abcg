@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -29,13 +29,10 @@ public:
               std::string_view applicationName = {});
   void destroy();
 
-  /**
-   * @brief Conversion to vk::Instance.
-   */
-  explicit operator vk::Instance const &() const noexcept { return m_instance; }
+  explicit operator vk::Instance const &() const noexcept;
 
 private:
-  vk::Instance m_instance{};
+  vk::Instance m_instance;
 
 #if defined(ABCG_VULKAN_DEBUG_REPORT)
   vk::DebugUtilsMessengerEXT m_debugMessenger{};

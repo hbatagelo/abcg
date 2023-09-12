@@ -6,15 +6,12 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #ifndef ABCG_VULKAN_WINDOW_HPP_
 #define ABCG_VULKAN_WINDOW_HPP_
-
-#include <array>
-#include <string>
 
 #include "abcgVulkanDevice.hpp"
 #include "abcgVulkanInstance.hpp"
@@ -84,16 +81,9 @@ public:
   [[nodiscard]] VulkanSettings const &getVulkanSettings() const noexcept;
   void setVulkanSettings(VulkanSettings const &vulkanSettings) noexcept;
   // void saveScreenshotPNG(std::string_view filename) const;
-
-  [[nodiscard]] VulkanPhysicalDevice const &getPhysicalDevice() const noexcept {
-    return m_physicalDevice;
-  }
-  [[nodiscard]] VulkanDevice const &getDevice() const noexcept {
-    return m_device;
-  }
-  [[nodiscard]] VulkanSwapchain const &getSwapchain() noexcept {
-    return m_swapchain;
-  }
+  [[nodiscard]] VulkanPhysicalDevice const &getPhysicalDevice() const noexcept;
+  [[nodiscard]] VulkanDevice const &getDevice() const noexcept;
+  [[nodiscard]] VulkanSwapchain const &getSwapchain() const noexcept;
 
 protected:
   virtual void onEvent(SDL_Event const &event);
@@ -112,20 +102,19 @@ private:
   [[nodiscard]] glm::ivec2 getWindowSize() const final;
 
   VulkanSettings m_vulkanSettings;
-  std::vector<char const *> const m_deviceExtensions{
-      VK_KHR_SWAPCHAIN_EXTENSION_NAME};
+  std::vector<char const *> m_deviceExtensions{VK_KHR_SWAPCHAIN_EXTENSION_NAME};
   std::vector<char const *> m_layers {
 #if defined(ABCG_VULKAN_DEBUG_REPORT)
     "VK_LAYER_KHRONOS_validation"
 #endif
   };
 
-  VulkanInstance m_instance{};
-  VulkanPhysicalDevice m_physicalDevice{};
-  VulkanDevice m_device{};
-  VulkanSwapchain m_swapchain{};
-  vk::SurfaceKHR m_surface{};
-  vk::DescriptorPool m_UIdescriptorPool{};
+  VulkanInstance m_instance;
+  VulkanPhysicalDevice m_physicalDevice;
+  VulkanDevice m_device;
+  VulkanSwapchain m_swapchain;
+  vk::SurfaceKHR m_surface;
+  vk::DescriptorPool m_UIdescriptorPool;
   bool m_hidden{};
   bool m_minimized{};
 };

@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -45,52 +45,13 @@ public:
               VulkanImageCreateInfo const &createInfo);
   void destroy();
 
-  /**
-   * @brief Conversion to vk::Image.
-   */
-  explicit operator vk::Image const &() const noexcept { return m_image; }
+  explicit operator vk::Image const &() const noexcept;
 
-  /**
-   * @brief Returns the opaque handle to the device memory object associated
-   * with this image.
-   *
-   * @return Device memory object.
-   */
-  [[nodiscard]] vk::DeviceMemory const &getDeviceMemory() const noexcept {
-    return m_deviceMemory;
-  }
-
-  /**
-   * @brief Returns the opaque handle to the image view object associated with
-   * this image.
-   *
-   * @return Image view object.
-   */
-  [[nodiscard]] vk::ImageView const &getView() const noexcept {
-    return m_imageView;
-  }
-
-  /**
-   * @brief Returns the descriptor image information associated with this image.
-   *
-   * @return Descriptor image information.
-   */
+  [[nodiscard]] vk::DeviceMemory const &getDeviceMemory() const noexcept;
+  [[nodiscard]] vk::ImageView const &getView() const noexcept;
   [[nodiscard]] vk::DescriptorImageInfo const &
-  getDescriptorImageInfo() const noexcept {
-    return m_descriptorImageInfo;
-  }
-
-  /**
-   * @brief Returns the number of mipmap levels generated for this image.
-   *
-   * If the image is created with `generateMipmaps = false`, the number of
-   * mipmap levels is always 1. Otherwise, it is computed as \f$\lfloor
-   * \log_2(\max(w, h)) \rfloor + 1\f$, where \f$w\f$ and \f$h\f$ are the
-   * texture width and height.
-   *
-   * @return Number of mipmap levels.
-   */
-  [[nodiscard]] uint32_t getMipLevels() const noexcept { return m_mipLevels; }
+  getDescriptorImageInfo() const noexcept;
+  [[nodiscard]] uint32_t getMipLevels() const noexcept;
 
 private:
   [[nodiscard]] std::pair<vk::Image, vk::DeviceMemory>
@@ -108,13 +69,13 @@ private:
                             vk::Format imageFormat, uint32_t texWidth,
                             uint32_t texHeight, uint32_t mipLevels);
 
-  vk::Image m_image{};
-  vk::DeviceMemory m_deviceMemory{};
-  vk::ImageView m_imageView{};
-  vk::Sampler m_sampler{};
-  vk::DescriptorImageInfo m_descriptorImageInfo{};
+  vk::Image m_image;
+  vk::DeviceMemory m_deviceMemory;
+  vk::ImageView m_imageView;
+  vk::Sampler m_sampler;
+  vk::DescriptorImageInfo m_descriptorImageInfo;
   uint32_t m_mipLevels{1U};
-  vk::Device m_device{};
+  vk::Device m_device;
 };
 
 #endif

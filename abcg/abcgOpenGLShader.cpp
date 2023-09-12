@@ -4,12 +4,11 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgOpenGLShader.hpp"
-#include "abcgApplication.hpp"
 
 #include <cppitertools/itertools.hpp>
 #include <fmt/core.h>
@@ -17,13 +16,13 @@
 
 #include <filesystem>
 #include <fstream>
-#include <optional>
 #include <sstream>
 #include <vector>
 
 #include "abcgException.hpp"
 
-static void printShaderInfoLog(GLuint const shader, std::string_view prefix) {
+namespace {
+void printShaderInfoLog(GLuint const shader, std::string_view prefix) {
   GLint infoLogLength{};
   glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLogLength);
 
@@ -36,7 +35,7 @@ static void printShaderInfoLog(GLuint const shader, std::string_view prefix) {
   }
 }
 
-static void printProgramInfoLog(GLuint const program) {
+void printProgramInfoLog(GLuint const program) {
   GLint infoLogLength{};
   glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
 
@@ -48,7 +47,7 @@ static void printProgramInfoLog(GLuint const program) {
   }
 }
 
-[[nodiscard]] static char const *shaderStageToText(GLuint stage) {
+[[nodiscard]] char const *shaderStageToText(GLuint stage) {
   switch (stage) {
   case GL_VERTEX_SHADER:
     return "vertex";
@@ -75,11 +74,11 @@ static void printProgramInfoLog(GLuint const program) {
   default:
     return "unknown";
   }
-};
+}
 
 // If filenameOrText is a filename, returns the contents of the file (assumed
 // to be in text format). Otherwise, returns filenameOrText.
-[[nodiscard]] static std::string toSource(std::string_view filenameOrText) {
+[[nodiscard]] std::string toSource(std::string_view filenameOrText) {
   static const std::size_t maxPathSize{260};
   if (filenameOrText.size() > maxPathSize ||
       !std::filesystem::exists(filenameOrText)) {
@@ -98,8 +97,8 @@ static void printProgramInfoLog(GLuint const program) {
 
 // Compiles a shader and returns immediately (i.e. don't wait until completion).
 // Returns the shader ID of the compiled shader.
-[[nodiscard]] static abcg::OpenGLShader
-compileHelper(std::string_view shaderSource, GLuint shaderStage) {
+[[nodiscard]] abcg::OpenGLShader compileHelper(std::string_view shaderSource,
+                                               GLuint shaderStage) {
   auto shaderID{glCreateShader(shaderStage)};
   auto const *source{shaderSource.data()};
   glShaderSource(shaderID, 1, &source, nullptr);
@@ -108,7 +107,7 @@ compileHelper(std::string_view shaderSource, GLuint shaderStage) {
 }
 
 // Deletes the OpenGL shader objects in `shaderIDs`
-static void deleteShaders(std::vector<abcg::OpenGLShader> const &shaderIDs) {
+void deleteShaders(std::vector<abcg::OpenGLShader> const &shaderIDs) {
   for (auto const &shaderID : shaderIDs) {
     glDeleteShader(shaderID.shader);
   }
@@ -142,6 +141,7 @@ static void deleteShaders(std::vector<abcg::OpenGLShader> const &shaderIDs) {
     throw abcg::RuntimeError("Unknown shader stage");
   }
 }
+} // namespace
 
 /**
  * @brief Creates a program object from a group of shader paths or source codes.

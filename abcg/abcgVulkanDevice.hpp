@@ -6,15 +6,16 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #ifndef ABCG_VULKAN_DEVICE_HPP_
 #define ABCG_VULKAN_DEVICE_HPP_
 
-#include "abcgVulkanExternal.hpp"
 #include "abcgVulkanPhysicalDevice.hpp"
+
+#include <functional>
 
 namespace abcg {
 struct VulkanCommandPools;
@@ -29,19 +30,19 @@ class VulkanWindow;
  * @brief Command pools associated with a Vulkan device.
  */
 struct abcg::VulkanCommandPools {
-  vk::CommandPool compute{};
-  vk::CommandPool graphics{};
-  vk::CommandPool transfer{};
+  vk::CommandPool compute;
+  vk::CommandPool graphics;
+  vk::CommandPool transfer;
 };
 
 /**
  * @brief Queues associated with a Vulkan device.
  */
 struct abcg::VulkanQueues {
-  vk::Queue compute{};
-  vk::Queue graphics{};
-  vk::Queue present{};
-  vk::Queue transfer{};
+  vk::Queue compute;
+  vk::Queue graphics;
+  vk::Queue present;
+  vk::Queue transfer;
 };
 
 /**
@@ -57,37 +58,11 @@ public:
               std::vector<char const *> const &extensions = {});
   void destroy();
 
-  /**
-   * @brief Conversion to vk::Device.
-   */
-  explicit operator vk::Device const &() const noexcept { return m_device; }
+  explicit operator vk::Device const &() const noexcept;
 
-  /**
-   * @brief Access to abcg::VulkanPhysicalDevice.
-   *
-   * @return Instance of vulkan physical device associated with this device.
-   */
-  [[nodiscard]] VulkanPhysicalDevice const &getPhysicalDevice() const noexcept {
-    return m_physicalDevice;
-  }
-
-  /**
-   * @brief Returns the queues associated with this device.
-   *
-   * @return Queues structure.
-   */
-  [[nodiscard]] VulkanQueues const &getQueues() const noexcept {
-    return m_queues;
-  }
-
-  /**
-   * @brief Returns the command pools associated with this device.
-   *
-   * @return Command pools structure.
-   */
-  [[nodiscard]] VulkanCommandPools const &getCommandPools() const noexcept {
-    return m_commandPools;
-  }
+  [[nodiscard]] VulkanPhysicalDevice const &getPhysicalDevice() const noexcept;
+  [[nodiscard]] VulkanQueues const &getQueues() const noexcept;
+  [[nodiscard]] VulkanCommandPools const &getCommandPools() const noexcept;
 
   void withCommandBuffer(
       std::function<void(vk::CommandBuffer const &commandBuffer)> const &fun,
@@ -98,10 +73,10 @@ private:
   void createCommandPools();
   void destroyCommandPools();
 
-  vk::Device m_device{};
-  VulkanPhysicalDevice m_physicalDevice{};
-  VulkanCommandPools m_commandPools{};
-  VulkanQueues m_queues{};
+  vk::Device m_device;
+  VulkanPhysicalDevice m_physicalDevice;
+  VulkanCommandPools m_commandPools;
+  VulkanQueues m_queues;
 };
 
 #endif

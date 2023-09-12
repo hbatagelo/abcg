@@ -62,8 +62,8 @@ var namespaceabcg =
     [ "checkOpenGLShaderLink", "namespaceabcg.html#aab59a12bb6313b5c58f5352ce6f380e5", null ],
     [ "checkVkResult", "namespaceabcg.html#a6dc603716e2c0c5a9ee71ff1ca9881d9", null ],
     [ "createOpenGLProgram", "namespaceabcg.html#ac5dc51412a57521944dc7f4f32901af5", null ],
-    [ "flipHorizontally", "namespaceabcg.html#a0d46e744a39225a18d381362cea62104", null ],
-    [ "flipVertically", "namespaceabcg.html#abc2b77e7547e5e73f00d7167f7a2f6b9", null ],
+    [ "flipHorizontally", "namespaceabcg.html#a070a6d04f8ddd3f8ffc85556822ad9b9", null ],
+    [ "flipVertically", "namespaceabcg.html#afbf3c358b10f7ef9aef38acb758e12ca", null ],
     [ "glActiveTexture", "namespaceabcg.html#abebf61480d8b46ad61238624521c440c", null ],
     [ "glAttachShader", "namespaceabcg.html#aadc675d08443dfb3f52d136d1e867c54", null ],
     [ "glBeginQuery", "namespaceabcg.html#a43ea888d5366cd13f8559ae5c45e503e", null ],
@@ -320,6 +320,9 @@ var namespaceabcg =
     [ "loadOpenGLCubemap", "namespaceabcg.html#a39af18b7fd13bbdcd404b344ca29014e", null ],
     [ "loadOpenGLTexture", "namespaceabcg.html#ae4a5204a112c5bfabcab65d66f49aa8d", null ],
     [ "resizingEventWatcher", "namespaceabcg.html#a6825799aa852dc7612dad9326be2fb3b", null ],
+    [ "toBlueString", "namespaceabcg.html#a1b13712894adf3cfdda66dd3ddd14256", null ],
+    [ "toRedString", "namespaceabcg.html#a7ffc0a33678775f855ffa982c00ccb0d", null ],
+    [ "toYellowString", "namespaceabcg.html#a9a8a9c73318a69a62645ca5ee239763d", null ],
     [ "triggerOpenGLShaderCompile", "namespaceabcg.html#a49e7d7355e5505155f33045df8ab1102", null ],
     [ "triggerOpenGLShaderLink", "namespaceabcg.html#aee435331b56516022710b8acc098883a", null ]
 ];

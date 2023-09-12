@@ -4,14 +4,13 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgApplication.hpp"
 
 #include <SDL_image.h>
-#include <SDL_thread.h>
 
 #include <span>
 
@@ -25,6 +24,7 @@
 // @cond Skipped by Doxygen
 #define TINYOBJLOADER_IMPLEMENTATION
 // @endcond
+
 #include "tiny_obj_loader.h"
 
 #if defined(__EMSCRIPTEN__)
@@ -99,7 +99,7 @@ void abcg::Application::run(Window &window) {
   auto done{false};
   while (!done) {
     mainLoopIterator(done);
-  };
+  }
 #endif
 
   m_window->templateDestroy();
@@ -108,6 +108,41 @@ void abcg::Application::run(Window &window) {
   IMG_Quit();
 #endif
   SDL_Quit();
+}
+
+/**
+ * @brief Returns the path to the application's assets directory, relative to
+ * the directory the executable is launched from.
+ *
+ * @return Path to the application's `assets` directory, relative to the
+ * location from which the application was launched. For example, the assets
+ * path will be `./app/assets/` if the application is located in `./app` and
+ * is launched from its parent directory. The assets path will be `./assets/`
+ * if the application is launched from the same directory of the executable.
+ *
+ * @remark The assets path is appended with the base path and ends with a
+ * forward slash.
+ *
+ * @sa abcg::Application::getBasePath
+ */
+std::string const &abcg::Application::getAssetsPath() noexcept {
+  return m_assetsPath;
+}
+
+/**
+ * @brief Returns the path to the application's directory, relative to the
+ * directory the executable is launched in.
+ *
+ * @return Path to the directory that contains the application executable,
+ * relative to the directory the executable is launched. For example, the base
+ * path will be `./app` if the executable is located in `./app` and is called
+ * from the parent directory. The base path will be `.` if the application is
+ * launched from the same directory of the executable.
+ *
+ * @remark The returned path does not end with a slash.
+ */
+std::string const &abcg::Application::getBasePath() noexcept {
+  return m_basePath;
 }
 
 void abcg::Application::mainLoopIterator([[maybe_unused]] bool &done) const {

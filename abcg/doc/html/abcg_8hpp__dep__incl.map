@@ -2,6 +2,5 @@
 <area shape="rect" id="node1" title="Shortcut header that includes the most common ABCg headers." alt="" coords="103,5,273,47"/>
 <area shape="rect" id="node2" href="$abcgOpenGL_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="5,95,176,136"/>
 <area shape="rect" id="node3" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="200,95,371,136"/>
-<area shape="rect" id="node4" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="45,184,262,225"/>
-<area shape="rect" id="node5" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="287,184,548,225"/>
+<area shape="rect" id="node4" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="177,184,394,225"/>
 </map>

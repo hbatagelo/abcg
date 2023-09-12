@@ -4,18 +4,18 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgVulkanPhysicalDevice.hpp"
 
 #include <cppitertools/itertools.hpp>
+#include <gsl/gsl>
 #include <set>
 #include <span>
 
 #include "abcgException.hpp"
-#include "abcgVulkan.hpp"
 #include "abcgVulkanInstance.hpp"
 
 void abcg::VulkanPhysicalDevice::create(
@@ -75,6 +75,54 @@ std::optional<uint32_t> abcg::VulkanPhysicalDevice::findMemoryType(
   return std::nullopt;
 }
 
+/**
+ * @brief Conversion to vk::PhysicalDevice.
+ */
+abcg::VulkanPhysicalDevice::operator vk::PhysicalDevice const &()
+    const noexcept {
+  return m_physicalDevice;
+}
+
+/**
+ * @brief Access to abcg::VulkanInstance.
+ *
+ * @return Vulkan instance associated with this physical device.
+ */
+abcg::VulkanInstance const &
+abcg::VulkanPhysicalDevice::getInstance() const noexcept {
+  return m_instance;
+}
+
+/**
+ * @brief Access to queues families.
+ *
+ * @return Queues families available to this physical device.
+ */
+abcg::VulkanQueuesFamilies const &
+abcg::VulkanPhysicalDevice::getQueuesFamilies() const noexcept {
+  return m_queuesFamilies;
+}
+
+/**
+ * @brief Access to the surface.
+ *
+ * @return Surface associated with this physical device.
+ */
+vk::SurfaceKHR const &
+abcg::VulkanPhysicalDevice::getSurfaceKHR() const noexcept {
+  return m_surfaceKHR;
+}
+
+/**
+ * @brief Access to number of samples.
+ *
+ * @return Sample count associated with this physical device.
+ */
+vk::SampleCountFlagBits
+abcg::VulkanPhysicalDevice::getSampleCount() const noexcept {
+  return m_sampleCount;
+}
+
 void abcg::VulkanPhysicalDevice::checkQueueFamily(
     vk::QueueFamilyProperties const &properties, uint32_t queueFamilyIndex,
     bool useSeparateTransferQueue) {
@@ -87,7 +135,7 @@ void abcg::VulkanPhysicalDevice::checkQueueFamily(
 
   // Check for compute queue
   if (properties.queueFlags & vk::QueueFlagBits::eCompute) {
-    // Take the last index so we can favor families that are not the same of
+    // Take the last index, so we can favor families that are not the same of
     // the graphics queue
     m_queuesFamilies.compute = queueFamilyIndex;
   }
@@ -176,7 +224,7 @@ vk::SampleCountFlagBits abcg::VulkanPhysicalDevice::getMaxUsableSampleCount() {
 bool abcg::VulkanPhysicalDevice::isDeviceSuitable(
     std::vector<char const *> const &extensions,
     bool useSeparateTransferQueue) {
-  auto swapchainAdequate{false};
+  auto swapchainIsAdequate{false};
 
   findQueueFamilies(useSeparateTransferQueue);
   auto const &queueFamilyAdequate{m_queuesFamilies.graphics.has_value() &&
@@ -184,7 +232,7 @@ bool abcg::VulkanPhysicalDevice::isDeviceSuitable(
 
   auto const &extensionsSupported{checkExtensionsSupport(extensions).empty()};
   if (extensionsSupported) {
-    swapchainAdequate =
+    swapchainIsAdequate =
         !m_physicalDevice.getSurfaceFormatsKHR(m_surfaceKHR).empty() &&
         !m_physicalDevice.getSurfacePresentModesKHR(m_surfaceKHR).empty();
   }
@@ -196,7 +244,7 @@ bool abcg::VulkanPhysicalDevice::isDeviceSuitable(
   auto const hasSamplerAnisotropy{VK_TRUE ==
                                   supportedFeatures.samplerAnisotropy};
 
-  return queueFamilyAdequate && extensionsSupported && swapchainAdequate &&
+  return queueFamilyAdequate && extensionsSupported && swapchainIsAdequate &&
          isDiscrete && hasSamplerAnisotropy;
 }
 

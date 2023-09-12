@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('abcgApplication_8hpp_source.html','');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="abcgApplication_8hpp.html#a07fc63a5e20c2f33f9ca0dd915ce491f">   16</a></span>&#160;<span class="preprocessor">#define ABCG_VERSION_MAJOR 3</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="abcgApplication_8hpp.html#a7396b0333e58c89fbafa65e76af72183">   17</a></span>&#160;<span class="preprocessor">#define ABCG_VERSION_MINOR 0</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="abcgApplication_8hpp.html#a7396b0333e58c89fbafa65e76af72183">   17</a></span>&#160;<span class="preprocessor">#define ABCG_VERSION_MINOR 1</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="abcgApplication_8hpp.html#af521d4146de1ade55008a4d5f0ddd768">   18</a></span>&#160;<span class="preprocessor">#define ABCG_VERSION_PATCH 0</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespaceabcg.html">   23</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceabcg.html">abcg</a> {</div>
@@ -127,34 +127,31 @@ $(document).ready(function(){initNavTree('abcgApplication_8hpp_source.html','');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1Application.html#aa5a85168c861a3502d37a1336f1aae0d">run</a>(<a class="code" href="classabcg_1_1Window.html">Window</a> &amp;window);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classabcg_1_1Application.html#ac3a160375fdb03e43e2de2094cc3a4e3">   58</a></span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1Application.html#ac3a160375fdb03e43e2de2094cc3a4e3">getAssetsPath</a>() {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> m_assetsPath;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">static</span> std::string <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1Application.html#a0ba09deb85be01372abf095ebccfd90a">getAssetsPath</a>() noexcept;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">static</span> std::string <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1Application.html#a28b5d11e55d9aaef73b329503fe7725d">getBasePath</a>() noexcept;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordtype">void</span> mainLoopIterator(<span class="keywordtype">bool</span> &amp;done) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classabcg_1_1Window.html">Window</a> *m_window{};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#if defined(__EMSCRIPTEN__)</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">friend</span> <span class="keywordtype">void</span> mainLoopCallback(<span class="keywordtype">void</span> *userData);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="comment">// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="comment">// See https://bugs.llvm.org/show_bug.cgi?id=48040</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keyword">static</span> <span class="keyword">inline</span> std::string m_assetsPath;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keyword">static</span> <span class="keyword">inline</span> std::string m_basePath;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="comment">// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classabcg_1_1Application.html#a5f14e501676cbed3477be9b5480db0e5">   74</a></span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1Application.html#a5f14e501676cbed3477be9b5480db0e5">getBasePath</a>() { <span class="keywordflow">return</span> m_basePath; }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keywordtype">void</span> mainLoopIterator(<span class="keywordtype">bool</span> &amp;done) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <a class="code" href="classabcg_1_1Window.html">Window</a> *m_window{};</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#if defined(__EMSCRIPTEN__)</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keyword">friend</span> <span class="keywordtype">void</span> mainLoopCallback(<span class="keywordtype">void</span> *userData);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="comment">// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="comment">// See https://bugs.llvm.org/show_bug.cgi?id=48040</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keyword">static</span> <span class="keyword">inline</span> std::string m_assetsPath{};</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keyword">static</span> <span class="keyword">inline</span> std::string m_basePath{};</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="comment">// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassabcg_1_1Application_html"><div class="ttname"><a href="classabcg_1_1Application.html">abcg::Application</a></div><div class="ttdoc">Manages the application's control flow.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:37</div></div>
-<div class="ttc" id="aclassabcg_1_1Application_html_a5f14e501676cbed3477be9b5480db0e5"><div class="ttname"><a href="classabcg_1_1Application.html#a5f14e501676cbed3477be9b5480db0e5">abcg::Application::getBasePath</a></div><div class="ttdeci">static std::string const  &amp; getBasePath()</div><div class="ttdoc">Returns the path to the application's directory, relative to the directory the executable is launched...</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:74</div></div>
+<div class="ttc" id="aclassabcg_1_1Application_html_a0ba09deb85be01372abf095ebccfd90a"><div class="ttname"><a href="classabcg_1_1Application.html#a0ba09deb85be01372abf095ebccfd90a">abcg::Application::getAssetsPath</a></div><div class="ttdeci">static std::string const  &amp; getAssetsPath() noexcept</div><div class="ttdoc">Returns the path to the application's assets directory, relative to the directory the executable is l...</div><div class="ttdef"><b>Definition:</b> abcgApplication.cpp:128</div></div>
+<div class="ttc" id="aclassabcg_1_1Application_html_a28b5d11e55d9aaef73b329503fe7725d"><div class="ttname"><a href="classabcg_1_1Application.html#a28b5d11e55d9aaef73b329503fe7725d">abcg::Application::getBasePath</a></div><div class="ttdeci">static std::string const  &amp; getBasePath() noexcept</div><div class="ttdoc">Returns the path to the application's directory, relative to the directory the executable is launched...</div><div class="ttdef"><b>Definition:</b> abcgApplication.cpp:144</div></div>
 <div class="ttc" id="aclassabcg_1_1Application_html_aa5a85168c861a3502d37a1336f1aae0d"><div class="ttname"><a href="classabcg_1_1Application.html#aa5a85168c861a3502d37a1336f1aae0d">abcg::Application::run</a></div><div class="ttdeci">void run(Window &amp;window)</div><div class="ttdoc">Runs the application for the given window.</div><div class="ttdef"><b>Definition:</b> abcgApplication.cpp:77</div></div>
 <div class="ttc" id="aclassabcg_1_1Application_html_ab8275b32a7f2ff090e15a906f5039f54"><div class="ttname"><a href="classabcg_1_1Application.html#ab8275b32a7f2ff090e15a906f5039f54">abcg::Application::Application</a></div><div class="ttdeci">Application(int argc, char **argv)</div><div class="ttdoc">Constructs an abcg::Application object.</div><div class="ttdef"><b>Definition:</b> abcgApplication.cpp:48</div></div>
-<div class="ttc" id="aclassabcg_1_1Application_html_ac3a160375fdb03e43e2de2094cc3a4e3"><div class="ttname"><a href="classabcg_1_1Application.html#ac3a160375fdb03e43e2de2094cc3a4e3">abcg::Application::getAssetsPath</a></div><div class="ttdeci">static std::string const  &amp; getAssetsPath()</div><div class="ttdoc">Returns the path to the application's assets directory, relative to the directory the executable is l...</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:58</div></div>
 <div class="ttc" id="aclassabcg_1_1Window_html"><div class="ttname"><a href="classabcg_1_1Window.html">abcg::Window</a></div><div class="ttdoc">Base abstract class that represents a SDL window.</div><div class="ttdef"><b>Definition:</b> abcgWindow.hpp:86</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
 </div><!-- fragment --></div><!-- contents -->

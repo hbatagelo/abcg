@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -131,31 +131,29 @@ $(document).ready(function(){initNavTree('abcgVulkanBuffer_8hpp_source.html','')
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1VulkanBuffer.html#a9e880ba0292183708e7681fb9d28132b">loadData</a>(gsl::not_null&lt;void const *&gt; data, vk::DeviceSize size,</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                vk::DeviceSize offset = 0UL);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanBuffer.html#a4a0191a5b52124471dc6d91e6d85c60e">   52</a></span>&#160;  <span class="keyword">explicit</span> <span class="keyword">operator</span> vk::Buffer <span class="keyword">const</span> &amp;() <span class="keyword">const</span> noexcept { <span class="keywordflow">return</span> m_buffer; }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanBuffer.html#a92490ce5ab81e5f962670192df1bcec4">   60</a></span>&#160;  [[nodiscard]] vk::DeviceMemory <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanBuffer.html#a92490ce5ab81e5f962670192df1bcec4">getDeviceMemory</a>() const noexcept {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> m_deviceMemory;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keyword">explicit</span> <span class="keyword">operator</span> vk::Buffer <span class="keyword">const</span> &amp;() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  [[nodiscard]] vk::DeviceMemory <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanBuffer.html#a0a16b5a0699b4684cca7d1b2b3536fb8">getDeviceMemory</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  [[nodiscard]] std::pair&lt;vk::Buffer, vk::DeviceMemory&gt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  createBuffer(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device, vk::DeviceSize size,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;               vk::BufferUsageFlags usage,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;               vk::MemoryPropertyFlags properties) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  vk::Buffer m_buffer;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  vk::DeviceMemory m_deviceMemory;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  vk::Device m_device;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  [[nodiscard]] std::pair&lt;vk::Buffer, vk::DeviceMemory&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  createBuffer(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device, vk::DeviceSize size,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;               vk::BufferUsageFlags usage,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;               vk::MemoryPropertyFlags properties) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  vk::Buffer m_buffer{};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  vk::DeviceMemory m_deviceMemory{};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  vk::Device m_device{};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgVulkanDevice_8hpp_html"><div class="ttname"><a href="abcgVulkanDevice_8hpp.html">abcgVulkanDevice.hpp</a></div><div class="ttdoc">Header file of abcg::VulkanDevice.</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanBuffer_html"><div class="ttname"><a href="classabcg_1_1VulkanBuffer.html">abcg::VulkanBuffer</a></div><div class="ttdoc">A class for representing a Vulkan buffer.</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.hpp:41</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanBuffer_html_a0a16b5a0699b4684cca7d1b2b3536fb8"><div class="ttname"><a href="classabcg_1_1VulkanBuffer.html#a0a16b5a0699b4684cca7d1b2b3536fb8">abcg::VulkanBuffer::getDeviceMemory</a></div><div class="ttdeci">vk::DeviceMemory const  &amp; getDeviceMemory() const noexcept</div><div class="ttdoc">Returns the opaque handle to the device memory object associated with the buffer.</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.cpp:146</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanBuffer_html_a63c95797fc3e4ddfb0c9282fae794dd7"><div class="ttname"><a href="classabcg_1_1VulkanBuffer.html#a63c95797fc3e4ddfb0c9282fae794dd7">abcg::VulkanBuffer::create</a></div><div class="ttdeci">void create(VulkanDevice const &amp;device, VulkanBufferCreateInfo const &amp;createInfo)</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.cpp:19</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanBuffer_html_a873139d866527c0c51ed24bc20e1f3ae"><div class="ttname"><a href="classabcg_1_1VulkanBuffer.html#a873139d866527c0c51ed24bc20e1f3ae">abcg::VulkanBuffer::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.cpp:66</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanBuffer_html_a92490ce5ab81e5f962670192df1bcec4"><div class="ttname"><a href="classabcg_1_1VulkanBuffer.html#a92490ce5ab81e5f962670192df1bcec4">abcg::VulkanBuffer::getDeviceMemory</a></div><div class="ttdeci">vk::DeviceMemory const  &amp; getDeviceMemory() const noexcept</div><div class="ttdoc">Returns the opaque handle to the device memory object associated with the buffer.</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.hpp:60</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanBuffer_html_a9e880ba0292183708e7681fb9d28132b"><div class="ttname"><a href="classabcg_1_1VulkanBuffer.html#a9e880ba0292183708e7681fb9d28132b">abcg::VulkanBuffer::loadData</a></div><div class="ttdeci">void loadData(gsl::not_null&lt; void const * &gt; data, vk::DeviceSize size, vk::DeviceSize offset=0UL)</div><div class="ttdoc">Loads data to the buffer.</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.cpp:78</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanDevice_html"><div class="ttname"><a href="classabcg_1_1VulkanDevice.html">abcg::VulkanDevice</a></div><div class="ttdoc">A class for representing a Vulkan logical device and related resources.</div><div class="ttdef"><b>Definition:</b> abcgVulkanDevice.hpp:54</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanDevice_html"><div class="ttname"><a href="classabcg_1_1VulkanDevice.html">abcg::VulkanDevice</a></div><div class="ttdoc">A class for representing a Vulkan logical device and related resources.</div><div class="ttdef"><b>Definition:</b> abcgVulkanDevice.hpp:55</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
 <div class="ttc" id="astructabcg_1_1VulkanBufferCreateInfo_html"><div class="ttname"><a href="structabcg_1_1VulkanBufferCreateInfo.html">abcg::VulkanBufferCreateInfo</a></div><div class="ttdoc">Creation info structure for abcg::VulkanBuffer::create.</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.hpp:28</div></div>
 <div class="ttc" id="astructabcg_1_1VulkanBufferCreateInfo_html_a862c279c01a8d9d85f1e90b6f12d0dc3"><div class="ttname"><a href="structabcg_1_1VulkanBufferCreateInfo.html#a862c279c01a8d9d85f1e90b6f12d0dc3">abcg::VulkanBufferCreateInfo::size</a></div><div class="ttdeci">vk::DeviceSize size</div><div class="ttdef"><b>Definition:</b> abcgVulkanBuffer.hpp:29</div></div>

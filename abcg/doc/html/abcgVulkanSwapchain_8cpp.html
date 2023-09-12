@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -99,8 +99,6 @@ $(document).ready(function(){initNavTree('abcgVulkanSwapchain_8cpp.html',''); in
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">/home/harlen/dev/abcg/abcg/abcgVulkanSwapchain.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -112,7 +110,6 @@ $(document).ready(function(){initNavTree('abcgVulkanSwapchain_8cpp.html',''); in
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;gsl/gsl&gt;</code><br />
 <code>#include &lt;imgui_impl_vulkan.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="abcgApplication_8hpp_source.html">abcgApplication.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="abcgException_8hpp_source.html">abcgException.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="abcgVulkanDevice_8hpp_source.html">abcgVulkanDevice.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="abcgVulkanPhysicalDevice_8hpp_source.html">abcgVulkanPhysicalDevice.hpp</a>&quot;</code><br />
@@ -120,115 +117,14 @@ $(document).ready(function(){initNavTree('abcgVulkanSwapchain_8cpp.html',''); in
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for abcgVulkanSwapchain.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="abcgVulkanSwapchain_8cpp__incl.svg" width="1475" height="650"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="abcgVulkanSwapchain_8cpp__incl.svg" width="1434" height="650"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a1483e553cb233562ff7ae7efcf60e5e0"><td class="memItemLeft" align="right" valign="top">vk::SurfaceFormatKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="abcgVulkanSwapchain_8cpp.html#a1483e553cb233562ff7ae7efcf60e5e0">chooseSwapSurfaceFormat</a> (std::vector&lt; vk::Format &gt; const &amp;requestFormats, vk::ColorSpaceKHR requestColorSpace, SurfaceSupport const &amp;surfaceSupport)</td></tr>
-<tr class="separator:a1483e553cb233562ff7ae7efcf60e5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4074f1e431857e425c4dfe6ba27069a9"><td class="memItemLeft" align="right" valign="top">vk::PresentModeKHR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="abcgVulkanSwapchain_8cpp.html#a4074f1e431857e425c4dfe6ba27069a9">chooseSwapPresentMode</a> (std::vector&lt; vk::PresentModeKHR &gt; const &amp;requestModes, SurfaceSupport const &amp;surfaceSupport)</td></tr>
-<tr class="separator:a4074f1e431857e425c4dfe6ba27069a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39a911060dac4822e4f53788fe57c7b0"><td class="memItemLeft" align="right" valign="top">vk::Extent2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="abcgVulkanSwapchain_8cpp.html#a39a911060dac4822e4f53788fe57c7b0">chooseSwapExtent</a> (vk::SurfaceCapabilitiesKHR capabilities, glm::ivec2 windowSize)</td></tr>
-<tr class="separator:a39a911060dac4822e4f53788fe57c7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Definition of <a class="el" href="classabcg_1_1VulkanSwapchain.html" title="A class for representing a Vulkan swapchain.">abcg::VulkanSwapchain</a>. </p>
 <p>This file is part of ABCg (<a href="https://github.com/hbatagelo/abcg">https://github.com/hbatagelo/abcg</a>).</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2021&ndash;2022 Harlen Batagelo. All rights reserved. This project is released under the MIT License. </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a39a911060dac4822e4f53788fe57c7b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39a911060dac4822e4f53788fe57c7b0">&#9670;&nbsp;</a></span>chooseSwapExtent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vk::Extent2D chooseSwapExtent </td>
-          <td>(</td>
-          <td class="paramtype">vk::SurfaceCapabilitiesKHR&#160;</td>
-          <td class="paramname"><em>capabilities</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">glm::ivec2&#160;</td>
-          <td class="paramname"><em>windowSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4074f1e431857e425c4dfe6ba27069a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4074f1e431857e425c4dfe6ba27069a9">&#9670;&nbsp;</a></span>chooseSwapPresentMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vk::PresentModeKHR chooseSwapPresentMode </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; vk::PresentModeKHR &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>requestModes</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SurfaceSupport const &amp;&#160;</td>
-          <td class="paramname"><em>surfaceSupport</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1483e553cb233562ff7ae7efcf60e5e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1483e553cb233562ff7ae7efcf60e5e0">&#9670;&nbsp;</a></span>chooseSwapSurfaceFormat()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vk::SurfaceFormatKHR chooseSwapSurfaceFormat </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; vk::Format &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>requestFormats</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">vk::ColorSpaceKHR&#160;</td>
-          <td class="paramname"><em>requestColorSpace</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">SurfaceSupport const &amp;&#160;</td>
-          <td class="paramname"><em>surfaceSupport</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2021&ndash;2023 Harlen Batagelo. All rights reserved. This project is released under the MIT License. </dd></dl>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

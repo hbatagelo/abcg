@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -124,12 +124,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac3a160375fdb03e43e2de2094cc3a4e3"><td class="memItemLeft" align="right" valign="top">static std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classabcg_1_1Application.html#ac3a160375fdb03e43e2de2094cc3a4e3">getAssetsPath</a> ()</td></tr>
-<tr class="memdesc:ac3a160375fdb03e43e2de2094cc3a4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the application's assets directory, relative to the directory the executable is launched from.  <a href="classabcg_1_1Application.html#ac3a160375fdb03e43e2de2094cc3a4e3">More...</a><br /></td></tr>
-<tr class="separator:ac3a160375fdb03e43e2de2094cc3a4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f14e501676cbed3477be9b5480db0e5"><td class="memItemLeft" align="right" valign="top">static std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classabcg_1_1Application.html#a5f14e501676cbed3477be9b5480db0e5">getBasePath</a> ()</td></tr>
-<tr class="memdesc:a5f14e501676cbed3477be9b5480db0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the application's directory, relative to the directory the executable is launched in.  <a href="classabcg_1_1Application.html#a5f14e501676cbed3477be9b5480db0e5">More...</a><br /></td></tr>
-<tr class="separator:a5f14e501676cbed3477be9b5480db0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba09deb85be01372abf095ebccfd90a"><td class="memItemLeft" align="right" valign="top">static std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classabcg_1_1Application.html#a0ba09deb85be01372abf095ebccfd90a">getAssetsPath</a> () noexcept</td></tr>
+<tr class="memdesc:a0ba09deb85be01372abf095ebccfd90a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the application's assets directory, relative to the directory the executable is launched from.  <a href="classabcg_1_1Application.html#a0ba09deb85be01372abf095ebccfd90a">More...</a><br /></td></tr>
+<tr class="separator:a0ba09deb85be01372abf095ebccfd90a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28b5d11e55d9aaef73b329503fe7725d"><td class="memItemLeft" align="right" valign="top">static std::string const  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classabcg_1_1Application.html#a28b5d11e55d9aaef73b329503fe7725d">getBasePath</a> () noexcept</td></tr>
+<tr class="memdesc:a28b5d11e55d9aaef73b329503fe7725d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the application's directory, relative to the directory the executable is launched in.  <a href="classabcg_1_1Application.html#a28b5d11e55d9aaef73b329503fe7725d">More...</a><br /></td></tr>
+<tr class="separator:a28b5d11e55d9aaef73b329503fe7725d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages the application's control flow. </p>
@@ -173,8 +173,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac3a160375fdb03e43e2de2094cc3a4e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3a160375fdb03e43e2de2094cc3a4e3">&#9670;&nbsp;</a></span>getAssetsPath()</h2>
+<a id="a0ba09deb85be01372abf095ebccfd90a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ba09deb85be01372abf095ebccfd90a">&#9670;&nbsp;</a></span>getAssetsPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::string const&amp; abcg::Application::getAssetsPath </td>
+          <td class="memname">std::string const  &amp; abcg::Application::getAssetsPath </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -191,7 +191,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -199,12 +199,12 @@ Static Public Member Functions</h2></td></tr>
 <p>Returns the path to the application's assets directory, relative to the directory the executable is launched from. </p>
 <dl class="section return"><dt>Returns</dt><dd>Path to the application's <code>assets</code> directory, relative to the location from which the application was launched. For example, the assets path will be <code>./app/assets/</code> if the application is located in <code>./app</code> and is launched from its parent directory. The assets path will be <code>./assets/</code> if the application is launched from the same directory of the executable.</dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>The assets path is appended with the base path and ends with a forward slash.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classabcg_1_1Application.html#a5f14e501676cbed3477be9b5480db0e5" title="Returns the path to the application&#39;s directory, relative to the directory the executable is launched...">abcg::Application::getBasePath</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classabcg_1_1Application.html#a28b5d11e55d9aaef73b329503fe7725d" title="Returns the path to the application&#39;s directory, relative to the directory the executable is launched...">abcg::Application::getBasePath</a> </dd></dl>
 
 </div>
 </div>
-<a id="a5f14e501676cbed3477be9b5480db0e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f14e501676cbed3477be9b5480db0e5">&#9670;&nbsp;</a></span>getBasePath()</h2>
+<a id="a28b5d11e55d9aaef73b329503fe7725d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28b5d11e55d9aaef73b329503fe7725d">&#9670;&nbsp;</a></span>getBasePath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,7 +213,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::string const&amp; abcg::Application::getBasePath </td>
+          <td class="memname">std::string const  &amp; abcg::Application::getBasePath </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -221,7 +221,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

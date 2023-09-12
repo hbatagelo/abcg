@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -119,29 +119,24 @@ $(document).ready(function(){initNavTree('abcgVulkanShader_8hpp_source.html','')
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1VulkanShader.html#ab60a83a3d2045c1c4361eef0a2e64db2">create</a>(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device, <a class="code" href="structabcg_1_1ShaderSource.html">ShaderSource</a> <span class="keyword">const</span> &amp;pathOrSource);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1VulkanShader.html#a276c5416ca86523a0871c2f2cf5c1fe1">destroy</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanShader.html#ad5666c31f864d9cbc7cf52fef5d8a850">   37</a></span>&#160;  [[nodiscard]] vk::ShaderStageFlagBits <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanShader.html#ad5666c31f864d9cbc7cf52fef5d8a850">getStage</a>() const noexcept {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> m_stage;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  [[nodiscard]] vk::ShaderStageFlagBits <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanShader.html#a6c4ce257ae31cb6a5e1b177a7931abf7">getStage</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  [[nodiscard]] vk::ShaderModule <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanShader.html#af6469274369f268db1bfeac8210ced7d">getModule</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  vk::ShaderStageFlagBits m_stage{};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  vk::ShaderModule m_module;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  vk::Device m_device;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;};</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanShader.html#a3d29eca130a1ecf86a75b594d6702878">   46</a></span>&#160;  [[nodiscard]] vk::ShaderModule <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanShader.html#a3d29eca130a1ecf86a75b594d6702878">getModule</a>() const noexcept {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> m_module;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  vk::ShaderStageFlagBits m_stage{};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  vk::ShaderModule m_module{};</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  vk::Device m_device{};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgShader_8hpp_html"><div class="ttname"><a href="abcgShader_8hpp.html">abcgShader.hpp</a></div><div class="ttdoc">Declaration of a structure for building shaders.</div></div>
 <div class="ttc" id="aabcgVulkanDevice_8hpp_html"><div class="ttname"><a href="abcgVulkanDevice_8hpp.html">abcgVulkanDevice.hpp</a></div><div class="ttdoc">Header file of abcg::VulkanDevice.</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanDevice_html"><div class="ttname"><a href="classabcg_1_1VulkanDevice.html">abcg::VulkanDevice</a></div><div class="ttdoc">A class for representing a Vulkan logical device and related resources.</div><div class="ttdef"><b>Definition:</b> abcgVulkanDevice.hpp:54</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanDevice_html"><div class="ttname"><a href="classabcg_1_1VulkanDevice.html">abcg::VulkanDevice</a></div><div class="ttdoc">A class for representing a Vulkan logical device and related resources.</div><div class="ttdef"><b>Definition:</b> abcgVulkanDevice.hpp:55</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanShader_html"><div class="ttname"><a href="classabcg_1_1VulkanShader.html">abcg::VulkanShader</a></div><div class="ttdoc">A class for representing a Vulkan shader.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.hpp:27</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanShader_html_a276c5416ca86523a0871c2f2cf5c1fe1"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#a276c5416ca86523a0871c2f2cf5c1fe1">abcg::VulkanShader::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdoc">Destroys the shader module.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.cpp:330</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanShader_html_a3d29eca130a1ecf86a75b594d6702878"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#a3d29eca130a1ecf86a75b594d6702878">abcg::VulkanShader::getModule</a></div><div class="ttdeci">vk::ShaderModule const  &amp; getModule() const noexcept</div><div class="ttdoc">Returns the opaque handle to the shader module object.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.hpp:46</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanShader_html_ab60a83a3d2045c1c4361eef0a2e64db2"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#ab60a83a3d2045c1c4361eef0a2e64db2">abcg::VulkanShader::create</a></div><div class="ttdeci">void create(VulkanDevice const &amp;device, ShaderSource const &amp;pathOrSource)</div><div class="ttdoc">Compiles a GLSL shader to SPIR-V and creates its module.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.cpp:311</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanShader_html_ad5666c31f864d9cbc7cf52fef5d8a850"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#ad5666c31f864d9cbc7cf52fef5d8a850">abcg::VulkanShader::getStage</a></div><div class="ttdeci">vk::ShaderStageFlagBits const  &amp; getStage() const noexcept</div><div class="ttdoc">Returns the shader stage bitmask.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.hpp:37</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanShader_html_a276c5416ca86523a0871c2f2cf5c1fe1"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#a276c5416ca86523a0871c2f2cf5c1fe1">abcg::VulkanShader::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdoc">Destroys the shader module.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.cpp:333</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanShader_html_a6c4ce257ae31cb6a5e1b177a7931abf7"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#a6c4ce257ae31cb6a5e1b177a7931abf7">abcg::VulkanShader::getStage</a></div><div class="ttdeci">vk::ShaderStageFlagBits const  &amp; getStage() const noexcept</div><div class="ttdoc">Returns the shader stage bitmask.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.cpp:346</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanShader_html_ab60a83a3d2045c1c4361eef0a2e64db2"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#ab60a83a3d2045c1c4361eef0a2e64db2">abcg::VulkanShader::create</a></div><div class="ttdeci">void create(VulkanDevice const &amp;device, ShaderSource const &amp;pathOrSource)</div><div class="ttdoc">Compiles a GLSL shader to SPIR-V and creates its module.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.cpp:314</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanShader_html_af6469274369f268db1bfeac8210ced7d"><div class="ttname"><a href="classabcg_1_1VulkanShader.html#af6469274369f268db1bfeac8210ced7d">abcg::VulkanShader::getModule</a></div><div class="ttdeci">vk::ShaderModule const  &amp; getModule() const noexcept</div><div class="ttdoc">Returns the opaque handle to the shader module object.</div><div class="ttdef"><b>Definition:</b> abcgVulkanShader.cpp:355</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
 <div class="ttc" id="astructabcg_1_1ShaderSource_html"><div class="ttname"><a href="structabcg_1_1ShaderSource.html">abcg::ShaderSource</a></div><div class="ttdoc">Shader source code and corresponding stage.</div><div class="ttdef"><b>Definition:</b> abcgShader.hpp:46</div></div>
 </div><!-- fragment --></div><!-- contents -->

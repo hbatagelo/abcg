@@ -1,8 +1,7 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanBuffer.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanBuffer.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::VulkanBuffer." alt="" coords="355,5,556,47"/>
-<area shape="rect" id="node2" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="161,95,331,136"/>
-<area shape="rect" id="node5" href="$abcgVulkanBuffer_8cpp.html" title="Definition of abcg::VulkanBuffer." alt="" coords="355,95,555,136"/>
-<area shape="rect" id="node6" href="$abcgVulkanImage_8cpp.html" title="Definition of abcg::VulkanImage." alt="" coords="579,95,782,136"/>
+<area shape="rect" id="node1" title="Header file of abcg::VulkanBuffer." alt="" coords="223,5,424,47"/>
+<area shape="rect" id="node2" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="29,95,199,136"/>
+<area shape="rect" id="node4" href="$abcgVulkanBuffer_8cpp.html" title="Definition of abcg::VulkanBuffer." alt="" coords="223,95,423,136"/>
+<area shape="rect" id="node5" href="$abcgVulkanImage_8cpp.html" title="Definition of abcg::VulkanImage." alt="" coords="447,95,650,136"/>
 <area shape="rect" id="node3" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="5,184,223,225"/>
-<area shape="rect" id="node4" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="247,184,509,225"/>
 </map>

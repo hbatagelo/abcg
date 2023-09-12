@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -131,32 +131,29 @@ $(document).ready(function(){initNavTree('abcgOpenGLError_8hpp_source.html','');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#if !defined(NDEBUG) &amp;&amp; !defined(__EMSCRIPTEN__) &amp;&amp; !defined(__APPLE__)</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classabcg_1_1OpenGLError.html#a6f1a5080226aa9434ef1f5b096710fa0">OpenGLError</a>(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      std::string_view <a class="code" href="classabcg_1_1Exception.html#ac29321e33a5280ecdc5c59405f08c080">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      std::string_view <a class="code" href="classabcg_1_1Exception.html#a2570f60fe3573e51566430f5a7c5f5fb">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode,</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <a class="code" href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">source_location</a> <span class="keyword">const</span> &amp;sourceLocation = source_location::current());</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  prettyPrint(std::string_view <a class="code" href="classabcg_1_1Exception.html#ac29321e33a5280ecdc5c59405f08c080">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode,</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;              <a class="code" href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">source_location</a> <span class="keyword">const</span> &amp;sourceLocation);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classabcg_1_1OpenGLError.html#a6f1a5080226aa9434ef1f5b096710fa0">OpenGLError</a>(std::string_view <a class="code" href="classabcg_1_1Exception.html#ac29321e33a5280ecdc5c59405f08c080">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string prettyPrint(std::string_view <a class="code" href="classabcg_1_1Exception.html#ac29321e33a5280ecdc5c59405f08c080">what</a>,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                               <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string_view</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  getGLErrorString(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">static</span> std::string prettyPrint(std::string_view <a class="code" href="classabcg_1_1Exception.html#a2570f60fe3573e51566430f5a7c5f5fb">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                 <a class="code" href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">source_location</a> <span class="keyword">const</span> &amp;sourceLocation);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classabcg_1_1OpenGLError.html#a6f1a5080226aa9434ef1f5b096710fa0">OpenGLError</a>(std::string_view <a class="code" href="classabcg_1_1Exception.html#a2570f60fe3573e51566430f5a7c5f5fb">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">static</span> std::string prettyPrint(std::string_view <a class="code" href="classabcg_1_1Exception.html#a2570f60fe3573e51566430f5a7c5f5fb">what</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keyword">static</span> std::string_view getGLErrorString(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> errorCode);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgException_8hpp_html"><div class="ttname"><a href="abcgException_8hpp.html">abcgException.hpp</a></div><div class="ttdoc">Header file of abcg::Exception and derived classes.</div></div>
-<div class="ttc" id="aclassabcg_1_1Exception_html"><div class="ttname"><a href="classabcg_1_1Exception.html">abcg::Exception</a></div><div class="ttdoc">Base class for ABCg exception objects.</div><div class="ttdef"><b>Definition:</b> abcgException.hpp:71</div></div>
-<div class="ttc" id="aclassabcg_1_1Exception_html_ac29321e33a5280ecdc5c59405f08c080"><div class="ttname"><a href="classabcg_1_1Exception.html#ac29321e33a5280ecdc5c59405f08c080">abcg::Exception::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdoc">Returns the explanatory string.</div><div class="ttdef"><b>Definition:</b> abcgException.hpp:80</div></div>
+<div class="ttc" id="aclassabcg_1_1Exception_html"><div class="ttname"><a href="classabcg_1_1Exception.html">abcg::Exception</a></div><div class="ttdoc">Base class for ABCg exception objects.</div><div class="ttdef"><b>Definition:</b> abcgException.hpp:49</div></div>
+<div class="ttc" id="aclassabcg_1_1Exception_html_a2570f60fe3573e51566430f5a7c5f5fb"><div class="ttname"><a href="classabcg_1_1Exception.html#a2570f60fe3573e51566430f5a7c5f5fb">abcg::Exception::what</a></div><div class="ttdeci">char const  * what() const noexcept override</div><div class="ttdoc">Returns the explanatory string.</div><div class="ttdef"><b>Definition:</b> abcgException.cpp:30</div></div>
 <div class="ttc" id="aclassabcg_1_1OpenGLError_html"><div class="ttname"><a href="classabcg_1_1OpenGLError.html">abcg::OpenGLError</a></div><div class="ttdoc">Represents an exception object for OpenGL errors.</div><div class="ttdef"><b>Definition:</b> abcgOpenGLError.hpp:45</div></div>
-<div class="ttc" id="aclassabcg_1_1OpenGLError_html_a6f1a5080226aa9434ef1f5b096710fa0"><div class="ttname"><a href="classabcg_1_1OpenGLError.html#a6f1a5080226aa9434ef1f5b096710fa0">abcg::OpenGLError::OpenGLError</a></div><div class="ttdeci">OpenGLError(std::string_view what, unsigned int errorCode, source_location const &amp;sourceLocation=source_location::current())</div><div class="ttdoc">Constructs an abcg::OpenGLError object.</div><div class="ttdef"><b>Definition:</b> abcgOpenGLError.cpp:27</div></div>
+<div class="ttc" id="aclassabcg_1_1OpenGLError_html_a6f1a5080226aa9434ef1f5b096710fa0"><div class="ttname"><a href="classabcg_1_1OpenGLError.html#a6f1a5080226aa9434ef1f5b096710fa0">abcg::OpenGLError::OpenGLError</a></div><div class="ttdeci">OpenGLError(std::string_view what, unsigned int errorCode, source_location const &amp;sourceLocation=source_location::current())</div><div class="ttdoc">Constructs an abcg::OpenGLError object.</div><div class="ttdef"><b>Definition:</b> abcgOpenGLError.cpp:28</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
 <div class="ttc" id="anamespaceabcg_html_acb1d90de1449e0e743214d0ae8bddff2"><div class="ttname"><a href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">abcg::source_location</a></div><div class="ttdeci">std::source_location source_location</div><div class="ttdef"><b>Definition:</b> abcgOpenGLError.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->

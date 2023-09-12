@@ -1,11 +1,12 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanBuffer.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanBuffer.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::VulkanBuffer." alt="" coords="89,5,291,47"/>
-<area shape="rect" id="node2" href="$abcgVulkanDevice_8hpp.html" title="Header file of abcg::VulkanDevice." alt="" coords="27,95,196,121"/>
-<area shape="rect" id="node9" title=" " alt="" coords="221,95,319,121"/>
-<area shape="rect" id="node3" href="$abcgVulkanExternal_8hpp.html" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="10,319,189,345"/>
-<area shape="rect" id="node6" href="$abcgVulkanPhysicalDevice_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="75,169,297,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,393,68,420"/>
-<area shape="rect" id="node5" title=" " alt="" coords="92,393,232,420"/>
-<area shape="rect" id="node7" title=" " alt="" coords="137,244,211,271"/>
-<area shape="rect" id="node8" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="235,244,414,271"/>
+<area shape="rect" id="node1" title="Header file of abcg::VulkanBuffer." alt="" coords="185,5,386,47"/>
+<area shape="rect" id="node2" href="$abcgVulkanDevice_8hpp.html" title="Header file of abcg::VulkanDevice." alt="" coords="122,95,291,121"/>
+<area shape="rect" id="node10" title=" " alt="" coords="316,95,415,121"/>
+<area shape="rect" id="node3" href="$abcgVulkanPhysicalDevice_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="6,169,229,196"/>
+<area shape="rect" id="node9" title=" " alt="" coords="253,169,339,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,244,80,271"/>
+<area shape="rect" id="node5" href="$abcgVulkanExternal_8hpp.html" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="91,319,269,345"/>
+<area shape="rect" id="node8" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="155,244,333,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="86,393,149,420"/>
+<area shape="rect" id="node7" title=" " alt="" coords="173,393,313,420"/>
 </map>

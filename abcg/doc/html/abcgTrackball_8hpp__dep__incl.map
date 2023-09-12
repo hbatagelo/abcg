@@ -1,9 +1,8 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgTrackball.hpp" name="/home/harlen/dev/abcg/abcg/abcgTrackball.hpp">
 <area shape="rect" id="node1" title="Header file of abcg::TrackBall." alt="" coords="197,5,376,47"/>
 <area shape="rect" id="node2" href="$abcg_8hpp.html" title="Shortcut header that includes the most common ABCg headers." alt="" coords="103,95,273,136"/>
-<area shape="rect" id="node7" href="$abcgTrackball_8cpp.html" title="Definition of abcg::TrackBall members." alt="" coords="298,95,475,136"/>
+<area shape="rect" id="node6" href="$abcgTrackball_8cpp.html" title="Definition of abcg::TrackBall members." alt="" coords="298,95,475,136"/>
 <area shape="rect" id="node3" href="$abcgOpenGL_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="5,184,176,225"/>
 <area shape="rect" id="node4" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="200,184,371,225"/>
-<area shape="rect" id="node5" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="45,273,262,315"/>
-<area shape="rect" id="node6" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="287,273,548,315"/>
+<area shape="rect" id="node5" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="177,273,394,315"/>
 </map>

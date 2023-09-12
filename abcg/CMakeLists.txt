@@ -6,7 +6,7 @@ project(abcg)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 set(ABCG_FILES abcgApplication.cpp abcgTimer.cpp abcgException.cpp
-               abcgImage.cpp abcgTrackball.cpp abcgWindow.cpp)
+               abcgImage.cpp abcgTrackball.cpp abcgWindow.cpp abcgUtil.cpp)
 
 if(${GRAPHICS_API} MATCHES "OpenGL")
   set(ABCG_FILES ${ABCG_FILES} abcgOpenGLError.cpp abcgOpenGLFunction.cpp
@@ -54,7 +54,7 @@ else()
     set(IMGUI_BINDINGS_DIR "${CMAKE_SOURCE_DIR}/bindings")
 
     set(ABCG_FILES_WITH_IMGUI ${ABCG_FILES}
-                              ${IMGUI_BINDINGS_DIR}/imgui_impl_sdl.cpp)
+                              ${IMGUI_BINDINGS_DIR}/imgui_impl_sdl2.cpp)
 
     if(${GRAPHICS_API} MATCHES "OpenGL")
       set(ABCG_FILES_WITH_IMGUI ${ABCG_FILES_WITH_IMGUI}

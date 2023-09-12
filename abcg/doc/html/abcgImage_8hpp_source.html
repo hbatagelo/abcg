@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -108,17 +108,16 @@ $(document).ready(function(){initNavTree('abcgImage_8hpp_source.html',''); initR
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define ABCG_IMAGE_HPP_</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;SDL_image.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;gsl/pointers&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceabcg.html">abcg</a> {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceabcg.html#a0d46e744a39225a18d381362cea62104">flipHorizontally</a>(gsl::not_null&lt;SDL_Surface *&gt; surface);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceabcg.html#abc2b77e7547e5e73f00d7167f7a2f6b9">flipVertically</a>(gsl::not_null&lt;SDL_Surface *&gt; surface);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} <span class="comment">// namespace abcg</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceabcg.html">abcg</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceabcg.html#a070a6d04f8ddd3f8ffc85556822ad9b9">flipHorizontally</a>(SDL_Surface &amp;surface);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceabcg.html#afbf3c358b10f7ef9aef38acb758e12ca">flipVertically</a>(SDL_Surface &amp;surface);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} <span class="comment">// namespace abcg</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
-<div class="ttc" id="anamespaceabcg_html_a0d46e744a39225a18d381362cea62104"><div class="ttname"><a href="namespaceabcg.html#a0d46e744a39225a18d381362cea62104">abcg::flipHorizontally</a></div><div class="ttdeci">void flipHorizontally(gsl::not_null&lt; SDL_Surface * &gt; surface)</div><div class="ttdoc">Flips an image horizontally.</div><div class="ttdef"><b>Definition:</b> abcgImage.cpp:28</div></div>
-<div class="ttc" id="anamespaceabcg_html_abc2b77e7547e5e73f00d7167f7a2f6b9"><div class="ttname"><a href="namespaceabcg.html#abc2b77e7547e5e73f00d7167f7a2f6b9">abcg::flipVertically</a></div><div class="ttdeci">void flipVertically(gsl::not_null&lt; SDL_Surface * &gt; surface)</div><div class="ttdoc">Flips an image vertically.</div><div class="ttdef"><b>Definition:</b> abcgImage.cpp:68</div></div>
+<div class="ttc" id="anamespaceabcg_html_a070a6d04f8ddd3f8ffc85556822ad9b9"><div class="ttname"><a href="namespaceabcg.html#a070a6d04f8ddd3f8ffc85556822ad9b9">abcg::flipHorizontally</a></div><div class="ttdeci">void flipHorizontally(SDL_Surface &amp;surface)</div><div class="ttdoc">Flips an image horizontally.</div><div class="ttdef"><b>Definition:</b> abcgImage.cpp:26</div></div>
+<div class="ttc" id="anamespaceabcg_html_afbf3c358b10f7ef9aef38acb758e12ca"><div class="ttname"><a href="namespaceabcg.html#afbf3c358b10f7ef9aef38acb758e12ca">abcg::flipVertically</a></div><div class="ttdeci">void flipVertically(SDL_Surface &amp;surface)</div><div class="ttdoc">Flips an image vertically.</div><div class="ttdef"><b>Definition:</b> abcgImage.cpp:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

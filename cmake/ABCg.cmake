@@ -44,6 +44,7 @@ function(enable_abcg project_target)
     list(APPEND LINK_FLAGS "-sUSE_SDL=2")
     list(APPEND LINK_FLAGS "-sUSE_SDL_IMAGE=2")
     list(APPEND LINK_FLAGS "-sWASM=1")
+    list(APPEND LINK_FLAGS "-sSTACK_SIZE=1MB")
     list(APPEND LINK_FLAGS "--use-preload-plugins")
     if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/assets)
       list(APPEND LINK_FLAGS

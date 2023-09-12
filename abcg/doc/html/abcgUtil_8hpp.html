@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -110,16 +110,17 @@ $(document).ready(function(){initNavTree('abcgUtil_8hpp.html',''); initResizable
 <p>Declaration of general utility functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for abcgUtil.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="abcgUtil_8hpp__incl.svg" width="182" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="abcgUtil_8hpp__incl.svg" width="188" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="abcgUtil_8hpp__dep__incl.svg" width="554" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="abcgUtil_8hpp__dep__incl.svg" width="906" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -141,11 +142,20 @@ Functions</h2></td></tr>
 <tr class="memitem:aed04a19d18acb506c896c2f220d495c1"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceabcg.html#aed04a19d18acb506c896c2f220d495c1">abcg::hashCombine</a> (const TFirst &amp;value, const TRest &amp;...rest)</td></tr>
 <tr class="memdesc:aed04a19d18acb506c896c2f220d495c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a hash value from several values.  <a href="namespaceabcg.html#aed04a19d18acb506c896c2f220d495c1">More...</a><br /></td></tr>
 <tr class="separator:aed04a19d18acb506c896c2f220d495c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffc0a33678775f855ffa982c00ccb0d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceabcg.html#a7ffc0a33678775f855ffa982c00ccb0d">abcg::toRedString</a> (std::string_view str)</td></tr>
+<tr class="memdesc:a7ffc0a33678775f855ffa982c00ccb0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a string prefixed with the ANSI color code that corresponds to foreground bold red.  <a href="namespaceabcg.html#a7ffc0a33678775f855ffa982c00ccb0d">More...</a><br /></td></tr>
+<tr class="separator:a7ffc0a33678775f855ffa982c00ccb0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8a9c73318a69a62645ca5ee239763d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceabcg.html#a9a8a9c73318a69a62645ca5ee239763d">abcg::toYellowString</a> (std::string_view str)</td></tr>
+<tr class="memdesc:a9a8a9c73318a69a62645ca5ee239763d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a string prefixed with the ANSI color code that corresponds to foreground bold yellow.  <a href="namespaceabcg.html#a9a8a9c73318a69a62645ca5ee239763d">More...</a><br /></td></tr>
+<tr class="separator:a9a8a9c73318a69a62645ca5ee239763d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b13712894adf3cfdda66dd3ddd14256"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceabcg.html#a1b13712894adf3cfdda66dd3ddd14256">abcg::toBlueString</a> (std::string_view str)</td></tr>
+<tr class="memdesc:a1b13712894adf3cfdda66dd3ddd14256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a string prefixed with the ANSI color code that corresponds to foreground bold blue.  <a href="namespaceabcg.html#a1b13712894adf3cfdda66dd3ddd14256">More...</a><br /></td></tr>
+<tr class="separator:a1b13712894adf3cfdda66dd3ddd14256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Declaration of general utility functions. </p>
 <p>This file is part of ABCg (<a href="https://github.com/hbatagelo/abcg">https://github.com/hbatagelo/abcg</a>).</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2021&ndash;2022 Harlen Batagelo. All rights reserved. This project is released under the MIT License. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2021&ndash;2023 Harlen Batagelo. All rights reserved. This project is released under the MIT License. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,9 +1,8 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanShader.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanShader.hpp">
-<area shape="rect" id="node1" title="Declaration of helper functions for creating Vulkan shaders." alt="" coords="288,5,495,47"/>
-<area shape="rect" id="node2" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="161,184,331,225"/>
-<area shape="rect" id="node5" href="$abcgVulkanPipeline_8hpp.html" title="Header file of abcg::VulkanPipeline." alt="" coords="284,95,499,136"/>
-<area shape="rect" id="node7" href="$abcgVulkanShader_8cpp.html" title="Definition of helper functions for creating Vulkan shaders." alt="" coords="523,95,729,136"/>
+<area shape="rect" id="node1" title="Declaration of helper functions for creating Vulkan shaders." alt="" coords="156,5,363,47"/>
+<area shape="rect" id="node2" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="29,184,199,225"/>
+<area shape="rect" id="node4" href="$abcgVulkanPipeline_8hpp.html" title="Header file of abcg::VulkanPipeline." alt="" coords="152,95,367,136"/>
+<area shape="rect" id="node6" href="$abcgVulkanShader_8cpp.html" title="Definition of helper functions for creating Vulkan shaders." alt="" coords="391,95,597,136"/>
 <area shape="rect" id="node3" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="5,273,223,315"/>
-<area shape="rect" id="node4" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="247,273,509,315"/>
-<area shape="rect" id="node6" href="$abcgVulkanPipeline_8cpp.html" title="Definition of abcg::VulkanPipeline." alt="" coords="356,184,571,225"/>
+<area shape="rect" id="node5" href="$abcgVulkanPipeline_8cpp.html" title="Definition of abcg::VulkanPipeline." alt="" coords="224,184,439,225"/>
 </map>

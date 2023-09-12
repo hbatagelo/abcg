@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -69,7 +69,7 @@ void abcg::checkVkResult(VkResult retCode,
              "compilation to not be performed";
     break;
   default:
-    result = fmt::format("Unknown success code {}", retCode);
+    result = fmt::format("Unknown success code {}", static_cast<int>(retCode));
     break;
   }
 
@@ -94,7 +94,7 @@ abcg::VulkanError::prettyPrint(VkResult errorCode,
                                source_location const &sourceLocation) {
   auto errorMessage{toRedString("Vulkan error ")};
   errorMessage += " (";
-  errorMessage += getVulkanErrorString(errorCode).data();
+  errorMessage += getVulkanErrorString(errorCode);
   errorMessage += ")";
   return errorMessage + " in " + sourceLocation.file_name() + ":" +
          std::to_string(sourceLocation.line()) + ", " +
@@ -106,12 +106,12 @@ void abcg::checkVkResult([[maybe_unused]] VkResult retCode) {}
 
 abcg::VulkanError::VulkanError(VkResult errorCode)
     : Exception(prettyPrint(errorCode)) {}
-abcg::VulkanError::VulkanError(vk::Result errorCode) : Exception("TODO") {}
+abcg::VulkanError::VulkanError(vk::Result /*errorCode*/) : Exception("TODO") {}
 
 std::string abcg::VulkanError::prettyPrint(VkResult errorCode) {
   auto errorMessage{toRedString("Vulkan error ")};
   errorMessage += " (";
-  errorMessage += getVulkanErrorString(errorCode).data();
+  errorMessage += getVulkanErrorString(errorCode);
   errorMessage += ")";
   return errorMessage;
 }
@@ -119,7 +119,6 @@ std::string abcg::VulkanError::prettyPrint(VkResult errorCode) {
 
 // https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html)
 std::string_view abcg::VulkanError::getVulkanErrorString(VkResult errorCode) {
-  using namespace std::string_literals;
   std::string_view result;
   switch (errorCode) {
   case VK_ERROR_OUT_OF_HOST_MEMORY:
@@ -229,7 +228,7 @@ std::string_view abcg::VulkanError::getVulkanErrorString(VkResult errorCode) {
     result = "VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT: an operation on a "
              "swapchain created with "
              "VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT failed as it "
-             "did not have exlusive full-screen access. This may occur due to "
+             "did not have exclusive full-screen access. This may occur due to "
              "implementation-dependent reasons, outside of the application's "
              "control";
     break;
@@ -239,7 +238,7 @@ std::string_view abcg::VulkanError::getVulkanErrorString(VkResult errorCode) {
              "failure has occurred";
     break;
   default:
-    result = fmt::format("Unknown error code {}", errorCode);
+    result = fmt::format("Unknown error code {}", static_cast<int>(errorCode));
   }
   return result;
 }

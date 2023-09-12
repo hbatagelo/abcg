@@ -1,5 +1,5 @@
 var abcgImage_8hpp =
 [
-    [ "flipHorizontally", "abcgImage_8hpp.html#a0d46e744a39225a18d381362cea62104", null ],
-    [ "flipVertically", "abcgImage_8hpp.html#abc2b77e7547e5e73f00d7167f7a2f6b9", null ]
+    [ "flipHorizontally", "abcgImage_8hpp.html#a070a6d04f8ddd3f8ffc85556822ad9b9", null ],
+    [ "flipVertically", "abcgImage_8hpp.html#afbf3c358b10f7ef9aef38acb758e12ca", null ]
 ];

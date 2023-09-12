@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -28,14 +28,14 @@ void abcg::VulkanBuffer::create(VulkanDevice const &device,
       loadData(createInfo.data.value(), createInfo.size);
     }
   } else if (createInfo.data.has_value()) {
-    // Use a staging buffer for mapping, and a device local buffer as final
+    // Use a staging buffer for mapping, and a device local buffer as the final
     // destination
     auto [stagingBuffer, stagingBufferMemory]{createBuffer(
         device, createInfo.size, vk::BufferUsageFlagBits::eTransferSrc,
         vk::MemoryPropertyFlagBits::eHostVisible |
             vk::MemoryPropertyFlagBits::eHostCoherent)};
 
-    // Copy data to mapped stagging buffer
+    // Copy data to mapped staging buffer
     // Transfer of data to the GPU will happen in the background before the next
     // call to vkQueueSubmit
     void *data{m_device.mapMemory(stagingBufferMemory, vk::DeviceSize{0},
@@ -51,7 +51,7 @@ void abcg::VulkanBuffer::create(VulkanDevice const &device,
 
     // Copy from staging buffer to device local buffer
     device.withCommandBuffer(
-        [&](const auto &commandBuffer) {
+        [this, &stagingBuffer, &createInfo](const auto &commandBuffer) {
           commandBuffer.copyBuffer(stagingBuffer, m_buffer,
                                    {{.size = createInfo.size}});
         },
@@ -128,4 +128,21 @@ std::pair<vk::Buffer, vk::DeviceMemory> abcg::VulkanBuffer::createBuffer(
   m_device.bindBufferMemory(buffer, bufferMemory, 0);
 
   return {buffer, bufferMemory};
+}
+
+/**
+ * @brief Conversion to vk::Buffer.
+ */
+abcg::VulkanBuffer::operator vk::Buffer const &() const noexcept {
+  return m_buffer;
+}
+
+/**
+ * @brief Returns the opaque handle to the device memory object associated
+ * with the buffer.
+ *
+ * @return Device memory object.
+ */
+vk::DeviceMemory const &abcg::VulkanBuffer::getDeviceMemory() const noexcept {
+  return m_deviceMemory;
 }

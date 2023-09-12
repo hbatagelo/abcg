@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -85,7 +85,8 @@ void abcg::VulkanImage::create(VulkanDevice const &device,
 
     // Execute the layout transition
     device.withCommandBuffer(
-        [&](vk::CommandBuffer const &commandBuffer) {
+        [&stagingBuffer, this,
+         &region](vk::CommandBuffer const &commandBuffer) {
           commandBuffer.copyBufferToImage(
               static_cast<vk::Buffer>(stagingBuffer), m_image,
               vk::ImageLayout::eTransferDstOptimal, region);
@@ -187,6 +188,57 @@ void abcg::VulkanImage::destroy() {
   if (m_deviceMemory) {
     m_device.freeMemory(m_deviceMemory);
   }
+}
+
+/**
+ * @brief Conversion to vk::Image.
+ */
+abcg::VulkanImage::operator vk::Image const &() const noexcept {
+  return m_image;
+}
+
+/**
+ * @brief Returns the opaque handle to the device memory object associated
+ * with this image.
+ *
+ * @return Device memory object.
+ */
+vk::DeviceMemory const &abcg::VulkanImage::getDeviceMemory() const noexcept {
+  return m_deviceMemory;
+}
+
+/**
+ * @brief Returns the opaque handle to the image view object associated with
+ * this image.
+ *
+ * @return Image view object.
+ */
+vk::ImageView const &abcg::VulkanImage::getView() const noexcept {
+  return m_imageView;
+}
+
+/**
+ * @brief Returns the descriptor image information associated with this image.
+ *
+ * @return Descriptor image information.
+ */
+vk::DescriptorImageInfo const &
+abcg::VulkanImage::getDescriptorImageInfo() const noexcept {
+  return m_descriptorImageInfo;
+}
+
+/**
+ * @brief Returns the number of mipmap levels generated for this image.
+ *
+ * If the image is created with `generateMipmaps = false`, the number of
+ * mipmap levels is always 1. Otherwise, it is computed as \f$\lfloor
+ * \log_2(\max(w, h)) \rfloor + 1\f$, where \f$w\f$ and \f$h\f$ are the
+ * texture width and height.
+ *
+ * @return Number of mipmap levels.
+ */
+uint32_t abcg::VulkanImage::getMipLevels() const noexcept {
+  return m_mipLevels;
 }
 
 std::pair<vk::Image, vk::DeviceMemory>
@@ -312,8 +364,8 @@ void abcg::VulkanImage::createMipmaps(VulkanDevice const &device,
         auto mipWidth{gsl::narrow<int32_t>(texWidth)};
         auto mipHeight{gsl::narrow<int32_t>(texHeight)};
 
-        for (auto const i : iter::range(1U, mipLevels)) {
-          barrier.subresourceRange.baseMipLevel = i - 1;
+        for (auto const mipLevel : iter::range(1U, mipLevels)) {
+          barrier.subresourceRange.baseMipLevel = mipLevel - 1;
           barrier.oldLayout = vk::ImageLayout::eTransferDstOptimal;
           barrier.newLayout = vk::ImageLayout::eTransferSrcOptimal;
           barrier.srcAccessMask = vk::AccessFlagBits::eTransferWrite;
@@ -328,7 +380,7 @@ void abcg::VulkanImage::createMipmaps(VulkanDevice const &device,
           blit.srcOffsets[0] = vk::Offset3D{0, 0, 0};
           blit.srcOffsets[1] = vk::Offset3D{mipWidth, mipHeight, 1};
           blit.srcSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
-          blit.srcSubresource.mipLevel = i - 1;
+          blit.srcSubresource.mipLevel = mipLevel - 1;
           blit.srcSubresource.baseArrayLayer = 0;
           blit.srcSubresource.layerCount = 1;
           blit.dstOffsets[0] = vk::Offset3D{0, 0, 0};
@@ -336,7 +388,7 @@ void abcg::VulkanImage::createMipmaps(VulkanDevice const &device,
               vk::Offset3D{mipWidth > 1 ? mipWidth / 2 : 1,
                            mipHeight > 1 ? mipHeight / 2 : 1, 1};
           blit.dstSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
-          blit.dstSubresource.mipLevel = i;
+          blit.dstSubresource.mipLevel = mipLevel;
           blit.dstSubresource.baseArrayLayer = 0;
           blit.dstSubresource.layerCount = 1;
 

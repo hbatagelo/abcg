@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -15,11 +15,11 @@
 #include "abcgApplication.hpp"
 #include "abcgException.hpp"
 #include "abcgVulkan.hpp"
-#include "abcgWindow.hpp"
 
 #if defined(ABCG_VULKAN_DEBUG_REPORT)
 
-static VKAPI_ATTR VkBool32 VKAPI_CALL
+namespace {
+VKAPI_ATTR VkBool32 VKAPI_CALL
 debugReportCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
                     VkDebugUtilsMessageTypeFlagsEXT messageType,
                     VkDebugUtilsMessengerCallbackDataEXT const *pCallbackData,
@@ -69,7 +69,7 @@ debugReportCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
   return VK_FALSE;
 }
 
-[[nodiscard]] static vk::DebugUtilsMessengerCreateInfoEXT
+[[nodiscard]] vk::DebugUtilsMessengerCreateInfoEXT
 getDebugMessengerCreateInfo() {
   auto severityFlags{// vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose |
                      // vk::DebugUtilsMessageSeverityFlagBitsEXT::eInfo |
@@ -83,13 +83,11 @@ getDebugMessengerCreateInfo() {
           .pfnUserCallback = debugReportCallback};
 }
 
-static void
-destroyDebugUtilsMessengerEXT(vk::Instance instance,
-                              vk::DebugUtilsMessengerEXT debugMessenger,
-                              const vk::AllocationCallbacks *pAllocator) {
-  auto func{reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
-      instance.getProcAddr("vkDestroyDebugUtilsMessengerEXT"))};
-  if (func != nullptr) {
+void destroyDebugUtilsMessengerEXT(vk::Instance instance,
+                                   vk::DebugUtilsMessengerEXT debugMessenger,
+                                   vk::AllocationCallbacks const *pAllocator) {
+  if (auto func{reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
+          instance.getProcAddr("vkDestroyDebugUtilsMessengerEXT"))}) {
     if (pAllocator != nullptr) {
       auto allocator{static_cast<VkAllocationCallbacks>(*pAllocator)};
       func(instance, debugMessenger, &allocator);
@@ -98,17 +96,19 @@ destroyDebugUtilsMessengerEXT(vk::Instance instance,
     }
   }
 }
+} // namespace
 
 #endif // ABCG_VULKAN_DEBUG_REPORT
 
-[[nodiscard]] static std::vector<char const *>
+namespace {
+[[nodiscard]] std::vector<char const *>
 checkLayersSupport(std::vector<char const *> const &layers) {
   std::vector<char const *> unsupportedLayers;
   auto supportedLayers{vk::enumerateInstanceLayerProperties()};
 
   for (auto const &layerName : layers) {
     auto const hasLayer{[&](auto supportedLayer) {
-      std::span nameSpan{supportedLayer.layerName};
+      std::span const nameSpan{supportedLayer.layerName};
       return std::string{nameSpan.data()} == layerName;
     }};
     if (std::ranges::none_of(supportedLayers, hasLayer)) {
@@ -119,14 +119,14 @@ checkLayersSupport(std::vector<char const *> const &layers) {
   return unsupportedLayers;
 }
 
-[[nodiscard]] static std::vector<char const *>
+[[nodiscard]] std::vector<char const *>
 checkExtensionsSupport(std::vector<char const *> const &extensions) {
   std::vector<char const *> unsupportedExtensions;
   auto supportedExtensions{vk::enumerateInstanceExtensionProperties()};
 
   for (auto const &extensionName : extensions) {
     auto const hasExtension{[&](auto supportedExtension) {
-      std::span nameSpan{supportedExtension.extensionName};
+      std::span const nameSpan{supportedExtension.extensionName};
       return std::string{nameSpan.data()} == extensionName;
     }};
     if (std::ranges::none_of(supportedExtensions, hasExtension)) {
@@ -135,6 +135,7 @@ checkExtensionsSupport(std::vector<char const *> const &extensions) {
   }
   return unsupportedExtensions;
 }
+} // namespace
 
 void abcg::VulkanInstance::create(std::vector<char const *> const &layers,
                                   std::vector<char const *> const &extensions,
@@ -169,7 +170,7 @@ void abcg::VulkanInstance::create(std::vector<char const *> const &layers,
 #endif
 
   // Create application info to be passed to instance create info
-  vk::ApplicationInfo applicationInfo{
+  vk::ApplicationInfo const applicationInfo{
       .pApplicationName = applicationName.data(),
       .applicationVersion = VK_MAKE_VERSION(1, 0, 0),
       .pEngineName = "ABCg",
@@ -189,7 +190,7 @@ void abcg::VulkanInstance::create(std::vector<char const *> const &layers,
     .ppEnabledExtensionNames = extensions.data()
   });
 
-  // Load all required Vulkan entrypoints and extensions
+  // Load all required Vulkan entry points and extensions
   volkLoadInstanceOnly(m_instance);
 
 #if defined(ABCG_VULKAN_DEBUG_REPORT)
@@ -202,4 +203,11 @@ void abcg::VulkanInstance::destroy() {
   destroyDebugUtilsMessengerEXT(m_instance, m_debugMessenger, nullptr);
 #endif
   m_instance.destroy();
+}
+
+/**
+ * @brief Conversion to vk::Instance.
+ */
+abcg::VulkanInstance::operator vk::Instance const &() const noexcept {
+  return m_instance;
 }

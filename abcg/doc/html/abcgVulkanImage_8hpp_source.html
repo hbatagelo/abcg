@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -130,58 +130,49 @@ $(document).ready(function(){initNavTree('abcgVulkanImage_8hpp_source.html','');
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;              <a class="code" href="structabcg_1_1VulkanImageCreateInfo.html">VulkanImageCreateInfo</a> <span class="keyword">const</span> &amp;createInfo);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classabcg_1_1VulkanImage.html#acee63c8c454d5cc8e03f8381048b1379">destroy</a>();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanImage.html#af132a68f8fbdcbbc7f7e68f9b07d2986">   51</a></span>&#160;  <span class="keyword">explicit</span> <span class="keyword">operator</span> vk::Image <span class="keyword">const</span> &amp;() <span class="keyword">const</span> noexcept { <span class="keywordflow">return</span> m_image; }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanImage.html#af3b59382ddb59c35e3562bc17c3be590">   59</a></span>&#160;  [[nodiscard]] vk::DeviceMemory <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanImage.html#af3b59382ddb59c35e3562bc17c3be590">getDeviceMemory</a>() const noexcept {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> m_deviceMemory;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanImage.html#ac9e43199ef73da1e4d033d3857b7275d">   69</a></span>&#160;  [[nodiscard]] vk::ImageView <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanImage.html#ac9e43199ef73da1e4d033d3857b7275d">getView</a>() const noexcept {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> m_imageView;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  [[nodiscard]] vk::DescriptorImageInfo <span class="keyword">const</span> &amp;</div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanImage.html#ae0aa098edfcb6c4902ad843dbf79b741">   79</a></span>&#160;  <a class="code" href="classabcg_1_1VulkanImage.html#ae0aa098edfcb6c4902ad843dbf79b741">getDescriptorImageInfo</a>() const noexcept {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">return</span> m_descriptorImageInfo;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classabcg_1_1VulkanImage.html#a22c1075f56f68da84b6e930982ebd5a5">   93</a></span>&#160;  [[nodiscard]] uint32_t <a class="code" href="classabcg_1_1VulkanImage.html#a22c1075f56f68da84b6e930982ebd5a5">getMipLevels</a>() const noexcept { <span class="keywordflow">return</span> m_mipLevels; }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  [[nodiscard]] std::pair&lt;vk::Image, vk::DeviceMemory&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  createImage(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device, vk::ImageCreateInfo <span class="keyword">const</span> &amp;imageInfo,</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;              vk::MemoryPropertyFlags properties) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">void</span> transitionImageLayout(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                             vk::ImageLayout oldImageLayout,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                             vk::ImageLayout newImageLayout,</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                             vk::ImageSubresourceRange subresourceRange = {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                                 .aspectMask = vk::ImageAspectFlagBits::eColor,</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                 .levelCount = 1,</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                 .layerCount = 1}) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> createMipmaps(VulkanDevice <span class="keyword">const</span> &amp;device, vk::Image image,</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                            vk::Format imageFormat, uint32_t texWidth,</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                            uint32_t texHeight, uint32_t mipLevels);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  vk::Image m_image{};</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  vk::DeviceMemory m_deviceMemory{};</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  vk::ImageView m_imageView{};</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  vk::Sampler m_sampler{};</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  vk::DescriptorImageInfo m_descriptorImageInfo{};</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  uint32_t m_mipLevels{1U};</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  vk::Device m_device{};</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;};</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">explicit</span> <span class="keyword">operator</span> vk::Image <span class="keyword">const</span> &amp;() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  [[nodiscard]] vk::DeviceMemory <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanImage.html#a1f0d5d74b39ad1652bb4cafc217456ca">getDeviceMemory</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  [[nodiscard]] vk::ImageView <span class="keyword">const</span> &amp;<a class="code" href="classabcg_1_1VulkanImage.html#a9fca443ff07a966aa4cf3fd1fa4aa141">getView</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  [[nodiscard]] vk::DescriptorImageInfo <span class="keyword">const</span> &amp;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <a class="code" href="classabcg_1_1VulkanImage.html#a8c7ee844b2493320c6bafa9485e80e8b">getDescriptorImageInfo</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  [[nodiscard]] uint32_t <a class="code" href="classabcg_1_1VulkanImage.html#a22c1075f56f68da84b6e930982ebd5a5">getMipLevels</a>() <span class="keyword">const</span> noexcept;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  [[nodiscard]] std::pair&lt;vk::Image, vk::DeviceMemory&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  createImage(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device, vk::ImageCreateInfo <span class="keyword">const</span> &amp;imageInfo,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;              vk::MemoryPropertyFlags properties) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keywordtype">void</span> transitionImageLayout(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                             vk::ImageLayout oldImageLayout,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                             vk::ImageLayout newImageLayout,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                             vk::ImageSubresourceRange subresourceRange = {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                 .aspectMask = vk::ImageAspectFlagBits::eColor,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                 .levelCount = 1,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                 .layerCount = 1}) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> createMipmaps(<a class="code" href="classabcg_1_1VulkanDevice.html">VulkanDevice</a> <span class="keyword">const</span> &amp;device, vk::Image image,</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                            vk::Format imageFormat, uint32_t texWidth,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                            uint32_t texHeight, uint32_t mipLevels);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  vk::Image m_image;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  vk::DeviceMemory m_deviceMemory;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  vk::ImageView m_imageView;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  vk::Sampler m_sampler;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  vk::DescriptorImageInfo m_descriptorImageInfo;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  uint32_t m_mipLevels{1U};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  vk::Device m_device;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgVulkanDevice_8hpp_html"><div class="ttname"><a href="abcgVulkanDevice_8hpp.html">abcgVulkanDevice.hpp</a></div><div class="ttdoc">Header file of abcg::VulkanDevice.</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanDevice_html"><div class="ttname"><a href="classabcg_1_1VulkanDevice.html">abcg::VulkanDevice</a></div><div class="ttdoc">A class for representing a Vulkan logical device and related resources.</div><div class="ttdef"><b>Definition:</b> abcgVulkanDevice.hpp:54</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanDevice_html"><div class="ttname"><a href="classabcg_1_1VulkanDevice.html">abcg::VulkanDevice</a></div><div class="ttdoc">A class for representing a Vulkan logical device and related resources.</div><div class="ttdef"><b>Definition:</b> abcgVulkanDevice.hpp:55</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanImage_html"><div class="ttname"><a href="classabcg_1_1VulkanImage.html">abcg::VulkanImage</a></div><div class="ttdoc">A class for representing a Vulkan image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:40</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanImage_html_a22c1075f56f68da84b6e930982ebd5a5"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#a22c1075f56f68da84b6e930982ebd5a5">abcg::VulkanImage::getMipLevels</a></div><div class="ttdeci">uint32_t getMipLevels() const noexcept</div><div class="ttdoc">Returns the number of mipmap levels generated for this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:93</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanImage_html_a1f0d5d74b39ad1652bb4cafc217456ca"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#a1f0d5d74b39ad1652bb4cafc217456ca">abcg::VulkanImage::getDeviceMemory</a></div><div class="ttdeci">vk::DeviceMemory const  &amp; getDeviceMemory() const noexcept</div><div class="ttdoc">Returns the opaque handle to the device memory object associated with this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:206</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanImage_html_a22c1075f56f68da84b6e930982ebd5a5"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#a22c1075f56f68da84b6e930982ebd5a5">abcg::VulkanImage::getMipLevels</a></div><div class="ttdeci">uint32_t getMipLevels() const noexcept</div><div class="ttdoc">Returns the number of mipmap levels generated for this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:240</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanImage_html_a8c7ee844b2493320c6bafa9485e80e8b"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#a8c7ee844b2493320c6bafa9485e80e8b">abcg::VulkanImage::getDescriptorImageInfo</a></div><div class="ttdeci">vk::DescriptorImageInfo const  &amp; getDescriptorImageInfo() const noexcept</div><div class="ttdoc">Returns the descriptor image information associated with this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:226</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanImage_html_a9eeb71182f8999997c3298264f72ef0d"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#a9eeb71182f8999997c3298264f72ef0d">abcg::VulkanImage::create</a></div><div class="ttdeci">void create(VulkanDevice const &amp;device, std::string_view path, bool generateMipmaps=true)</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:21</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanImage_html_ac9e43199ef73da1e4d033d3857b7275d"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#ac9e43199ef73da1e4d033d3857b7275d">abcg::VulkanImage::getView</a></div><div class="ttdeci">vk::ImageView const  &amp; getView() const noexcept</div><div class="ttdoc">Returns the opaque handle to the image view object associated with this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:69</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanImage_html_acee63c8c454d5cc8e03f8381048b1379"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#acee63c8c454d5cc8e03f8381048b1379">abcg::VulkanImage::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:177</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanImage_html_ae0aa098edfcb6c4902ad843dbf79b741"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#ae0aa098edfcb6c4902ad843dbf79b741">abcg::VulkanImage::getDescriptorImageInfo</a></div><div class="ttdeci">vk::DescriptorImageInfo const  &amp; getDescriptorImageInfo() const noexcept</div><div class="ttdoc">Returns the descriptor image information associated with this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:79</div></div>
-<div class="ttc" id="aclassabcg_1_1VulkanImage_html_af3b59382ddb59c35e3562bc17c3be590"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#af3b59382ddb59c35e3562bc17c3be590">abcg::VulkanImage::getDeviceMemory</a></div><div class="ttdeci">vk::DeviceMemory const  &amp; getDeviceMemory() const noexcept</div><div class="ttdoc">Returns the opaque handle to the device memory object associated with this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:59</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanImage_html_a9fca443ff07a966aa4cf3fd1fa4aa141"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#a9fca443ff07a966aa4cf3fd1fa4aa141">abcg::VulkanImage::getView</a></div><div class="ttdeci">vk::ImageView const  &amp; getView() const noexcept</div><div class="ttdoc">Returns the opaque handle to the image view object associated with this image.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:216</div></div>
+<div class="ttc" id="aclassabcg_1_1VulkanImage_html_acee63c8c454d5cc8e03f8381048b1379"><div class="ttname"><a href="classabcg_1_1VulkanImage.html#acee63c8c454d5cc8e03f8381048b1379">abcg::VulkanImage::destroy</a></div><div class="ttdeci">void destroy()</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.cpp:178</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>
 <div class="ttc" id="astructabcg_1_1VulkanImageCreateInfo_html"><div class="ttname"><a href="structabcg_1_1VulkanImageCreateInfo.html">abcg::VulkanImageCreateInfo</a></div><div class="ttdoc">Creation info structure for abcg::VulkanImage.</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:28</div></div>
 <div class="ttc" id="astructabcg_1_1VulkanImageCreateInfo_html_a23600b7bb3043910f998e6f628a8f8e2"><div class="ttname"><a href="structabcg_1_1VulkanImageCreateInfo.html#a23600b7bb3043910f998e6f628a8f8e2">abcg::VulkanImageCreateInfo::info</a></div><div class="ttdeci">vk::ImageCreateInfo info</div><div class="ttdef"><b>Definition:</b> abcgVulkanImage.hpp:29</div></div>

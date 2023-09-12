@@ -4,23 +4,23 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgVulkanShader.hpp"
-#include "abcgApplication.hpp"
 #include "abcgException.hpp"
-#include "abcgVulkanWindow.hpp"
 
 #include <glslang/SPIRV/GlslangToSpv.h>
 
 #include <fmt/core.h>
+#include <gsl/gsl>
 
 #include <filesystem>
 #include <fstream>
 
-static TBuiltInResource InitResources() {
+namespace {
+TBuiltInResource InitResources() {
   TBuiltInResource Resources{
       .maxLights = 32,
       .maxClipPlanes = 6,
@@ -114,6 +114,7 @@ static TBuiltInResource InitResources() {
       .maxTaskWorkGroupSizeY_NV = 1,
       .maxTaskWorkGroupSizeZ_NV = 1,
       .maxMeshViewCountNV = 4,
+      .maxDualSourceDrawBuffersEXT = 1,
       .limits = {.nonInductiveForLoops = true,
                  .whileLoops = true,
                  .doWhileLoops = true,
@@ -198,7 +199,7 @@ abcgStageToVulkanStage(abcg::ShaderStage stage) {
   }
 }
 
-[[nodiscard]] static char const *glslangStageToText(EShLanguage stage) {
+[[nodiscard]] char const *glslangStageToText(EShLanguage stage) {
   switch (stage) {
   case EShLangVertex:
     return "vertex";
@@ -231,11 +232,11 @@ abcgStageToVulkanStage(abcg::ShaderStage stage) {
   default:
     return "unknown";
   }
-};
+}
 
 // If filenameOrText is a filename, returns the contents of the file (assumed
 // to be in text format). Otherwise, returns filenameOrText.
-[[nodiscard]] static std::string toSource(std::string_view filenameOrText) {
+[[nodiscard]] std::string toSource(std::string_view filenameOrText) {
   static const std::size_t maxPathSize{260};
   if (filenameOrText.size() > maxPathSize ||
       !std::filesystem::exists(filenameOrText)) {
@@ -251,6 +252,7 @@ abcgStageToVulkanStage(abcg::ShaderStage stage) {
   }
   return source.str();
 }
+} // namespace
 
 // Compiles the given GLSL shader source into Vulkan SPIR-V.
 std::vector<uint32_t> GLSLtoSPV(abcg::ShaderSource shaderSource) {
@@ -270,11 +272,12 @@ std::vector<uint32_t> GLSLtoSPV(abcg::ShaderSource shaderSource) {
   shader.setStrings(&data, 1);
 
   // Enable SPIR-V and Vulkan rules when parsing GLSL
-  auto messages{gsl::narrow<EShMessages>(EShMsgSpvRules | EShMsgVulkanRules |
-                                         EShMsgEnhanced)};
+  auto messages{gsl::narrow<EShMessages>(EShMsgSpvRules |
+                                         EShMsgVulkanRules /* |
+                         EShMsgEnhanced*/)};
 
   // Compiles
-  TBuiltInResource resources{InitResources()};
+  TBuiltInResource const resources{InitResources()};
   if (!shader.parse(&resources, 100, false, messages)) {
     auto const *shaderStage{glslangStageToText(stage)};
     printLog(shader, shaderStage);
@@ -312,8 +315,8 @@ void abcg::VulkanShader::create(VulkanDevice const &device,
                                 ShaderSource const &pathOrSource) {
   m_device = static_cast<vk::Device>(device);
 
-  ShaderSource source{.source = toSource(pathOrSource.source),
-                      .stage = pathOrSource.stage};
+  ShaderSource const source{.source = toSource(pathOrSource.source),
+                            .stage = pathOrSource.stage};
 
   glslang::InitializeProcess();
   std::vector<uint32_t> shader{GLSLtoSPV(source)};
@@ -333,4 +336,22 @@ void abcg::VulkanShader::destroy() {
   }
 
   m_device.destroyShaderModule(m_module);
+}
+
+/**
+ * @brief Returns the shader stage bitmask.
+ *
+ * @return Shader stage bitmask.
+ */
+vk::ShaderStageFlagBits const &abcg::VulkanShader::getStage() const noexcept {
+  return m_stage;
+}
+
+/**
+ * @brief Returns the opaque handle to the shader module object.
+ *
+ * @return Shader module.
+ */
+vk::ShaderModule const &abcg::VulkanShader::getModule() const noexcept {
+  return m_module;
 }

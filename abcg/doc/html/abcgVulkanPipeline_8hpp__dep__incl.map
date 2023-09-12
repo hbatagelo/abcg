@@ -1,7 +1,6 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanPipeline.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanPipeline.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::VulkanPipeline." alt="" coords="247,5,461,47"/>
-<area shape="rect" id="node2" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="161,95,331,136"/>
-<area shape="rect" id="node5" href="$abcgVulkanPipeline_8cpp.html" title="Definition of abcg::VulkanPipeline." alt="" coords="356,95,571,136"/>
+<area shape="rect" id="node1" title="Header file of abcg::VulkanPipeline." alt="" coords="115,5,329,47"/>
+<area shape="rect" id="node2" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="29,95,199,136"/>
+<area shape="rect" id="node4" href="$abcgVulkanPipeline_8cpp.html" title="Definition of abcg::VulkanPipeline." alt="" coords="224,95,439,136"/>
 <area shape="rect" id="node3" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="5,184,223,225"/>
-<area shape="rect" id="node4" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="247,184,509,225"/>
 </map>

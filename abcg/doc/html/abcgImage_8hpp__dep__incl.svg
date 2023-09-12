@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Declaration of texture loading helper functions.">
+<g id="a_node1"><a xlink:title="Declaration of image manipulation helper functions.">
 <polygon fill="#bfbfbf" stroke="black" points="80,-67.5 80,-97.5 208,-97.5 208,-67.5 80,-67.5"/>
 <text text-anchor="start" x="88" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/harlen/dev/abcg</text>
 <text text-anchor="middle" x="144" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">/abcg/abcgImage.hpp</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="abcgImage_8cpp.html" target="_top" xlink:title="Definition of texture loading helper functions.">
+<g id="a_node2"><a xlink:href="abcgImage_8cpp.html" target="_top" xlink:title="Definition of image manipulation helper functions.">
 <polygon fill="none" stroke="black" points="0,-0.5 0,-30.5 128,-30.5 128,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/harlen/dev/abcg</text>
 <text text-anchor="middle" x="64" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">/abcg/abcgImage.cpp</text>

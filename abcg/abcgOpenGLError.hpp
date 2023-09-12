@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2022 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -50,20 +50,17 @@ public:
       source_location const &sourceLocation = source_location::current());
 
 private:
-  [[nodiscard]] static std::string
-  prettyPrint(std::string_view what, unsigned int errorCode,
-              source_location const &sourceLocation);
+  static std::string prettyPrint(std::string_view what, unsigned int errorCode,
+                                 source_location const &sourceLocation);
 #else
 public:
   explicit OpenGLError(std::string_view what, unsigned int errorCode);
 
 private:
-  [[nodiscard]] static std::string prettyPrint(std::string_view what,
-                                               unsigned int errorCode);
+  static std::string prettyPrint(std::string_view what, unsigned int errorCode);
 #endif
 
-  [[nodiscard]] static std::string_view
-  getGLErrorString(unsigned int errorCode);
+  static std::string_view getGLErrorString(unsigned int errorCode);
 };
 
 #endif

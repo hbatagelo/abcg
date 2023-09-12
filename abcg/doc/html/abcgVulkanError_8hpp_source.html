@@ -43,7 +43,7 @@
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.0.0</span>
+                &#160;<span id="projectnumber">v3.1.0</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -144,24 +144,23 @@ $(document).ready(function(){initNavTree('abcgVulkanError_8hpp_source.html','');
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <a class="code" href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">source_location</a> <span class="keyword">const</span> &amp;sourceLocation = source_location::current());</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  prettyPrint(VkResult errorCode, <a class="code" href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">source_location</a> <span class="keyword">const</span> &amp;sourceLocation);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keyword">static</span> std::string prettyPrint(VkResult errorCode,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                 <a class="code" href="namespaceabcg.html#acb1d90de1449e0e743214d0ae8bddff2">source_location</a> <span class="keyword">const</span> &amp;sourceLocation);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classabcg_1_1VulkanError.html#aa5a0a0656ae43e62cbffd8cf4ce758ce">VulkanError</a>(VkResult errorCode);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classabcg_1_1VulkanError.html#aa5a0a0656ae43e62cbffd8cf4ce758ce">VulkanError</a>(vk::Result errorCode);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string prettyPrint(VkResult errorCode);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keyword">static</span> std::string prettyPrint(VkResult errorCode);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  [[nodiscard]] <span class="keyword">static</span> std::string_view</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  getVulkanErrorString(VkResult errorCode);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keyword">static</span> std::string_view getVulkanErrorString(VkResult errorCode);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aabcgException_8hpp_html"><div class="ttname"><a href="abcgException_8hpp.html">abcgException.hpp</a></div><div class="ttdoc">Header file of abcg::Exception and derived classes.</div></div>
-<div class="ttc" id="aclassabcg_1_1Exception_html"><div class="ttname"><a href="classabcg_1_1Exception.html">abcg::Exception</a></div><div class="ttdoc">Base class for ABCg exception objects.</div><div class="ttdef"><b>Definition:</b> abcgException.hpp:71</div></div>
+<div class="ttc" id="aclassabcg_1_1Exception_html"><div class="ttname"><a href="classabcg_1_1Exception.html">abcg::Exception</a></div><div class="ttdoc">Base class for ABCg exception objects.</div><div class="ttdef"><b>Definition:</b> abcgException.hpp:49</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanError_html"><div class="ttname"><a href="classabcg_1_1VulkanError.html">abcg::VulkanError</a></div><div class="ttdoc">Represents an exception object for Vulkan runtime errors.</div><div class="ttdef"><b>Definition:</b> abcgVulkanError.hpp:53</div></div>
 <div class="ttc" id="aclassabcg_1_1VulkanError_html_aa5a0a0656ae43e62cbffd8cf4ce758ce"><div class="ttname"><a href="classabcg_1_1VulkanError.html#aa5a0a0656ae43e62cbffd8cf4ce758ce">abcg::VulkanError::VulkanError</a></div><div class="ttdeci">VulkanError(VkResult errorCode, source_location const &amp;sourceLocation=source_location::current())</div><div class="ttdoc">Constructs an abcg::VulkanError object.</div><div class="ttdef"><b>Definition:</b> abcgVulkanError.cpp:88</div></div>
 <div class="ttc" id="anamespaceabcg_html"><div class="ttname"><a href="namespaceabcg.html">abcg</a></div><div class="ttdoc">Root namespace.</div><div class="ttdef"><b>Definition:</b> abcgApplication.hpp:23</div></div>

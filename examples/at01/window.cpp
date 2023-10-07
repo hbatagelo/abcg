@@ -49,8 +49,13 @@ void Window::onCreate() {
 }
 
 void Window::onPaint() {
+  // Update the position of the point
+  std::uniform_real_distribution<float> realDistribution(-1.0f, 1.0f);
+  m_P.x = realDistribution(m_randomEngine);
+  m_P.y = realDistribution(m_randomEngine);
+
   // Create OpenGL buffers for drawing the point at m_P
-  setupModel();
+  setupModel(m_P, 0.05f);
 
   // Set the viewport
   abcg::glViewport(0, 0, m_viewportSize.x, m_viewportSize.y);
@@ -67,30 +72,28 @@ void Window::onPaint() {
   abcg::glBindVertexArray(0);
   // End using the shader program
   abcg::glUseProgram(0);
-
-  // Randomly pick the index of a triangle vertex
-  std::uniform_int_distribution<int> intDistribution(0, m_points.size() - 1);
-  auto const index{intDistribution(m_randomEngine)};
-
-  // The new position is the midpoint between the current position and the
-  // chosen vertex position
-  m_P = (m_P + m_points.at(index)) / 2.0f;
-
-  // Print coordinates to console
-  // fmt::print("({:+.2f}, {:+.2f})\n", m_P.x, m_P.y);
 }
 
-void Window::setupModel() {
+void Window::setupModel(glm::vec2 center, float radius) {
   // Release previous VBO and VAO
   abcg::glDeleteBuffers(1, &m_VBOVertices);
   abcg::glDeleteVertexArrays(1, &m_VAO);
+
+  // Generate a set of vertices for a circle
+  constexpr int numSlices{ 32 };
+  std::vector<glm::vec2> vertices(numSlices + 1);
+  vertices[0] = center;
+  for (int i{ 0 }; i < numSlices; ++i) {
+    float const theta{ 2 * glm::pi<float>() * float(i) / numSlices };
+    vertices[i + 1] = center + radius * glm::vec2(std::cos(theta), std::sin(theta));
+  }
 
   // Generate a new VBO and get the associated ID
   abcg::glGenBuffers(1, &m_VBOVertices);
   // Bind VBO in order to use it
   abcg::glBindBuffer(GL_ARRAY_BUFFER, m_VBOVertices);
   // Upload data to VBO
-  abcg::glBufferData(GL_ARRAY_BUFFER, sizeof(m_P), &m_P, GL_STATIC_DRAW);
+  abcg::glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
   // Unbinding the VBO is allowed (data can be released now)
   abcg::glBindBuffer(GL_ARRAY_BUFFER, 0);
 

@@ -24,7 +24,7 @@ private:
   std::array<glm::vec2, 3> const m_points{{{0, 1}, {-1, -1}, {1, -1}}};
   glm::vec2 m_P{};
 
-  void setupModel();
+  void setupModel(glm::vec2 center, float radius);
 };
 
 #endif

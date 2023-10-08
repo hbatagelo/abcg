@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projeto em WebAssembly </title>
+</head>
+<body>
+    <script>
+        fetch('seu-arquivo.wasm')
+    .then(response => response.arrayBuffer())
+    .then(bytes => WebAssembly.instantiate(bytes))
+    .then(results => {
+        const instance = results.instance;
+        // Use a instância do WebAssembly para chamar funções, etc.
+    })
+    .catch(error => console.error(error));
+
+    </script>
+</body>
+</html>

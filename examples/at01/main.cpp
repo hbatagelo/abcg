@@ -6,10 +6,11 @@ int main(int argc, char **argv) {
 
     Window window;
     window.setOpenGLSettings({.samples = 2, .doubleBuffering = false});
-    window.setWindowSettings({.width = 600,
-                              .height = 600,
-                              .showFullscreenButton = true,
-                              .title = "Atividade 01"});
+    window.setWindowSettings({
+        .width = 600,
+        .height = 600,
+        .title = "Regular Polygons",
+    });
 
     app.run(window);
   } catch (std::exception const &exception) {

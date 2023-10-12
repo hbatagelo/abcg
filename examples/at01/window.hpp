@@ -17,14 +17,19 @@ private:
   glm::ivec2 m_viewportSize{};
 
   GLuint m_VAO{};
-  GLuint m_VBOVertices{};
+  GLuint m_VBOPositions{};
+  GLuint m_VBOColors{};
   GLuint m_program{};
 
   std::default_random_engine m_randomEngine;
-  std::array<glm::vec2, 3> const m_points{{{0, 1}, {-1, -1}, {1, -1}}};
-  glm::vec2 m_P{};
 
-  void setupModel(glm::vec2 center, float radius);
+  abcg::Timer m_timer;
+  int m_delay{200};
+
+  int minSides{3};
+  int maxSides{360};
+
+  void setupModel(int sides);
 };
 
 #endif

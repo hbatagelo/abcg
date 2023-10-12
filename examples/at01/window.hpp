@@ -27,8 +27,8 @@ private:
   abcg::Timer m_timer;
   int m_delay{500};
 
-  int minSides{3};
-  int maxSides{360};
+  int minSides{3}; 
+  int maxSides{12};
   glm::vec3 color3 = {1.0f, 0.0f, 0.0f};  
 
   void setupModel(int sides, glm::vec3 colors);

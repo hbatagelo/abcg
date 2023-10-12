@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include <iostream>
 
 void Window::onCreate() {
   auto const *vertexShader{R"gl(#version 300 es
@@ -45,11 +46,10 @@ void Window::onPaint() {
     return;
   m_timer.restart();
  
-  // Create a regular polygon with number of sides in the range [3,20]
+  // Create a regular polygon with number of sides in the range set by the user
   std::uniform_int_distribution intDist(minSides, maxSides);
   auto const sides{intDist(m_randomEngine)};
-  //auto const sides = 1440;
-  setupModel(sides);
+   setupModel(sides, color3);
 
   abcg::glViewport(0, 0, m_viewportSize.x, m_viewportSize.y);
 
@@ -90,7 +90,7 @@ void Window::onPaintUI() {
     ImGui::Begin(" ", nullptr, windowFlags);
 
     ImGui::PushItemWidth(140);
-    ImGui::SliderInt("Delay", &m_delay, 0, 200, "%d ms");
+    ImGui::SliderInt("Delay", &m_delay, 50, 1000, "%d ms");
     ImGui::SliderInt("Min Sides", &minSides, 3, 360, "%d sides");
     ImGui::SliderInt("Max Sides", &maxSides, 3, 360, "%d sides");
     ImGui::PopItemWidth();
@@ -116,18 +116,27 @@ void Window::onDestroy() {
   abcg::glDeleteVertexArrays(1, &m_VAO);
 }
 
-void Window::setupModel(int sides) {
+#include "window.hpp"
+
+void Window::onEvent(SDL_Event const &event) {
+  // Keyboard events
+  if (event.type == SDL_KEYDOWN) {
+    if (event.key.keysym.sym == SDLK_SPACE){
+      std::uniform_real_distribution rd(0.0f, 1.0f);
+      color3 = {rd(m_randomEngine), rd(m_randomEngine),
+                              rd(m_randomEngine)};
+      //std::cout << "Space key pressed. New color: " << color3.x << ", " << color3.y << ", " << color3.z << std::endl;
+    }
+  }  
+}
+
+void Window::setupModel(int sides, glm::vec3 color3) {
   // Release previous resources, if any
   abcg::glDeleteBuffers(1, &m_VBOPositions);
   abcg::glDeleteBuffers(1, &m_VBOColors);
   abcg::glDeleteVertexArrays(1, &m_VAO);
 
-  // Select random colors for the radial gradient
   std::uniform_real_distribution rd(0.0f, 1.0f);
-  glm::vec3 const color1{rd(m_randomEngine), rd(m_randomEngine),
-                         rd(m_randomEngine)};
-  glm::vec3 const color2{rd(m_randomEngine), rd(m_randomEngine),
-                         rd(m_randomEngine)};
 
   std::vector<glm::vec2> positions;
   std::vector<glm::vec3> colors;
@@ -136,12 +145,12 @@ void Window::setupModel(int sides) {
   auto const step{M_PI * 2 / sides};
   for (auto const angle : iter::range(0.0, M_PI * 2, step)) {
     positions.emplace_back(std::cos(angle), std::sin(angle));
-    colors.push_back(color2);
+    colors.push_back(color3);
   }
 
   // Duplicate second vertex
   positions.push_back(positions.at(1));
-  colors.push_back(color2);
+  colors.push_back(color3);
 
   // Generate VBO of positions
   abcg::glGenBuffers(1, &m_VBOPositions);

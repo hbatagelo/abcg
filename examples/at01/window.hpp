@@ -12,6 +12,7 @@ protected:
   void onPaintUI() override;
   void onResize(glm::ivec2 const &size) override;
   void onDestroy() override;
+  void onEvent(SDL_Event const &event) override;
 
 private:
   glm::ivec2 m_viewportSize{};
@@ -24,12 +25,13 @@ private:
   std::default_random_engine m_randomEngine;
 
   abcg::Timer m_timer;
-  int m_delay{200};
+  int m_delay{500};
 
   int minSides{3};
   int maxSides{360};
+  glm::vec3 color3 = {1.0f, 0.0f, 0.0f};  
 
-  void setupModel(int sides);
+  void setupModel(int sides, glm::vec3 colors);
 };
 
 #endif

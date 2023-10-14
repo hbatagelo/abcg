@@ -1,5 +1,5 @@
-#!/bin/bash
-set -euo pipefail
+!/bin/bash
+#set -euo pipefail
 
 BUILD_TYPE=${1:-Release}
 CMAKE_EXTRA_ARGS=${2:-""}

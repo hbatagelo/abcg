@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+
 
 #cd public
 

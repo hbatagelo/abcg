@@ -24,7 +24,3 @@ E uma variável declarada em window.hpp para fazer o rastreio da cor.
 ## License
 
 ABCg is licensed under the MIT License. See [LICENSE](https://github.com/hbatagelo/abcg/blob/main/LICENSE) for more information.
-
-
-Force re run
-2222

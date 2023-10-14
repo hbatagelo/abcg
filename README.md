@@ -1,5 +1,6 @@
 # Atividade 01 
 Lucas Colonna Romano da Silva - 11202020710
+
 Caique Rodrigues Do Nascimento - 11201722070
 
 Para essa atividade optamos por desenvolver uma aplicação onde o usuário possa selecionar a quantidade máxima e mínima de vértices, inclusive para valores altos >30 a forma se aparenta muito com um círculo.  

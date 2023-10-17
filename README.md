@@ -3,7 +3,7 @@ Lucas Colonna Romano da Silva - 11202020710
 
 Caique Rodrigues Do Nascimento - 11201722070
 
-Para essa atividade optamos por desenvolver uma aplicação onde o usuário possa selecionar a quantidade máxima e mínima de vértices, inclusive para valores altos >30 a forma se aparenta muito com um círculo.  
+Para essa atividade optamos por desenvolver uma aplicação onde o usuário possa selecionar a quantidade máxima e mínima de vértices para criar a sua visualização gráfica 2D de poligonos, que se aproximam bastante de circulos. É possivel que o usuario selecione valores altos (exemplo: > 30).  
 Além disso, o usuário pode controlar o intervalo de geração e ao pressionar a barra de espaço troca-se a cor das formas para uma nova aleatória. 
 A atividade fez uso da biblioteca ABCg e de parte do código desenvolvido na aula 5.1 (https://hbatagelo.github.io/cg/regularpolygons.html). Foram adicionados slides de controle, mudança de cor via barra espaço e a possibilidade de desenhar círculos quando a quantidade de vértices for suficientemente grande. Note que matematicamente um círculo não pode ser descrito como um polígono de muitos vértices, mas para a nossa aplicação o resultado é indistinguível. 
 

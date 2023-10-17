@@ -5,7 +5,7 @@ Caique Rodrigues Do Nascimento - 11201722070
 
 Para essa atividade optamos por desenvolver uma aplicação onde o usuário possa selecionar a quantidade máxima e mínima de vértices, inclusive para valores altos >30 a forma se aparenta muito com um círculo.  
 Além disso, o usuário pode controlar o intervalo de geração e ao pressionar a barra de espaço troca-se a cor das formas para uma nova aleatória. 
-A atividade fez uso da biblioteca ABCg e de parte do código desenvolvido na aula 5.1 (https://hbatagelo.github.io/cg/regularpolygons.html). Foram adicionados slides de controle, mudança de cor via barra espaço e a possibilidade de desenhar círculos quando a quantidade de vértices for suficientemente grande.
+A atividade fez uso da biblioteca ABCg e de parte do código desenvolvido na aula 5.1 (https://hbatagelo.github.io/cg/regularpolygons.html). Foram adicionados slides de controle, mudança de cor via barra espaço e a possibilidade de desenhar círculos quando a quantidade de vértices for suficientemente grande. Note que matematicamente um círculo não pode ser descrito como um polígono de muitos vértices, mas para a nossa aplicação o resultado é indistinguível. 
 
 Para a captura do evento temos: 
 ```void Window::onEvent(SDL_Event const &event) {
@@ -20,6 +20,15 @@ Para a captura do evento temos:
   } 
 ```
 E uma variável declarada em window.hpp para fazer o rastreio da cor. 
+
+As linhas: 
+```
+    ImGui::SliderInt("Min Sides", &minSides, 3, 360, "%d sides");
+    ImGui::SliderInt("Max Sides", &maxSides, 3, 360, "%d sides");
+```
+São responsavéis por mostrar os sliders na tela e assignar seus valores para as devidas variáveis. 
+
+
 
 ## License
 

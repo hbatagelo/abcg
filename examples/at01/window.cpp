@@ -91,8 +91,7 @@ void Window::onPaintUI() {
 
     ImGui::PushItemWidth(140);
     ImGui::SliderInt("Delay", &m_delay, 50, 1000, "%d ms");
-    ImGui::SliderInt("Min Sides", &minSides, 3, 360, "%d sides");
-    ImGui::SliderInt("Max Sides", &maxSides, 3, 360, "%d sides");
+cd 
     ImGui::PopItemWidth();
 
     if (ImGui::Button("Clear window", ImVec2(-1, 30))) {

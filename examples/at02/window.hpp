@@ -29,7 +29,9 @@ private:
 
   float m_angle{};
   int m_verticesToDraw{};
+  int m_speed{};
   int reachedTop = 0;
+  int reachedSide = 0;
 
   std::vector<Vertex> m_vertices;
   std::vector<GLuint> m_indices;

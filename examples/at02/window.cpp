@@ -150,7 +150,7 @@ void Window::onPaint() {
 
   //Move along the Y-axis with a speed of 0.2 units per second
   if (m_position.y <= 1.0f && reachedTop == 0) {
-     m_position = m_position + glm::vec3(0.0f, 0.2f*deltaTime, 0.0f);  
+     m_position = m_position + glm::vec3(0.0f, 0.2f*deltaTime*m_speed, 0.2f*deltaTime*m_speed);  
    
      if (m_position.y >= 0.75f) {
        reachedTop = 1;
@@ -158,10 +158,27 @@ void Window::onPaint() {
   }
 
   if (reachedTop == 1) {
-     m_position = m_position + glm::vec3(0.0f, -0.2f*deltaTime, 0.0f);  
+     m_position = m_position + glm::vec3(0.0f, -0.2f*deltaTime*m_speed, -0.2f*deltaTime*m_speed);  
      
      if (m_position.y <= -0.75f) {
        reachedTop = 0;
+     }
+  }
+
+  //Move along the X-axis with a speed of 0.2 units per second
+  if (m_position.x <= 1.0f && reachedSide == 0) {
+     m_position = m_position + glm::vec3(0.15f*deltaTime*m_speed, 0.0f, 0.0f);  
+   
+     if (m_position.x >= 0.75f) {
+       reachedSide = 1;
+     }
+  }
+
+  if (reachedSide == 1) {
+     m_position = m_position + glm::vec3(-0.15f*deltaTime*m_speed, -0.0f, -0.0f);  
+     
+    if (m_position.x <= -0.75f) {
+       reachedSide = 0;
      }
   }
 
@@ -203,14 +220,27 @@ void Window::onPaintUI() {
       ImGui::PushItemWidth(m_viewportSize.x - 25);
 
       static auto n{m_verticesToDraw / 3};
-      ImGui::SliderInt(" ", &n, 0, m_indices.size() / 3, "%d triangles");
+      ImGui::SliderInt("Triangles", &n, 0, m_indices.size() / 3, "%d triangles");
       m_verticesToDraw = n * 3;
+
+      ImGui::PopItemWidth();
+    }
+      
+    //Create a slider to control the speed 
+    {
+      // Slider will fill the space of the window
+      ImGui::PushItemWidth(m_viewportSize.x - 25);
+
+      static auto s{m_speed};
+      ImGui::SliderInt("Speed", &s, 0, 100, "%i speed");
+      m_speed = s / 2;
 
       ImGui::PopItemWidth();
     }
 
     ImGui::End();
   }
+
 
   // Create a window for the other widgets
   {

@@ -10,6 +10,6 @@ void main() {
   float cosAngle = cos(angle);
 
   gl_Position =
-      vec4(inPosition.x * cosAngle + inPosition.z * sinAngle, inPosition.y + position.y,
-           inPosition.z * cosAngle - inPosition.x * sinAngle, 1.0);
+    vec4(inPosition.x * cosAngle + inPosition.z * sinAngle + position.x, inPosition.y + position.y,
+         inPosition.z * cosAngle - inPosition.x * sinAngle + position.z, 1.0);
 }

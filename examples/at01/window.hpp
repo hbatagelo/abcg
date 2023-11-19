@@ -18,6 +18,7 @@ private:
   glm::ivec2 m_viewportSize{};
 
   GLuint m_VAO{};
+  GLuint m_VAOCube{};
   GLuint m_VBOPositions{};
   GLuint m_VBOColors{};
   GLuint m_program{};

@@ -27,8 +27,9 @@ void Window::onCreate() {
                                  {.source = assetsPath + "loadmodel.frag",
                                   .stage = abcg::ShaderStage::Fragment}});
 
-  // Load model
-  loadModelFromFile(assetsPath + "tennisball.obj");
+  // // Load model TENNIS
+  loadModelFromFile(assetsPath + "tennisball.obj"); 
+  
   standardize();
 
   m_verticesToDraw = m_indices.size();
@@ -67,6 +68,49 @@ void Window::onCreate() {
 
   // End of binding to current VAO
   abcg::glBindVertexArray(0);
+
+  //CUBE
+
+  loadModelFromFile(assetsPath + "cube.obj"); 
+  
+  standardize();
+
+  m_verticesToDrawCube = m_indices.size();
+
+  // Generate VBO
+  abcg::glGenBuffers(1, &m_VBOCube);
+  abcg::glBindBuffer(GL_ARRAY_BUFFER, m_VBOCube);
+  abcg::glBufferData(GL_ARRAY_BUFFER,
+                     sizeof(m_vertices.at(0)) * m_vertices.size(),
+                     m_vertices.data(), GL_STATIC_DRAW);
+  abcg::glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+  // Generate EBO
+  abcg::glGenBuffers(1, &m_EBOCube);
+  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBOCube);
+  abcg::glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                     sizeof(m_indices.at(0)) * m_indices.size(),
+                     m_indices.data(), GL_STATIC_DRAW);
+  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+  // Create VAO
+  abcg::glGenVertexArrays(1, &m_VAOCube);
+
+  // Bind vertex attributes to current VAO
+  abcg::glBindVertexArray(m_VAOCube);
+
+  abcg::glBindBuffer(GL_ARRAY_BUFFER, m_VBOCube);
+  auto const positionAttributeCube{
+      abcg::glGetAttribLocation(m_program, "inPosition")};
+  abcg::glEnableVertexAttribArray(positionAttributeCube);
+  abcg::glVertexAttribPointer(positionAttributeCube, 3, GL_FLOAT, GL_FALSE,
+                              sizeof(Vertex), nullptr);
+  abcg::glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+  abcg::glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBOCube);
+
+  // End of binding to current VAO
+  abcg::glBindVertexArray(1);
 }
 
 void Window::loadModelFromFile(std::string_view path) {
@@ -196,6 +240,27 @@ void Window::onPaint() {
 
   auto const positionLocation{abcg::glGetUniformLocation(m_program, "position")};
   abcg::glUniform3f(positionLocation, m_position.x, m_position.y, m_position.z);
+
+  // Draw triangles
+  abcg::glDrawElements(GL_TRIANGLES, m_verticesToDraw, GL_UNSIGNED_INT,
+                       nullptr);
+
+  // abcg::glBindVertexArray(0);
+  // abcg::glUseProgram(0);
+
+
+
+
+
+  // abcg::glUseProgram(m_program);
+  abcg::glBindVertexArray(m_VAOCube);
+
+  // // Update uniform variable
+  // auto const angleLocation{abcg::glGetUniformLocation(m_program, "angle")};
+  // abcg::glUniform1f(angleLocation, m_angle);
+
+  // auto const positionLocation{abcg::glGetUniformLocation(m_program, "position")};
+  // abcg::glUniform3f(positionLocation, m_position.x, m_position.y, m_position.z);
 
   // Draw triangles
   abcg::glDrawElements(GL_TRIANGLES, m_verticesToDraw, GL_UNSIGNED_INT,

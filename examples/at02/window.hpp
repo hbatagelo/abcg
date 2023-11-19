@@ -21,14 +21,18 @@ private:
   glm::ivec2 m_viewportSize{};
 
   GLuint m_VAO{};
+  GLuint m_VAOCube{};
   GLuint m_VBO{};
+  GLuint m_VBOCube{};
   GLuint m_EBO{};
+  GLuint m_EBOCube{};
   GLuint m_program{};
   glm::vec3 m_position{};
 
 
   float m_angle{};
   int m_verticesToDraw{};
+  int m_verticesToDrawCube{};
   int m_speed{};
   int reachedTop = 0;
   int reachedSide = 0;

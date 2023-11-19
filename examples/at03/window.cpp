@@ -30,6 +30,38 @@ void Window::onEvent(SDL_Event const &event) {
     m_zoom += (event.wheel.y > 0 ? -1.0f : 1.0f) / 5.0f;
     m_zoom = glm::clamp(m_zoom, -1.5f, 1.0f);
   }
+  if (event.type == SDL_MOUSEWHEEL) {
+    m_zoom += (event.wheel.y > 0 ? -1.0f : 1.0f) / 5.0f;
+    m_zoom = glm::clamp(m_zoom, -1.5f, 1.0f);
+  }
+  if (event.type == SDL_KEYDOWN) {
+      if (event.key.keysym.sym == SDLK_DOWN) {
+          position.y -= 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_UP) {
+          position.y += 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_LEFT) {
+          position.x -= 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_RIGHT) {
+          position.x += 0.1f;
+      }
+  }
+  else if (event.type == SDL_KEYUP) {
+      if (event.key.keysym.sym == SDLK_DOWN) {
+          position.y += 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_UP) {
+          position.y -= 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_LEFT) {
+          position.x += 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_RIGHT) {
+          position.x -= 0.1f;
+      }
+  }
 }
 
 void Window::onCreate() {
@@ -48,7 +80,7 @@ void Window::onCreate() {
   }
 
   // Load default model
-  loadModel(assetsPath + "roman_lamp.obj");
+  loadModel(assetsPath + "seahawk.obj");
   m_mappingMode = 3; // "From mesh" option
 
   // Initial trackball spin
@@ -61,7 +93,7 @@ void Window::loadModel(std::string_view path) {
 
   m_model.destroy();
 
-  m_model.loadDiffuseTexture(assetsPath + "maps/pattern.png");
+  m_model.loadDiffuseTexture(assetsPath + "maps/TEX_SBMP.jpg");
   m_model.loadObj(path);
   m_model.setupVAO(m_programs.at(m_currentProgramIndex));
   m_trianglesToDraw = m_model.getNumTriangles();
@@ -133,8 +165,8 @@ void Window::onUpdate() {
   m_modelMatrix = m_trackBallModel.getRotation();
 
   m_viewMatrix =
-      glm::lookAt(glm::vec3(0.0f, 0.0f, 1.0f + m_zoom),
-                  glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+      glm::lookAt(glm::vec3(0.0f, 0.0f, 2.0f + m_zoom),
+                  glm::vec3(0.0f, 0.0f, 0.0f) + position, glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void Window::onPaintUI() {

@@ -20,6 +20,7 @@ private:
 
   Model m_model;
   int m_trianglesToDraw{};
+  glm::vec3 position{0.0f, 0.0f, 0.0f};
 
   TrackBall m_trackBallModel;
   TrackBall m_trackBallLight;

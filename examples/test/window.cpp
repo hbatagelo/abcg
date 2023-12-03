@@ -30,38 +30,6 @@ void Window::onEvent(SDL_Event const &event) {
     m_zoom += (event.wheel.y > 0 ? -1.0f : 1.0f) / 5.0f;
     m_zoom = glm::clamp(m_zoom, -1.5f, 1.0f);
   }
-  if (event.type == SDL_MOUSEWHEEL) {
-    m_zoom += (event.wheel.y > 0 ? -1.0f : 1.0f) / 5.0f;
-    m_zoom = glm::clamp(m_zoom, -1.5f, 1.0f);
-  }
-  if (event.type == SDL_KEYDOWN) {
-      if (event.key.keysym.sym == SDLK_DOWN) {
-          position.y -= 0.1f;
-      }
-      else if (event.key.keysym.sym == SDLK_UP) {
-          position.y += 0.1f;
-      }
-      else if (event.key.keysym.sym == SDLK_LEFT) {
-          position.x -= 0.1f;
-      }
-      else if (event.key.keysym.sym == SDLK_RIGHT) {
-          position.x += 0.1f;
-      }
-  }
-  else if (event.type == SDL_KEYUP) {
-      if (event.key.keysym.sym == SDLK_DOWN) {
-          position.y += 0.1f;
-      }
-      else if (event.key.keysym.sym == SDLK_UP) {
-          position.y -= 0.1f;
-      }
-      else if (event.key.keysym.sym == SDLK_LEFT) {
-          position.x += 0.1f;
-      }
-      else if (event.key.keysym.sym == SDLK_RIGHT) {
-          position.x -= 0.1f;
-      }
-  }
 }
 
 void Window::onCreate() {
@@ -81,11 +49,12 @@ void Window::onCreate() {
 
   // Load default model
   loadModel(assetsPath + "seahawk.obj");
-  m_mappingMode = 3; // "From mesh" option
 
   // Initial trackball spin
   m_trackBallModel.setAxis(glm::normalize(glm::vec3(1, 1, 1)));
   m_trackBallModel.setVelocity(0.1f);
+
+  createSkybox();
 }
 
 void Window::loadModel(std::string_view path) {
@@ -93,7 +62,9 @@ void Window::loadModel(std::string_view path) {
 
   m_model.destroy();
 
-  m_model.loadDiffuseTexture(assetsPath + "maps/TEX_SBMP.jpg");
+  m_model.loadDiffuseTexture(assetsPath + "maps/pattern.png");
+  m_model.loadNormalTexture(assetsPath + "maps/pattern_normal.png");
+  m_model.loadCubeTexture(assetsPath + "maps/cube/");
   m_model.loadObj(path);
   m_model.setupVAO(m_programs.at(m_currentProgramIndex));
   m_trianglesToDraw = m_model.getNumTriangles();
@@ -130,6 +101,7 @@ void Window::onPaint() {
   auto const KdLoc{abcg::glGetUniformLocation(program, "Kd")};
   auto const KsLoc{abcg::glGetUniformLocation(program, "Ks")};
   auto const diffuseTexLoc{abcg::glGetUniformLocation(program, "diffuseTex")};
+  auto const normalTexLoc{abcg::glGetUniformLocation(program, "normalTex")};
   auto const cubeTexLoc{abcg::glGetUniformLocation(program, "cubeTex")};
   auto const mappingModeLoc{abcg::glGetUniformLocation(program, "mappingMode")};
   auto const texMatrixLoc{abcg::glGetUniformLocation(program, "texMatrix")};
@@ -138,8 +110,10 @@ void Window::onPaint() {
   abcg::glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, &m_viewMatrix[0][0]);
   abcg::glUniformMatrix4fv(projMatrixLoc, 1, GL_FALSE, &m_projMatrix[0][0]);
   abcg::glUniform1i(diffuseTexLoc, 0);
+  abcg::glUniform1i(normalTexLoc, 1);
   abcg::glUniform1i(cubeTexLoc, 2);
   abcg::glUniform1i(mappingModeLoc, m_mappingMode);
+
   glm::mat3 const texMatrix{m_trackBallLight.getRotation()};
   abcg::glUniformMatrix3fv(texMatrixLoc, 1, GL_TRUE, &texMatrix[0][0]);
 
@@ -164,6 +138,7 @@ void Window::onPaint() {
   m_model.render(m_trianglesToDraw);
 
   abcg::glUseProgram(0);
+
   if (m_currentProgramIndex == 0 || m_currentProgramIndex == 1) {
     renderSkybox();
   }
@@ -174,7 +149,7 @@ void Window::onUpdate() {
 
   m_viewMatrix =
       glm::lookAt(glm::vec3(0.0f, 0.0f, 2.0f + m_zoom),
-                  glm::vec3(0.0f, 0.0f, 0.0f) + position, glm::vec3(0.0f, 1.0f, 0.0f));
+                  glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void Window::onPaintUI() {
@@ -204,8 +179,8 @@ void Window::onPaintUI() {
 #if defined(__EMSCRIPTEN__)
   auto const assetsPath{abcg::Application::getAssetsPath()};
   fileDialogModel.SetPwd(assetsPath);
-  fileDialogTex.SetPwd(assetsPath + "/maps");
   fileDialogDiffuseMap.SetPwd(assetsPath + "/maps");
+  fileDialogNormalMap.SetPwd(assetsPath + "/maps");
 #endif
 
   // Create main window widget
@@ -225,13 +200,11 @@ void Window::onPaintUI() {
     // Menu
     {
       bool loadModel{};
-      bool loadDiffTex{};
       bool loadDiffuseMap{};
       bool loadNormalMap{};
       if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("File")) {
           ImGui::MenuItem("Load 3D Model...", nullptr, &loadModel);
-          ImGui::MenuItem("Load Diffuse Texture...", nullptr, &loadDiffTex);
           ImGui::MenuItem("Load Diffuse Map...", nullptr, &loadDiffuseMap);
           ImGui::MenuItem("Load Normal Map...", nullptr, &loadNormalMap);
           ImGui::EndMenu();
@@ -372,7 +345,7 @@ void Window::onPaintUI() {
   }
 
   // Create window for light sources
-   if (m_currentProgramIndex >= 2 && m_currentProgramIndex <= 6) {
+  if (m_currentProgramIndex >= 2 && m_currentProgramIndex <= 6) {
     auto const widgetSize{ImVec2(222, 244)};
     ImGui::SetNextWindowPos(ImVec2(m_viewportSize.x - widgetSize.x - 5,
                                    m_viewportSize.y - widgetSize.y - 5));
@@ -427,12 +400,11 @@ void Window::onPaintUI() {
     fileDialogDiffuseMap.ClearSelected();
   }
 
-  // fileDialogDiffuseMap.Display();
-  // if (fileDialogDiffuseMap.HasSelected()) {
-  //   m_model.loadNormalTexture(fileDialogDiffuseMap.GetSelected().string());
-  //   fileDialogDiffuseMap.ClearSelected();
-  // }
-
+  fileDialogNormalMap.Display();
+  if (fileDialogNormalMap.HasSelected()) {
+    m_model.loadNormalTexture(fileDialogNormalMap.GetSelected().string());
+    fileDialogNormalMap.ClearSelected();
+  }
 }
 
 void Window::onResize(glm::ivec2 const &size) {
@@ -501,8 +473,6 @@ void Window::renderSkybox() {
   abcg::glBindVertexArray(m_skyVAO);
 
   abcg::glActiveTexture(GL_TEXTURE0);
-  
-  // Access the getCubeTexture function from the Model class
   abcg::glBindTexture(GL_TEXTURE_CUBE_MAP, m_model.getCubeTexture());
 
   abcg::glEnable(GL_CULL_FACE);

@@ -20,7 +20,6 @@ private:
 
   Model m_model;
   int m_trianglesToDraw{};
-  glm::vec3 position{0.0f, 0.0f, 0.0f};
 
   TrackBall m_trackBallModel;
   TrackBall m_trackBallLight;
@@ -31,8 +30,9 @@ private:
   glm::mat4 m_projMatrix{1.0f};
 
   // Shaders
-  std::vector<char const *> m_shaderNames{"texture", "blinnphong", "phong",
-                                          "gouraud", "normal",     "depth"};
+  std::vector<char const *> m_shaderNames{
+      "cubereflect", "cuberefract", "normalmapping", "texture", "blinnphong",
+      "phong",       "gouraud",     "normal",        "depth"};
   std::vector<GLuint> m_programs;
   int m_currentProgramIndex{};
 
@@ -49,7 +49,6 @@ private:
   glm::vec4 m_Kd{};
   glm::vec4 m_Ks{};
   float m_shininess{};
-
 
   // Skybox
   std::string const m_skyShaderName{"skybox"};
@@ -82,7 +81,6 @@ private:
   void createSkybox();
   void renderSkybox();
   void destroySkybox() const;
-  
   void loadModel(std::string_view path);
 };
 

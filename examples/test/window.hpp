@@ -15,6 +15,8 @@ protected:
   void onResize(glm::ivec2 const &size) override;
   void onDestroy() override;
 
+  glm::vec3 position{0.0f, 0.0f, 0.0f};
+
 private:
   glm::ivec2 m_viewportSize{};
 

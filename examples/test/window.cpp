@@ -30,8 +30,39 @@ void Window::onEvent(SDL_Event const &event) {
     m_zoom += (event.wheel.y > 0 ? -1.0f : 1.0f) / 5.0f;
     m_zoom = glm::clamp(m_zoom, -1.5f, 1.0f);
   }
+  if (event.type == SDL_MOUSEWHEEL) {
+    m_zoom += (event.wheel.y > 0 ? -1.0f : 1.0f) / 5.0f;
+    m_zoom = glm::clamp(m_zoom, -1.5f, 1.0f);
+  }
+  if (event.type == SDL_KEYDOWN) {
+      if (event.key.keysym.sym == SDLK_DOWN) {
+          position.y -= 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_UP) {
+          position.y += 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_LEFT) {
+          position.x -= 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_RIGHT) {
+          position.x += 0.1f;
+      }
+  }
+  else if (event.type == SDL_KEYUP) {
+      if (event.key.keysym.sym == SDLK_DOWN) {
+          position.y += 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_UP) {
+          position.y -= 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_LEFT) {
+          position.x += 0.1f;
+      }
+      else if (event.key.keysym.sym == SDLK_RIGHT) {
+          position.x -= 0.1f;
+      }
+  }
 }
-
 void Window::onCreate() {
   auto const assetsPath{abcg::Application::getAssetsPath()};
 
@@ -144,12 +175,12 @@ void Window::onPaint() {
   }
 }
 
-void Window::onUpdate() {
-  m_modelMatrix = m_trackBallModel.getRotation();
+void Window::onUpdate() {  
+ m_modelMatrix = m_trackBallModel.getRotation();
 
-  m_viewMatrix =
+ m_viewMatrix =
       glm::lookAt(glm::vec3(0.0f, 0.0f, 2.0f + m_zoom),
-                  glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+                  glm::vec3(0.0f, 0.0f, 0.0f) + position, glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void Window::onPaintUI() {

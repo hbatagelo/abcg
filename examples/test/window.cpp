@@ -256,40 +256,10 @@ void Window::onPaintUI() {
                      "%d triangles");
     ImGui::PopItemWidth();
 
-    static bool faceCulling{};
-    ImGui::Checkbox("Back-face culling", &faceCulling);
-
-    if (faceCulling) {
-      abcg::glEnable(GL_CULL_FACE);
-    } else {
-      abcg::glDisable(GL_CULL_FACE);
-    }
-
-    // CW/CCW combo box
-    {
-      static std::size_t currentIndex{};
-      std::vector<std::string> const comboItems{"CCW", "CW"};
-
-      ImGui::PushItemWidth(120);
-      if (ImGui::BeginCombo("Front face",
-                            comboItems.at(currentIndex).c_str())) {
-        for (auto const index : iter::range(comboItems.size())) {
-          auto const isSelected{currentIndex == index};
-          if (ImGui::Selectable(comboItems.at(index).c_str(), isSelected))
-            currentIndex = index;
-          if (isSelected)
-            ImGui::SetItemDefaultFocus();
-        }
-        ImGui::EndCombo();
-      }
-      ImGui::PopItemWidth();
-
-      if (currentIndex == 0) {
-        abcg::glFrontFace(GL_CCW);
-      } else {
-        abcg::glFrontFace(GL_CW);
-      }
-    }
+    // Simplification of options
+    abcg::glEnable(GL_CULL_FACE);
+    abcg::glFrontFace(GL_CCW);
+  
 
     // Projection combo box
     {
@@ -371,42 +341,6 @@ void Window::onPaintUI() {
       }
       ImGui::PopItemWidth();
     }
-
-    ImGui::End();
-  }
-
-  // Create window for light sources
-  if (m_currentProgramIndex >= 2 && m_currentProgramIndex <= 6) {
-    auto const widgetSize{ImVec2(222, 244)};
-    ImGui::SetNextWindowPos(ImVec2(m_viewportSize.x - widgetSize.x - 5,
-                                   m_viewportSize.y - widgetSize.y - 5));
-    ImGui::SetNextWindowSize(widgetSize);
-    ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoDecoration);
-
-    ImGui::Text("Light properties");
-
-    // Slider to control light properties
-    ImGui::PushItemWidth(widgetSize.x - 36);
-    ImGui::ColorEdit3("Ia", &m_Ia.x, ImGuiColorEditFlags_Float);
-    ImGui::ColorEdit3("Id", &m_Id.x, ImGuiColorEditFlags_Float);
-    ImGui::ColorEdit3("Is", &m_Is.x, ImGuiColorEditFlags_Float);
-    ImGui::PopItemWidth();
-
-    ImGui::Spacing();
-
-    ImGui::Text("Material properties");
-
-    // Slider to control material properties
-    ImGui::PushItemWidth(widgetSize.x - 36);
-    ImGui::ColorEdit3("Ka", &m_Ka.x, ImGuiColorEditFlags_Float);
-    ImGui::ColorEdit3("Kd", &m_Kd.x, ImGuiColorEditFlags_Float);
-    ImGui::ColorEdit3("Ks", &m_Ks.x, ImGuiColorEditFlags_Float);
-    ImGui::PopItemWidth();
-
-    // Slider to control the specular shininess
-    ImGui::PushItemWidth(widgetSize.x - 16);
-    ImGui::SliderFloat(" ", &m_shininess, 0.0f, 500.0f, "shininess: %.1f");
-    ImGui::PopItemWidth();
 
     ImGui::End();
   }

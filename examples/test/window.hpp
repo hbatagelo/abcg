@@ -58,6 +58,17 @@ private:
   GLuint m_skyVBO{};
   GLuint m_skyProgram{};
 
+  // Ball
+  std::string const m_BallShaderName{"ball"};
+  GLuint m_ballVAO{};
+  GLuint m_ballVBO{};
+  GLuint m_ballEBO{};
+  GLuint m_ballProgram{};
+  std::vector<Vertex> m_vertices;
+  std::vector<GLuint> m_indices;
+  int m_verticesToDraw{};
+
+
   // clang-format off
   std::array<glm::vec3, 36> const m_skyPositions{{
       // Front
@@ -83,7 +94,12 @@ private:
   void createSkybox();
   void renderSkybox();
   void destroySkybox() const;
+  void createBall();
+  void renderBall();
+  void destroyBall() const;
   void loadModel(std::string_view path);
+  void loadModelFromFile(std::string_view path);
+  void standardize();
 };
 
 #endif

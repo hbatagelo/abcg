@@ -189,10 +189,15 @@ void Window::onPaint() {
 void Window::onUpdate() {  
  m_modelMatrix = m_trackBallModel.getRotation();
  std::cout << "Position: (" << position.x << ", " << position.y << ", " << position.z << ")" << std::endl;
+ std::cout << "Position Ball: (" << m_position.x << ", " << m_position.y << ", " << m_position.z << ")" << std::endl;
 
  m_viewMatrix =
       glm::lookAt(glm::vec3(0.0f, 0.0f, 2.0f + m_zoom),
                   glm::vec3(0.0f, 0.0f, 0.0f) + position, glm::vec3(0.0f, 1.0f, 0.0f));
+
+  if (glm::all(glm::epsilonEqual(position, m_position, 0.25f))) {
+     std::cout << "Hello, world!" << std::endl;
+  }
 }
 
 void Window::onPaintUI() {
@@ -494,8 +499,51 @@ void Window::createBall() {
 }
 
 void Window::renderBall(){
+  auto const deltaTime{gsl::narrow_cast<float>(getDeltaTime())};
+   m_position = m_position + glm::vec3(0.0f, 0.0f, 0.0f);
+
+   //Move along the Y-axis with a speed of 0.2 units per second
+   if (m_position.y <= 1.0f && reachedTop == 0) {
+      m_position = m_position + glm::vec3(0.0f, 0.2f*deltaTime*m_speed, 0.0f);  
+
+      if (m_position.y >= 0.75f) {
+        reachedTop = 1;
+      }
+   }
+
+   if (reachedTop == 1) {
+      m_position = m_position + glm::vec3(0.0f, -0.2f*deltaTime*m_speed, 0.0f);  
+
+      if (m_position.y <= -0.75f) {
+        reachedTop = 0;
+      }
+   }
+
+   //Move along the X-axis with a speed of 0.2 units per second
+   if (m_position.x <= 1.0f && reachedSide == 0) {
+      m_position = m_position + glm::vec3(0.15f*deltaTime*2, 0.0f, 0.0f);  
+
+      if (m_position.x >= 0.75f) {
+        reachedSide = 1;
+      }
+   }
+
+   if (reachedSide == 1) {
+      m_position = m_position + glm::vec3(-0.15f*deltaTime*2, -0.0f, -0.0f);  
+
+     if (m_position.x <= -0.75f) {
+        reachedSide = 0;
+      }
+   }
+
   abcg::glUseProgram(m_ballProgram);
   abcg::glBindVertexArray(m_ballVAO);
+
+
+   // Update uniform variable
+   auto const positionLocation{abcg::glGetUniformLocation(m_ballProgram, "position")};
+   abcg::glUniform3f(positionLocation, m_position.x, m_position.y, m_position.z);
+  
 
 
   // Draw triangles

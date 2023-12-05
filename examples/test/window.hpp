@@ -100,6 +100,11 @@ private:
   void loadModel(std::string_view path);
   void loadModelFromFile(std::string_view path);
   void standardize();
+
+  int reachedTop = 0;
+  int reachedSide = 0;
+  int m_speed = 2;
+  glm::vec3 m_position{};
 };
 
 #endif

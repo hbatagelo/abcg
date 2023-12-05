@@ -202,8 +202,6 @@ void Window::onUpdate() {
 
 void Window::onPaintUI() {
   abcg::OpenGLWindow::onPaintUI();
-
-
   auto const scaledWidth{gsl::narrow_cast<int>(m_viewportSize.x * 0.8f)};
   auto const scaledHeight{gsl::narrow_cast<int>(m_viewportSize.y * 0.8f)};
 

@@ -105,6 +105,8 @@ private:
   int reachedSide = 0;
   int m_speed = 2;
   glm::vec3 m_position{};
+
+  int points = 0;
 };
 
 #endif

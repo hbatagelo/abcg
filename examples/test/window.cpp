@@ -96,7 +96,6 @@ void Window::onCreate() {
 
   createSkybox();
   createBall();
-
 }
 
 void Window::loadModel(std::string_view path) {
@@ -184,7 +183,6 @@ void Window::onPaint() {
 
   if (m_currentProgramIndex == 0 || m_currentProgramIndex == 1) {
     renderSkybox();   
-    renderBall(); 
   }
 }
 
@@ -398,6 +396,8 @@ void Window::onDestroy() {
   for (auto const &program : m_programs) {
     abcg::glDeleteProgram(program);
   }
+  destroyBall();
+  destroySkybox();
 }
 
 void Window::createSkybox() {
@@ -453,6 +453,7 @@ void Window::createBall() {
 
   // Load model
   loadModelFromFile(assetsPath + "tennisball.obj");
+  standardize();
 
   m_verticesToDraw = m_indices.size();
 
@@ -490,8 +491,40 @@ void Window::createBall() {
 
   // End of binding to current VAO
   abcg::glBindVertexArray(0);
+}
+
+void Window::renderBall(){
+  abcg::glUseProgram(m_ballProgram);
+  abcg::glBindVertexArray(m_ballVAO);
+
+
+  // Draw triangles
+  abcg::glDrawElements(GL_TRIANGLES, m_verticesToDraw, GL_UNSIGNED_INT,
+                       nullptr);
+
+  abcg::glBindVertexArray(0);
+  abcg::glUseProgram(0);
 
 }
+
+void Window::standardize() {
+   // Center to origin and normalize bounds to [-1, 1]
+
+   // Get bounds
+   glm::vec3 max(std::numeric_limits<float>::lowest());
+   glm::vec3 min(std::numeric_limits<float>::max());
+   for (auto const &vertex : m_vertices) {
+     max = glm::max(max, vertex.position);
+     min = glm::min(min, vertex.position);
+   }
+
+   // Center and scale
+   auto center{(min + max) / 2.0f};
+    auto const scaling{0.2f / glm::length(max - min)};
+   for (auto &vertex : m_vertices) {
+     vertex.position = (vertex.position - center) * scaling;
+   }
+ }
 
 void Window::loadModelFromFile(std::string_view path) {
   tinyobj::ObjReader reader;
@@ -545,7 +578,6 @@ void Window::loadModelFromFile(std::string_view path) {
   }
 }
 
-
 void Window::renderSkybox() {
   abcg::glUseProgram(m_skyProgram);
 
@@ -575,25 +607,14 @@ void Window::renderSkybox() {
   abcg::glUseProgram(0);
 }
 
-void Window::renderBall(){
-   // Clear color buffer and depth buffer
-  //abcg::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  abcg::glViewport(0, 0, m_viewportSize.x, m_viewportSize.y);
-
-  abcg::glUseProgram(m_ballProgram);
-  abcg::glBindVertexArray(m_ballVAO);
-
-  // Draw triangles
-  abcg::glDrawElements(GL_TRIANGLES, 100000 , GL_UNSIGNED_INT,
-                       nullptr);
-
-  abcg::glBindVertexArray(0);
-  abcg::glUseProgram(0);
-}
-
 void Window::destroySkybox() const {
   abcg::glDeleteProgram(m_skyProgram);
   abcg::glDeleteBuffers(1, &m_skyVBO);
   abcg::glDeleteVertexArrays(1, &m_skyVAO);
+}
+
+void Window::destroyBall() const {
+  abcg::glDeleteProgram(m_ballProgram);
+  abcg::glDeleteBuffers(1, &m_ballVBO);
+  abcg::glDeleteVertexArrays(1, &m_ballVAO);
 }

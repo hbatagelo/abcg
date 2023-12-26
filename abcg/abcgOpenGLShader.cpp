@@ -16,6 +16,7 @@
 
 #include <filesystem>
 #include <fstream>
+#include <regex>
 #include <sstream>
 #include <vector>
 
@@ -99,9 +100,20 @@ void printProgramInfoLog(GLuint const program) {
 // Returns the shader ID of the compiled shader.
 [[nodiscard]] abcg::OpenGLShader compileHelper(std::string_view shaderSource,
                                                GLuint shaderStage) {
+  std::string source{shaderSource};
+#if !defined(__EMSCRIPTEN__) && defined(__APPLE__)
+  // Remove version header, if any
+  source = std::regex_replace(source, std::regex(R"(^\s*#\s*version\s+\d+\s+es\s*)"), "");
+  if (source != shaderSource)
+  {
+    // Add new header
+    source = "#version 410\n" + source;
+  }
+#endif
+
   auto shaderID{glCreateShader(shaderStage)};
-  auto const *source{shaderSource.data()};
-  glShaderSource(shaderID, 1, &source, nullptr);
+  auto const *sourceCStr{source.c_str()};
+  glShaderSource(shaderID, 1, &sourceCStr, nullptr);
   glCompileShader(shaderID);
   return {shaderID, shaderStage};
 }

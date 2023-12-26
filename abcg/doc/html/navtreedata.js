@@ -35,20 +35,21 @@ var NAVTREE =
     [ "Docker setup", "index.html#autotoc_md7", null ],
     [ "License", "index.html#autotoc_md8", null ],
     [ "Release notes", "md__home_harlen_dev_abcg_CHANGELOG.html", [
-      [ "v3.1.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md10", null ],
-      [ "v3.0.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md11", [
-        [ "New features", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md12", null ],
-        [ "Breaking changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md13", null ],
-        [ "Other changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md14", null ]
+      [ "v3.1.1", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md10", null ],
+      [ "v3.1.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md11", null ],
+      [ "v3.0.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md12", [
+        [ "New features", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md13", null ],
+        [ "Breaking changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md14", null ],
+        [ "Other changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md15", null ]
       ] ],
-      [ "v2.0.1", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md15", [
-        [ "Bug Fixes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md16", null ]
+      [ "v2.0.1", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md16", [
+        [ "Bug Fixes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md17", null ]
       ] ],
-      [ "v2.0.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md17", [
-        [ "Breaking changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md18", null ],
-        [ "Other changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md19", null ]
+      [ "v2.0.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md18", [
+        [ "Breaking changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md19", null ],
+        [ "Other changes", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md20", null ]
       ] ],
-      [ "v1.0.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md20", null ]
+      [ "v1.0.0", "md__home_harlen_dev_abcg_CHANGELOG.html#autotoc_md21", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -86,7 +87,7 @@ var NAVTREEINDEX =
 "abcgApplication_8cpp.html",
 "abcgOpenGLFunction_8hpp.html#aea378f4807f17ed76e8129260b35c1a1",
 "classabcg_1_1Window.html#a67cdaa1c83259bd7849c4756a730a22c",
-"namespaceabcg.html#ac050825096a0ef3f71c0dd6452f9dfc0"
+"namespaceabcg.html#abebf61480d8b46ad61238624521c440c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

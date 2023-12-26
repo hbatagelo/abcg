@@ -15,7 +15,7 @@
 
 #define ABCG_VERSION_MAJOR 3
 #define ABCG_VERSION_MINOR 1
-#define ABCG_VERSION_PATCH 0
+#define ABCG_VERSION_PATCH 1
 
 /**
  * @brief Root namespace.

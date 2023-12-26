@@ -1,5 +1,9 @@
 # Release notes
 
+## v3.1.1
+
+*   Added a shader compile check to make GLSL ES shaders compatible with macOS.
+
 ## v3.1.0
 
 *   Use extra stack space when building for WASM.

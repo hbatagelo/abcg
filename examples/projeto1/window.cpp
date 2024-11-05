@@ -136,33 +136,25 @@ void Window::setupModel() {
   // End of binding to current VAO
   abcg::glBindVertexArray(0);
 }
+
 void Window::calculateGraphPoints() {
     m_graphPoints.clear();  // Limpa os pontos anteriores
 
     // Parâmetros financeiros
-    float maxY = m_P;  // Inicializa com o valor do investimento inicial
-    for (int n = 1; n <= m_nMax; ++n) {
-        // Calculando o valor acumulado com juros compostos
-        float totalAmount = m_P * pow(1 + m_i, n) + m_PMT * (pow(1 + m_i, n) - 1) / m_i;
-
-        // Verifica se o valor acumulado ultrapassou o valor máximo, para normalizar
-        if (totalAmount > maxY) {
-            maxY = totalAmount; // Atualiza o valor máximo de Y
-        }
-    }
+    float maxY = m_P * pow(1 + m_i, m_nMax) + m_PMT * (pow(1 + m_i, m_nMax) - 1) / m_i;
 
     // Normaliza os valores para a faixa [-1, 1]
     for (int n = 1; n <= m_nMax; ++n) {
-        // Calculando o valor acumulado com juros compostos
-        float totalAmount = m_P * pow(1 + m_i, n) + m_PMT * (pow(1 + m_i, n) - 1) / m_i;
+      // Calculando o valor acumulado com juros compostos
+      float totalAmount = m_P * pow(1 + m_i, n) + m_PMT * (pow(1 + m_i, n) - 1) / m_i;
 
-        // Normaliza X para a faixa [-1, 1]
-        float normalizedX = (n / static_cast<float>(m_nMax)) * 2.0f - 1.0f;
+      // Normaliza X para a faixa [-1, 1]
+      float normalizedX = (n / static_cast<float>(m_nMax)) * 2.0f - 1.0f;
 
-        // Normaliza Y para a faixa [-1, 1]
-        float normalizedY = (totalAmount / maxY) * 2.0f - 1.0f;
+      // Normaliza Y para a faixa [-1, 1]
+      float normalizedY = (totalAmount / maxY) * 2.0f - 1.0f;
 
-        // Adiciona o ponto ao vetor de pontos do gráfico
-        m_graphPoints.push_back(glm::vec2(normalizedX, normalizedY));
+      // Adiciona o ponto ao vetor de pontos do gráfico
+      m_graphPoints.push_back(glm::vec2(normalizedX, normalizedY));
     }
 }

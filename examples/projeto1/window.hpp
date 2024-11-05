@@ -7,29 +7,49 @@
 #include "abcgOpenGL.hpp"
 
 class Window : public abcg::OpenGLWindow {
-protected:
+public:
+  // Funções de controle do ciclo de vida da janela
   void onCreate() override;
   void onPaint() override;
   void onPaintUI() override;
   void onResize(glm::ivec2 const &size) override;
   void onDestroy() override;
- 
-private:
-std::default_random_engine m_randomEngine; // Mantenha essa linha
-  glm::vec2 m_P; // Mantenha esta linha também, se você precisar dela
 
+private:
+  // Variáveis para os parâmetros do gráfico e do investimento
+  std::default_random_engine m_randomEngine; // Mantenha esta linha
   glm::ivec2 m_viewportSize{};
 
-  GLuint m_VAO{};
-  GLuint m_VBOVertices{};
-  GLuint m_program{};
+  GLuint m_VAO{};            // Vertex Array Object
+  GLuint m_VBOVertices{};    // Vertex Buffer Object
+  GLuint m_program{};        // Shader Program
 
-  float m_a{1.0f}; // Coeficiente angular
-  float m_b{0.0f}; // Coeficiente linear
+  float m_a{1.0f};           // Coeficiente angular (m)
+  float m_b{0.0f};           // Coeficiente linear (b)
   std::vector<glm::vec2> m_graphPoints; // Armazena os pontos do gráfico
 
+  // Variáveis para os parâmetros financeiros (Mutáveis)
+  float m_P = 1000.0f;       // Investimento inicial
+  float m_PMT = 200.0f;      // Contribuição mensal
+  float m_i = 0.01f;         // Taxa de juros mensal
+  int m_nMax = 120;          // Número de meses (10 anos)
+
+  // Métodos
   void setupModel();
   void calculateGraphPoints(); // Método para calcular os pontos do gráfico
+
+  // Getters e Setters para as variáveis financeiras
+  float getInvestimentoInicial() const { return m_P; }
+  void setInvestimentoInicial(float value) { m_P = value; }
+
+  float getContribuicaoMensal() const { return m_PMT; }
+  void setContribuicaoMensal(float value) { m_PMT = value; }
+
+  float getTaxaJurosMensal() const { return m_i; }
+  void setTaxaJurosMensal(float value) { m_i = value; }
+
+  int getNumeroMeses() const { return m_nMax; }
+  void setNumeroMeses(int value) { m_nMax = value; }
 };
 
 #endif

@@ -52,34 +52,44 @@ void Window::onPaint() {
   // End using the shader program
   abcg::glUseProgram(0);
 }
+void Window::onPaintUI() {
+  abcg::OpenGLWindow::onPaintUI();  // Mantém a funcionalidade padrão do OpenGL
 
+  // Nossa interface personalizada começa aqui
+  ImGui::Begin("Escolha os parâmetros de investimento:");
 
-void Window::onPaintUI() {    //onde vão os widgets
-  abcg::OpenGLWindow::onPaintUI();
-
-   // Our own ImGui widgets go below
-  {
-    // Window begin
-    ImGui::Begin("Escolha os parâmetros: ");
-
-    // Static text
-    auto const &windowSettings{getWindowSettings()};
-    ImGui::Text("a: 10");
-
-    // Slider from 0.0f to 1.0f
-    static float f{};
-    ImGui::SliderFloat("float", &f, 0.0f, 1000.0f);
-
-    // ColorEdit to change the clear color
-    // ImGui::ColorEdit3("clear color", m_clearColor.data());
-
-    // More static text
-    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
-                1000.0 / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-
-    // Window end
-    ImGui::End();
+  // Controle para o investimento inicial (P)
+  if (ImGui::SliderFloat("Investimento Inicial (P)", &m_P, 100.0f, 10000.0f, "%.1f")) {
+    // Recalcula os pontos do gráfico quando o valor de P mudar
+    calculateGraphPoints();
   }
+
+  // Controle para a contribuição mensal (PMT)
+  if (ImGui::SliderFloat("Contribuição Mensal (PMT)", &m_PMT, 50.0f, 1000.0f, "%.1f")) {
+    // Recalcula os pontos do gráfico quando o valor de PMT mudar
+    calculateGraphPoints();
+  }
+
+  // Controle para a taxa de juros mensal (i)
+  if (ImGui::SliderFloat("Taxa de Juros Mensal (i)", &m_i, 0.001f, 0.1f, "%.4f")) {
+    // Recalcula os pontos do gráfico quando o valor de i mudar
+    calculateGraphPoints();
+  }
+
+  // Controle para o número máximo de meses (nMax)
+  if (ImGui::SliderInt("Número de Meses (nMax)", &m_nMax, 12, 240)) {
+    // Recalcula os pontos do gráfico quando o número de meses mudar
+    calculateGraphPoints();
+  }
+
+  // Exibir os valores atuais para o usuário
+  ImGui::Text("Investimento Inicial: %.1f", m_P);
+  ImGui::Text("Contribuição Mensal: %.1f", m_PMT);
+  ImGui::Text("Taxa de Juros Mensal: %.4f", m_i);
+  ImGui::Text("Número de Meses: %d", m_nMax);
+
+  // Finaliza a criação da janela do ImGui
+  ImGui::End();
 }
 
 void Window::onResize(glm::ivec2 const &size) {
@@ -123,22 +133,16 @@ void Window::setupModel() {
 
   // End of binding to current VAO
   abcg::glBindVertexArray(0);
-}void Window::calculateGraphPoints() {
-    m_graphPoints.clear(); // Limpa pontos anteriores
+}
 
-    // Parâmetros do investimento
-    float P = 1000.0f;  // Investimento inicial
-    float PMT = 200.0f; // Contribuição mensal
-    float i = 0.01f;    // Taxa de juros mensal
-    int nMax = 120;     // Número máximo de meses (10 anos)
+void Window::calculateGraphPoints() {
+    m_graphPoints.clear();  // Limpa os pontos anteriores
 
-    float accumulatedAmount = P; // Inicializa com o valor do investimento inicial
-
-    // Determina o valor máximo de y para ajustar a escala (isso evita que a curva fique fora da tela)
-    float maxY = P;  // Começamos com o valor inicial como maxY
-    for (int n = 1; n <= nMax; ++n) {
-        // Calculando o valor acumulado usando a fórmula de juros compostos
-        float totalAmount = P * pow(1 + i, n) + PMT * (pow(1 + i, n) - 1) / i;
+    // Parâmetros financeiros
+    float maxY = m_P;  // Inicializa com o valor do investimento inicial
+    for (int n = 1; n <= m_nMax; ++n) {
+        // Calculando o valor acumulado com juros compostos
+        float totalAmount = m_P * pow(1 + m_i, n) + m_PMT * (pow(1 + m_i, n) - 1) / m_i;
 
         // Verifica se o valor acumulado ultrapassou o valor máximo, para normalizar
         if (totalAmount > maxY) {
@@ -146,18 +150,18 @@ void Window::setupModel() {
         }
     }
 
-    // Normaliza os valores para que fiquem dentro da faixa [-1, 1]
-    for (int n = 1; n <= nMax; ++n) {
-        // Calculando o valor acumulado usando a fórmula de juros compostos
-        float totalAmount = P * pow(1 + i, n) + PMT * (pow(1 + i, n) - 1) / i;
+    // Normaliza os valores para a faixa [-1, 1]
+    for (int n = 1; n <= m_nMax; ++n) {
+        // Calculando o valor acumulado com juros compostos
+        float totalAmount = m_P * pow(1 + m_i, n) + m_PMT * (pow(1 + m_i, n) - 1) / m_i;
 
         // Normaliza X para a faixa [-1, 1]
-        float normalizedX = (n / static_cast<float>(nMax)) * 2.0f - 1.0f;
+        float normalizedX = (n / static_cast<float>(m_nMax)) * 2.0f - 1.0f;
 
         // Normaliza Y para a faixa [-1, 1]
         float normalizedY = (totalAmount / maxY) * 2.0f - 1.0f;
 
-        // Adiciona o ponto calculado ao vetor de pontos
+        // Adiciona o ponto ao vetor de pontos do gráfico
         m_graphPoints.push_back(glm::vec2(normalizedX, normalizedY));
     }
 }

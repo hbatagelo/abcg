@@ -83,6 +83,10 @@ void Window::onPaintUI() {
   ImGui::Text("Taxa de Juros Mensal: %.4f", m_i);
   ImGui::Text("Número de Meses: %d", m_nMax);
 
+   // Exibe o total acumulado
+  float totalAmount = m_P * pow(1 + m_i, m_nMax) + m_PMT * (pow(1 + m_i, m_nMax) - 1) / m_i;
+  ImGui::Text("Total Acumulado: %.2f", totalAmount);
+
   // Finaliza a criação da janela do ImGui
   ImGui::End();
 }

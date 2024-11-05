@@ -1,2 +1,1 @@
-add_subdirectory(helloworld)
-add_subdirectory(atv1)
+add_subdirectory(projeto1)

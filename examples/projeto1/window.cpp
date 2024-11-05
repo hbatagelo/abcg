@@ -4,9 +4,9 @@ void Window::onCreate() {
   auto const *vertexShader{R"gl(#version 300 es
     layout(location = 0) in vec2 inPosition;
 
-    void main() { 
+    void main() {
       gl_PointSize = 2.0;
-      gl_Position = vec4(inPosition, 0, 1); 
+      gl_Position = vec4(inPosition, 0, 1);
     }
   )gl"};
 
@@ -27,33 +27,13 @@ void Window::onCreate() {
   abcg::glClearColor(0, 0, 0, 1);
   abcg::glClear(GL_COLOR_BUFFER_BIT);
 
-  std::array<GLfloat, 2> sizes{};
-#if !defined(__EMSCRIPTEN__)
-  abcg::glEnable(GL_PROGRAM_POINT_SIZE);
-  abcg::glGetFloatv(GL_POINT_SIZE_RANGE, sizes.data());
-#else
-  abcg::glGetFloatv(GL_ALIASED_POINT_SIZE_RANGE, sizes.data());
-#endif
-  fmt::print("Point size: {:.2f} (min), {:.2f} (max)\n", sizes.at(0),
-             sizes.at(1));
 
-  // Start pseudorandom number generator
-  auto const seed{std::chrono::steady_clock::now().time_since_epoch().count()};
-  m_randomEngine.seed(seed);
 
-  // Randomly pick a pair of coordinates in the range [-1; 1)
-  std::uniform_real_distribution<float> realDistribution(-1.0f, 1.0f);
-  m_P.x = realDistribution(m_randomEngine);
-  m_P.y = realDistribution(m_randomEngine);
-
-   calculateGraphPoints(); 
+  calculateGraphPoints();
 }
 
 void Window::onPaint() {
-
-
-
-  // Setup the model (atualize o modelo com os pontos do gráfico)
+  // Atualiza o modelo com os pontos do gráfico
   setupModel();
 
   // Set the viewport
@@ -71,9 +51,6 @@ void Window::onPaint() {
   abcg::glBindVertexArray(0);
   // End using the shader program
   abcg::glUseProgram(0);
-
-     
-
 }
 
 
@@ -103,7 +80,6 @@ void Window::onPaintUI() {    //onde vão os widgets
     // Window end
     ImGui::End();
   }
-
 }
 
 void Window::onResize(glm::ivec2 const &size) {
@@ -127,10 +103,10 @@ void Window::setupModel() {
   // Generate a new VBO and get the associated ID
   abcg::glGenBuffers(1, &m_VBOVertices);
   abcg::glBindBuffer(GL_ARRAY_BUFFER, m_VBOVertices);
-  
+
   // Upload data to VBO
   abcg::glBufferData(GL_ARRAY_BUFFER, m_graphPoints.size() * sizeof(glm::vec2), m_graphPoints.data(), GL_STATIC_DRAW);
-  
+
   // Get location of attributes in the program
   auto const positionAttribute = abcg::glGetAttribLocation(m_program, "inPosition");
 
@@ -152,8 +128,16 @@ void Window::setupModel() {
 
 void Window::calculateGraphPoints() {
   m_graphPoints.clear(); // Limpa pontos anteriores
+
+  // Curva cúbica: y = ax^3 + bx^2 + cx + d
+  float a = 1.0f;
+  float b = 0.0f;
+  float c = 0.0f;
+  float d = 0.0f;
+
   for (float x = -1.0f; x <= 1.0f; x += 0.1f) {
-      float y = m_a * x + m_b;
-      m_graphPoints.push_back(glm::vec2(x, y));
+    float y = a * x * x * x + b * x * x + c * x + d; // Equação cúbica
+
+    m_graphPoints.push_back(glm::vec2(x, y));
   }
 }

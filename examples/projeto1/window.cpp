@@ -123,21 +123,41 @@ void Window::setupModel() {
 
   // End of binding to current VAO
   abcg::glBindVertexArray(0);
-}
+}void Window::calculateGraphPoints() {
+    m_graphPoints.clear(); // Limpa pontos anteriores
 
+    // Parâmetros do investimento
+    float P = 1000.0f;  // Investimento inicial
+    float PMT = 200.0f; // Contribuição mensal
+    float i = 0.01f;    // Taxa de juros mensal
+    int nMax = 120;     // Número máximo de meses (10 anos)
 
-void Window::calculateGraphPoints() {
-  m_graphPoints.clear(); // Limpa pontos anteriores
+    float accumulatedAmount = P; // Inicializa com o valor do investimento inicial
 
-  // Curva cúbica: y = ax^3 + bx^2 + cx + d
-  float a = 1.0f;
-  float b = 0.0f;
-  float c = 0.0f;
-  float d = 0.0f;
+    // Determina o valor máximo de y para ajustar a escala (isso evita que a curva fique fora da tela)
+    float maxY = P;  // Começamos com o valor inicial como maxY
+    for (int n = 1; n <= nMax; ++n) {
+        // Calculando o valor acumulado usando a fórmula de juros compostos
+        float totalAmount = P * pow(1 + i, n) + PMT * (pow(1 + i, n) - 1) / i;
 
-  for (float x = -1.0f; x <= 1.0f; x += 0.1f) {
-    float y = a * x * x * x + b * x * x + c * x + d; // Equação cúbica
+        // Verifica se o valor acumulado ultrapassou o valor máximo, para normalizar
+        if (totalAmount > maxY) {
+            maxY = totalAmount; // Atualiza o valor máximo de Y
+        }
+    }
 
-    m_graphPoints.push_back(glm::vec2(x, y));
-  }
+    // Normaliza os valores para que fiquem dentro da faixa [-1, 1]
+    for (int n = 1; n <= nMax; ++n) {
+        // Calculando o valor acumulado usando a fórmula de juros compostos
+        float totalAmount = P * pow(1 + i, n) + PMT * (pow(1 + i, n) - 1) / i;
+
+        // Normaliza X para a faixa [-1, 1]
+        float normalizedX = (n / static_cast<float>(nMax)) * 2.0f - 1.0f;
+
+        // Normaliza Y para a faixa [-1, 1]
+        float normalizedY = (totalAmount / maxY) * 2.0f - 1.0f;
+
+        // Adiciona o ponto calculado ao vetor de pontos
+        m_graphPoints.push_back(glm::vec2(normalizedX, normalizedY));
+    }
 }

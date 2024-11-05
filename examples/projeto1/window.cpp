@@ -31,8 +31,10 @@ void Window::onCreate() {
 
   calculateGraphPoints();
 }
-
 void Window::onPaint() {
+  // Limpar o buffer de cor (limpar a tela)
+  abcg::glClear(GL_COLOR_BUFFER_BIT);
+
   // Atualiza o modelo com os pontos do gráfico
   setupModel();
 
@@ -52,6 +54,7 @@ void Window::onPaint() {
   // End using the shader program
   abcg::glUseProgram(0);
 }
+
 void Window::onPaintUI() {
   abcg::OpenGLWindow::onPaintUI();  // Mantém a funcionalidade padrão do OpenGL
 
@@ -104,7 +107,6 @@ void Window::onDestroy() {
   abcg::glDeleteBuffers(1, &m_VBOVertices);
   abcg::glDeleteVertexArrays(1, &m_VAO);
 }
-
 void Window::setupModel() {
   // Release previous VBO and VAO
   abcg::glDeleteBuffers(1, &m_VBOVertices);
@@ -134,7 +136,6 @@ void Window::setupModel() {
   // End of binding to current VAO
   abcg::glBindVertexArray(0);
 }
-
 void Window::calculateGraphPoints() {
     m_graphPoints.clear();  // Limpa os pontos anteriores
 

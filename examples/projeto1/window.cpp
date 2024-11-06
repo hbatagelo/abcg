@@ -32,8 +32,8 @@ void Window::onCreate() {
 
 void Window::onPaint() {
   // Limpa o buffer de cor (limpar a tela)
+  abcg::glClearColor(m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a);
   abcg::glClear(GL_COLOR_BUFFER_BIT);
-
   // Atualiza o modelo com os pontos do gráfico
   setupModel();
 
@@ -76,6 +76,9 @@ void Window::onPaintUI() {
   if (ImGui::SliderInt("Número de Meses (nMax)", &m_nMax, 12, 240)) {
     calculateGraphPoints();
   }
+
+  ImGui::ColorEdit3("Cor de Fundo", &m_backgroundColor.r);
+
 
   // Exibe os valores atuais para o usuário
   ImGui::Text("Investimento Inicial: %.1f", m_P);

@@ -20,6 +20,8 @@ private:
   std::default_random_engine m_randomEngine; // Mantenha esta linha
   glm::ivec2 m_viewportSize{};
 
+  glm::vec4 m_backgroundColor{0.0f, 0.0f, 0.0f, 1.0f};
+
   GLuint m_VAO{};            // Vertex Array Object
   GLuint m_VBOVertices{};    // Vertex Buffer Object
   GLuint m_program{};        // Shader Program

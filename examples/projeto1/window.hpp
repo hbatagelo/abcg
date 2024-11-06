@@ -20,11 +20,14 @@ private:
   std::default_random_engine m_randomEngine; // Mantenha esta linha
   glm::ivec2 m_viewportSize{};
 
+  //cores
   glm::vec4 m_backgroundColor{0.0f, 0.0f, 0.0f, 1.0f};
+  glm::vec3 m_lineColor{1.0f, 1.0f, 1.0f};
 
   GLuint m_VAO{};            // Vertex Array Object
   GLuint m_VBOVertices{};    // Vertex Buffer Object
   GLuint m_program{};        // Shader Program
+  GLint m_lineColorLoc{};    // identificador do lineColor no shader
 
   float m_a{1.0f};           // Coeficiente angular (m)
   float m_b{0.0f};           // Coeficiente linear (b)

@@ -10,18 +10,25 @@ void Window::onCreate() {
     }
   )gl"};
 
-  auto const *fragmentShader{R"gl(#version 300 es
+auto const *fragmentShader{R"gl(#version 300 es
     precision mediump float;
+
+    uniform vec3 lineColor; // Recebe a cor da linha do gráfico
 
     out vec4 outColor;
 
-    void main() { outColor = vec4(1); }
+    void main() {
+      outColor = vec4(lineColor, 1.0);
+    }
   )gl"};
 
   // Cria o shader program
-  m_program = abcg::createOpenGLProgram(
-      {{.source = vertexShader, .stage = abcg::ShaderStage::Vertex},
-       {.source = fragmentShader, .stage = abcg::ShaderStage::Fragment}});
+m_program = abcg::createOpenGLProgram(
+    {{.source = vertexShader, .stage = abcg::ShaderStage::Vertex},
+     {.source = fragmentShader, .stage = abcg::ShaderStage::Fragment}});
+
+
+m_lineColorLoc = abcg::glGetUniformLocation(m_program, "lineColor");
 
   // Limpa a window
   abcg::glClearColor(0, 0, 0, 1);
@@ -34,7 +41,7 @@ void Window::onPaint() {
   // Limpa o buffer de cor (limpar a tela)
   abcg::glClearColor(m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a);
   abcg::glClear(GL_COLOR_BUFFER_BIT);
-  // Atualiza o modelo com os pontos do gráfico
+
   setupModel();
 
   // Seta a viewport
@@ -42,6 +49,10 @@ void Window::onPaint() {
 
   // Começa a usar o shader program
   abcg::glUseProgram(m_program);
+
+  //cor da linha
+  abcg::glUniform3fv(m_lineColorLoc, 1, &m_lineColor[0]);
+
   // Começa a usar a VAO
   abcg::glBindVertexArray(m_VAO);
 
@@ -78,6 +89,8 @@ void Window::onPaintUI() {
   }
 
   ImGui::ColorEdit3("Cor de Fundo", &m_backgroundColor.r);
+  ImGui::ColorEdit3("Cor da linha do gráfico", &m_lineColor[0]);
+
 
 
   // Exibe os valores atuais para o usuário

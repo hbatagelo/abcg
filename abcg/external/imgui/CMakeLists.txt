@@ -22,7 +22,10 @@ target_include_directories(
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
-  set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-s USE_SDL=2")
+  target_compile_options(
+    ${PROJECT_NAME}
+    PUBLIC "-sUSE_SDL=2"
+    PUBLIC "-w")
 else()
   find_package(SDL2 REQUIRED)
   target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIR})

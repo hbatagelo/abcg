@@ -9,8 +9,8 @@ jobs:
       matrix:
         build-type: [Release]
         compiler: [GCC, Clang]
-        cmake-var: [ENABLE_CONAN=ON, ENABLE_CONAN=OFF]
-     
+        cmake-var: [ENABLE_CONAN=OFF] # ENABLE_CONAN=ON, ENABLE_CONAN=OFF
+
     runs-on: ubuntu-latest
     env:
       BUILD_TYPE: ${{matrix.build-type}}
@@ -18,7 +18,7 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
-      
+
     - name: Install dependencies (ENABLE_CONAN=ON)
       if: matrix.cmake-var == 'ENABLE_CONAN=ON'
       run: |
@@ -33,7 +33,7 @@ jobs:
       run: |
         sudo apt-get install cmake
         sudo apt-get install libglew-dev libsdl2-dev libsdl2-image-dev
-     
+
     - name: Install GCC
       if: matrix.compiler == 'GCC'
       run: |
@@ -45,12 +45,12 @@ jobs:
         sudo apt-get install -y gcc-12 g++-12
         sudo update-alternatives --install /usr/bin/cc  gcc /usr/bin/gcc-12 1000 \
                                  --slave   /usr/bin/c++ g++ /usr/bin/g++-12
-          
+
     - name: Install Clang
       if: matrix.compiler == 'Clang'
       run: |
         echo "CC=/usr/bin/clang-16" >> $GITHUB_ENV
-        echo "CXX=/usr/bin/clang++-16" >> $GITHUB_ENV 
+        echo "CXX=/usr/bin/clang++-16" >> $GITHUB_ENV
         sudo update-alternatives --remove-all cc
         sudo update-alternatives --remove-all c++
         wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
@@ -71,41 +71,41 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
-  windows-build:
-    strategy:
-      fail-fast: false
-      matrix:
-        build-type: [Release]
-     
-    runs-on: windows-latest
-    env:
-      BUILD_TYPE: ${{matrix.build-type}}
+  # windows-build:
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       build-type: [Release]
 
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+  #   runs-on: windows-latest
+  #   env:
+  #     BUILD_TYPE: ${{matrix.build-type}}
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.10'
-    - run: |
-        python -m pip install --upgrade pip
-        pip install wheel
+  #   steps:
+  #   - name: Checkout repo
+  #     uses: actions/checkout@v3
 
-    - name: Install Conan
-      run: pip install "conan<2.0"
-      
-    - name: Configure CMake
-      run: |
-        cmake -B ${{github.workspace}}/build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DENABLE_CONAN=ON
+  #   - name: Set up Python
+  #     uses: actions/setup-python@v3
+  #     with:
+  #       python-version: '3.10'
+  #   - run: |
+  #       python -m pip install --upgrade pip
+  #       pip install wheel
 
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+  #   - name: Install Conan
+  #     run: pip install "conan<2.0"
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      run: ctest -C ${{env.BUILD_TYPE}}
+  #   - name: Configure CMake
+  #     run: |
+  #       cmake -B ${{github.workspace}}/build -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DENABLE_CONAN=ON
+
+  #   - name: Build
+  #     run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+  #   - name: Test
+  #     working-directory: ${{github.workspace}}/build
+  #     run: ctest -C ${{env.BUILD_TYPE}}
   wasm-build:
     runs-on: ubuntu-latest
     env:
@@ -114,7 +114,7 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
-      
+
     - name: Install Emscripten
       run: |
         sudo apt-get install git cmake
@@ -125,8 +125,8 @@ jobs:
         ./emsdk install latest
         ./emsdk activate latest
         source ./emsdk_env.sh
-      
-    - name: Configure CMake 
+
+    - name: Configure CMake
       run: |
         source ./emsdk/emsdk_env.sh
         emcmake cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}

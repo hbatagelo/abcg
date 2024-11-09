@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['release_20notes_1043',['Release notes',['../md__home_harlen_dev_abcg_CHANGELOG.html',1,'']]]
+  ['notes_0',['Release notes',['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html',1,'']]]
 ];

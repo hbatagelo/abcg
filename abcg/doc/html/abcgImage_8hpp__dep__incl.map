@@ -1,5 +1,7 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgImage.hpp" name="/home/harlen/dev/abcg/abcg/abcgImage.hpp">
-<area shape="rect" id="node1" title="Declaration of image manipulation helper functions." alt="" coords="112,5,283,47"/>
-<area shape="rect" id="node2" href="$abcgImage_8cpp.html" title="Definition of image manipulation helper functions." alt="" coords="5,95,176,136"/>
-<area shape="rect" id="node3" href="$abcgOpenGLImage_8cpp.html" title="Definition of OpenGL texture loading helper functions." alt="" coords="200,95,411,136"/>
+<area shape="rect" id="Node000001" title="Declaration of image manipulation helper functions." alt="" coords="112,5,283,45"/>
+<area shape="rect" id="Node000002" href="$abcgImage_8cpp.html" title="Definition of image manipulation helper functions." alt="" coords="5,93,176,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,56,116,95,113,91,161,52"/>
+<area shape="rect" id="Node000003" href="$abcgOpenGLImage_8cpp.html" title="Definition of OpenGL texture loading helper functions." alt="" coords="200,93,411,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,52,283,91,280,95,230,56"/>
 </map>

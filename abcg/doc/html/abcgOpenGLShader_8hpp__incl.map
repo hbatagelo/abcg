@@ -1,8 +1,13 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgOpenGLShader.hpp" name="/home/harlen/dev/abcg/abcg/abcgOpenGLShader.hpp">
-<area shape="rect" id="node1" title="Declaration of helper functions for building OpenGL shaders." alt="" coords="171,5,386,47"/>
-<area shape="rect" id="node2" href="$abcgOpenGLExternal_8hpp.html" title="Header file for including OpenGL&#45;related third&#45;party dependencies." alt="" coords="5,95,192,121"/>
-<area shape="rect" id="node3" href="$abcgShader_8hpp.html" title="Declaration of a structure for building shaders." alt="" coords="216,95,341,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="366,95,429,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="196,169,271,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="295,169,353,196"/>
+<area shape="rect" id="Node000001" title="Declaration of helper functions for building OpenGL shaders." alt="" coords="171,5,386,45"/>
+<area shape="rect" id="Node000002" href="$abcgOpenGLExternal_8hpp.html" title="Header file for including OpenGL&#45;related third&#45;party dependencies." alt="" coords="5,93,192,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,48,139,90,137,85,234,43"/>
+<area shape="rect" id="Node000003" href="$abcgShader_8hpp.html" title="Declaration of a structure for building shaders." alt="" coords="216,93,341,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,46,281,79,276,79,276,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="366,93,429,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="309,43,370,84,367,88,306,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="196,167,271,192"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="273,120,250,157,246,154,269,118"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="295,167,353,192"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="288,118,312,154,307,157,284,120"/>
 </map>

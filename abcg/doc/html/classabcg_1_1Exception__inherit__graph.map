@@ -1,9 +1,15 @@
 <map id="abcg::Exception" name="abcg::Exception">
-<area shape="rect" id="node1" title="Base class for ABCg exception objects." alt="" coords="168,107,293,133"/>
-<area shape="rect" id="node3" href="$classabcg_1_1OpenGLError.html" title="Represents an exception object for OpenGL errors." alt="" coords="349,5,492,32"/>
-<area shape="rect" id="node4" href="$classabcg_1_1RuntimeError.html" title="Represents an exception object for runtime errors." alt="" coords="347,56,494,83"/>
-<area shape="rect" id="node5" href="$classabcg_1_1SDLError.html" title="Represents an exception object for SDL errors." alt="" coords="362,107,479,133"/>
-<area shape="rect" id="node6" href="$classabcg_1_1SDLImageError.html" title="Represents an exception object for SDL_image errors." alt="" coords="341,157,500,184"/>
-<area shape="rect" id="node7" href="$classabcg_1_1VulkanError.html" title="Represents an exception object for Vulkan runtime errors." alt="" coords="353,208,488,235"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,107,120,133"/>
+<area shape="rect" id="Node000001" title="Base class for ABCg exception objects." alt="" coords="168,104,293,129"/>
+<area shape="rect" id="Node000003" href="$classabcg_1_1OpenGLError.html" title="Represents an exception object for OpenGL errors." alt="" coords="349,5,492,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="257,93,295,66,340,40,369,28,371,33,342,44,298,70,260,98"/>
+<area shape="rect" id="Node000004" href="$classabcg_1_1RuntimeError.html" title="Represents an exception object for runtime errors." alt="" coords="347,55,494,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,98,370,78,371,83,294,103"/>
+<area shape="rect" id="Node000005" href="$classabcg_1_1SDLError.html" title="Represents an exception object for SDL errors." alt="" coords="362,104,479,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="307,114,362,114,362,119,307,119"/>
+<area shape="rect" id="Node000006" href="$classabcg_1_1SDLImageError.html" title="Represents an exception object for SDL_image errors." alt="" coords="341,153,500,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="294,130,371,151,370,156,293,135"/>
+<area shape="rect" id="Node000007" href="$classabcg_1_1VulkanError.html" title="Represents an exception object for Vulkan runtime errors." alt="" coords="353,203,488,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="260,136,298,163,342,189,371,200,369,205,340,194,295,168,257,140"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,120,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,114,167,114,167,119,134,119"/>
 </map>

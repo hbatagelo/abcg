@@ -1,8 +1,14 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanPhysicalDevice.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanPhysicalDevice.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="5,5,268,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="25,95,99,121"/>
-<area shape="rect" id="node3" href="$abcgVulkanExternal_8hpp.html" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="110,169,289,196"/>
-<area shape="rect" id="node6" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="174,95,353,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="105,244,168,271"/>
-<area shape="rect" id="node5" title=" " alt="" coords="192,244,332,271"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="5,5,268,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="25,93,99,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,47,85,85,81,81,117,44"/>
+<area shape="rect" id="Node000003" href="$abcgVulkanExternal_8hpp.html" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="110,167,289,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,45,151,79,164,118,185,154,180,156,160,120,146,81,138,46"/>
+<area shape="rect" id="Node000006" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="174,93,353,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="169,43,235,84,232,88,166,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="105,240,168,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="191,194,158,231,154,228,187,191"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="192,240,332,265"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="212,191,245,228,241,231,208,194"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="255,121,221,158,217,155,251,117"/>
 </map>

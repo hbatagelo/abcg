@@ -1,4 +1,5 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkan.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkan.hpp">
-<area shape="rect" id="node1" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="29,5,199,47"/>
-<area shape="rect" id="node2" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="5,95,223,136"/>
+<area shape="rect" id="Node000001" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="29,5,199,45"/>
+<area shape="rect" id="Node000002" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="5,93,223,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,59,117,93,111,93,111,59"/>
 </map>

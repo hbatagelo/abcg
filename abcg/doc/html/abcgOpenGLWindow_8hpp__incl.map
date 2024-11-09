@@ -1,13 +1,25 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgOpenGLWindow.hpp" name="/home/harlen/dev/abcg/abcg/abcgOpenGLWindow.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::OpenGLWindow." alt="" coords="124,5,345,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,169,64,196"/>
-<area shape="rect" id="node3" href="$abcgExternal_8hpp.html" title="Header file for including third&#45;party dependencies." alt="" coords="231,169,366,196"/>
-<area shape="rect" id="node4" href="$abcgOpenGLFunction_8hpp.html" title="Declaration of OpenGL&#45;related error checking functions." alt="" coords="571,95,757,121"/>
-<area shape="rect" id="node9" href="$abcgWindow_8hpp.html" title="Header file of abcg::Window." alt="" coords="94,95,226,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="602,169,726,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="750,169,847,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="871,169,963,196"/>
-<area shape="rect" id="node8" href="$abcgOpenGLExternal_8hpp.html" title="Header file for including OpenGL&#45;related third&#45;party dependencies." alt="" coords="391,169,577,196"/>
-<area shape="rect" id="node10" href="$abcgTimer_8hpp.html" title="Header file of abcg::Timer." alt="" coords="89,169,207,196"/>
-<area shape="rect" id="node11" title=" " alt="" coords="115,244,181,271"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::OpenGLWindow." alt="" coords="124,5,345,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,167,64,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,48,123,67,83,95,60,124,45,155,41,153,56,121,80,91,121,63,165,43"/>
+<area shape="rect" id="Node000003" href="$abcgExternal_8hpp.html" title="Header file for including third&#45;party dependencies." alt="" coords="231,167,366,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="245,45,291,153,286,155,240,47"/>
+<area shape="rect" id="Node000004" href="$abcgOpenGLFunction_8hpp.html" title="Declaration of OpenGL&#45;related error checking functions." alt="" coords="571,93,757,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="338,43,588,88,587,93,337,48"/>
+<area shape="rect" id="Node000009" href="$abcgWindow_8hpp.html" title="Header file of abcg::Window." alt="" coords="94,93,226,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="219,47,183,85,179,81,215,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="602,167,726,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="667,119,667,153,661,153,661,119"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="750,167,847,192"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="687,116,766,158,763,162,684,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="871,167,963,192"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="705,116,864,160,862,165,704,121"/>
+<area shape="rect" id="Node000008" href="$abcgOpenGLExternal_8hpp.html" title="Header file for including OpenGL&#45;related third&#45;party dependencies." alt="" coords="391,167,577,192"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="636,121,527,164,525,159,634,116"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="141,121,68,162,66,157,139,116"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="183,116,265,158,263,163,181,121"/>
+<area shape="rect" id="Node000010" href="$abcgTimer_8hpp.html" title="Header file of abcg::Timer." alt="" coords="89,167,207,192"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="161,119,155,154,150,153,155,119"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="115,240,181,265"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="151,192,151,226,145,226,145,192"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgOpenGLWindow.hpp" name="/home/harlen/dev/abcg/abcg/abcgOpenGLWindow.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::OpenGLWindow." alt="" coords="89,5,311,47"/>
-<area shape="rect" id="node2" href="$abcgOpenGL_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="5,95,176,136"/>
-<area shape="rect" id="node3" href="$abcgOpenGLWindow_8cpp.html" title="Definition of abcg::OpenGLWindow members." alt="" coords="201,95,421,136"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::OpenGLWindow." alt="" coords="89,5,311,45"/>
+<area shape="rect" id="Node000002" href="$abcgOpenGL_8hpp.html" title="Header file for OpenGL&#45;related functions and classes." alt="" coords="5,93,176,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,56,117,95,113,91,163,52"/>
+<area shape="rect" id="Node000003" href="$abcgOpenGLWindow_8cpp.html" title="Definition of abcg::OpenGLWindow members." alt="" coords="201,93,421,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,52,288,91,285,95,234,56"/>
 </map>

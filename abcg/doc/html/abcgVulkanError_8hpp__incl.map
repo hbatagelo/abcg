@@ -1,9 +1,16 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanError.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanError.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::VulkanError and derived classes." alt="" coords="20,5,213,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="38,169,162,196"/>
-<area shape="rect" id="node3" title=" " alt="" coords="22,95,85,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="109,95,249,121"/>
-<area shape="rect" id="node5" href="$abcgException_8hpp.html" title="Header file of abcg::Exception and derived classes." alt="" coords="273,95,418,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="253,169,340,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="364,169,423,196"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::VulkanError and derived classes." alt="" coords="20,5,213,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="38,167,162,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,48,36,67,12,95,8,104,9,113,18,130,37,146,59,159,57,163,34,150,14,134,4,114,3,103,7,92,32,63,64,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="22,93,85,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="103,47,74,84,69,81,99,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="109,93,249,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,44,163,81,159,84,129,47"/>
+<area shape="rect" id="Node000005" href="$abcgException_8hpp.html" title="Header file of abcg::Exception and derived classes." alt="" coords="273,93,418,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="172,43,300,86,298,91,170,48"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="307,121,154,165,152,160,305,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="253,167,340,192"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="340,121,314,157,310,154,335,117"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="364,167,423,192"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="356,118,380,154,376,157,351,121"/>
 </map>

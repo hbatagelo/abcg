@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['elapsed_90',['elapsed',['../classabcg_1_1Timer.html#a70a10ae27c24c5d559c688d7abe0a62e',1,'abcg::Timer']]],
-  ['es_91',['ES',['../namespaceabcg.html#aef63a265616374ef2d9f1d63b0e9328ea04c19fa1e772ab66f0aad2efe61f25cd',1,'abcg']]],
-  ['exception_92',['Exception',['../classabcg_1_1Exception.html',1,'abcg::Exception'],['../classabcg_1_1Exception.html#a264c852c597e5fad26cee2090b7ebd71',1,'abcg::Exception::Exception()']]]
+  ['bindingdescriptions_0',['bindingDescriptions',['../structabcg_1_1VulkanPipelineCreateInfo.html#aeceb310b6089dbc7fc03f4d4107a01bc',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['breaking_20changes_1',['breaking changes',['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md15',1,'Breaking changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md20',1,'Breaking changes']]],
+  ['bug_20fixes_2',['Bug Fixes',['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md18',1,'']]]
 ];

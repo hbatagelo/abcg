@@ -1,11 +1,25 @@
 var searchData=
 [
-  ['fence_93',['fence',['../structabcg_1_1VulkanFrame.html#a588976a9c273de75dec81028086c6fc3',1,'abcg::VulkanFrame']]],
-  ['findmemorytype_94',['findMemoryType',['../classabcg_1_1VulkanPhysicalDevice.html#a5f7aef77228188516dc469457b6a2864',1,'abcg::VulkanPhysicalDevice']]],
-  ['fliphorizontally_95',['flipHorizontally',['../namespaceabcg.html#a070a6d04f8ddd3f8ffc85556822ad9b9',1,'abcg']]],
-  ['flipupsidedown_96',['flipUpsideDown',['../structabcg_1_1OpenGLTextureCreateInfo.html#addabf0f11e77eb4e2605940ec91a1dad',1,'abcg::OpenGLTextureCreateInfo']]],
-  ['flipvertically_97',['flipVertically',['../namespaceabcg.html#afbf3c358b10f7ef9aef38acb758e12ca',1,'abcg']]],
-  ['fragment_98',['Fragment',['../namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa37d01b98065725fe3a1d30acf3a0064a',1,'abcg']]],
-  ['framebuffermain_99',['framebufferMain',['../structabcg_1_1VulkanFrame.html#aba1f36e936ceaff0f968d8e234d8f820',1,'abcg::VulkanFrame']]],
-  ['fullscreenelementid_100',['fullscreenElementID',['../structabcg_1_1WindowSettings.html#a63c8ca61aba15173b7875a02ab16b19a',1,'abcg::WindowSettings']]]
+  ['callable_0',['Callable',['../namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa79ace5b2a7206c5d0aa286a5b33385f8',1,'abcg']]],
+  ['callgl_1',['callGL',['../namespaceabcg.html#a59fd1679b061fafcc7c087404e3e3ed1',1,'abcg']]],
+  ['changelog_2emd_2',['CHANGELOG.md',['../CHANGELOG_8md.html',1,'']]],
+  ['changes_3',['changes',['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md20',1,'Breaking changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md15',1,'Breaking changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md21',1,'Other changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md16',1,'Other changes']]],
+  ['checkglerror_4',['checkGLError',['../namespaceabcg.html#a319c7bd437a23751054bc1d092d9e0ae',1,'abcg']]],
+  ['checkopenglshadercompile_5',['checkOpenGLShaderCompile',['../namespaceabcg.html#ada2b3e076d6fe0c4dd27615e7f4d4d50',1,'abcg']]],
+  ['checkopenglshaderlink_6',['checkOpenGLShaderLink',['../namespaceabcg.html#aab59a12bb6313b5c58f5352ce6f380e5',1,'abcg']]],
+  ['checkrebuild_7',['checkRebuild',['../classabcg_1_1VulkanSwapchain.html#ac49877bbe8e638358d639373dba086f4',1,'abcg::VulkanSwapchain']]],
+  ['checkvkresult_8',['checkVkResult',['../namespaceabcg.html#a6dc603716e2c0c5a9ee71ff1ca9881d9',1,'abcg']]],
+  ['closesthit_9',['ClosestHit',['../namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daad4fcd21286c099405aff8d6b04c76575',1,'abcg']]],
+  ['colorblendattachment_10',['colorBlendAttachment',['../structabcg_1_1VulkanPipelineCreateInfo.html#aa5ea15999850fa2dfe34904cc2967dcf',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['colorblendstate_11',['colorBlendState',['../structabcg_1_1VulkanPipelineCreateInfo.html#a8f619f17d792103695630434e5ffa8b2',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['colorimage_12',['colorImage',['../structabcg_1_1VulkanFrame.html#a4d4e911f29fb4da4c62f3f7af4607f79',1,'abcg::VulkanFrame']]],
+  ['commandbuffer_13',['commandBuffer',['../structabcg_1_1VulkanFrame.html#a09e1b9bef7c11ce5217a30e2d60cf020',1,'abcg::VulkanFrame']]],
+  ['commandbufferui_14',['commandBufferUI',['../structabcg_1_1VulkanFrame.html#a78141c209406580fe7b7b308a89e5aa4',1,'abcg::VulkanFrame']]],
+  ['commandpool_15',['commandPool',['../structabcg_1_1VulkanFrame.html#aeb73ab1a9f74961233d4b29a563aef89',1,'abcg::VulkanFrame']]],
+  ['compatibility_16',['Compatibility',['../namespaceabcg.html#aef63a265616374ef2d9f1d63b0e9328eadf9c715f20aaf58fb3926cc02b08ec53',1,'abcg']]],
+  ['compute_17',['compute',['../structabcg_1_1VulkanCommandPools.html#ae92fad133885626122607f37761b39ca',1,'abcg::VulkanCommandPools::compute'],['../namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daaa623a8d0366bf079411aa30be45b2d10',1,'abcg::Compute'],['../structabcg_1_1VulkanQueues.html#ad4407f2456a1102537909ac3fef5928a',1,'abcg::VulkanQueues::compute'],['../structabcg_1_1VulkanQueuesFamilies.html#a5079aa2f106d59fd3c437f0b8d982594',1,'abcg::VulkanQueuesFamilies::compute']]],
+  ['core_18',['Core',['../namespaceabcg.html#aef63a265616374ef2d9f1d63b0e9328ea83168e6cb289d732cc78427b51f93153',1,'abcg']]],
+  ['create_19',['create',['../classabcg_1_1VulkanBuffer.html#a63c95797fc3e4ddfb0c9282fae794dd7',1,'abcg::VulkanBuffer::create()'],['../classabcg_1_1Window.html#aae2263884294b506d2ffec789d3d4d9e',1,'abcg::Window::create()'],['../classabcg_1_1VulkanSwapchain.html#ab825b2bcd984c4efa9bf91f186b10f31',1,'abcg::VulkanSwapchain::create()'],['../classabcg_1_1VulkanShader.html#ab60a83a3d2045c1c4361eef0a2e64db2',1,'abcg::VulkanShader::create()'],['../classabcg_1_1VulkanPipeline.html#a743747edda95318ed91afe853d2a71c0',1,'abcg::VulkanPipeline::create()'],['../classabcg_1_1VulkanPhysicalDevice.html#ae39f878f560e709b08b634314d28d730',1,'abcg::VulkanPhysicalDevice::create()'],['../classabcg_1_1VulkanInstance.html#abdd4efd069ddeb2937f6771897765730',1,'abcg::VulkanInstance::create()'],['../classabcg_1_1VulkanImage.html#a05345978b7425f41b3248ea68050134b',1,'abcg::VulkanImage::create(VulkanDevice const &amp;device, VulkanImageCreateInfo const &amp;createInfo)'],['../classabcg_1_1VulkanImage.html#a9eeb71182f8999997c3298264f72ef0d',1,'abcg::VulkanImage::create(VulkanDevice const &amp;device, std::string_view path, bool generateMipmaps=true)'],['../classabcg_1_1VulkanDevice.html#ab3e411047411d3fb64efc8689039e029',1,'abcg::VulkanDevice::create()']]],
+  ['createopenglprogram_20',['createOpenGLProgram',['../namespaceabcg.html#ac5dc51412a57521944dc7f4f32901af5',1,'abcg']]],
+  ['createsdlwindow_21',['createSDLWindow',['../classabcg_1_1Window.html#a0f9ac50c1babc71e1ac22207b4ccb48e',1,'abcg::Window']]]
 ];

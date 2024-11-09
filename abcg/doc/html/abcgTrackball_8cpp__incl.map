@@ -1,9 +1,15 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgTrackball.cpp" name="/home/harlen/dev/abcg/abcg/abcgTrackball.cpp">
-<area shape="rect" id="node1" title="Definition of abcg::TrackBall members." alt="" coords="195,5,372,47"/>
-<area shape="rect" id="node2" href="$abcgTrackball_8hpp.html" title="Header file of abcg::TrackBall." alt="" coords="78,95,217,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="241,95,326,121"/>
-<area shape="rect" id="node7" title=" " alt="" coords="350,95,409,121"/>
-<area shape="rect" id="node3" href="$abcgExternal_8hpp.html" title="Header file for including third&#45;party dependencies." alt="" coords="5,169,140,196"/>
-<area shape="rect" id="node4" href="$abcgTimer_8hpp.html" title="Header file of abcg::Timer." alt="" coords="164,169,283,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="190,244,257,271"/>
+<area shape="rect" id="Node000001" title="Definition of abcg::TrackBall members." alt="" coords="195,5,372,45"/>
+<area shape="rect" id="Node000002" href="$abcgTrackball_8hpp.html" title="Header file of abcg::TrackBall." alt="" coords="78,93,217,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,48,181,89,178,84,249,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="241,93,326,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="286,46,286,79,281,79,281,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="350,93,409,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="308,43,356,82,353,87,305,48"/>
+<area shape="rect" id="Node000003" href="$abcgExternal_8hpp.html" title="Header file for including third&#45;party dependencies." alt="" coords="5,167,140,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="137,121,97,159,93,155,134,117"/>
+<area shape="rect" id="Node000004" href="$abcgTimer_8hpp.html" title="Header file of abcg::Timer." alt="" coords="164,167,283,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="161,117,203,155,199,159,158,121"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="190,240,257,265"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="226,192,226,226,221,226,221,192"/>
 </map>

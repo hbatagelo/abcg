@@ -1,5 +1,7 @@
 <map id="abcg::RuntimeError" name="abcg::RuntimeError">
-<area shape="rect" id="node1" title="Represents an exception object for runtime errors." alt="" coords="5,155,152,181"/>
-<area shape="rect" id="node2" href="$classabcg_1_1Exception.html" title="Base class for ABCg exception objects." alt="" coords="16,80,141,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="21,5,136,32"/>
+<area shape="rect" id="Node000001" title="Represents an exception object for runtime errors." alt="" coords="5,152,152,177"/>
+<area shape="rect" id="Node000002" href="$classabcg_1_1Exception.html" title="Base class for ABCg exception objects." alt="" coords="16,79,141,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,118,81,152,76,152,76,118"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="21,5,136,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,44,81,79,76,79,76,44"/>
 </map>

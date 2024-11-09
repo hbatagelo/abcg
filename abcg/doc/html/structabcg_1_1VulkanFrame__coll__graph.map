@@ -1,4 +1,5 @@
 <map id="abcg::VulkanFrame" name="abcg::VulkanFrame">
-<area shape="rect" id="node1" title="Data needed by a rendering frame." alt="" coords="5,95,151,121"/>
-<area shape="rect" id="node2" href="$classabcg_1_1VulkanImage.html" title="A class for representing a Vulkan image." alt="" coords="5,5,151,32"/>
+<area shape="rect" id="Node000001" title="Data needed by a rendering frame." alt="" coords="5,93,151,119"/>
+<area shape="rect" id="Node000002" href="$classabcg_1_1VulkanImage.html" title="A class for representing a Vulkan image." alt="" coords="5,5,151,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,45,81,93,75,93,75,45"/>
 </map>

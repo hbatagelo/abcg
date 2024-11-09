@@ -1,10 +1,18 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanDevice.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanDevice.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::VulkanDevice." alt="" coords="103,5,311,47"/>
-<area shape="rect" id="node2" href="$abcgVulkanPhysicalDevice_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="6,95,229,121"/>
-<area shape="rect" id="node8" title=" " alt="" coords="253,95,339,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,80,196"/>
-<area shape="rect" id="node4" href="$abcgVulkanExternal_8hpp.html" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="91,244,269,271"/>
-<area shape="rect" id="node7" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="155,169,333,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="86,319,149,345"/>
-<area shape="rect" id="node6" title=" " alt="" coords="173,319,313,345"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::VulkanDevice." alt="" coords="103,5,311,45"/>
+<area shape="rect" id="Node000002" href="$abcgVulkanPhysicalDevice_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="6,93,229,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,48,143,86,139,82,183,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="253,93,339,119"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="230,44,274,82,271,86,227,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,80,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,121,67,159,63,155,104,117"/>
+<area shape="rect" id="Node000004" href="$abcgVulkanExternal_8hpp.html" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="91,240,269,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="122,119,131,152,145,191,166,227,161,230,140,193,126,153,117,120"/>
+<area shape="rect" id="Node000007" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="155,167,333,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="139,116,213,157,210,162,136,121"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="86,313,149,339"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="172,267,139,305,135,301,168,264"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="173,313,313,339"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="192,264,225,301,221,305,188,267"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="235,194,201,232,197,228,231,191"/>
 </map>

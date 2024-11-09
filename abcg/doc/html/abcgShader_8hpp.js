@@ -1,6 +1,6 @@
 var abcgShader_8hpp =
 [
-    [ "ShaderSource", "structabcg_1_1ShaderSource.html", "structabcg_1_1ShaderSource" ],
+    [ "abcg::ShaderSource", "structabcg_1_1ShaderSource.html", "structabcg_1_1ShaderSource" ],
     [ "ShaderStage", "abcgShader_8hpp.html#a9853f19ed2d55b91bc64fde5a95e40da", [
       [ "Vertex", "abcgShader_8hpp.html#a9853f19ed2d55b91bc64fde5a95e40daab22b929ba52471a02d18bb3a4e4472e6", null ],
       [ "TessellationControl", "abcgShader_8hpp.html#a9853f19ed2d55b91bc64fde5a95e40daa91a08ad964ef35c89ae69cd4176cfb4a", null ],

@@ -1,5 +1,7 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgOpenGLError.hpp" name="/home/harlen/dev/abcg/abcg/abcgOpenGLError.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::OpenGLError and derived classes." alt="" coords="122,5,323,47"/>
-<area shape="rect" id="node2" href="$abcgOpenGLError_8cpp.html" title="Definition of abcg::OpenGLError members." alt="" coords="5,95,205,136"/>
-<area shape="rect" id="node3" href="$abcgOpenGLFunction_8cpp.html" title="Definition of OpenGL&#45;related error checking functions." alt="" coords="229,95,454,136"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::OpenGLError and derived classes." alt="" coords="122,5,323,45"/>
+<area shape="rect" id="Node000002" href="$abcgOpenGLError_8cpp.html" title="Definition of abcg::OpenGLError members." alt="" coords="5,93,205,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,56,133,95,130,91,184,52"/>
+<area shape="rect" id="Node000003" href="$abcgOpenGLFunction_8cpp.html" title="Definition of OpenGL&#45;related error checking functions." alt="" coords="229,93,454,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="262,51,317,91,314,95,259,56"/>
 </map>

@@ -1,5 +1,12 @@
 # Release notes
 
+## v3.1.2
+
+*   [@abacchi00 (André Bacchi)](https://github.com/abacchi00): fix: ensure web build runs correctly.
+*   Fix `cmake_minimum_required()` deprecation warnings.
+*   Disable warnings for vendored-in libraries in WASM builds.
+
+
 ## v3.1.1
 
 *   Added a shader compile check to make GLSL ES shaders compatible with macOS.

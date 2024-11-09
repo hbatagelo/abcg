@@ -1,7 +1,12 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgOpenGLError.hpp" name="/home/harlen/dev/abcg/abcg/abcgOpenGLError.hpp">
-<area shape="rect" id="node1" title="Header file of abcg::OpenGLError and derived classes." alt="" coords="31,5,232,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,169,129,196"/>
-<area shape="rect" id="node3" href="$abcgException_8hpp.html" title="Header file of abcg::Exception and derived classes." alt="" coords="119,95,264,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="153,169,240,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="265,169,323,196"/>
+<area shape="rect" id="Node000001" title="Header file of abcg::OpenGLError and derived classes." alt="" coords="31,5,232,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,167,129,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,47,80,155,75,153,121,45"/>
+<area shape="rect" id="Node000003" href="$abcgException_8hpp.html" title="Header file of abcg::Exception and derived classes." alt="" coords="119,93,264,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,44,176,81,172,84,144,47"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="173,121,101,162,98,157,170,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="153,167,240,192"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="195,119,197,153,192,153,190,119"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="265,167,323,192"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="209,116,267,156,264,161,206,121"/>
 </map>

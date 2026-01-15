@@ -85,9 +85,6 @@ NVIDIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-#if (defined(_MSC_VER) && _MSC_VER < 1900 /*vs2015*/)
-#define snprintf sprintf_s
-#endif
 
 #include <cassert>
 #include <cstdlib>
@@ -108,25 +105,13 @@ void TPpContext::TokenStream::putToken(int atom, TPpToken* ppToken)
 }
 
 // Read the next token from a macro token stream.
-int TPpContext::TokenStream::getToken(TParseContextBase& parseContext, TPpToken *ppToken)
+int TPpContext::TokenStream::getToken(TParseContextBase& parseContext, TPpToken* ppToken)
 {
     if (atEnd())
         return EndOfInput;
 
     int atom = stream[currentPos++].get(*ppToken);
     ppToken->loc = parseContext.getCurrentLoc();
-
-#ifndef GLSLANG_WEB
-    // Check for ##, unless the current # is the last character
-    if (atom == '#') {
-        if (peekToken('#')) {
-            parseContext.requireProfile(ppToken->loc, ~EEsProfile, "token pasting (##)");
-            parseContext.profileRequires(ppToken->loc, ~EEsProfile, 130, 0, "token pasting (##)");
-            currentPos++;
-            atom = PpAtomPaste;
-        }
-    }
-#endif
 
     return atom;
 }
@@ -151,8 +136,10 @@ bool TPpContext::TokenStream::peekTokenizedPasting(bool lastTokenPastes)
 
     // 2. last token and we've been told after this there will be a ##
 
-    if (! lastTokenPastes)
+    if (! lastTokenPastes) {
+        currentPos = savePos;
         return false;
+    }
     // Getting here means the last token will be pasted, after this
 
     // Are we at the last non-whitespace token?
@@ -172,32 +159,9 @@ bool TPpContext::TokenStream::peekTokenizedPasting(bool lastTokenPastes)
     return !moreTokens;
 }
 
-// See if the next non-white-space tokens are two consecutive #
-bool TPpContext::TokenStream::peekUntokenizedPasting()
+void TPpContext::pushTokenStreamInput(TokenStream& ts, bool prepasting, bool expanded)
 {
-    // don't return early, have to restore this
-    size_t savePos = currentPos;
-
-    // skip white-space
-    while (peekToken(' '))
-        ++currentPos;
-
-    // check for ##
-    bool pasting = false;
-    if (peekToken('#')) {
-        ++currentPos;
-        if (peekToken('#'))
-            pasting = true;
-    }
-
-    currentPos = savePos;
-
-    return pasting;
-}
-
-void TPpContext::pushTokenStreamInput(TokenStream& ts, bool prepasting)
-{
-    pushInput(new tTokenInput(this, &ts, prepasting));
+    pushInput(new tTokenInput(this, &ts, prepasting, expanded));
     ts.reset();
 }
 

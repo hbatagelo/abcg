@@ -7,7 +7,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -252,48 +252,54 @@ inline GLuint glCreateShader(
 inline void
 glCullFace(GLenum mode,
            source_location const &sourceLocation = source_location::current()) {
-  return callGL(sourceLocation, ::glCullFace, mode);
+  callGL(sourceLocation, ::glCullFace, mode);
 }
 inline void glDeleteBuffers(
     GLsizei n, const GLuint *buffers,
     source_location const &sourceLocation = source_location::current()) {
-  if (buffers == nullptr || *buffers == 0)
+  if (buffers == nullptr || *buffers == 0) {
     return;
+  }
   callGL(sourceLocation, ::glDeleteBuffers, n, buffers);
 }
 inline void glDeleteFramebuffers(
     GLsizei n, GLuint const *framebuffers,
     source_location const &sourceLocation = source_location::current()) {
-  if (framebuffers == nullptr || *framebuffers == 0)
+  if (framebuffers == nullptr || *framebuffers == 0) {
     return;
+  }
   callGL(sourceLocation, ::glDeleteFramebuffers, n, framebuffers);
 }
 inline void glDeleteProgram(
     GLuint program,
     source_location const &sourceLocation = source_location::current()) {
-  if (program == 0)
+  if (program == 0) {
     return;
+  }
   callGL(sourceLocation, ::glDeleteProgram, program);
 }
 inline void glDeleteRenderbuffers(
     GLsizei n, GLuint *renderbuffers,
     source_location const &sourceLocation = source_location::current()) {
-  if (renderbuffers == nullptr || *renderbuffers == 0)
+  if (renderbuffers == nullptr || *renderbuffers == 0) {
     return;
+  }
   callGL(sourceLocation, ::glDeleteRenderbuffers, n, renderbuffers);
 }
 inline void glDeleteShader(
     GLuint shader,
     source_location const &sourceLocation = source_location::current()) {
-  if (shader == 0)
+  if (shader == 0) {
     return;
+  }
   callGL(sourceLocation, ::glDeleteShader, shader);
 }
 inline void glDeleteTextures(
     GLsizei n, GLuint const *textures,
     source_location const &sourceLocation = source_location::current()) {
-  if (textures == nullptr || *textures == 0)
+  if (textures == nullptr || *textures == 0) {
     return;
+  }
   callGL(sourceLocation, ::glDeleteTextures, n, textures);
 }
 inline void glDepthFunc(GLenum func, source_location const &sourceLocation =

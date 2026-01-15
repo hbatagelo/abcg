@@ -37,8 +37,6 @@
 // propagate the 'noContraction' qualifier.
 //
 
-#ifndef GLSLANG_WEB
-
 #include "propagateNoContraction.h"
 
 #include <cstdlib>
@@ -176,6 +174,9 @@ bool isArithmeticOperation(glslang::TOperator op)
     case glslang::EOpMatrixTimesMatrix:
 
     case glslang::EOpDot:
+    case glslang::EOpDotPackedEXT:
+    case glslang::EOpDotAccSatEXT:
+    case glslang::EOpDotPackedAccSatEXT:
 
     case glslang::EOpPostIncrement:
     case glslang::EOpPostDecrement:
@@ -423,7 +424,7 @@ getSymbolToDefinitionMappingAndPreciseSymbolIDs(const glslang::TIntermediate& in
                                         ReturnBranchNodeSet());
 
     TIntermNode* root = intermediate.getTreeRoot();
-    if (root == 0)
+    if (root == nullptr)
         return result_tuple;
 
     NodeMapping& symbol_definition_mapping = std::get<0>(result_tuple);
@@ -865,6 +866,4 @@ void PropagateNoContraction(const glslang::TIntermediate& intermediate)
         precise_object_accesschains.erase(precise_object_accesschain);
     }
 }
-};
-
-#endif // GLSLANG_WEB
+}

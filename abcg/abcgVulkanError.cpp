@@ -4,27 +4,30 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgVulkanError.hpp"
+#include "abcgUtil.hpp"
 
 #include <fmt/core.h>
 
+void abcg::checkVkResult(
+    [[maybe_unused]] VkResult retCode,
+    [[maybe_unused]] source_location const &sourceLocation) {
 #if !defined(NDEBUG)
-
-void abcg::checkVkResult(VkResult retCode,
-                         source_location const &sourceLocation) {
-  if (retCode < 0)
+  if (retCode == VK_SUCCESS) {
+    return;
+  }
+  if (retCode < 0) {
     throw abcg::VulkanError(retCode, sourceLocation);
+  }
 
   // Success codes
 
-  std::string_view result;
+  std::string result;
   switch (retCode) {
-  case VK_SUCCESS:
-    return;
   case VK_NOT_READY:
     result = "VK_NOT_READY: a fence or query has not yet completed";
     break;
@@ -74,6 +77,7 @@ void abcg::checkVkResult(VkResult retCode,
   }
 
   fmt::print("{}: {}.\n", toYellowString("INFO"), result);
+#endif
 }
 
 /**
@@ -83,43 +87,29 @@ void abcg::checkVkResult(VkResult retCode,
  * @param sourceLocation Information about the source code.
  *
  * The object generates a color-coded string containing the error name, a
- * descriptive error messages, and the source code information.
+ * descriptive error message, and the source code information.
  */
-abcg::VulkanError::VulkanError(VkResult errorCode,
-                               source_location const &sourceLocation)
+abcg::VulkanError::VulkanError(
+    VkResult errorCode, [[maybe_unused]] source_location const &sourceLocation)
     : Exception(prettyPrint(errorCode, sourceLocation)) {}
 
-std::string
-abcg::VulkanError::prettyPrint(VkResult errorCode,
-                               source_location const &sourceLocation) {
+std::string abcg::VulkanError::prettyPrint(
+    VkResult errorCode,
+    [[maybe_unused]] source_location const &sourceLocation) {
   auto errorMessage{toRedString("Vulkan error ")};
-  errorMessage += " (";
-  errorMessage += getVulkanErrorString(errorCode);
-  errorMessage += ")";
+  errorMessage += " (" + getVulkanErrorString(errorCode) + ")";
+#if !defined(NDEBUG)
   return errorMessage + " in " + sourceLocation.file_name() + ":" +
          std::to_string(sourceLocation.line()) + ", " +
          toYellowString(sourceLocation.function_name()) + "\n";
-}
-
 #else
-void abcg::checkVkResult([[maybe_unused]] VkResult retCode) {}
-
-abcg::VulkanError::VulkanError(VkResult errorCode)
-    : Exception(prettyPrint(errorCode)) {}
-abcg::VulkanError::VulkanError(vk::Result /*errorCode*/) : Exception("TODO") {}
-
-std::string abcg::VulkanError::prettyPrint(VkResult errorCode) {
-  auto errorMessage{toRedString("Vulkan error ")};
-  errorMessage += " (";
-  errorMessage += getVulkanErrorString(errorCode);
-  errorMessage += ")";
   return errorMessage;
-}
 #endif
+}
 
-// https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html)
-std::string_view abcg::VulkanError::getVulkanErrorString(VkResult errorCode) {
-  std::string_view result;
+// https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkResult.html
+std::string abcg::VulkanError::getVulkanErrorString(VkResult errorCode) {
+  std::string result;
   switch (errorCode) {
   case VK_ERROR_OUT_OF_HOST_MEMORY:
     result = "VK_ERROR_OUT_OF_HOST_MEMORY: a host memory allocation has failed";

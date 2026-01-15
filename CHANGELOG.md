@@ -1,11 +1,19 @@
 # Release notes
 
+## v3.1.3
+
+*   Update dependencies (glslang, volk).
+*   Fix potentially unsafe uses of `string_view`.
+*   Fix use of Vulkan semaphores.
+*   Favor passing `glm::vec*` by value, except in the public API.
+*   Improve code formatting.
+*   Use more compact underlying types for enums.
+
 ## v3.1.2
 
 *   [@abacchi00 (André Bacchi)](https://github.com/abacchi00): fix: ensure web build runs correctly.
 *   Fix `cmake_minimum_required()` deprecation warnings.
 *   Disable warnings for vendored-in libraries in WASM builds.
-
 
 ## v3.1.1
 

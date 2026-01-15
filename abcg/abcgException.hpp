@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -53,7 +53,7 @@ public:
   [[nodiscard]] char const *what() const noexcept override;
 
 private:
-  std::string m_what{};
+  std::string m_what;
 };
 
 /**

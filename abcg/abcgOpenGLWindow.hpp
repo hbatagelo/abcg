@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -20,7 +20,7 @@
 #include "abcgWindow.hpp"
 
 namespace abcg {
-enum class OpenGLProfile;
+enum class OpenGLProfile : std::uint8_t;
 class OpenGLWindow;
 struct OpenGLSettings;
 } // namespace abcg
@@ -30,7 +30,7 @@ struct OpenGLSettings;
  *
  * @sa abcg::OpenGLSettings.
  */
-enum class abcg::OpenGLProfile {
+enum class abcg::OpenGLProfile : std::uint8_t {
   /** @brief OpenGL core profile.
    *
    * Deprecated functions are disabled.
@@ -100,7 +100,7 @@ class abcg::OpenGLWindow : public Window {
 public:
   [[nodiscard]] OpenGLSettings const &getOpenGLSettings() const noexcept;
   void setOpenGLSettings(OpenGLSettings const &openGLSettings) noexcept;
-  void saveScreenshotPNG(std::string_view filename) const;
+  void saveScreenshotPNG(std::string const &filename) const;
 
 protected:
   virtual void onEvent(SDL_Event const &event);

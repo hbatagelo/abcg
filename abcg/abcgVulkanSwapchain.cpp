@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -21,7 +21,7 @@
 
 namespace {
 struct SurfaceSupport {
-  vk::SurfaceKHR surfaceKHR{};
+  vk::SurfaceKHR surfaceKHR;
   vk::SurfaceCapabilitiesKHR capabilities{};
   std::vector<vk::SurfaceFormatKHR> formats;
   std::vector<vk::PresentModeKHR> presentModes;
@@ -57,8 +57,9 @@ chooseSwapPresentMode(std::vector<vk::PresentModeKHR> const &requestModes,
 
   for (auto const &requestMode : requestModes) {
     for (auto const &supportedMode : surfaceSupport.presentModes) {
-      if (supportedMode == requestMode)
+      if (supportedMode == requestMode) {
         return requestMode;
+      }
     }
   }
 
@@ -103,7 +104,7 @@ chooseSwapExtent(vk::SurfaceCapabilitiesKHR capabilities,
 
 void abcg::VulkanSwapchain::create(VulkanDevice const &device,
                                    VulkanSettings const &settings,
-                                   glm::ivec2 const &windowSize) {
+                                   glm::ivec2 windowSize) {
   m_device = device;
 
   m_swapChainRebuild = true;
@@ -127,19 +128,23 @@ void abcg::VulkanSwapchain::destroy() {
 }
 
 void abcg::VulkanSwapchain::render(
-    std::function<void(VulkanFrame const &)> const &fun) {
+    std::function<void(VulkanFrame const &)> const &recordMain) {
   auto const &device{static_cast<vk::Device>(m_device)};
 
-  // Get current set of semaphores
-  auto [presentCompleteSemaphore,
-        renderCompleteSemaphore]{m_frameSemaphores.at(m_currentSemaphore)};
+  // Select frame-in-flight
+  auto const &frame{m_framesInFlight.at(m_frameIndex)};
+
+  // Ensure GPU is done with this frame
+  static_cast<void>(device.waitForFences(frame.fence, VK_TRUE,
+                                         std::numeric_limits<uint64_t>::max()));
+  device.resetFences(frame.fence);
 
   // Acquire an image from the swapchain
   vk::Result result{};
   try {
     result = device.acquireNextImageKHR(
         m_swapchainKHR, std::numeric_limits<uint64_t>::max(),
-        presentCompleteSemaphore, vk::Fence{}, &m_currentFrame);
+        frame.imageAvailable, vk::Fence{}, &m_imageIndex);
   } catch (vk::OutOfDateKHRError const &) {
     result = vk::Result::eErrorOutOfDateKHR;
   }
@@ -149,20 +154,18 @@ void abcg::VulkanSwapchain::render(
     return;
   }
 
-  auto const &frame{m_frames.at(m_currentFrame)};
-
-  // Wait until command buffer for acquired image has finished executing
-  while (vk::Result::eTimeout ==
-         device.waitForFences(frame.fence, VK_TRUE,
-                              std::numeric_limits<uint64_t>::max()))
-    ;
-  device.resetFences(frame.fence);
+  // Reset per-frame resources
   device.resetCommandPool(frame.commandPool);
 
-  // Main pass
-  fun(frame);
+  // Record command buffers
+  recordMain(frame);
+  recordUI(frame);
 
-  // UI render pass
+  // Submit
+  submit(frame);
+}
+
+void abcg::VulkanSwapchain::recordUI(VulkanFrame const &frame) {
   frame.commandBufferUI.begin(
       {.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit});
 
@@ -182,12 +185,14 @@ void abcg::VulkanSwapchain::render(
   frame.commandBufferUI.endRenderPass();
 
   frame.commandBufferUI.end();
+}
 
-  std::array waitSemaphores{presentCompleteSemaphore};
+void abcg::VulkanSwapchain::submit(VulkanFrame const &frame) {
+  std::array waitSemaphores{frame.imageAvailable};
   std::array waitStages{vk::PipelineStageFlags{
       vk::PipelineStageFlagBits::eColorAttachmentOutput}};
   std::array commandBuffers{frame.commandBuffer, frame.commandBufferUI};
-  std::array signalSemaphores{renderCompleteSemaphore};
+  std::array signalSemaphores{frame.renderComplete};
 
   // Submit command buffer
   m_device.getQueues().graphics.submit(
@@ -202,25 +207,25 @@ void abcg::VulkanSwapchain::render(
 }
 
 void abcg::VulkanSwapchain::present() {
-  if (m_swapChainRebuild)
+  if (m_swapChainRebuild) {
     return;
+  }
 
   // Set semaphores to wait
-  auto &frameSemaphore{m_frameSemaphores.at(m_currentSemaphore)};
-  std::array waitSemaphores{frameSemaphore.renderComplete};
+  auto const &frame{m_framesInFlight.at(m_frameIndex)};
+  std::array waitSemaphores{frame.renderComplete};
 
   // Set swapchains
   std::array swapchains{m_swapchainKHR};
 
   vk::Result result{};
   try {
-    result = m_device.getQueues().present.presentKHR({
-        .waitSemaphoreCount = gsl::narrow<uint32_t>(waitSemaphores.size()),
-        .pWaitSemaphores = waitSemaphores.data(),
-        .swapchainCount = gsl::narrow<uint32_t>(swapchains.size()),
-        .pSwapchains = swapchains.data(),
-        .pImageIndices = &m_currentFrame // Index of in-flight frame
-    });
+    result = m_device.getQueues().present.presentKHR(
+        {.waitSemaphoreCount = gsl::narrow<uint32_t>(waitSemaphores.size()),
+         .pWaitSemaphores = waitSemaphores.data(),
+         .swapchainCount = gsl::narrow<uint32_t>(swapchains.size()),
+         .pSwapchains = swapchains.data(),
+         .pImageIndices = &m_imageIndex});
   } catch (vk::OutOfDateKHRError const &) {
     result = vk::Result::eErrorOutOfDateKHR;
   }
@@ -230,15 +235,16 @@ void abcg::VulkanSwapchain::present() {
     return;
   }
 
-  // Use the next set of semaphores
-  m_currentSemaphore =
-      (m_currentSemaphore + 1) % gsl::narrow<uint32_t>(m_frames.size());
+  // Advance frame index
+  m_frameIndex =
+      (m_frameIndex + 1) % gsl::narrow<uint32_t>(m_framesInFlight.size());
 }
 
 bool abcg::VulkanSwapchain::checkRebuild(VulkanSettings const &settings,
-                                         glm::ivec2 const &windowSize) {
-  if (!m_swapChainRebuild)
+                                         glm::ivec2 windowSize) {
+  if (!m_swapChainRebuild) {
     return false;
+  }
 
   auto const &device{static_cast<vk::Device>(m_device)};
 
@@ -294,19 +300,23 @@ bool abcg::VulkanSwapchain::checkRebuild(VulkanSettings const &settings,
 
   // Choose extent
   m_swapchainExtent = chooseSwapExtent(surfaceCaps.capabilities, windowSize);
-  if (m_swapchainExtent.width == 0 && m_swapchainExtent.height == 0)
+  if (m_swapchainExtent.width == 0 && m_swapchainExtent.height == 0) {
     return false;
+  }
 
-  auto const &supportedComposite{
-      surfaceCaps.capabilities.supportedCompositeAlpha};
+  auto const pickCompositeAlpha{[](vk::CompositeAlphaFlagsKHR supported) {
+    for (auto const flag : {vk::CompositeAlphaFlagBitsKHR::ePreMultiplied,
+                            vk::CompositeAlphaFlagBitsKHR::ePostMultiplied,
+                            vk::CompositeAlphaFlagBitsKHR::eInherit}) {
+      if (supported & flag) {
+        return flag;
+      }
+    }
+    return vk::CompositeAlphaFlagBitsKHR::eOpaque;
+  }};
+
   auto const compositeAlpha{
-      (supportedComposite & vk::CompositeAlphaFlagBitsKHR::ePreMultiplied)
-          ? vk::CompositeAlphaFlagBitsKHR::ePreMultiplied
-      : (supportedComposite & vk::CompositeAlphaFlagBitsKHR::ePostMultiplied)
-          ? vk::CompositeAlphaFlagBitsKHR::ePostMultiplied
-      : (supportedComposite & vk::CompositeAlphaFlagBitsKHR::eInherit)
-          ? vk::CompositeAlphaFlagBitsKHR::eInherit
-          : vk::CompositeAlphaFlagBitsKHR::eOpaque};
+      pickCompositeAlpha(surfaceCaps.capabilities.supportedCompositeAlpha)};
 
   // Create swapchain
   vk::SwapchainCreateInfoKHR createInfo{
@@ -395,7 +405,7 @@ abcg::VulkanDevice const &abcg::VulkanSwapchain::getDevice() const noexcept {
  */
 std::vector<abcg::VulkanFrame> const &
 abcg::VulkanSwapchain::getFrames() const noexcept {
-  return m_frames;
+  return m_framesInFlight;
 }
 
 /**
@@ -405,7 +415,7 @@ abcg::VulkanSwapchain::getFrames() const noexcept {
  */
 abcg::VulkanFrame const &
 abcg::VulkanSwapchain::getCurrentFrame() const noexcept {
-  return m_frames[m_currentFrame];
+  return m_framesInFlight[m_frameIndex];
 }
 
 /**
@@ -446,18 +456,17 @@ abcg::VulkanImage const &abcg::VulkanSwapchain::getDepthImage() const noexcept {
 }
 
 void abcg::VulkanSwapchain::createFrames() {
+  auto const &device{static_cast<vk::Device>(m_device)};
   auto const swapchainImages{
       static_cast<vk::Device>(m_device).getSwapchainImagesKHR(m_swapchainKHR)};
 
   // Create image views
-  m_currentFrame = 0;
-  m_frames.resize(swapchainImages.size());
-  m_currentSemaphore = 0;
-  m_frameSemaphores.resize(swapchainImages.size());
+  m_frameIndex = 0;
+  m_framesInFlight.resize(swapchainImages.size());
 
-  for (auto &&[frame, image, index] :
-       iter::zip(m_frames, swapchainImages, iter::range(m_frames.size()))) {
-    frame.index = gsl::narrow<uint32_t>(index);
+  for (auto &&[frame, image] : iter::zip(m_framesInFlight, swapchainImages)) {
+    frame.imageAvailable = device.createSemaphore({});
+    frame.renderComplete = device.createSemaphore({});
     frame.colorImage.create(
         m_device,
         {.viewInfo = {
@@ -473,20 +482,17 @@ void abcg::VulkanSwapchain::createFrames() {
 void abcg::VulkanSwapchain::destroyFrames() {
   auto const &device{static_cast<vk::Device>(m_device)};
 
-  for (auto &frame : m_frames) {
-    device.destroyCommandPool(frame.commandPool);
-    device.destroyFence(frame.fence);
-    frame.colorImage.destroy();
+  for (auto &frame : m_framesInFlight) {
     device.destroyFramebuffer(frame.framebufferMain);
+    device.destroyCommandPool(frame.commandPool);
+
+    frame.colorImage.destroy();
+    device.destroySemaphore(frame.renderComplete);
+    device.destroySemaphore(frame.imageAvailable);
+    device.destroyFence(frame.fence);
   }
 
-  for (auto &frameSemaphore : m_frameSemaphores) {
-    device.destroySemaphore(frameSemaphore.presentComplete);
-    device.destroySemaphore(frameSemaphore.renderComplete);
-  }
-
-  m_frames.clear();
-  m_frameSemaphores.clear();
+  m_framesInFlight.clear();
 }
 
 // TODO:
@@ -793,7 +799,7 @@ void abcg::VulkanSwapchain::createFramebuffers(VulkanSettings const &settings) {
   }
   auto const graphicsQueueFamily{queuesFamilies.graphics.value()};
 
-  for (auto &frame : m_frames) {
+  for (auto &frame : m_framesInFlight) {
     // Each frame has its own transient graphics command pool
     frame.commandPool = device.createCommandPool(
         {.flags = vk::CommandPoolCreateFlagBits::eTransient,
@@ -847,11 +853,5 @@ void abcg::VulkanSwapchain::createFramebuffers(VulkanSettings const &settings) {
          .width = m_swapchainExtent.width,
          .height = m_swapchainExtent.height,
          .layers = 1});
-  }
-
-  // Create semaphores
-  for (auto &frameSemaphore : m_frameSemaphores) {
-    frameSemaphore.presentComplete = device.createSemaphore({});
-    frameSemaphore.renderComplete = device.createSemaphore({});
   }
 }

@@ -38,7 +38,7 @@
 
 #pragma once
 
-#include "spirv.hpp"
+#include "spirv.hpp11"
 
 #include <vector>
 
@@ -156,6 +156,8 @@ enum OperandClass {
     OperandKernelEnqueueFlags,
     OperandKernelProfilingInfo,
     OperandCapability,
+    OperandCooperativeMatrixOperands,
+    OperandTensorAddressingOperands,
 
     OperandOpcode,
 
@@ -190,15 +192,15 @@ protected:
 // Parameterize an enumerant
 class EnumParameters {
 public:
-    EnumParameters() : desc(0) { }
+    EnumParameters() : desc(nullptr) { }
     const char* desc;
 };
 
 // Parameterize a set of enumerants that form an enum
 class EnumDefinition : public EnumParameters {
 public:
-    EnumDefinition() : 
-        ceiling(0), bitmask(false), getName(0), enumParams(0), operandParams(0) { }
+    EnumDefinition() :
+        ceiling(0), bitmask(false), getName(nullptr), enumParams(nullptr), operandParams(nullptr) { }
     void set(int ceil, const char* (*name)(int), EnumParameters* ep, bool mask = false)
     {
         ceiling = ceil;
@@ -239,8 +241,8 @@ public:
     OperandParameters operands;
 
 protected:
-    int typePresent   : 1;
-    int resultPresent : 1;
+    bool typePresent   : 1;
+    bool resultPresent : 1;
 };
 
 // The set of objects that hold all the instruction/operand

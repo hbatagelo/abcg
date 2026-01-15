@@ -4,13 +4,15 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #include "abcgVulkanShader.hpp"
 #include "abcgException.hpp"
 
+#include <glslang/Public/ShaderLang.h>
+#include <glslang/Include/ResourceLimits.h>
 #include <glslang/SPIRV/GlslangToSpv.h>
 
 #include <fmt/core.h>
@@ -235,24 +237,23 @@ abcgStageToVulkanStage(abcg::ShaderStage stage) {
 }
 
 // If filenameOrText is a filename, returns the contents of the file (assumed
-// to be in text format). Otherwise, returns filenameOrText.
+// to be in text format). Otherwise, returns the filename.
 [[nodiscard]] std::string toSource(std::string_view filenameOrText) {
   static const std::size_t maxPathSize{260};
-  if (filenameOrText.size() > maxPathSize ||
-      !std::filesystem::exists(filenameOrText)) {
-    return filenameOrText.data();
+  std::string str{filenameOrText};
+  if (str.size() > maxPathSize ||
+      !std::filesystem::exists(str)) {
+    return str;
   }
-  std::stringstream source;
-  if (std::ifstream stream(filenameOrText.data()); stream) {
-    source << stream.rdbuf();
-    stream.close();
-  } else {
+  std::ifstream stream(str);
+  if (!stream) {
     throw abcg::RuntimeError(
-        fmt::format("Failed to read file {}", filenameOrText));
-  }
+      fmt::format("Failed to read file {}", str));
+    }
+    std::stringstream source;
+    source << stream.rdbuf();
   return source.str();
 }
-} // namespace
 
 // Compiles the given GLSL shader source into Vulkan SPIR-V.
 std::vector<uint32_t> GLSLtoSPV(abcg::ShaderSource shaderSource) {
@@ -300,6 +301,7 @@ std::vector<uint32_t> GLSLtoSPV(abcg::ShaderSource shaderSource) {
 
   return outCode;
 }
+} // namespace
 
 /**
  * @brief Compiles a GLSL shader to SPIR-V and creates its module.

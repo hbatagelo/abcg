@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -79,8 +79,9 @@ abcg::VulkanWindow::getVulkanSettings() const noexcept {
  */
 void abcg::VulkanWindow::setVulkanSettings(
     VulkanSettings const &vulkanSettings) noexcept {
-  if (abcg::Window::getSDLWindow() != nullptr)
+  if (abcg::Window::getSDLWindow() != nullptr) {
     return;
+  }
   m_vulkanSettings = vulkanSettings;
 }
 
@@ -240,8 +241,9 @@ void abcg::VulkanWindow::onUpdate() {}
 void abcg::VulkanWindow::onDestroy() {}
 
 void abcg::VulkanWindow::handleEvent(SDL_Event const &event) {
-  if (event.window.windowID != abcg::Window::getSDLWindowID())
+  if (event.window.windowID != abcg::Window::getSDLWindowID()) {
     return;
+  }
 
   if (event.type == SDL_WINDOWEVENT) {
     switch (event.window.event) {
@@ -401,8 +403,9 @@ void abcg::VulkanWindow::create() {
 void abcg::VulkanWindow::paint() {
   onUpdate();
 
-  if (m_hidden || m_minimized)
+  if (m_hidden || m_minimized) {
     return;
+  }
 
   if (m_swapchain.checkRebuild(m_vulkanSettings, getWindowSize())) {
     onResize();

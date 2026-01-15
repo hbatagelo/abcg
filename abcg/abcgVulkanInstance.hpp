@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -26,7 +26,7 @@ class abcg::VulkanInstance {
 public:
   void create(std::vector<char const *> const &layers = {},
               std::vector<char const *> const &extensions = {},
-              std::string_view applicationName = {});
+              std::string const &applicationName = {});
   void destroy();
 
   explicit operator vk::Instance const &() const noexcept;
@@ -35,7 +35,7 @@ private:
   vk::Instance m_instance;
 
 #if defined(ABCG_VULKAN_DEBUG_REPORT)
-  vk::DebugUtilsMessengerEXT m_debugMessenger{};
+  vk::DebugUtilsMessengerEXT m_debugMessenger;
 #endif
 };
 

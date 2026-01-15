@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -32,11 +32,12 @@ class VulkanWindow;
  *
  */
 struct abcg::VulkanFrame {
-  uint32_t index{};
   vk::CommandPool commandPool;
   vk::CommandBuffer commandBuffer;
   vk::CommandBuffer commandBufferUI;
   vk::Fence fence;
+  vk::Semaphore imageAvailable;
+  vk::Semaphore renderComplete;
   VulkanImage colorImage;
   vk::Framebuffer framebufferMain;
 };
@@ -50,12 +51,11 @@ struct abcg::VulkanFrame {
 class abcg::VulkanSwapchain {
 public:
   void create(VulkanDevice const &device, VulkanSettings const &settings,
-              glm::ivec2 const &windowSize);
+              glm::ivec2 windowSize);
   void destroy();
-  void render(std::function<void(VulkanFrame const &)> const &fun);
+  void render(std::function<void(VulkanFrame const &)> const &recordMain);
   void present();
-  bool checkRebuild(VulkanSettings const &settings,
-                    glm::ivec2 const &windowSize);
+  bool checkRebuild(VulkanSettings const &settings, glm::ivec2 windowSize);
 
   explicit operator vk::SwapchainKHR const &() const noexcept;
 
@@ -83,6 +83,9 @@ private:
 
   void createFramebuffers(VulkanSettings const &settings);
 
+  void recordUI(VulkanFrame const &frame);
+  void submit(VulkanFrame const &frame);
+
   vk::SwapchainKHR m_swapchainKHR;
   VulkanDevice m_device;
 
@@ -90,18 +93,10 @@ private:
   vk::Extent2D m_swapchainExtent;
   bool m_swapChainRebuild{};
 
-  // Data for swapchain synchronization
-  struct FrameSemaphores {
-    vk::Semaphore presentComplete;
-    vk::Semaphore renderComplete;
-  };
+  uint32_t m_frameIndex{}; // Frames-in-flight (CPU-side)
+  uint32_t m_imageIndex{}; // Swapchain image (WSI-side)
 
-  uint32_t m_currentFrame{};
-  std::vector<VulkanFrame> m_frames;
-  // Current set of swapchain wait semaphores we're using (needs to be distinct
-  // from per frame data)
-  uint32_t m_currentSemaphore{};
-  std::vector<FrameSemaphores> m_frameSemaphores;
+  std::vector<VulkanFrame> m_framesInFlight;
 
   VulkanImage m_depthImage;
   VulkanImage m_MSAAImage;

@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -149,8 +149,9 @@ void abcg::Application::mainLoopIterator([[maybe_unused]] bool &done) const {
   SDL_Event event{};
   while (SDL_PollEvent(&event) != 0) {
 #if !defined(__EMSCRIPTEN__)
-    if (event.type == SDL_QUIT)
+    if (event.type == SDL_QUIT) {
       done = true;
+    }
 #endif
     m_window->templateHandleEvent(event, done);
   }

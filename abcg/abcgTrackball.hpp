@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -26,10 +26,10 @@ class TrackBall;
  */
 class abcg::TrackBall {
 public:
-  void mouseMove(glm::ivec2 const &position);
-  void mousePress(glm::ivec2 const &position);
-  void mouseRelease(glm::ivec2 const &position);
-  void resizeViewport(glm::ivec2 const &size) noexcept;
+  void mouseMove(glm::ivec2 position);
+  void mousePress(glm::ivec2 position);
+  void mouseRelease(glm::ivec2 position);
+  void resizeViewport(glm::ivec2 size) noexcept;
 
   [[nodiscard]] glm::quat getRotation() const;
 
@@ -51,7 +51,7 @@ private:
 
   glm::ivec2 m_viewportSize{0};
 
-  [[nodiscard]] glm::vec3 project(glm::vec2 const &mousePosition) const;
+  [[nodiscard]] glm::vec3 project(glm::vec2 mousePosition) const;
 };
 
 #endif

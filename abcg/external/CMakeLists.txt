@@ -27,7 +27,18 @@ if(NOT ENABLE_CONAN OR ${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
                                                       ${SDL2_LIBRARY})
     endif()
     if(${GRAPHICS_API} MATCHES "Vulkan")
+
+      set(ENABLE_HLSL
+          OFF
+          CACHE BOOL "" FORCE)
       add_subdirectory(glslang)
+      # Suppress warnings for glslang
+      if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        target_compile_options(glslang PRIVATE -Wno-array-bounds
+                                               -Wno-maybe-uninitialized
+                                               -Wno-stringop-overflow)
+      endif()
+
       add_subdirectory(volk)
       target_link_libraries(${PROJECT_NAME} INTERFACE ${SDL2_LIBRARY} glslang
                                                       SPIRV volk)

@@ -16,7 +16,7 @@ void Window::onCreate() {
   std::array const vertices{glm::vec2(0.0f, 0.5f),
                             glm::vec2(0.5f, -0.5f),
                             glm::vec2(-0.5f, -0.5f)};
-  std::array const colors{glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), 
+  std::array const colors{glm::vec4(1.0f, 0.0f, 0.0f, 1.0f),
                           glm::vec4(1.0f, 0.0f, 1.0f, 1.0f),
                           glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)};
   // clang-format on

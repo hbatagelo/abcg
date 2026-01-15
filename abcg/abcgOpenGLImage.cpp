@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -30,7 +30,7 @@
 GLuint abcg::loadOpenGLTexture(OpenGLTextureCreateInfo const &createInfo) {
   GLuint textureID{};
 
-  if (SDL_Surface *const surface{IMG_Load(createInfo.path.data())}) {
+  if (SDL_Surface *const surface{IMG_Load(createInfo.path.c_str())}) {
     // Enforce RGB/RGBA
     GLenum internalFormat{};
     GLenum format{};
@@ -124,10 +124,11 @@ GLuint abcg::loadOpenGLCubemap(OpenGLCubemapCreateInfo const &createInfo) {
         }
 
         // Swap -z and +z
-        if (target == GL_TEXTURE_CUBE_MAP_POSITIVE_Z)
+        if (target == GL_TEXTURE_CUBE_MAP_POSITIVE_Z) {
           target = GL_TEXTURE_CUBE_MAP_NEGATIVE_Z;
-        else if (target == GL_TEXTURE_CUBE_MAP_NEGATIVE_Z)
+        } else if (target == GL_TEXTURE_CUBE_MAP_NEGATIVE_Z) {
           target = GL_TEXTURE_CUBE_MAP_POSITIVE_Z;
+        }
       }
 
       // Create texture

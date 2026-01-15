@@ -169,8 +169,15 @@ void Window::createGraphicsPipeline() {
                                  {.location = 1,
                                   .format = vk::Format::eR32G32B32A32Sfloat,
                                   .offset = offsetof(Vertex, color)}},
-       .inputAssemblyState = {.topology =
-                                  vk::PrimitiveTopology::eTriangleList}});
+       .inputAssemblyState = {.topology = vk::PrimitiveTopology::eTriangleList},
+       .viewports = {},
+       .scissors = {},
+       .multisampleState = {},
+       .depthStencilState = {},
+       .colorBlendAttachment = {},
+       .colorBlendState = {},
+       .dynamicStates = {},
+       .pipelineCache = {}});
 }
 
 void Window::destroyGraphicsPipeline() { m_graphicsPipeline.destroy(); }

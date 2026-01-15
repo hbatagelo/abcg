@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -27,7 +27,7 @@ class VulkanImage;
  */
 struct abcg::VulkanImageCreateInfo {
   vk::ImageCreateInfo info{};
-  vk::MemoryPropertyFlags properties{};
+  vk::MemoryPropertyFlags properties;
   vk::ImageViewCreateInfo viewInfo{};
 };
 
@@ -39,7 +39,7 @@ struct abcg::VulkanImageCreateInfo {
  */
 class abcg::VulkanImage {
 public:
-  void create(VulkanDevice const &device, std::string_view path,
+  void create(VulkanDevice const &device, std::string const &path,
               bool generateMipmaps = true);
   void create(VulkanDevice const &device,
               VulkanImageCreateInfo const &createInfo);

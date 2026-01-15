@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -80,7 +80,7 @@ class abcg::VulkanWindow : public Window {
 public:
   [[nodiscard]] VulkanSettings const &getVulkanSettings() const noexcept;
   void setVulkanSettings(VulkanSettings const &vulkanSettings) noexcept;
-  // void saveScreenshotPNG(std::string_view filename) const;
+  // void saveScreenshotPNG(std::string const &filename) const;
   [[nodiscard]] VulkanPhysicalDevice const &getPhysicalDevice() const noexcept;
   [[nodiscard]] VulkanDevice const &getDevice() const noexcept;
   [[nodiscard]] VulkanSwapchain const &getSwapchain() const noexcept;

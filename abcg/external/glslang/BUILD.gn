@@ -96,9 +96,6 @@ action("glslang_extension_headers") {
 }
 
 spirv_tools_dir = glslang_spirv_tools_dir
-if (!defined(glslang_angle)) {
-  glslang_angle = false
-}
 
 config("glslang_public") {
   include_dirs = [ "." ]
@@ -120,12 +117,12 @@ template("glslang_sources_common") {
     }
 
     sources = [
-      "OGLCompilersDLL/InitializeDll.cpp",
-      "OGLCompilersDLL/InitializeDll.h",
       "SPIRV/GLSL.ext.AMD.h",
       "SPIRV/GLSL.ext.EXT.h",
       "SPIRV/GLSL.ext.KHR.h",
       "SPIRV/GLSL.ext.NV.h",
+      "SPIRV/GLSL.ext.ARM.h",
+      "SPIRV/GLSL.ext.QCOM.h",
       "SPIRV/GLSL.std.450.h",
       "SPIRV/GlslangToSpv.cpp",
       "SPIRV/GlslangToSpv.h",
@@ -133,8 +130,7 @@ template("glslang_sources_common") {
       "SPIRV/Logger.cpp",
       "SPIRV/Logger.h",
       "SPIRV/NonSemanticDebugPrintf.h",
-      "SPIRV/SPVRemapper.cpp",
-      "SPIRV/SPVRemapper.h",
+      "SPIRV/NonSemanticShaderDebugInfo100.h",
       "SPIRV/SpvBuilder.cpp",
       "SPIRV/SpvBuilder.h",
       "SPIRV/SpvPostProcess.cpp",
@@ -145,8 +141,9 @@ template("glslang_sources_common") {
       "SPIRV/doc.cpp",
       "SPIRV/doc.h",
       "SPIRV/hex_float.h",
-      "SPIRV/spirv.hpp",
+      "SPIRV/spirv.hpp11",
       "SPIRV/spvIR.h",
+      "SPIRV/spvUtil.h",
       "glslang/GenericCodeGen/CodeGen.cpp",
       "glslang/GenericCodeGen/Link.cpp",
       "glslang/Include/BaseTypes.h",
@@ -161,6 +158,7 @@ template("glslang_sources_common") {
       "glslang/Include/Types.h",
       "glslang/Include/arrays.h",
       "glslang/Include/intermediate.h",
+      "glslang/Include/visibility.h",
       "glslang/MachineIndependent/Constant.cpp",
       "glslang/MachineIndependent/InfoSink.cpp",
       "glslang/MachineIndependent/Initialize.cpp",
@@ -236,13 +234,10 @@ template("glslang_sources_common") {
       ]
     }
 
-    defines = []
+    defines = [ "ENABLE_SPIRV=1" ]
     if (invoker.enable_opt) {
       sources += [ "SPIRV/SpvTools.cpp" ]
       defines += [ "ENABLE_OPT=1" ]
-    }
-    if (invoker.is_angle) {
-      defines += [ "GLSLANG_ANGLE" ]
     }
 
     if (is_win) {
@@ -292,22 +287,21 @@ template("glslang_sources_common") {
 }
 
 glslang_sources_common("glslang_lib_sources") {
-  enable_opt = !glslang_angle
-  enable_hlsl = !glslang_angle
-  is_angle = glslang_angle
+  enable_opt = true
+  enable_hlsl = true
 }
 
 glslang_sources_common("glslang_sources") {
   enable_opt = true
   enable_hlsl = true
-  is_angle = false
 }
 
 source_set("glslang_default_resource_limits_sources") {
   sources = [
-    "StandAlone/ResourceLimits.cpp",
-    "StandAlone/ResourceLimits.h",
+    "glslang/ResourceLimits/ResourceLimits.cpp",
+    "glslang/Public/ResourceLimits.h",
     "glslang/Include/ResourceLimits.h",
+    "glslang/Include/visibility.h",
   ]
   public_configs = [ ":glslang_public" ]
 
@@ -323,7 +317,10 @@ executable("glslang_validator") {
   if (!is_win) {
     cflags = [ "-Woverflow" ]
   }
-  defines = [ "ENABLE_OPT=1" ]
+  defines = [
+    "ENABLE_OPT=1",
+    "ENABLE_SPIRV=1",
+  ]
   deps = [
     ":glslang_build_info",
     ":glslang_default_resource_limits_sources",
@@ -336,17 +333,6 @@ executable("glslang_validator") {
     "${target_gen_dir}/include",
     "${spirv_tools_dir}/include",
   ]
-
-  configs -= _configs_to_remove
-  configs += _configs_to_add
-}
-
-executable("spirv-remap") {
-  sources = [ "StandAlone/spirv-remap.cpp" ]
-  defines = [ "ENABLE_OPT=1" ]
-  deps = [ ":glslang_sources" ]
-
-  include_dirs = [ "${spirv_tools_dir}/include" ]
 
   configs -= _configs_to_remove
   configs += _configs_to_add

@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -39,17 +39,18 @@ abcg::OpenGLWindow::getOpenGLSettings() const noexcept {
  */
 void abcg::OpenGLWindow::setOpenGLSettings(
     OpenGLSettings const &openGLSettings) noexcept {
-  if (abcg::Window::getSDLWindow() != nullptr)
+  if (abcg::Window::getSDLWindow() != nullptr) {
     return;
+  }
   m_openGLSettings = openGLSettings;
 }
 
 /**
  * @brief Takes a snapshot of the screen and saves it to a file.
  *
- * @param filename String view to the filename.
+ * @param filename Name of the screenshot file.
  */
-void abcg::OpenGLWindow::saveScreenshotPNG(std::string_view filename) const {
+void abcg::OpenGLWindow::saveScreenshotPNG(std::string const &filename) const {
   auto const size{getWindowSize()};
   auto const bitsPerPixel{8};
   auto const channels{4};
@@ -71,7 +72,7 @@ void abcg::OpenGLWindow::saveScreenshotPNG(std::string_view filename) const {
           pixels.data(), size.x, size.y, channels * bitsPerPixel,
           gsl::narrow<int>(pitch), 0x000000FF, 0x0000FF00, 0x00FF0000,
           0xFF000000)}) {
-    IMG_SavePNG(surface, filename.data());
+    IMG_SavePNG(surface, filename.c_str());
     SDL_FreeSurface(surface);
   }
 }
@@ -153,8 +154,7 @@ void abcg::OpenGLWindow::onPaintUI() {
     auto const label{fmt::format("avg {:.1f} FPS", fps)};
     ImGui::PlotLines("", frames.data(), gsl::narrow<int>(frames.size()),
                      gsl::narrow<int>(offset), label.c_str(), 0.0f,
-                     // *std::ranges::max_element(frames) * 2,
-                     *std::max_element(frames.begin(), frames.end()) * 2,
+                     *std::ranges::max_element(frames) * 2,
                      ImVec2(gsl::narrow<float>(frames.size()), 50));
     ImGui::End();
   }
@@ -223,8 +223,9 @@ void abcg::OpenGLWindow::onUpdate() {}
 void abcg::OpenGLWindow::onDestroy() {}
 
 void abcg::OpenGLWindow::handleEvent(SDL_Event const &event) {
-  if (event.window.windowID != abcg::Window::getSDLWindowID())
+  if (event.window.windowID != abcg::Window::getSDLWindowID()) {
     return;
+  }
 
   if (event.type == SDL_WINDOWEVENT) {
     switch (event.window.event) {
@@ -427,8 +428,9 @@ void abcg::OpenGLWindow::create() {
 void abcg::OpenGLWindow::paint() {
   onUpdate();
 
-  if (m_hidden || m_minimized)
+  if (m_hidden || m_minimized) {
     return;
+  }
 
   SDL_GL_MakeCurrent(abcg::Window::getSDLWindow(), m_GLContext);
 

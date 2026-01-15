@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -49,7 +49,7 @@ void setupImGuiStyle(bool const darkTheme, float const alpha) {
   style.ScrollbarSize                         = 15.0f;
   style.WindowTitleAlign                      = ImVec2(0.50f, 0.50f);
   style.Colors[ImGuiCol_Text]                 = ColorAlpha(black, 1.00f);
-  style.Colors[ImGuiCol_TextDisabled]         = ColorAlpha(gray3, 1.00f);  
+  style.Colors[ImGuiCol_TextDisabled]         = ColorAlpha(gray3, 1.00f);
   style.Colors[ImGuiCol_WindowBg]             = ColorAlpha(gray5, 0.95f);
   style.Colors[ImGuiCol_ChildBg]              = ColorAlpha(white, 0.16f);
   style.Colors[ImGuiCol_PopupBg]              = ColorAlpha(gray6, 0.97f);
@@ -238,8 +238,9 @@ Uint32 abcg::Window::getSDLWindowID() const noexcept { return m_windowID; }
  * @returns `true` on success; `false` on failure.
  */
 bool abcg::Window::createSDLWindow(SDL_WindowFlags extraFlags) {
-  if (m_window != nullptr)
+  if (m_window != nullptr) {
     return false;
+  }
 
   auto commonFlags{SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI};
 
@@ -247,8 +248,9 @@ bool abcg::Window::createSDLWindow(SDL_WindowFlags extraFlags) {
       m_windowSettings.title.c_str(), SDL_WINDOWPOS_CENTERED,
       SDL_WINDOWPOS_CENTERED, m_windowSettings.width, m_windowSettings.height,
       gsl::narrow<Uint32>(extraFlags) | gsl::narrow<Uint32>(commonFlags));
-  if (m_window == nullptr)
+  if (m_window == nullptr) {
     return false;
+  }
 
 #if defined(WIN32)
   SDL_SetWindowData(m_window, "window", this);
@@ -291,7 +293,10 @@ void abcg::Window::toggleFullscreen() {
   constexpr Uint32 windowFlags{SDL_WINDOW_FULLSCREEN |
                                SDL_WINDOW_FULLSCREEN_DESKTOP};
   bool const fullscreen{(SDL_GetWindowFlags(m_window) & windowFlags) != 0U};
-  enum class WindowType { Windowed, Fullscreen /*, FullscreenExclusive*/ };
+  enum class WindowType : std::uint8_t {
+    Windowed,
+    Fullscreen /*, FullscreenExclusive*/
+  };
 
   switch (auto const desiredWindowType{fullscreen ? WindowType::Windowed
                                                   : WindowType::Fullscreen};
@@ -317,8 +322,9 @@ void abcg::Window::toggleFullscreen() {
 void abcg::Window::templateHandleEvent(SDL_Event const &event, bool &done) {
   ImGui_ImplSDL2_ProcessEvent(&event);
 
-  if (event.window.windowID != m_windowID)
+  if (event.window.windowID != m_windowID) {
     return;
+  }
 
   if (event.type == SDL_WINDOWEVENT) {
     switch (event.window.event) {
@@ -402,8 +408,9 @@ void abcg::Window::templatePaint() {
 }
 
 void abcg::Window::templateDestroy() {
-  if (m_window == nullptr)
+  if (m_window == nullptr) {
     return;
+  }
 
   destroy();
 

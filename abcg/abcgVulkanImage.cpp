@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -19,11 +19,11 @@
 #include "abcgException.hpp"
 
 void abcg::VulkanImage::create(VulkanDevice const &device,
-                               std::string_view path, bool generateMipmaps) {
+                               std::string const &path, bool generateMipmaps) {
   m_device = static_cast<vk::Device>(device);
 
   // Load the bitmap
-  if (SDL_Surface *const surface{IMG_Load(path.data())}) {
+  if (SDL_Surface *const surface{IMG_Load(path.c_str())}) {
     // Enforce RGBA
     SDL_Surface *formattedSurface{
         SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA32, 0)};
@@ -81,7 +81,7 @@ void abcg::VulkanImage::create(VulkanDevice const &device,
     vk::BufferImageCopy const region{
         .imageSubresource = {.aspectMask = vk::ImageAspectFlagBits::eColor,
                              .layerCount = 1},
-        .imageExtent = {texWidth, texHeight, 1}};
+        .imageExtent = {.width = texWidth, .height = texHeight, .depth = 1}};
 
     // Execute the layout transition
     device.withCommandBuffer(
@@ -377,16 +377,18 @@ void abcg::VulkanImage::createMipmaps(VulkanDevice const &device,
                                         {{barrier}});
 
           vk::ImageBlit blit{};
-          blit.srcOffsets[0] = vk::Offset3D{0, 0, 0};
-          blit.srcOffsets[1] = vk::Offset3D{mipWidth, mipHeight, 1};
+          blit.srcOffsets[0] = vk::Offset3D{.x = 0, .y = 0, .z = 0};
+          blit.srcOffsets[1] =
+              vk::Offset3D{.x = mipWidth, .y = mipHeight, .z = 1};
           blit.srcSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
           blit.srcSubresource.mipLevel = mipLevel - 1;
           blit.srcSubresource.baseArrayLayer = 0;
           blit.srcSubresource.layerCount = 1;
-          blit.dstOffsets[0] = vk::Offset3D{0, 0, 0};
+          blit.dstOffsets[0] = vk::Offset3D{.x = 0, .y = 0, .z = 0};
           blit.dstOffsets[1] =
-              vk::Offset3D{mipWidth > 1 ? mipWidth / 2 : 1,
-                           mipHeight > 1 ? mipHeight / 2 : 1, 1};
+              vk::Offset3D{.x = mipWidth > 1 ? mipWidth / 2 : 1,
+                           .y = mipHeight > 1 ? mipHeight / 2 : 1,
+                           .z = 1};
           blit.dstSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
           blit.dstSubresource.mipLevel = mipLevel;
           blit.dstSubresource.baseArrayLayer = 0;
@@ -406,10 +408,12 @@ void abcg::VulkanImage::createMipmaps(VulkanDevice const &device,
               vk::PipelineStageFlagBits::eFragmentShader,
               vk::DependencyFlagBits{}, {}, {}, {barrier});
 
-          if (mipWidth > 1)
+          if (mipWidth > 1) {
             mipWidth /= 2;
-          if (mipHeight > 1)
+          }
+          if (mipHeight > 1) {
             mipHeight /= 2;
+          }
         }
 
         barrier.subresourceRange.baseMipLevel = mipLevels - 1;

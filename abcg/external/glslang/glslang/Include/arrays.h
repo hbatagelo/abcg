@@ -66,6 +66,7 @@ struct TArraySize {
 
         return SameSpecializationConstants(node, rhs.node);
     }
+    bool operator!=(const TArraySize& rhs) const { return !(*this == rhs); }
 };
 
 //
@@ -147,6 +148,15 @@ struct TSmallArrayVector {
             sizes->erase(sizes->begin());
     }
 
+    void pop_back()
+    {
+        assert(sizes != nullptr && sizes->size() > 0);
+        if (sizes->size() == 1)
+            dealloc();
+        else
+            sizes->resize(sizes->size() - 1);
+    }
+
     // 'this' should currently not be holding anything, and copyNonFront
     // will make it hold a copy of all but the first element of rhs.
     // (This would be useful for making a type that is dereferenced by
@@ -189,6 +199,12 @@ struct TSmallArrayVector {
     }
     bool operator!=(const TSmallArrayVector& rhs) const { return ! operator==(rhs); }
 
+    const TArraySize& operator[](int index) const
+    {
+        assert(sizes && index < (int)sizes->size());
+        return (*sizes)[index];
+    }
+
 protected:
     TSmallArrayVector(const TSmallArrayVector&);
 
@@ -222,7 +238,7 @@ protected:
 struct TArraySizes {
     POOL_ALLOCATOR_NEW_DELETE(GetThreadPoolAllocator())
 
-    TArraySizes() : implicitArraySize(1), variablyIndexed(false) { }
+    TArraySizes() : implicitArraySize(0), implicitlySized(true), variablyIndexed(false){ }
 
     // For breaking into two non-shared copies, independently modifiable.
     TArraySizes& operator=(const TArraySizes& from)
@@ -230,6 +246,7 @@ struct TArraySizes {
         implicitArraySize = from.implicitArraySize;
         variablyIndexed = from.variablyIndexed;
         sizes = from.sizes;
+        implicitlySized = from.implicitlySized;
 
         return *this;
     }
@@ -256,11 +273,17 @@ struct TArraySizes {
     void addInnerSize(int s, TIntermTyped* n) { sizes.push_back((unsigned)s, n); }
     void addInnerSize(TArraySize pair) {
         sizes.push_back(pair.size, pair.node);
+        implicitlySized = false;
     }
     void addInnerSizes(const TArraySizes& s) { sizes.push_back(s.sizes); }
-    void changeOuterSize(int s) { sizes.changeFront((unsigned)s); }
-    int getImplicitSize() const { return implicitArraySize; }
-    void updateImplicitSize(int s) { implicitArraySize = std::max(implicitArraySize, s); }
+    void changeOuterSize(int s) {
+        sizes.changeFront((unsigned)s);
+        implicitlySized = false;
+    }
+    int getImplicitSize() const { return implicitArraySize > 0 ? implicitArraySize : 1; }
+    void updateImplicitSize(int s) {
+        implicitArraySize = (std::max)(implicitArraySize, s);
+    }
     bool isInnerUnsized() const
     {
         for (int d = 1; d < sizes.size(); ++d) {
@@ -295,7 +318,11 @@ struct TArraySizes {
 
     bool hasUnsized() const { return getOuterSize() == UnsizedArraySize || isInnerUnsized(); }
     bool isSized() const { return getOuterSize() != UnsizedArraySize; }
+    bool isImplicitlySized() const { return implicitlySized; }
+    bool isDefaultImplicitlySized() const { return implicitlySized && implicitArraySize == 0; }
+    void setImplicitlySized(bool isImplicitSizing) { implicitlySized = isImplicitSizing; }
     void dereference() { sizes.pop_front(); }
+    void removeLastSize() { sizes.pop_back(); }
     void copyDereferenced(const TArraySizes& rhs)
     {
         assert(sizes.size() == 0);
@@ -316,6 +343,10 @@ struct TArraySizes {
 
         return true;
     }
+    const TArraySize& getArraySize(int index) const
+    {
+        return sizes[index];
+    }
 
     void setVariablyIndexed() { variablyIndexed = true; }
     bool isVariablyIndexed() const { return variablyIndexed; }
@@ -333,6 +364,7 @@ protected:
     // the implicit size of the array, if not variably indexed and
     // otherwise legal.
     int implicitArraySize;
+    bool implicitlySized;
     bool variablyIndexed;  // true if array is indexed with a non compile-time constant
 };
 

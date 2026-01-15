@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -139,7 +139,7 @@ checkExtensionsSupport(std::vector<char const *> const &extensions) {
 
 void abcg::VulkanInstance::create(std::vector<char const *> const &layers,
                                   std::vector<char const *> const &extensions,
-                                  std::string_view applicationName) {
+                                  std::string const &applicationName) {
   // Load Vulkan loader
   if (volkInitialize() != VK_SUCCESS) {
     throw abcg::RuntimeError("Vulkan loader not found");
@@ -171,7 +171,7 @@ void abcg::VulkanInstance::create(std::vector<char const *> const &layers,
 
   // Create application info to be passed to instance create info
   vk::ApplicationInfo const applicationInfo{
-      .pApplicationName = applicationName.data(),
+      .pApplicationName = applicationName.c_str(),
       .applicationVersion = VK_MAKE_VERSION(1, 0, 0),
       .pEngineName = "ABCg",
       .engineVersion = VK_MAKE_VERSION(ABCG_VERSION_MAJOR, ABCG_VERSION_MINOR,
@@ -181,14 +181,13 @@ void abcg::VulkanInstance::create(std::vector<char const *> const &layers,
   // Create Vulkan instance
   m_instance = vk::createInstance({
 #if defined(ABCG_VULKAN_DEBUG_REPORT)
-    .pNext = &debugCreateInfo,
+      .pNext = &debugCreateInfo,
 #endif
-    .pApplicationInfo = &applicationInfo,
-    .enabledLayerCount = gsl::narrow<uint32_t>(layers.size()),
-    .ppEnabledLayerNames = layers.data(),
-    .enabledExtensionCount = gsl::narrow<uint32_t>(extensions.size()),
-    .ppEnabledExtensionNames = extensions.data()
-  });
+      .pApplicationInfo = &applicationInfo,
+      .enabledLayerCount = gsl::narrow<uint32_t>(layers.size()),
+      .ppEnabledLayerNames = layers.data(),
+      .enabledExtensionCount = gsl::narrow<uint32_t>(extensions.size()),
+      .ppEnabledExtensionNames = extensions.data()});
 
   // Load all required Vulkan entry points and extensions
   volkLoadInstanceOnly(m_instance);

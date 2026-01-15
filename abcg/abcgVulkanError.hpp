@@ -6,14 +6,13 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
 #ifndef ABCG_VULKAN_ERROR_HPP_
 #define ABCG_VULKAN_ERROR_HPP_
 
-#if !defined(NDEBUG)
 #if defined(__clang__)
 #include <experimental/source_location>
 namespace abcg {
@@ -25,7 +24,6 @@ namespace abcg {
 using source_location = std::source_location;
 } // namespace abcg
 #endif
-#endif
 
 #include <volk.h>
 #include <vulkan/vulkan.hpp>
@@ -34,12 +32,8 @@ using source_location = std::source_location;
 
 namespace abcg {
 class VulkanError;
-#if !defined(NDEBUG)
 void checkVkResult(VkResult retCode, source_location const &sourceLocation =
                                          source_location::current());
-#else
-void checkVkResult([[maybe_unused]] VkResult retCode);
-#endif
 } // namespace abcg
 
 /**
@@ -51,7 +45,6 @@ void checkVkResult([[maybe_unused]] VkResult retCode);
  * and descriptive messages regarding the return codes.
  */
 class abcg::VulkanError : public abcg::Exception {
-#if !defined(NDEBUG)
 public:
   explicit VulkanError(
       VkResult errorCode,
@@ -60,16 +53,8 @@ public:
 private:
   static std::string prettyPrint(VkResult errorCode,
                                  source_location const &sourceLocation);
-#else
-public:
-  explicit VulkanError(VkResult errorCode);
-  explicit VulkanError(vk::Result errorCode);
 
-private:
-  static std::string prettyPrint(VkResult errorCode);
-#endif
-
-  static std::string_view getVulkanErrorString(VkResult errorCode);
+  static std::string getVulkanErrorString(VkResult errorCode);
 };
 
 #endif

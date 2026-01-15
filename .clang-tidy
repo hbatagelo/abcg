@@ -7,7 +7,6 @@ Checks: '*,
          -google*,
          -llvm*,
          -zircon*,
-         -*braces-around-statements,
          -*magic-numbers,
          -*use-trailing-return-type,
          -*reinterpret-cast,
@@ -19,5 +18,4 @@ Checks: '*,
          -*swappable-parameters'
 WarningsAsErrors: '*'
 HeaderFilterRegex: '.*'
-AnalyzeTemporaryDtors: false
 FormatStyle: llvm

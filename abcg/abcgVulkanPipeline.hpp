@@ -6,7 +6,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -25,20 +25,20 @@ class VulkanPipeline;
  * @brief Creation info structure for abcg::VulkanPipeline::create.
  */
 struct abcg::VulkanPipelineCreateInfo {
-  std::vector<abcg::VulkanShader> shaders{};
-  std::vector<vk::VertexInputBindingDescription> bindingDescriptions{};
-  std::vector<vk::VertexInputAttributeDescription> attributeDescriptions{};
+  std::vector<abcg::VulkanShader> shaders;
+  std::vector<vk::VertexInputBindingDescription> bindingDescriptions;
+  std::vector<vk::VertexInputAttributeDescription> attributeDescriptions;
   vk::PipelineInputAssemblyStateCreateInfo inputAssemblyState{};
-  std::optional<std::vector<vk::Viewport>> viewports{};
-  std::optional<std::vector<vk::Rect2D>> scissors{};
+  std::optional<std::vector<vk::Viewport>> viewports;
+  std::optional<std::vector<vk::Rect2D>> scissors;
   vk::PipelineRasterizationStateCreateInfo rasterizationState{};
-  std::optional<vk::PipelineMultisampleStateCreateInfo> multisampleState{};
-  std::optional<vk::PipelineDepthStencilStateCreateInfo> depthStencilState{};
-  std::optional<vk::PipelineColorBlendAttachmentState> colorBlendAttachment{};
-  std::optional<vk::PipelineColorBlendStateCreateInfo> colorBlendState{};
-  std::vector<vk::DynamicState> dynamicStates{};
+  std::optional<vk::PipelineMultisampleStateCreateInfo> multisampleState;
+  std::optional<vk::PipelineDepthStencilStateCreateInfo> depthStencilState;
+  std::optional<vk::PipelineColorBlendAttachmentState> colorBlendAttachment;
+  std::optional<vk::PipelineColorBlendStateCreateInfo> colorBlendState;
+  std::vector<vk::DynamicState> dynamicStates;
   vk::PipelineLayoutCreateInfo pipelineLayout{};
-  vk::PipelineCache pipelineCache{};
+  vk::PipelineCache pipelineCache;
 };
 
 /**

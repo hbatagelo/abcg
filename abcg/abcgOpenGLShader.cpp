@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -78,21 +78,19 @@ void printProgramInfoLog(GLuint const program) {
 }
 
 // If filenameOrText is a filename, returns the contents of the file (assumed
-// to be in text format). Otherwise, returns filenameOrText.
+// to be in text format). Otherwise, returns the filename.
 [[nodiscard]] std::string toSource(std::string_view filenameOrText) {
   static const std::size_t maxPathSize{260};
-  if (filenameOrText.size() > maxPathSize ||
-      !std::filesystem::exists(filenameOrText)) {
-    return filenameOrText.data();
+  std::string str{filenameOrText};
+  if (str.size() > maxPathSize || !std::filesystem::exists(str)) {
+    return str;
+  }
+  std::ifstream stream(str);
+  if (!stream) {
+    throw abcg::RuntimeError(fmt::format("Failed to read file {}", str));
   }
   std::stringstream source;
-  if (std::ifstream stream(filenameOrText.data()); stream) {
-    source << stream.rdbuf();
-    stream.close();
-  } else {
-    throw abcg::RuntimeError(
-        fmt::format("Failed to read file {}", filenameOrText));
-  }
+  source << stream.rdbuf();
   return source.str();
 }
 
@@ -103,9 +101,9 @@ void printProgramInfoLog(GLuint const program) {
   std::string source{shaderSource};
 #if !defined(__EMSCRIPTEN__) && defined(__APPLE__)
   // Remove version header, if any
-  source = std::regex_replace(source, std::regex(R"(^\s*#\s*version\s+\d+\s+es\s*)"), "");
-  if (source != shaderSource)
-  {
+  source = std::regex_replace(
+      source, std::regex(R"(^\s*#\s*version\s+\d+\s+es\s*)"), "");
+  if (source != shaderSource) {
     // Add new header
     source = "#version 410\n" + source;
   }
@@ -115,7 +113,7 @@ void printProgramInfoLog(GLuint const program) {
   auto const *sourceCStr{source.c_str()};
   glShaderSource(shaderID, 1, &sourceCStr, nullptr);
   glCompileShader(shaderID);
-  return {shaderID, shaderStage};
+  return {.shader = shaderID, .stage = shaderStage};
 }
 
 // Deletes the OpenGL shader objects in `shaderIDs`
@@ -185,8 +183,9 @@ abcg::createOpenGLProgram(std::vector<ShaderSource> const &pathsOrSources,
         compileHelper(source.source, abcgStageToOpenGLStage(source.stage)));
   }
 
-  if (!checkOpenGLShaderCompile(compiledShaders, throwOnError))
+  if (!checkOpenGLShaderCompile(compiledShaders, throwOnError)) {
     return 0U;
+  }
 
   auto const shaderProgram{glCreateProgram()};
   if (shaderProgram == 0) {

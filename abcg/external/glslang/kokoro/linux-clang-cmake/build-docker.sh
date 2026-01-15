@@ -39,12 +39,13 @@ set -e # Fail on any error.
 
 set -x # Display commands being run.
 
-using cmake-3.17.2
-using clang-10.0.0
+using cmake-3.31.2
+using clang-13.0.1
 using ninja-1.10.0
+using python-3.12
 
 echo "Building..."
 mkdir /build && cd /build
 
-cmake "$ROOT_DIR" -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$(pwd)/install" -DBUILD_SHARED_LIBS=$BUILD_SHARED_LIBS
+cmake "$ROOT_DIR" -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$(pwd)/install" -DBUILD_SHARED_LIBS=$BUILD_SHARED_LIBS -DENABLE_OPT=0
 ninja install

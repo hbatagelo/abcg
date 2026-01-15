@@ -4,7 +4,7 @@
  *
  * This file is part of ABCg (https://github.com/hbatagelo/abcg).
  *
- * @copyright (c) 2021--2023 Harlen Batagelo. All rights reserved.
+ * @copyright (c) 2021--2026 Harlen Batagelo. All rights reserved.
  * This project is released under the MIT License.
  */
 
@@ -46,7 +46,7 @@ abcg::RuntimeError::RuntimeError(std::string_view what,
 std::string
 abcg::RuntimeError::prettyPrint(std::string_view what,
                                 source_location const &sourceLocation) {
-  return toRedString(what.data()) + " in " + sourceLocation.file_name() + ":" +
+  return toRedString(what) + " in " + sourceLocation.file_name() + ":" +
          std::to_string(sourceLocation.line()) + ", " +
          toYellowString(sourceLocation.function_name()) + "\n";
 }
@@ -66,7 +66,7 @@ abcg::SDLError::SDLError(std::string_view what,
 
 std::string abcg::SDLError::prettyPrint(std::string_view what,
                                         source_location const &sourceLocation) {
-  return toRedString(what.data()) + " (" + SDL_GetError() + ") in " +
+  return toRedString(what) + " (" + SDL_GetError() + ") in " +
          sourceLocation.file_name() + ":" +
          std::to_string(sourceLocation.line()) + ", " +
          toYellowString(sourceLocation.function_name()) + "\n";
@@ -88,7 +88,7 @@ abcg::SDLImageError::SDLImageError(std::string_view what,
 std::string
 abcg::SDLImageError::prettyPrint(std::string_view what,
                                  source_location const &sourceLocation) {
-  return toRedString(what.data()) + " (" + IMG_GetError() + ") in " +
+  return toRedString(what) + " (" + IMG_GetError() + ") in " +
          sourceLocation.file_name() + ":" +
          std::to_string(sourceLocation.line()) + ", " +
          toYellowString(sourceLocation.function_name()) + "\n";
@@ -98,20 +98,20 @@ abcg::RuntimeError::RuntimeError(std::string_view what)
     : Exception(prettyPrint(what)) {}
 
 std::string abcg::RuntimeError::prettyPrint(std::string_view what) {
-  return toRedString(what.data()) + "\n";
+  return toRedString(what) + "\n";
 }
 
 abcg::SDLError::SDLError(std::string_view what)
     : Exception(prettyPrint(what)) {}
 
 std::string abcg::SDLError::prettyPrint(std::string_view what) {
-  return toRedString(what.data()) + " (" + SDL_GetError() + ")\n";
+  return toRedString(what) + " (" + SDL_GetError() + ")\n";
 }
 
 abcg::SDLImageError::SDLImageError(std::string_view what)
     : Exception(prettyPrint(what)) {}
 
 std::string abcg::SDLImageError::prettyPrint(std::string_view what) {
-  return toRedString(what.data()) + " (" + IMG_GetError() + ")\n";
+  return toRedString(what) + " (" + IMG_GetError() + ")\n";
 }
 #endif

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertex_0',['Vertex',['../namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daab22b929ba52471a02d18bb3a4e4472e6',1,'abcg']]]
+  ['vertex_0',['Vertex',['../namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9ab22b929ba52471a02d18bb3a4e4472e6',1,'abcg']]]
 ];

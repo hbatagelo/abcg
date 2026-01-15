@@ -1,15 +1,11 @@
 var searchData=
 [
-  ['rasterizationstate_0',['rasterizationState',['../structabcg_1_1VulkanPipelineCreateInfo.html#a3ac302c83e1a05758d9fe1efb4d593be',1,'abcg::VulkanPipelineCreateInfo']]],
-  ['raygen_1',['RayGen',['../namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa4b2766e948a345bc42a34d6ae00b329a',1,'abcg']]],
-  ['readme_2emd_2',['README.md',['../README_8md.html',1,'']]],
-  ['release_20notes_3',['Release notes',['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html',1,'']]],
-  ['render_4',['render',['../classabcg_1_1VulkanSwapchain.html#ab5a121bc5ed21c2f6ecabe00464a9830',1,'abcg::VulkanSwapchain']]],
-  ['requirements_5',['Requirements',['../index.html#autotoc_md2',1,'']]],
-  ['resizeviewport_6',['resizeViewport',['../classabcg_1_1TrackBall.html#ad0e7501acd24d9ce7975561fab0092da',1,'abcg::TrackBall']]],
-  ['resizingeventwatcher_7',['resizingeventwatcher',['../classabcg_1_1Window.html#a33a77ed4888300e0008bb92fb5fec509',1,'abcg::Window::resizingEventWatcher'],['../namespaceabcg.html#a6825799aa852dc7612dad9326be2fb3b',1,'abcg::resizingEventWatcher()']]],
-  ['restart_8',['restart',['../classabcg_1_1Timer.html#a5cdb94e9a81ed24604079384a40cb56c',1,'abcg::Timer']]],
-  ['righthandedsystem_9',['rightHandedSystem',['../structabcg_1_1OpenGLCubemapCreateInfo.html#a243dcbc334ab16177e9a1c602da5b137',1,'abcg::OpenGLCubemapCreateInfo']]],
-  ['run_10',['run',['../classabcg_1_1Application.html#aa5a85168c861a3502d37a1336f1aae0d',1,'abcg::Application']]],
-  ['runtimeerror_11',['runtimeerror',['../classabcg_1_1RuntimeError.html',1,'abcg::RuntimeError'],['../classabcg_1_1RuntimeError.html#a763cafc3e784884aff12f98e58d189c9',1,'abcg::RuntimeError::RuntimeError()']]]
+  ['paint_0',['paint',['../classabcg_1_1Window.html#a62100744ba7d2df02aad4acfba4121b0',1,'abcg::Window']]],
+  ['path_1',['path',['../structabcg_1_1OpenGLTextureCreateInfo.html#a7c9fc22ea40030b09789310fca575ff3',1,'abcg::OpenGLTextureCreateInfo']]],
+  ['paths_2',['paths',['../structabcg_1_1OpenGLCubemapCreateInfo.html#abebe4f01b695c28dc3b040ec29763d78',1,'abcg::OpenGLCubemapCreateInfo']]],
+  ['pipelinecache_3',['pipelineCache',['../structabcg_1_1VulkanPipelineCreateInfo.html#a458a37fb1c02f8e8f38e225e03958e4b',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['pipelinelayout_4',['pipelineLayout',['../structabcg_1_1VulkanPipelineCreateInfo.html#af6f17be735d6640f8ba1acca984888b7',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['present_5',['present',['../structabcg_1_1VulkanQueues.html#ae2266d17e17ae1aaa598c1401a9d5693',1,'abcg::VulkanQueues::present'],['../structabcg_1_1VulkanQueuesFamilies.html#af4cb4d7aaea6ea89c19a416d4bbb396e',1,'abcg::VulkanQueuesFamilies::present'],['../classabcg_1_1VulkanSwapchain.html#a666dd09f50b3f9e06b02d99f664c528b',1,'abcg::VulkanSwapchain::present()']]],
+  ['profile_6',['profile',['../structabcg_1_1OpenGLSettings.html#aea12bf2d9cab8d22450248f53cc53c06',1,'abcg::OpenGLSettings']]],
+  ['properties_7',['properties',['../structabcg_1_1VulkanBufferCreateInfo.html#aaf7fd4b23a9eebef487087cca6150465',1,'abcg::VulkanBufferCreateInfo::properties'],['../structabcg_1_1VulkanImageCreateInfo.html#ad7e70aa61a2a45bbd88470c0cb299430',1,'abcg::VulkanImageCreateInfo::properties']]]
 ];

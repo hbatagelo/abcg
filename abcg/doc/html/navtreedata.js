@@ -35,22 +35,23 @@ var NAVTREE =
     [ "Docker setup", "index.html#autotoc_md7", null ],
     [ "License", "index.html#autotoc_md8", null ],
     [ "Release notes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html", [
-      [ "v3.1.2", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md10", null ],
-      [ "v3.1.1", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md11", null ],
-      [ "v3.1.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md12", null ],
-      [ "v3.0.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md13", [
-        [ "New features", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md14", null ],
-        [ "Breaking changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md15", null ],
-        [ "Other changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md16", null ]
+      [ "v3.1.3", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md10", null ],
+      [ "v3.1.2", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md11", null ],
+      [ "v3.1.1", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md12", null ],
+      [ "v3.1.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md13", null ],
+      [ "v3.0.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md14", [
+        [ "New features", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md15", null ],
+        [ "Breaking changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md16", null ],
+        [ "Other changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md17", null ]
       ] ],
-      [ "v2.0.1", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md17", [
-        [ "Bug Fixes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md18", null ]
+      [ "v2.0.1", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md18", [
+        [ "Bug Fixes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md19", null ]
       ] ],
-      [ "v2.0.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md19", [
-        [ "Breaking changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md20", null ],
-        [ "Other changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md21", null ]
+      [ "v2.0.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md20", [
+        [ "Breaking changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md21", null ],
+        [ "Other changes", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md22", null ]
       ] ],
-      [ "v1.0.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md22", null ]
+      [ "v1.0.0", "md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md23", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -76,7 +77,6 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -87,8 +87,8 @@ var NAVTREEINDEX =
 [
 "abcgApplication_8cpp.html",
 "abcgOpenGLFunction_8hpp.html#ae9971e1b8abb781440101bac0968a897",
-"classabcg_1_1VulkanImage.html#af132a68f8fbdcbbc7f7e68f9b07d2986",
-"namespaceabcg.html#a47dba8957f7121ceccfde94363e707e4",
+"classabcg_1_1VulkanInstance.html",
+"namespaceabcg.html#a4566f93a590c2437fab4c2ac07ea1454",
 "structabcg_1_1OpenGLSettings.html"
 ];
 

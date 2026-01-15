@@ -8,6 +8,6 @@ var classabcg_1_1OpenGLWindow =
     [ "onPaintUI", "classabcg_1_1OpenGLWindow.html#ac46e03a19382c3becfb615de33ae8b79", null ],
     [ "onResize", "classabcg_1_1OpenGLWindow.html#a3752d51b1a5c75ed5a2322aceafbb59e", null ],
     [ "onUpdate", "classabcg_1_1OpenGLWindow.html#a71588879a55ea01d33e554d552d2958d", null ],
-    [ "saveScreenshotPNG", "classabcg_1_1OpenGLWindow.html#a800dee62e340fda9f5e8cd56a87a92ff", null ],
+    [ "saveScreenshotPNG", "classabcg_1_1OpenGLWindow.html#af5e112342df5e04e0ee9631de891d99e", null ],
     [ "setOpenGLSettings", "classabcg_1_1OpenGLWindow.html#ad22c7e5387a252da2f674afbaceb6067", null ]
 ];

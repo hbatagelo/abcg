@@ -1,10 +1,25 @@
 var searchData=
 [
-  ['data_0',['data',['../structabcg_1_1VulkanBufferCreateInfo.html#aa4f7f6a94fa3ce7cf7aef99afa16ac5f',1,'abcg::VulkanBufferCreateInfo']]],
-  ['depthbuffersize_1',['depthbuffersize',['../structabcg_1_1OpenGLSettings.html#a7e55ed42551b900cad40fc62f625350a',1,'abcg::OpenGLSettings::depthBufferSize'],['../structabcg_1_1VulkanSettings.html#a07bf4a2018e4c5e448aa7e6685a7885b',1,'abcg::VulkanSettings::depthBufferSize']]],
-  ['depthstencilstate_2',['depthStencilState',['../structabcg_1_1VulkanPipelineCreateInfo.html#a975155f44a0ef2085102344e6e1f0fa5',1,'abcg::VulkanPipelineCreateInfo']]],
-  ['destroy_3',['destroy',['../classabcg_1_1VulkanBuffer.html#a873139d866527c0c51ed24bc20e1f3ae',1,'abcg::VulkanBuffer::destroy()'],['../classabcg_1_1VulkanDevice.html#a0aa55708bd0aa0567f916c51343d03a4',1,'abcg::VulkanDevice::destroy()'],['../classabcg_1_1VulkanImage.html#acee63c8c454d5cc8e03f8381048b1379',1,'abcg::VulkanImage::destroy()'],['../classabcg_1_1VulkanInstance.html#a617850d1b31fc2b4960951ff839f5168',1,'abcg::VulkanInstance::destroy()'],['../classabcg_1_1VulkanPhysicalDevice.html#aa262040394eb85c78a40ab094f6ea281',1,'abcg::VulkanPhysicalDevice::destroy()'],['../classabcg_1_1VulkanPipeline.html#a15da4398f57661508f2585c552c23cac',1,'abcg::VulkanPipeline::destroy()'],['../classabcg_1_1VulkanShader.html#a276c5416ca86523a0871c2f2cf5c1fe1',1,'abcg::VulkanShader::destroy()'],['../classabcg_1_1VulkanSwapchain.html#ad4e607604552ba16cead8372ee5894aa',1,'abcg::VulkanSwapchain::destroy()'],['../classabcg_1_1Window.html#a93a2812c3be1df4d1fd92f1db13e4e1f',1,'abcg::Window::destroy()']]],
-  ['docker_20setup_4',['Docker setup',['../index.html#autotoc_md7',1,'']]],
-  ['doublebuffering_5',['doubleBuffering',['../structabcg_1_1OpenGLSettings.html#a803c16f1fb40cc35f125722fa38e4338',1,'abcg::OpenGLSettings']]],
-  ['dynamicstates_6',['dynamicStates',['../structabcg_1_1VulkanPipelineCreateInfo.html#afc27c6b72ac275c76b7edc49b00a2ecd',1,'abcg::VulkanPipelineCreateInfo']]]
+  ['callable_0',['Callable',['../namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a79ace5b2a7206c5d0aa286a5b33385f8',1,'abcg']]],
+  ['callgl_1',['callGL',['../namespaceabcg.html#a59fd1679b061fafcc7c087404e3e3ed1',1,'abcg']]],
+  ['changelog_2emd_2',['CHANGELOG.md',['../CHANGELOG_8md.html',1,'']]],
+  ['changes_3',['changes',['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md21',1,'Breaking changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md16',1,'Breaking changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md22',1,'Other changes'],['../md__2home_2harlen_2dev_2abcg_2CHANGELOG.html#autotoc_md17',1,'Other changes']]],
+  ['checkglerror_4',['checkGLError',['../namespaceabcg.html#a319c7bd437a23751054bc1d092d9e0ae',1,'abcg']]],
+  ['checkopenglshadercompile_5',['checkOpenGLShaderCompile',['../namespaceabcg.html#ada2b3e076d6fe0c4dd27615e7f4d4d50',1,'abcg']]],
+  ['checkopenglshaderlink_6',['checkOpenGLShaderLink',['../namespaceabcg.html#aab59a12bb6313b5c58f5352ce6f380e5',1,'abcg']]],
+  ['checkrebuild_7',['checkRebuild',['../classabcg_1_1VulkanSwapchain.html#ad4e8139494840f0653ab5cf2536b5645',1,'abcg::VulkanSwapchain']]],
+  ['checkvkresult_8',['checkVkResult',['../namespaceabcg.html#a6dc603716e2c0c5a9ee71ff1ca9881d9',1,'abcg']]],
+  ['closesthit_9',['ClosestHit',['../namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9ad4fcd21286c099405aff8d6b04c76575',1,'abcg']]],
+  ['colorblendattachment_10',['colorBlendAttachment',['../structabcg_1_1VulkanPipelineCreateInfo.html#aa5ea15999850fa2dfe34904cc2967dcf',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['colorblendstate_11',['colorBlendState',['../structabcg_1_1VulkanPipelineCreateInfo.html#a8f619f17d792103695630434e5ffa8b2',1,'abcg::VulkanPipelineCreateInfo']]],
+  ['colorimage_12',['colorImage',['../structabcg_1_1VulkanFrame.html#a4d4e911f29fb4da4c62f3f7af4607f79',1,'abcg::VulkanFrame']]],
+  ['commandbuffer_13',['commandBuffer',['../structabcg_1_1VulkanFrame.html#a09e1b9bef7c11ce5217a30e2d60cf020',1,'abcg::VulkanFrame']]],
+  ['commandbufferui_14',['commandBufferUI',['../structabcg_1_1VulkanFrame.html#a78141c209406580fe7b7b308a89e5aa4',1,'abcg::VulkanFrame']]],
+  ['commandpool_15',['commandPool',['../structabcg_1_1VulkanFrame.html#aeb73ab1a9f74961233d4b29a563aef89',1,'abcg::VulkanFrame']]],
+  ['compatibility_16',['Compatibility',['../namespaceabcg.html#a40121997ae703aa0e2498078f9634414adf9c715f20aaf58fb3926cc02b08ec53',1,'abcg']]],
+  ['compute_17',['compute',['../structabcg_1_1VulkanCommandPools.html#ae92fad133885626122607f37761b39ca',1,'abcg::VulkanCommandPools::compute'],['../namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9aa623a8d0366bf079411aa30be45b2d10',1,'abcg::Compute'],['../structabcg_1_1VulkanQueues.html#ad4407f2456a1102537909ac3fef5928a',1,'abcg::VulkanQueues::compute'],['../structabcg_1_1VulkanQueuesFamilies.html#a5079aa2f106d59fd3c437f0b8d982594',1,'abcg::VulkanQueuesFamilies::compute']]],
+  ['core_18',['Core',['../namespaceabcg.html#a40121997ae703aa0e2498078f9634414a83168e6cb289d732cc78427b51f93153',1,'abcg']]],
+  ['create_19',['create',['../classabcg_1_1VulkanBuffer.html#a63c95797fc3e4ddfb0c9282fae794dd7',1,'abcg::VulkanBuffer::create()'],['../classabcg_1_1Window.html#aae2263884294b506d2ffec789d3d4d9e',1,'abcg::Window::create()'],['../classabcg_1_1VulkanSwapchain.html#a1694d0a71c84a7b2ec8191c0b6b319d0',1,'abcg::VulkanSwapchain::create()'],['../classabcg_1_1VulkanShader.html#ab60a83a3d2045c1c4361eef0a2e64db2',1,'abcg::VulkanShader::create()'],['../classabcg_1_1VulkanPipeline.html#a743747edda95318ed91afe853d2a71c0',1,'abcg::VulkanPipeline::create()'],['../classabcg_1_1VulkanPhysicalDevice.html#ae39f878f560e709b08b634314d28d730',1,'abcg::VulkanPhysicalDevice::create()'],['../classabcg_1_1VulkanInstance.html#a931c7517e68a7962bf30c11d53c9dbe8',1,'abcg::VulkanInstance::create()'],['../classabcg_1_1VulkanImage.html#a05345978b7425f41b3248ea68050134b',1,'abcg::VulkanImage::create(VulkanDevice const &amp;device, VulkanImageCreateInfo const &amp;createInfo)'],['../classabcg_1_1VulkanImage.html#a93d0b71207bd1f95d1ec233ef0c3af9b',1,'abcg::VulkanImage::create(VulkanDevice const &amp;device, std::string const &amp;path, bool generateMipmaps=true)'],['../classabcg_1_1VulkanDevice.html#ab3e411047411d3fb64efc8689039e029',1,'abcg::VulkanDevice::create()']]],
+  ['createopenglprogram_20',['createOpenGLProgram',['../namespaceabcg.html#ac5dc51412a57521944dc7f4f32901af5',1,'abcg']]],
+  ['createsdlwindow_21',['createSDLWindow',['../classabcg_1_1Window.html#a0f9ac50c1babc71e1ac22207b4ccb48e',1,'abcg::Window']]]
 ];

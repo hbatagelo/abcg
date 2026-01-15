@@ -6,5 +6,6 @@ var structabcg_1_1VulkanFrame =
     [ "commandPool", "structabcg_1_1VulkanFrame.html#aeb73ab1a9f74961233d4b29a563aef89", null ],
     [ "fence", "structabcg_1_1VulkanFrame.html#a588976a9c273de75dec81028086c6fc3", null ],
     [ "framebufferMain", "structabcg_1_1VulkanFrame.html#aba1f36e936ceaff0f968d8e234d8f820", null ],
-    [ "index", "structabcg_1_1VulkanFrame.html#a13923e36b6699adeac0d6d77303b8cc1", null ]
+    [ "imageAvailable", "structabcg_1_1VulkanFrame.html#a90c3aad69c9d1ffd848d9ffff692de44", null ],
+    [ "renderComplete", "structabcg_1_1VulkanFrame.html#aecdb4ef347de47ad21bad137b181e049", null ]
 ];

@@ -1,58 +1,57 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgVulkanExternal.hpp" name="/home/harlen/dev/abcg/abcg/abcgVulkanExternal.hpp">
-<area shape="rect" id="Node000001" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="97,5,314,45"/>
-<area shape="rect" id="Node000002" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="23,93,241,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,58,150,95,146,91,178,54"/>
-<area shape="rect" id="Node000005" href="$abcgVulkanPhysicalDevice_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="282,181,545,221"/>
-<area shape="poly" id="edge36_Node000001_Node000005" title=" " alt="" coords="240,52,392,179,389,183,237,56"/>
-<area shape="rect" id="Node000003" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="302,709,519,749"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,144,67,171,38,205,16,245,10,266,8,288,8,555,10,589,18,615,34,637,59,659,100,678,161,694,302,716,301,721,160,699,98,683,56,664,30,640,13,617,5,590,3,555,3,288,5,265,12,243,34,202,63,168,93,140"/>
-<area shape="rect" id="Node000004" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="144,269,405,309"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="158,143,261,267,257,271,154,146"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="208,135,353,179,351,184,206,140"/>
-<area shape="rect" id="Node000017" href="$abcgVulkanWindow_8hpp.html" title="Header file of abcg::VulkanWindow." alt="" coords="94,533,309,573"/>
-<area shape="poly" id="edge35_Node000002_Node000017" title=" " alt="" coords="127,148,115,212,109,288,109,378,117,424,137,467,161,503,185,531,181,535,157,507,132,469,112,426,104,379,104,288,110,212,122,147"/>
-<area shape="rect" id="Node000018" href="$abcgVulkanWindow_8cpp.html" title="Definition of abcg::VulkanWindow members." alt="" coords="69,621,283,661"/>
-<area shape="poly" id="edge34_Node000002_Node000018" title=" " alt="" coords="112,146,94,175,77,210,64,248,59,288,59,467,61,523,68,545,83,572,109,599,139,619,136,623,105,603,79,575,63,548,56,524,53,467,53,288,59,247,72,208,89,172,107,144"/>
-<area shape="poly" id="edge31_Node000005_Node000004" title=" " alt="" coords="373,231,306,272,304,267,370,226"/>
-<area shape="rect" id="Node000006" href="$abcgVulkanDevice_8hpp.html" title="Header file of abcg::VulkanDevice." alt="" coords="583,269,791,309"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="487,223,628,267,626,272,486,228"/>
-<area shape="rect" id="Node000016" href="$abcgVulkanSwapchain_8cpp.html" title="Definition of abcg::VulkanSwapchain." alt="" coords="1233,621,1465,661"/>
-<area shape="poly" id="edge32_Node000005_Node000016" title=" " alt="" coords="559,209,823,230,1123,264,1258,287,1368,312,1411,326,1443,341,1464,358,1472,375,1472,467,1469,492,1462,516,1437,559,1406,596,1376,623,1372,619,1402,592,1433,556,1457,514,1464,491,1467,467,1467,377,1460,361,1441,346,1409,331,1367,317,1257,292,1122,270,823,236,558,214"/>
-<area shape="poly" id="edge33_Node000005_Node000017" title=" " alt="" coords="425,235,428,272,426,292,420,311,406,329,391,338,374,346,356,359,313,406,273,455,216,535,212,531,269,452,309,403,353,355,371,342,388,334,403,325,415,308,421,291,423,272,420,235"/>
-<area shape="rect" id="Node000007" href="$abcgVulkanBuffer_8hpp.html" title="Header file of abcg::VulkanBuffer." alt="" coords="1018,357,1219,397"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="795,309,1025,355,1024,360,794,315"/>
-<area shape="rect" id="Node000011" href="$abcgVulkanDevice_8cpp.html" title="Definition of abcg::VulkanDevice." alt="" coords="417,357,623,397"/>
-<area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="639,318,558,360,555,355,637,313"/>
-<area shape="rect" id="Node000012" href="$abcgVulkanImage_8hpp.html" title="Header file of abcg::VulkanImage." alt="" coords="758,357,962,397"/>
-<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="738,313,823,355,821,360,736,318"/>
-<area shape="rect" id="Node000013" href="$abcgVulkanSwapchain_8hpp.html" title="Header file of abcg::VulkanSwapchain." alt="" coords="595,445,829,485"/>
-<area shape="poly" id="edge29_Node000006_Node000013" title=" " alt="" coords="694,323,712,445,707,446,689,323"/>
-<area shape="poly" id="edge28_Node000006_Node000016" title=" " alt="" coords="805,290,899,295,1007,307,1121,326,1233,355,1285,369,1327,382,1363,403,1380,421,1396,444,1405,467,1409,492,1407,517,1402,542,1384,587,1365,622,1360,620,1379,585,1397,540,1402,516,1403,492,1400,469,1391,447,1376,424,1360,408,1325,387,1283,374,1231,360,1120,331,1007,312,898,301,804,295"/>
-<area shape="poly" id="edge30_Node000006_Node000017" title=" " alt="" coords="570,304,486,324,444,340,405,360,370,388,348,418,328,451,296,487,233,535,230,531,293,483,324,448,344,416,366,385,403,355,442,335,484,319,569,299"/>
-<area shape="rect" id="Node000019" href="$abcgVulkanShader_8hpp.html" title="Declaration of helper functions for creating Vulkan shaders." alt="" coords="365,445,571,485"/>
-<area shape="poly" id="edge24_Node000006_Node000019" title=" " alt="" coords="681,324,665,363,653,382,638,399,596,428,550,448,548,443,594,424,634,395,648,379,660,360,676,322"/>
-<area shape="rect" id="Node000008" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="731,621,901,661"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1130,411,1132,449,1129,468,1121,487,1101,514,1077,538,1021,577,960,606,902,625,901,620,958,601,1018,573,1073,534,1097,511,1116,484,1124,467,1127,448,1124,411"/>
-<area shape="rect" id="Node000009" href="$abcgVulkanBuffer_8cpp.html" title="Definition of abcg::VulkanBuffer." alt="" coords="1181,445,1381,485"/>
-<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="1168,401,1247,443,1244,448,1165,406"/>
-<area shape="rect" id="Node000010" href="$abcgVulkanImage_8cpp.html" title="Definition of abcg::VulkanImage." alt="" coords="904,445,1107,485"/>
-<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="1084,408,1032,447,1029,443,1081,404"/>
-<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="718,666,500,712,499,707,717,661"/>
-<area shape="poly" id="edge13_Node000012_Node000008" title=" " alt="" coords="857,411,822,621,817,621,852,410"/>
-<area shape="poly" id="edge14_Node000012_Node000010" title=" " alt="" coords="905,402,975,443,972,448,902,407"/>
-<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="817,407,746,448,743,443,814,402"/>
-<area shape="rect" id="Node000014" href="$abcgVulkanPipeline_8hpp.html" title="Header file of abcg::VulkanPipeline." alt="" coords="563,533,778,573"/>
-<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="699,499,682,534,677,532,695,497"/>
-<area shape="poly" id="edge19_Node000013_Node000016" title=" " alt="" coords="795,486,1281,619,1280,624,793,491"/>
-<area shape="poly" id="edge20_Node000013_Node000017" title=" " alt="" coords="587,490,309,537,308,531,586,485"/>
-<area shape="poly" id="edge17_Node000014_Node000008" title=" " alt="" coords="716,578,786,619,783,624,713,583"/>
-<area shape="rect" id="Node000015" href="$abcgVulkanPipeline_8cpp.html" title="Definition of abcg::VulkanPipeline." alt="" coords="491,621,706,661"/>
-<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="648,586,617,623,613,619,644,582"/>
-<area shape="poly" id="edge21_Node000017_Node000008" title=" " alt="" coords="323,571,523,594,719,619,731,621,730,626,718,624,522,599,322,576"/>
-<area shape="poly" id="edge22_Node000017_Node000016" title=" " alt="" coords="323,571,581,595,834,613,1233,633,1233,639,834,618,581,600,323,576"/>
-<area shape="poly" id="edge23_Node000017_Node000018" title=" " alt="" coords="194,587,184,622,179,620,189,586"/>
-<area shape="poly" id="edge25_Node000019_Node000008" title=" " alt="" coords="585,485,719,511,792,531,807,552,816,576,820,621,815,622,810,578,803,555,789,536,718,517,584,490"/>
-<area shape="poly" id="edge26_Node000019_Node000014" title=" " alt="" coords="526,488,627,531,625,536,524,493"/>
-<area shape="rect" id="Node000020" href="$abcgVulkanShader_8cpp.html" title="Definition of helper functions for creating Vulkan shaders." alt="" coords="333,533,539,573"/>
-<area shape="poly" id="edge27_Node000019_Node000020" title=" " alt="" coords="459,499,446,534,441,532,454,497"/>
+<area shape="rect" id="Node000001" title="Header file for including Vulkan&#45;related dependencies." alt="" coords="986,5,1203,45"/>
+<area shape="rect" id="Node000002" href="$abcgVulkanInstance_8hpp.html" title="Header file of abcg::VulkanInstance." alt="" coords="985,93,1204,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1097,59,1097,93,1092,93,1092,59"/>
+<area shape="rect" id="Node000003" href="$abcgVulkanInstance_8cpp.html" title="Definition of abcg::VulkanInstance." alt="" coords="63,709,281,749"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="972,124,701,144,541,159,382,178,236,200,117,226,71,241,37,256,15,272,8,289,8,554,11,581,21,605,35,627,53,648,94,682,135,707,132,712,91,686,49,651,31,630,16,607,6,582,3,555,3,287,11,269,34,251,69,236,116,221,235,195,381,172,540,154,700,139,971,119"/>
+<area shape="rect" id="Node000004" href="$abcgVulkanPhysicalDevice_8cpp.html" title="Definition of abcg::VulkanPhysicalDevice." alt="" coords="644,269,905,309"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1039,141,952,184,871,230,805,272,802,267,869,225,949,179,1037,137"/>
+<area shape="rect" id="Node000005" href="$abcgVulkanPhysicalDevice_8hpp.html" title="Header file of abcg::VulkanPhysicalDevice." alt="" coords="963,181,1226,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1097,147,1097,181,1092,181,1092,147"/>
+<area shape="rect" id="Node000017" href="$abcgVulkanWindow_8hpp.html" title="Header file of abcg::VulkanWindow." alt="" coords="1011,533,1226,573"/>
+<area shape="poly" id="edge35_Node000002_Node000017" title=" " alt="" coords="1189,137,1218,155,1241,180,1253,204,1261,228,1264,279,1255,331,1236,382,1212,430,1185,473,1137,535,1133,532,1180,470,1207,427,1232,380,1250,330,1259,279,1256,229,1248,206,1236,183,1214,159,1186,141"/>
+<area shape="rect" id="Node000018" href="$abcgVulkanWindow_8cpp.html" title="Definition of abcg::VulkanWindow members." alt="" coords="1268,621,1481,661"/>
+<area shape="poly" id="edge34_Node000002_Node000018" title=" " alt="" coords="1209,135,1269,156,1324,188,1346,208,1364,231,1376,258,1380,288,1380,467,1378,621,1372,621,1375,467,1375,288,1371,259,1360,234,1342,211,1320,192,1266,161,1207,140"/>
+<area shape="poly" id="edge31_Node000005_Node000004" title=" " alt="" coords="1012,228,845,272,844,267,1010,222"/>
+<area shape="rect" id="Node000006" href="$abcgVulkanDevice_8hpp.html" title="Header file of abcg::VulkanDevice." alt="" coords="929,269,1137,309"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1075,234,1049,271,1045,268,1071,231"/>
+<area shape="rect" id="Node000016" href="$abcgVulkanSwapchain_8cpp.html" title="Definition of abcg::VulkanSwapchain." alt="" coords="1004,621,1236,661"/>
+<area shape="poly" id="edge32_Node000005_Node000016" title=" " alt="" coords="1125,230,1152,268,1188,338,1212,395,1227,455,1241,533,1246,554,1241,574,1229,591,1214,604,1181,624,1178,619,1211,600,1225,587,1236,572,1240,554,1236,534,1222,456,1206,397,1183,340,1147,271,1120,234"/>
+<area shape="poly" id="edge33_Node000005_Node000017" title=" " alt="" coords="1127,229,1141,248,1152,268,1161,305,1165,344,1160,420,1145,486,1129,534,1124,532,1139,485,1154,419,1160,344,1156,306,1147,270,1137,250,1123,233"/>
+<area shape="rect" id="Node000007" href="$abcgVulkanBuffer_8hpp.html" title="Header file of abcg::VulkanBuffer." alt="" coords="350,357,551,397"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="916,312,563,360,552,362,551,356,562,355,915,307"/>
+<area shape="rect" id="Node000011" href="$abcgVulkanDevice_8cpp.html" title="Definition of abcg::VulkanDevice." alt="" coords="575,357,782,397"/>
+<area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="943,315,757,360,756,355,942,310"/>
+<area shape="rect" id="Node000012" href="$abcgVulkanImage_8hpp.html" title="Header file of abcg::VulkanImage." alt="" coords="806,357,1010,397"/>
+<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="996,320,937,359,934,355,993,315"/>
+<area shape="rect" id="Node000013" href="$abcgVulkanSwapchain_8hpp.html" title="Header file of abcg::VulkanSwapchain." alt="" coords="853,445,1086,485"/>
+<area shape="poly" id="edge29_Node000006_Node000013" title=" " alt="" coords="1037,324,1034,360,1024,398,1009,425,991,447,987,443,1005,422,1019,396,1029,359,1032,323"/>
+<area shape="poly" id="edge28_Node000006_Node000016" title=" " alt="" coords="1078,314,1129,351,1188,400,1243,461,1266,496,1285,532,1292,554,1285,575,1271,591,1255,604,1218,624,1216,619,1252,600,1268,587,1280,572,1286,554,1280,534,1262,498,1239,465,1184,404,1126,355,1075,319"/>
+<area shape="poly" id="edge30_Node000006_Node000017" title=" " alt="" coords="1051,321,1076,378,1100,445,1112,492,1119,533,1113,534,1106,493,1095,446,1071,380,1046,323"/>
+<area shape="rect" id="Node000019" href="$abcgVulkanShader_8hpp.html" title="Declaration of helper functions for creating Vulkan shaders." alt="" coords="69,445,275,485"/>
+<area shape="poly" id="edge24_Node000006_Node000019" title=" " alt="" coords="916,312,827,319,750,320,620,316,558,316,493,322,421,336,338,360,296,378,257,401,195,447,192,443,254,397,294,373,336,355,420,330,493,317,558,311,620,311,750,315,826,314,915,307"/>
+<area shape="rect" id="Node000008" href="$abcgVulkan_8hpp.html" title="Header file for Vulkan&#45;related functions and classes." alt="" coords="387,621,557,661"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="385,406,360,424,341,447,336,465,341,484,363,526,391,564,422,595,449,619,446,623,418,599,387,567,358,529,336,486,330,465,336,444,356,420,382,402"/>
+<area shape="rect" id="Node000009" href="$abcgVulkanBuffer_8cpp.html" title="Definition of abcg::VulkanBuffer." alt="" coords="351,445,551,485"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="453,411,453,445,448,445,448,411"/>
+<area shape="rect" id="Node000010" href="$abcgVulkanImage_8cpp.html" title="Definition of abcg::VulkanImage." alt="" coords="575,445,777,485"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="514,400,628,443,626,448,512,405"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="394,668,238,712,237,707,392,663"/>
+<area shape="poly" id="edge13_Node000012_Node000008" title=" " alt="" coords="880,409,832,454,791,488,738,518,663,555,515,624,513,619,660,551,735,513,788,483,828,450,877,405"/>
+<area shape="poly" id="edge14_Node000012_Node000010" title=" " alt="" coords="845,405,728,448,726,443,843,400"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="932,407,958,444,954,447,927,410"/>
+<area shape="rect" id="Node000014" href="$abcgVulkanPipeline_8hpp.html" title="Header file of abcg::VulkanPipeline." alt="" coords="721,533,935,573"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="928,495,860,536,858,531,925,490"/>
+<area shape="poly" id="edge19_Node000013_Node000016" title=" " alt="" coords="974,499,983,536,1001,572,1031,599,1066,619,1064,623,1028,603,997,575,978,538,969,500"/>
+<area shape="poly" id="edge20_Node000013_Node000017" title=" " alt="" coords="1015,490,1087,531,1085,536,1012,494"/>
+<area shape="poly" id="edge17_Node000014_Node000008" title=" " alt="" coords="737,579,551,624,549,619,736,574"/>
+<area shape="rect" id="Node000015" href="$abcgVulkanPipeline_8cpp.html" title="Definition of abcg::VulkanPipeline." alt="" coords="721,621,935,661"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="831,587,831,621,825,621,825,587"/>
+<area shape="poly" id="edge21_Node000017_Node000008" title=" " alt="" coords="998,573,558,631,557,626,997,568"/>
+<area shape="poly" id="edge22_Node000017_Node000016" title=" " alt="" coords="1122,587,1122,621,1117,621,1117,587"/>
+<area shape="poly" id="edge23_Node000017_Node000018" title=" " alt="" coords="1189,575,1319,619,1318,624,1187,580"/>
+<area shape="poly" id="edge25_Node000019_Node000008" title=" " alt="" coords="127,495,103,513,84,532,76,552,78,562,83,572,103,587,132,599,210,618,301,630,387,635,386,640,301,635,209,623,130,604,100,591,79,575,73,564,71,552,80,529,99,509,124,491"/>
+<area shape="poly" id="edge26_Node000019_Node000014" title=" " alt="" coords="289,479,721,535,720,541,289,485"/>
+<area shape="rect" id="Node000020" href="$abcgVulkanShader_8cpp.html" title="Definition of helper functions for creating Vulkan shaders." alt="" coords="94,533,301,573"/>
+<area shape="poly" id="edge27_Node000019_Node000020" title=" " alt="" coords="184,498,194,532,189,534,179,499"/>
 </map>

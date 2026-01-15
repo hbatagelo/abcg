@@ -44,7 +44,7 @@ var files_dup =
     [ "abcgVulkanPhysicalDevice.hpp", "abcgVulkanPhysicalDevice_8hpp.html", "abcgVulkanPhysicalDevice_8hpp" ],
     [ "abcgVulkanPipeline.cpp", "abcgVulkanPipeline_8cpp.html", null ],
     [ "abcgVulkanPipeline.hpp", "abcgVulkanPipeline_8hpp.html", "abcgVulkanPipeline_8hpp" ],
-    [ "abcgVulkanShader.cpp", "abcgVulkanShader_8cpp.html", "abcgVulkanShader_8cpp" ],
+    [ "abcgVulkanShader.cpp", "abcgVulkanShader_8cpp.html", null ],
     [ "abcgVulkanShader.hpp", "abcgVulkanShader_8hpp.html", "abcgVulkanShader_8hpp" ],
     [ "abcgVulkanSwapchain.cpp", "abcgVulkanSwapchain_8cpp.html", null ],
     [ "abcgVulkanSwapchain.hpp", "abcgVulkanSwapchain_8hpp.html", "abcgVulkanSwapchain_8hpp" ],

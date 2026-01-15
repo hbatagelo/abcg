@@ -43,7 +43,7 @@ MathJax.Hub.Config({
           <tr style="height: 56px;">
             <td id="projectalign" style="padding-left: 0.5em;">
               <div id="projectname">ABCg
-                &#160;<span id="projectnumber">v3.1.2</span>
+                &#160;<span id="projectnumber">v3.1.3</span>
               </div>
               <div id="projectbrief">Development framework for MCTA008-17</div>
             </td>
@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('abcgShader_8hpp.html',''); initResizab
 
 <p>Declaration of a structure for building shaders.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;optional&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for abcgShader.hpp:</div>
@@ -146,33 +146,33 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a9853f19ed2d55b91bc64fde5a95e40da" id="r_a9853f19ed2d55b91bc64fde5a95e40da"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40da">abcg::ShaderStage</a> { <br />
-&#160;&#160;<a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daab22b929ba52471a02d18bb3a4e4472e6">abcg::Vertex</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa91a08ad964ef35c89ae69cd4176cfb4a">abcg::TessellationControl</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa85a5d743bd284736223e3c1e95c6b952">abcg::TessellationEvaluation</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daad9c6333623e6357515fcbf17be806273">abcg::Geometry</a>
+<tr class="memitem:ad12f956989d4de72ba56ae9167d2c3f9" id="r_ad12f956989d4de72ba56ae9167d2c3f9"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9">abcg::ShaderStage</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9ab22b929ba52471a02d18bb3a4e4472e6">abcg::Vertex</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a91a08ad964ef35c89ae69cd4176cfb4a">abcg::TessellationControl</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a85a5d743bd284736223e3c1e95c6b952">abcg::TessellationEvaluation</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9ad9c6333623e6357515fcbf17be806273">abcg::Geometry</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa37d01b98065725fe3a1d30acf3a0064a">abcg::Fragment</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daaa623a8d0366bf079411aa30be45b2d10">abcg::Compute</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa4b2766e948a345bc42a34d6ae00b329a">abcg::RayGen</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daafed8068cf66889c7c88bd5b7d3d02e4b">abcg::AnyHit</a>
+&#160;&#160;<a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a37d01b98065725fe3a1d30acf3a0064a">abcg::Fragment</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9aa623a8d0366bf079411aa30be45b2d10">abcg::Compute</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a4b2766e948a345bc42a34d6ae00b329a">abcg::RayGen</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9afed8068cf66889c7c88bd5b7d3d02e4b">abcg::AnyHit</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daad4fcd21286c099405aff8d6b04c76575">abcg::ClosestHit</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daae7ddb7cd777b59610b220bcfa80bd95f">abcg::Miss</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daaa06d31c2ee920b4d53e8c9c06d90ba24">abcg::Intersection</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa79ace5b2a7206c5d0aa286a5b33385f8">abcg::Callable</a>
+&#160;&#160;<a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9ad4fcd21286c099405aff8d6b04c76575">abcg::ClosestHit</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9ae7ddb7cd777b59610b220bcfa80bd95f">abcg::Miss</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9aa06d31c2ee920b4d53e8c9c06d90ba24">abcg::Intersection</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a79ace5b2a7206c5d0aa286a5b33385f8">abcg::Callable</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daaeaeb30f9f18e0c50b178676f3eaef45f">abcg::Task</a>
-, <a class="el" href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40daa710fdb6adb881b408116ef95335e1961">abcg::Mesh</a>
+&#160;&#160;<a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9aeaeb30f9f18e0c50b178676f3eaef45f">abcg::Task</a>
+, <a class="el" href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9a710fdb6adb881b408116ef95335e1961">abcg::Mesh</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a9853f19ed2d55b91bc64fde5a95e40da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of shader stages.  <a href="namespaceabcg.html#a9853f19ed2d55b91bc64fde5a95e40da">More...</a><br /></td></tr>
-<tr class="separator:a9853f19ed2d55b91bc64fde5a95e40da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ad12f956989d4de72ba56ae9167d2c3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of shader stages.  <a href="namespaceabcg.html#ad12f956989d4de72ba56ae9167d2c3f9">More...</a><br /></td></tr>
+<tr class="separator:ad12f956989d4de72ba56ae9167d2c3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Declaration of a structure for building shaders. </p>
 <p>This file is part of ABCg (<a href="https://github.com/hbatagelo/abcg">https://github.com/hbatagelo/abcg</a>).</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2021&ndash;2023 Harlen Batagelo. All rights reserved. This project is released under the MIT License. </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>(c) 2021&ndash;2026 Harlen Batagelo. All rights reserved. This project is released under the MIT License. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

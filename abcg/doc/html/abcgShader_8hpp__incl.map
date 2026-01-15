@@ -1,7 +1,7 @@
 <map id="/home/harlen/dev/abcg/abcg/abcgShader.hpp" name="/home/harlen/dev/abcg/abcg/abcgShader.hpp">
 <area shape="rect" id="Node000001" title="Declaration of a structure for building shaders." alt="" coords="5,5,176,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="8,93,83,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,47,61,83,57,80,77,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="107,93,165,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,44,125,80,120,83,99,47"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="15,93,81,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,47,63,83,58,80,78,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,93,164,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,44,124,80,119,83,99,47"/>
 </map>
